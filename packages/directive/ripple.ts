@@ -4,7 +4,9 @@ export const ripple = {
     console.log(el, binding);
     const init = function () {
       // 初始化需要处理事件
-      el.addEventListener('click', () => {
+      // 判断浏览器是否支持按下或者鼠标按下事件
+
+      el.addEventListener('mousedown', () => {
         console.log('down');
       });
 
