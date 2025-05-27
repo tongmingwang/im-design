@@ -43,14 +43,14 @@ jobs:
           cache: pnpm # 或 pnpm / yarn
       - name: Setup Pages
         uses: actions/configure-pages@v4
-      - name: Install dependencies
-        run: pnpm install # 或 pnpm install / yarn install / bun install
-      - name: Build with VitePress
-        run: pnpm docs:build # 或 pnpm docs:build / yarn docs:build / bun run docs:build
+      # - name: Install dependencies
+        # run: pnpm install # 或 pnpm install / yarn install / bun install
+      # - name: Build with VitePress
+        # run: pnpm docs:build # 或 pnpm docs:build / yarn docs:build / bun run docs:build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .vitepress/dist
+          path: docs/.vitepress/dist
 
   # 部署工作
   deploy:
