@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      im-design:
+        specifier: ^0.0.0
+        version: 0.0.0
       sass:
         specifier: ^1.89.0
         version: 1.89.0
@@ -1108,6 +1111,9 @@ packages:
 
   html-void-elements@3.0.0:
     resolution: {integrity: sha512-bEqo66MRXsUGxWHV5IP0PUiAWwoEjba4VCzg0LjFJBpchPaTfyfCKTG6bc5F8ucKec3q5y6qOdGyYTSBEvhCrg==}
+
+  im-design@0.0.0:
+    resolution: {integrity: sha512-TgOHaNVGL0nu80hYrUk+GJzFEcHHMwNjay/yPAx8XBfXi4zjvd2QKyetfvMFRTqZwmMWqYkBAHNLfZ4egvQtBA==}
 
   immutable@5.1.2:
     resolution: {integrity: sha512-qHKXW1q6liAk1Oys6umoaZbDRqjcjgSrbnrifHsfsttza7zcvRAsL7mMV6xWcyhwQy7Xj5v4hhbr6b+iDYwlmQ==}
@@ -2541,6 +2547,8 @@ snapshots:
   hookable@5.5.3: {}
 
   html-void-elements@3.0.0: {}
+
+  im-design@0.0.0: {}
 
   immutable@5.1.2: {}
 
