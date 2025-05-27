@@ -3,6 +3,7 @@ import { type ImDesignOptions } from '@/types';
 import { token } from '@/utils/constance';
 import ImButton from './ImButton';
 import { ripple } from '@/directive/ripple';
+import '@/styles/global.scss';
 
 // 定义组件列表
 const list = [ImButton];
