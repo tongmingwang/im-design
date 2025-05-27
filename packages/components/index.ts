@@ -4,11 +4,11 @@ import { token } from '@/utils/constance';
 import ImButton from './ImButton';
 import { ripple } from '@/directive/ripple';
 import '@/styles/global.scss';
-
+import { ImIconClose, ImIconSearch, ImIconShare } from './ImIcon';
 // 定义组件列表
 const list = [ImButton];
 
-export { ImButton };
+export { ImButton, ImIconClose, ImIconSearch, ImIconShare };
 // 导出所有类型
 export * from './ImButton/ButtonProp';
 // 导出插件安装函数

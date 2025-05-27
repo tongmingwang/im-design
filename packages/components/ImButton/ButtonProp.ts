@@ -7,4 +7,5 @@ export interface ButtonProps {
   loading?: boolean;
   text?: string;
   variant?: 'text' | 'tonal' | 'outlined';
+  tabindex?: number;
 }
