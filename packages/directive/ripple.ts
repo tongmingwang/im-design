@@ -43,8 +43,8 @@ export const ripple = {
         height: `${size}px`,
         left: `${x}px`,
         top: `${y}px`,
-        opacity: 0.33,
-        transform: isD ? 'scale(1)' : 'scale(0.75)',
+        opacity: 0.35,
+        transform: isD ? 'scale(1)' : 'scale(0.85)',
         'will-change': 'transform,opacity', // 提示浏览器优化动画
       });
 
@@ -61,7 +61,7 @@ export const ripple = {
       ripple.getBoundingClientRect();
 
       // 触发动画
-      ripple.style.transform = 'scale(4)';
+      ripple.style.transform = 'scale(5)';
 
       // 动画结束后移除元素
       ripple.addEventListener(

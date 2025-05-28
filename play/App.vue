@@ -5,7 +5,7 @@
       <im-button color="info">信息按钮</im-button>
       <im-button color="warning">警告按钮</im-button>
       <im-button color="error">危险按钮</im-button>
-      <im-button color="primary">禁用按钮</im-button>
+      <im-button color="primary"> Demo </im-button>
     </section>
     <section>
       <im-button color="primary" shape="round">Round</im-button>

@@ -4,8 +4,7 @@ layout: home
 
 hero:
   name: 'ImDesign'
-  text: 'Building a Vue3 Component Library'
-  tagline: 'Vue 3 Enterprise Component Library | Out of the box · High performance · Ultimate experience'
+  tagline: 'Vue3 高性能，高体验的UI 组件库'
   image:
     src: /logo.svg
     alt: ImDesign
@@ -15,10 +14,10 @@ hero:
     decoding: async
   actions:
     - theme: brand
-      text: Get Started
+      text: 开始
       link: /getting-started
     - theme: alt
-      text: Components
+      text: 组件文档
       link: /button
 
 features:

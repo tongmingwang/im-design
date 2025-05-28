@@ -124,15 +124,15 @@ const handleClick = () => {
 @each $color in (primary, success, warning, error) {
   .im-button--#{$color} {
     @include btn-colors(
-      var(--im-#{$color}-color-7),
+      var(--im-#{$color}-color-6),
       var(--im-gray-color-1),
-      var(--im-#{$color}-color-7)
+      var(--im-#{$color}-color-6)
     );
     &:hover {
       @include btn-colors(
-        var(--im-#{$color}-color-8),
+        var(--im-#{$color}-color-7),
         var(--im-gray-color-1),
-        var(--im-#{$color}-color-8)
+        var(--im-#{$color}-color-7)
       );
     }
     &.is-disabled,
@@ -146,11 +146,11 @@ const handleClick = () => {
     }
 
     &.im-button--text {
-      color: var(--im-#{$color}-color-7);
+      color: var(--im-#{$color}-color-6);
       &:hover {
         background-color: var(--im-#{$color}-color-2);
         border-color: transparent;
-        color: var(--im-#{$color}-color-8);
+        color: var(--im-#{$color}-color-7);
       }
       &.is-disabled,
       &.is-disabled:hover {
@@ -165,13 +165,13 @@ const handleClick = () => {
     &.im-button--tonal {
       @include btn-colors(
         var(--im-#{$color}-color-1),
-        var(--im-#{$color}-color-7),
+        var(--im-#{$color}-color-6),
         var(--im-#{$color}-color-1)
       );
       &:hover {
         @include btn-colors(
           var(--im-#{$color}-color-2),
-          var(--im-#{$color}-color-8),
+          var(--im-#{$color}-color-7),
           var(--im-#{$color}-color-2)
         );
       }
@@ -186,7 +186,7 @@ const handleClick = () => {
     }
 
     &.im-button--outlined {
-      color: var(--im-#{$color}-color-7);
+      color: var(--im-#{$color}-color-6);
       &:hover {
         background-color: var(--im-#{$color}-color-2);
       }
