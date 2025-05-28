@@ -219,20 +219,20 @@ import { ImIconSearch } from 'im-design'
 采用 css 变量自定义颜色,直接在按钮组件上覆盖掉默认的颜色变量即可
 
 <div>
-    <im-button color="primary" style="--im-gray-color-1: #fff;--im-primary-color-7: #262626;--im-primary-color-8: #000;">Custom</im-button>
-    <im-button color="primary" style="--im-gray-color-1: #fff;--im-primary-color-7:rgb(150, 14, 100);--im-primary-color-8: rgb(125, 8, 82);">Custom</im-button>
+    <im-button color="primary" style="--im-gray-color-1: #fff;--im-primary-color-6: #262626;--im-primary-color-7: #000;">Custom</im-button>
+    <im-button color="primary" style="--im-gray-color-1: #fff;--im-primary-color-6:rgb(150, 14, 100);--im-primary-color-7: rgb(125, 8, 82);">Custom</im-button>
 </div>
 
 ```html
 <div>
   <im-button
     color="primary"
-    style="--im-gray-color-1: #fff;--im-primary-color-7: #262626;--im-primary-color-8: #000;"
+    style="--im-gray-color-1: #fff;--im-primary-color-6: #262626;--im-primary-color-7: #000;"
     >Custom</im-button
   >
   <im-button
     color="primary"
-    style="--im-gray-color-1: #fff;--im-primary-color-7:rgb(150, 14, 100);--im-primary-color-8: rgb(125, 8, 82);"
+    style="--im-gray-color-1: #fff;--im-primary-color-6:rgb(150, 14, 100);--im-primary-color-7: rgb(125, 8, 82);"
     >Custom</im-button
   >
 </div>

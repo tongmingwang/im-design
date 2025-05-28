@@ -1,16 +1,16 @@
 <template>
-  <im-row :gutter="8">
-    <im-col span="8"><div class="demo" style="height: 200px"></div></im-col>
-    <im-col span="4"><div class="demo"></div></im-col>
-    <im-col span="4"><div class="demo"></div></im-col>
-    <im-col span="4"><div class="demo"></div></im-col>
-  </im-row>
   <im-row>
-    <im-col span="24"><div class="demo" style="height: 200px"></div></im-col>
+    <im-input v-model="value" placeholder="输入问啊" />
+    {{ value }}
   </im-row>
+  <ImIconSearch />
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ImIconSearch } from '../packages/components';
+import { ref } from 'vue';
+const value = ref('');
+</script>
 
 <style scoped lang="scss">
 .demo {
