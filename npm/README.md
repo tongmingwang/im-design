@@ -1,8 +1,8 @@
-# 快速开始
+# Im Design
 
-ImDesign 是一个基于 Vue3 和 TypeScript 开发的 UI 组件库，旨在提供一套高质量的、易于使用的 Vue UI 组件。ImDesign 的目标是帮助开发者快速构建美观、高效的应用程序界面。
+ImDesign is a Vue 3.x component library
 
-## 安装
+## Installation
 
 ```bash
 # 使用 npm
@@ -15,11 +15,11 @@ yarn add im-design
 pnpm add im-design
 ```
 
-## 使用
+## Usage
 
-全局引入 (推荐用于小型项目)
+### Import all components
 
-```js
+```javascript
 // main.js
 import { createApp } from 'vue';
 import App from './App.vue';
@@ -31,9 +31,9 @@ app.use(ImDesign, { size: '36', zIndex: 1000 });
 app.mount('#app');
 ```
 
-按需引入 (推荐用于大型项目)
+### Import specific component
 
-```js
+```javascript
 // main.js
 import { createApp } from 'vue';
 import App from './App.vue';
@@ -45,9 +45,9 @@ app.component(ImButton.name, ImButton);
 app.mount('#app');
 ```
 
-## 组件使用示例
+## Component example
 
-```vue
+```js
 <template>
   <div class="demo-container">
     <im-button type="primary" @click="handleClick">
@@ -67,3 +67,9 @@ const handleClick = () => {
 
 <style></style>
 ```
+
+[https://tongmingwang.github.io/im-design/](https://tongmingwang.github.io/im-design/)
+
+## License
+
+MIT © [im-design](https://tongmingwang.github.io/im-design/)

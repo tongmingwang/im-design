@@ -1,8 +1,8 @@
-# Icons
+# Icon 图标
 
-The icon component is an SVG-based icon library that needs to be introduced on demand to avoid excessive project size.
+ImDesign 图标库，提供了一套常用的图标 svg。支持按需导入，减少打包体积。
 
-## Usage
+## 使用
 
 <script setup>
 import { ImIconSearch,ImIconClose }  from 'im-design'

@@ -36,24 +36,25 @@ export default defineConfig({
       },
     },
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Components', link: '/button' },
+      { text: '指南', link: '/getting-started' },
+      { text: '组件文档', link: '/button' },
     ],
 
     sidebar: [
       {
-        text: 'Guide',
+        text: '指南',
         items: [
-          { text: 'Theme', link: '/theme' },
-          { text: 'Getting Started', link: '/getting-started' },
+          { text: '快速开始', link: '/getting-started' },
+          { text: '全局主题', link: '/theme' },
         ],
-        // collapsible: true,
       },
       {
-        text: 'Base Components',
+        text: '通用组件',
         items: [
-          { text: 'Button', link: '/button' },
-          { text: 'Icons', link: '/icon' },
+          { text: 'Button 按钮', link: '/button' },
+          { text: 'Icon 图标', link: '/icon' },
+          { text: 'Layout 布局', link: '/layout' },
+          { text: 'Color 色彩', link: '/color' },
         ],
       },
     ],
