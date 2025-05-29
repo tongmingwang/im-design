@@ -1,10 +1,10 @@
 # Color 色彩
 
-Im Design 为了避免视觉传达差异，使用一套特定的调色板来规定颜色，为你所搭建的产品提供一致的外观视觉感受。
+为了避免视觉传达差异，使用一套特定的调色板来规定颜色，为你所搭建的产品提供一致的外观视觉感受。
 
 ## 主色
 
-Im Design 默认的主题色是明亮、友好的蓝色。
+默认的主题色是明亮、友好的蓝色。
 
 <div class="color_wrapper">
   <div class="item_main item" :style="{'--color': 'var(--im-primary-color-7)'}"></div>

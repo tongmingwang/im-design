@@ -114,7 +114,7 @@ class ae {
       let o = Date.now(), s = e.getAttribute("data-time");
       const i = o - Number(s) || 0;
       i && await new Promise((a) => {
-        e.style.opacity = "0.15";
+        e.style.opacity = "0.2";
         const l = 320 - i;
         setTimeout(
           () => {

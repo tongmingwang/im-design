@@ -26,7 +26,8 @@ export default class RippleTask {
 
       if (dpx) {
         await new Promise((resolve) => {
-          ripple.style.opacity = '0.15';
+          ripple.style.opacity = '0.2'; // 淡出效果
+
           const delay = 320 - dpx; // 延迟时间，根据距离计算
 
           setTimeout(
