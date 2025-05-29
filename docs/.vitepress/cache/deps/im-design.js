@@ -25,15 +25,15 @@ import {
   withDirectives
 } from "./chunk-K6JRRAUI.js";
 
-// node_modules/.pnpm/im-design@0.0.8/node_modules/im-design/dist/im-design.js
-var R = (n) => {
+// node_modules/.pnpm/im-design@0.0.9/node_modules/im-design/dist/im-design.js
+var D = (n) => {
   throw TypeError(n);
 };
-var V = (n, t, e) => t.has(n) || R("Cannot " + e);
-var v = (n, t, e) => (V(n, t, "read from private field"), e ? e.call(n) : t.get(n));
-var T = (n, t, e) => t.has(n) ? R("Cannot add the same private member more than once") : t instanceof WeakSet ? t.add(n) : t.set(n, e);
-var D = (n, t, e, o) => (V(n, t, "write to private field"), o ? o.call(n, e) : t.set(n, e), e);
-var F = Symbol("im-design-token");
+var R = (n, t, e) => t.has(n) || D("Cannot " + e);
+var v = (n, t, e) => (R(n, t, "read from private field"), e ? e.call(n) : t.get(n));
+var T = (n, t, e) => t.has(n) ? D("Cannot add the same private member more than once") : t instanceof WeakSet ? t.add(n) : t.set(n, e);
+var V = (n, t, e, o) => (R(n, t, "write to private field"), o ? o.call(n, e) : t.set(n, e), e);
+var q = Symbol("im-design-token");
 var x = (n) => {
   const t = "im-" + n;
   return {
@@ -43,8 +43,8 @@ var x = (n) => {
     is: (e, o) => o ? `is-${e}` : ""
   };
 };
-var M = (n, t) => {
-  const e = inject(F), o = ref(Number(e.size || 36)), s = ref(e.zIndex || 1e3);
+var F = (n, t) => {
+  const e = inject(q), o = ref(Number(e.size || 36)), s = ref(e.zIndex || 1e3);
   return { sizeToken: o, zIndexToken: s };
 };
 var ne = {
@@ -79,29 +79,29 @@ var z = defineComponent({
   },
   emits: ["click"],
   setup(n, { emit: t }) {
-    const e = n, o = t, s = x("button"), { sizeToken: i } = M(), l = computed(() => [
+    const e = n, o = t, s = x("button"), { sizeToken: i } = F(), a = computed(() => [
       s.b(),
       e.color && s.m(e.color),
       e.shape && s.m(e.shape),
       e.variant && s.m(e.variant),
       s.is("disabled", e.disabled),
       s.is("loading", e.loading)
-    ].filter(Boolean)), u = computed(() => {
-      let a = +(e.size || i.value || 36);
+    ].filter(Boolean)), l = computed(() => {
+      let c = +(e.size || i.value || 36);
       return {
-        "--im-button-size": a + "px",
-        "--im-button-padding": (a * 0.45).toFixed(0) + "px",
+        "--im-button-size": c + "px",
+        "--im-button-padding": (c * 0.45).toFixed(0) + "px",
         width: e.width
       };
-    }), c = computed(() => e.loading && ["square", "circle"].includes(e.shape)), r = () => {
+    }), r = computed(() => e.loading && ["square", "circle"].includes(e.shape)), m = () => {
       e.disabled || e.loading || o("click");
     };
-    return (a, N) => {
+    return (c, N) => {
       const I = resolveDirective("ripple");
       return withDirectives((openBlock(), createElementBlock("button", {
-        class: normalizeClass(l.value),
-        onClick: r,
-        style: normalizeStyle(u.value),
+        class: normalizeClass(a.value),
+        onClick: m,
+        style: normalizeStyle(l.value),
         tabindex: e.tabindex || 0,
         type: e.type || "button",
         disabled: e.disabled || e.loading
@@ -112,7 +112,7 @@ var z = defineComponent({
         }, [
           createVNode(unref(se))
         ], 2)) : createCommentVNode("", true),
-        c.value ? createCommentVNode("", true) : renderSlot(a.$slots, "default", { key: 1 }, () => [
+        r.value ? createCommentVNode("", true) : renderSlot(c.$slots, "default", { key: 1 }, () => [
           createTextVNode(toDisplayString(e.text), 1)
         ])
       ], 14, ie)), [
@@ -128,7 +128,7 @@ var h;
 var ae = class {
   constructor() {
     T(this, h);
-    D(this, h, []);
+    V(this, h, []);
   }
   async add(t) {
     v(this, h).push(t);
@@ -141,20 +141,31 @@ var ae = class {
       console.error(t);
     }
   }
-  run(t) {
+  async run(t) {
     try {
       const e = t.querySelector(".im-ripple__item");
       if (!e) return;
-      e.style.opacity = "0", e.style.transition = "all 200ms ease-out", e.getBoundingClientRect(), setTimeout(() => {
-        t.remove();
-      }, 200);
+      let o = Date.now(), s = e.getAttribute("data-time");
+      const i = o - Number(s) || 0;
+      i && await new Promise((a) => {
+        e.style.opacity = "0.15";
+        const l = 320 - i;
+        setTimeout(
+          () => {
+            a(null);
+          },
+          l > 0 ? l : 0
+        );
+      }), e.style.opacity = "0", e.style.transition = "all 50ms ", setTimeout(() => {
+        t && (t == null || t.remove());
+      }, 50);
     } catch (e) {
       console.log(e);
     }
   }
 };
 h = /* @__PURE__ */ new WeakMap();
-var le = {
+var ce = {
   // 及他自己的所有子节点都挂载完成后调用
   mounted(n, t) {
     (function() {
@@ -163,26 +174,26 @@ var le = {
       }), n.addEventListener("mouseup", i, { passive: true });
     })();
     const o = new ae();
-    async function s(l) {
+    async function s(a) {
       if (!t.value) return;
-      const u = window.getComputedStyle(n), c = n.getBoundingClientRect(), r = document.createElement("div");
-      r.className = "im-ripple", o.add(r);
-      const a = document.createElement("div");
-      a.className = "im-ripple__item";
-      const N = l.clientX || l.touches && l.touches[0].clientX, I = l.clientY || l.touches && l.touches[0].clientY, b = Math.max(c.width, c.height), P = N - c.left - b / 2, X = I - c.top - b / 2, Y = c.width - c.height <= 5;
-      Object.assign(a.style, {
-        "background-color": u.color,
-        width: `${b}px`,
-        height: `${b}px`,
-        left: `${P}px`,
+      const l = window.getComputedStyle(n), r = n.getBoundingClientRect(), m = document.createElement("div");
+      m.className = "im-ripple", o.add(m);
+      const c = document.createElement("div");
+      c.className = "im-ripple__item";
+      const N = a.clientX || a.touches && a.touches[0].clientX, I = a.clientY || a.touches && a.touches[0].clientY, _ = Math.max(r.width, r.height), M = N - r.left - _ / 2, X = I - r.top - _ / 2, Y = r.width - r.height <= 5;
+      Object.assign(c.style, {
+        "background-color": l.color,
+        width: `${_}px`,
+        height: `${_}px`,
+        left: `${M}px`,
         top: `${X}px`,
         opacity: "0.25",
         transform: Y ? "scale(0.88)" : "scale(0.66)",
         "will-change": "transform,opacity"
         // 提示浏览器优化动画
-      }), r.appendChild(a), n.appendChild(r);
-      const S = u.position;
-      S === "static" && (n.style.position = "relative", n.dataset.originalPosition = S), a.getBoundingClientRect(), a.style.transform = "scale(5)", a.style.opacity = "0.33";
+      }), c.setAttribute("data-time", Date.now() + ""), m.appendChild(c), n.appendChild(m);
+      const S = l.position;
+      S === "static" && (n.style.position = "relative", n.dataset.originalPosition = S), c.getBoundingClientRect(), c.style.transform = "scale(2.8)", c.style.opacity = "0.33";
     }
     function i() {
       o.remove();
@@ -207,14 +218,14 @@ var k = defineComponent({
       var i;
       return ((i = e.default) == null ? void 0 : i.call(e)) || [];
     }), s = x("row");
-    return (i, l) => (openBlock(), createElementBlock("div", {
+    return (i, a) => (openBlock(), createElementBlock("div", {
       class: normalizeClass([unref(s).b()]),
       style: normalizeStyle({
         "--im-row-gutter": t.gutter + "px",
         "align-items": t.align
       })
     }, [
-      (openBlock(true), createElementBlock(Fragment, null, renderList(o.value, (u, c) => (openBlock(), createBlock(resolveDynamicComponent(u), { key: c }))), 128))
+      (openBlock(true), createElementBlock(Fragment, null, renderList(o.value, (l, r) => (openBlock(), createBlock(resolveDynamicComponent(l), { key: r }))), 128))
     ], 6));
   }
 });
@@ -278,19 +289,19 @@ var B = defineComponent({
   },
   emits: ["update:modelValue", "change"],
   setup(n, { emit: t }) {
-    const e = n, { sizeToken: o } = M(), s = t, i = ref(e.modelValue), l = x("input"), u = () => {
+    const e = n, { sizeToken: o } = F(), s = t, i = ref(e.modelValue), a = x("input"), l = () => {
       s("update:modelValue", i.value), s("change", i.value);
     };
-    return (c, r) => (openBlock(), createElementBlock("div", {
-      class: normalizeClass([unref(l).b()]),
+    return (r, m) => (openBlock(), createElementBlock("div", {
+      class: normalizeClass([unref(a).b()]),
       style: normalizeStyle({
         "--in-input-size": (e.size || unref(o) || 36) + "px"
       })
     }, [
       withDirectives(createBaseVNode("input", mergeProps({
-        class: [unref(l).e("input")],
-        "onUpdate:modelValue": r[0] || (r[0] = (a) => i.value = a)
-      }, e, { onInput: u }), null, 16), [
+        class: [unref(a).e("input")],
+        "onUpdate:modelValue": m[0] || (m[0] = (c) => i.value = c)
+      }, e, { onInput: l }), null, 16), [
         [vModelDynamic, i.value]
       ])
     ], 6));
@@ -321,13 +332,13 @@ var $ = defineComponent({
 $.install = function(n) {
   n.component("ImIcon", $);
 };
-var ce = [z, C, k, B, $];
+var le = [z, C, k, B, $];
 var ue = {
   install(n, t) {
-    n.provide(F, {
+    n.provide(q, {
       size: (t == null ? void 0 : t.size) || 36,
       zIndex: (t == null ? void 0 : t.zIndex) || 1e3
-    }), n.directive("ripple", le), ce.forEach((e) => {
+    }), n.directive("ripple", ce), le.forEach((e) => {
       e.name ? n.component(e.name, e) : console.warn(`组件${e}缺少name属性`);
     });
   }

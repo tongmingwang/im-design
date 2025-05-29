@@ -82,7 +82,7 @@
         item.toUpperCase() }}</im-button>
     </im-row>
     <im-row :gutter="8">
-      <im-button :color="item" size="48" v-ripple="true" v-for="(item, index) in colors" :key="index">{{
+      <im-button :color="item" size="208" v-ripple="true" v-for="(item, index) in colors" :key="index">{{
         item.toUpperCase() }}</im-button>
     </im-row>
     <im-row :gutter="8">

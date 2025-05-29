@@ -48,6 +48,7 @@ export const ripple = {
         transform: isD ? 'scale(0.88)' : 'scale(0.66)',
         'will-change': 'transform,opacity', // 提示浏览器优化动画
       });
+      ripple.setAttribute('data-time', Date.now() + '');
 
       rippleContainer.appendChild(ripple);
       el.appendChild(rippleContainer);
@@ -61,7 +62,7 @@ export const ripple = {
       // 强制重绘，确保初始状态被应用
       ripple.getBoundingClientRect();
       // 触发动画
-      ripple.style.transform = 'scale(5)';
+      ripple.style.transform = 'scale(2.8)';
       ripple.style.opacity = '0.33';
     }
     function hideRipple() {

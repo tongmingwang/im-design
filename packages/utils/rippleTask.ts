@@ -16,17 +16,33 @@ export default class RippleTask {
     }
   }
 
-  run(el: HTMLElement) {
+  async run(el: HTMLElement) {
     try {
       const ripple: HTMLElement | null = el.querySelector('.im-ripple__item');
       if (!ripple) return;
+      let now = Date.now();
+      let old = ripple.getAttribute('data-time');
+      const dpx = now - Number(old) || 0;
 
+      if (dpx) {
+        await new Promise((resolve) => {
+          ripple.style.opacity = '0.15';
+          const delay = 320 - dpx; // 延迟时间，根据距离计算
+
+          setTimeout(
+            () => {
+              resolve(null);
+            },
+            delay > 0 ? delay : 0
+          );
+        });
+      }
       ripple.style.opacity = '0'; // 淡出效果
-      ripple.style.transition = 'all 200ms ease-out';
-      ripple.getBoundingClientRect(); // 触发重绘，以便应用过渡效果
+      ripple.style.transition = 'all 50ms ';
+
       setTimeout(() => {
-        el.remove();
-      }, 200);
+        el && el?.remove();
+      }, 50);
     } catch (error) {
       console.log(error);
     }

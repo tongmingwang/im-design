@@ -12,7 +12,7 @@
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
-    "im-design": "^0.0.8",
+    "im-design": "^0.0.9",
     "sass": "^1.89.0",
     "vite-svg-loader": "^5.1.0",
     "vue": "^3.5.13"
