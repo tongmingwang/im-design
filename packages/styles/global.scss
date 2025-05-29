@@ -8,11 +8,12 @@
   background-color: transparent;
   width: 100%;
   height: 100%;
+  border-radius: inherit;
 
   .im-ripple__item {
     position: absolute;
     border-radius: 50%;
-    transition: all 200ms ease-in-out;
+    transition: all 800ms ease;
   }
 }
 

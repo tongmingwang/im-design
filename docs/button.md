@@ -17,9 +17,7 @@
 </style>
 
 <script setup>
-import { ImIconSearch,ImIconShare } from 'im-design'
 const colors = ['default', 'primary', 'error', 'warning', 'success'];
-
 </script>
 
 <im-row>
@@ -44,22 +42,22 @@ const colors = ['default', 'primary', 'error', 'warning', 'success'];
 
   <im-row>
     <im-button :color="item" v-for="(item, index) in colors" shape="circle" :key="index">
-      <ImIconShare />
+      <ImIcon name="like" />
     </im-button>
   </im-row>
   <im-row>
     <im-button :color="item" v-for="(item, index) in colors" shape="circle" variant="outlined" :key="index">
-      <ImIconShare />
+      <ImIcon name="like" />
     </im-button>
   </im-row>
   <im-row>
     <im-button :color="item" v-for="(item, index) in colors" shape="circle" variant="tonal" :key="index">
-      <ImIconShare />
+      <ImIcon name="like" />
     </im-button>
   </im-row>
   <im-row>
     <im-button :color="item" v-for="(item, index) in colors" shape="circle" variant="text" :key="index">
-      <ImIconShare />
+      <ImIcon name="like" />
     </im-button>
   </im-row>
 
@@ -69,22 +67,22 @@ const colors = ['default', 'primary', 'error', 'warning', 'success'];
 
 <im-row>
 <im-button :color="item" v-for="(item, index) in colors" shape="square" :key="index">
-<ImIconShare />
+<ImIcon name="like" />
 </im-button>
 </im-row>
 <im-row>
 <im-button :color="item" v-for="(item, index) in colors" shape="square" variant="outlined" :key="index">
-<ImIconShare />
+<ImIcon name="like" />
 </im-button>
 </im-row>
 <im-row>
 <im-button :color="item" v-for="(item, index) in colors" shape="square" variant="tonal" :key="index">
-<ImIconShare />
+<ImIcon name="like" />
 </im-button>
 </im-row>
 <im-row>
 <im-button :color="item" v-for="(item, index) in colors" shape="square" variant="text" :key="index">
-<ImIconShare />
+<ImIcon name="like" />
 </im-button>
 </im-row>
 
@@ -110,8 +108,10 @@ const colors = ['default', 'primary', 'error', 'warning', 'success'];
 
 ## 宽度铺满
 
+使用 `width` 属性来定义按钮的宽度。接受一个字符串，如何 `100px`。
+
   <section>
-    <im-button style="width:100%;margin-bottom:12px" :color="item" v-for="(item, index) in colors" :key="index">{{
+    <im-button width="100%" :color="item" v-ripple="true" v-for="(item, index) in colors" :key="index">{{
       item.toUpperCase() }}</im-button>
   </section>
 

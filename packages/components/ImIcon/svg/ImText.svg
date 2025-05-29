@@ -1,6 +1,0 @@
-<svg fill="currentColor" class="im-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em">
-  <!-- 字母I -->
-  <path d="M256 768h128V256H256v512z"/>
-  <!-- 字母M -->
-  <path d="M512 256v512l128-256 128 256V256h-128l-128 128-128-128H512z"/>
-</svg>

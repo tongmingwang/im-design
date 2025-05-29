@@ -6,13 +6,13 @@ import { ripple } from '@/directive/ripple';
 import '@/styles/global.scss';
 import { ImCol, ImRow } from './ImLayout';
 import ImInput from './ImInput';
+import ImIcon from './ImIcon';
 
 // 定义组件列表
-const list = [ImButton, ImCol, ImRow, ImInput];
+const list = [ImButton, ImCol, ImRow, ImInput, ImIcon];
 
-export { ImButton, ImCol, ImRow, ImInput };
-// 导出全部icon
-export * from './ImIcon';
+export { ImButton, ImCol, ImRow, ImInput, ImIcon };
+
 // 导出所有类型
 export * from './ImButton/ButtonProp';
 // 导出插件安装函数

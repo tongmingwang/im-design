@@ -1,8 +1,8 @@
 <template>
   <div class="main">
-    <im-row :gutter="8">
+    <ImRow :gutter="8">
       <im-button :color="item" v-for="(item, index) in colors" :key="index">{{ item.toLocaleUpperCase() }}</im-button>
-    </im-row>
+    </ImRow>
     <im-row :gutter="8">
       <im-button :color="item" v-for="(item, index) in colors" variant="outlined" :key="index">{{
         item.toLocaleUpperCase()
@@ -19,43 +19,49 @@
 
     <im-row :gutter="8">
       <im-button :color="item" v-for="(item, index) in colors" shape="circle" :key="index">
-        <ImIconShare />
+        <ImIcon name="search" />
       </im-button>
     </im-row>
     <im-row :gutter="8">
       <im-button :color="item" v-for="(item, index) in colors" shape="circle" variant="outlined" :key="index">
-        <ImIconShare />
+        <ImIcon name="search" />
       </im-button>
     </im-row>
     <im-row :gutter="8">
       <im-button :color="item" v-for="(item, index) in colors" shape="circle" variant="tonal" :key="index">
-        <ImIconShare />
+        <ImIcon name="search" />
       </im-button>
     </im-row>
     <im-row :gutter="8">
       <im-button :color="item" v-for="(item, index) in colors" shape="circle" variant="text" :key="index">
-        <ImIconShare />
+        <ImIcon name="search" />
       </im-button>
     </im-row>
 
     <im-row :gutter="8">
       <im-button :color="item" v-for="(item, index) in colors" shape="square" :key="index">
-        <ImIconShare />
+        <ImIcon name="search" />
       </im-button>
     </im-row>
     <im-row :gutter="8">
       <im-button :color="item" v-for="(item, index) in colors" shape="square" variant="outlined" :key="index">
-        <ImIconShare />
+        <ImIcon name="search" />
       </im-button>
     </im-row>
     <im-row :gutter="8">
       <im-button :color="item" v-for="(item, index) in colors" shape="square" variant="tonal" :key="index">
-        <ImIconShare />
+        <ImIcon name="search" />
       </im-button>
     </im-row>
     <im-row :gutter="8">
       <im-button :color="item" v-for="(item, index) in colors" shape="square" variant="text" :key="index">
-        <ImIconShare />
+        <ImIcon name="search" />
+      </im-button>
+    </im-row>
+
+    <im-row :gutter="8">
+      <im-button :color="item" loading v-for="(item, index) in colors" shape="square" variant="tonal" :key="index">
+        <ImIcon name="search" />
       </im-button>
     </im-row>
 
@@ -76,7 +82,7 @@
         item.toUpperCase() }}</im-button>
     </im-row>
     <im-row :gutter="8">
-      <im-button :color="item" size="48" v-for="(item, index) in colors" :key="index">{{
+      <im-button :color="item" size="48" v-ripple="true" v-for="(item, index) in colors" :key="index">{{
         item.toUpperCase() }}</im-button>
     </im-row>
     <im-row :gutter="8">
@@ -88,7 +94,7 @@
         item.toUpperCase() }}</im-button>
     </im-row>
     <section>
-      <im-button width="100%" :color="item" v-for="(item, index) in colors" :key="index">{{
+      <im-button width="100%" v-ripple="true" :color="item" v-for="(item, index) in colors" :key="index">{{
         item.toUpperCase() }}</im-button>
     </section>
 
@@ -97,7 +103,6 @@
 
 <script setup lang="ts">
 const colors = ['default', 'primary', 'error', 'warning', 'success'];
-import { ImIconShare } from '../packages/components';
 </script>
 
 <style scoped lang="scss">

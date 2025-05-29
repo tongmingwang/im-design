@@ -13,7 +13,6 @@ export const ripple = {
     init();
     const task = new RippleTask();
     async function createRipple(event: any) {
-      console.log('createRipple');
       if (!binding.value) return;
       // 缓存DOM查询和样式计算
       const computedStyle = window.getComputedStyle(el);
@@ -45,8 +44,8 @@ export const ripple = {
         height: `${size}px`,
         left: `${x}px`,
         top: `${y}px`,
-        opacity: '0.08',
-        transform: isD ? 'scale(0.88)' : 'scale(0.5)',
+        opacity: '0.25',
+        transform: isD ? 'scale(0.88)' : 'scale(0.66)',
         'will-change': 'transform,opacity', // 提示浏览器优化动画
       });
 
@@ -61,23 +60,11 @@ export const ripple = {
 
       // 强制重绘，确保初始状态被应用
       ripple.getBoundingClientRect();
-
       // 触发动画
-      ripple.style.transform = 'scale(2)';
-      ripple.style.opacity = '0.2';
-
-      // 动画结束后移除元素
-      ripple.addEventListener(
-        'transitionend',
-        () => {
-          rippleContainer.setAttribute('data-remove', 'on');
-        },
-        { once: true }
-      );
+      ripple.style.transform = 'scale(5)';
+      ripple.style.opacity = '0.33';
     }
     function hideRipple() {
-      console.log('hideRipple');
-
       task.remove();
     }
   },

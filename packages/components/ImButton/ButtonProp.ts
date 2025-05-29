@@ -8,5 +8,5 @@ export interface ButtonProps {
   text?: string;
   variant?: 'text' | 'tonal' | 'outlined';
   tabindex?: number;
-  width: string;
+  width?: string;
 }

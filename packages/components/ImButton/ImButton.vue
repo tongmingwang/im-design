@@ -1,8 +1,8 @@
 <template>
-  <button :class="classname" @click="handleClick" :style="style" :tabindex="props.tabindex || 0"
+  <button :class="classname" @click="handleClick" :style="style" v-ripple="true" :tabindex="props.tabindex || 0"
     :type="props.type || 'button'" :disabled="props.disabled || props.loading">
     <span :class="[bem.e('loading')]" v-if="props.loading">
-      <ImIconLoading />
+      <Loading />
     </span>
     <slot v-if="!hideContent">{{ props.text }}</slot>
   </button>
@@ -13,7 +13,7 @@ import { type ButtonProps } from './ButtonProp';
 import { useBem } from '@/utils/bem';
 import { computed } from 'vue';
 import { useToken } from '@/hooks/useToken';
-import { ImIconLoading } from '@/components/ImIcon';
+import Loading from './Loading.svg';
 defineOptions({ name: 'ImButton' });
 const props = defineProps<ButtonProps>();
 const emit = defineEmits<{ (e: 'click'): void }>();
@@ -74,7 +74,7 @@ const handleClick = () => {
     padding: 0 var(--im-button-padding);
     letter-spacing: 0.02857em;
     font-family: inherit;
-    transition: all 0.12s;
+    transition: all 0.2s ease-in-out;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -119,12 +119,6 @@ const handleClick = () => {
         var(--im-#{$color}-color-8));
 
       &:hover {
-        @include btn-colors(var(--im-#{$color}-color-7),
-          var(--im-gray-color-1),
-          var(--im-#{$color}-color-7));
-      }
-
-      &:active {
         @include btn-colors(var(--im-#{$color}-color-9),
           var(--im-gray-color-1),
           var(--im-#{$color}-color-9));
@@ -148,12 +142,6 @@ const handleClick = () => {
           color: var(--im-#{$color}-color-8);
         }
 
-        &:active {
-          background-color: var(--im-#{$color}-color-2);
-          border-color: transparent;
-          color: var(--im-#{$color}-color-9);
-        }
-
         &.is-disabled,
         &.is-disabled:hover {
           @include btn-colors(transparent,
@@ -173,12 +161,6 @@ const handleClick = () => {
             var(--im-#{$color}-color-2));
         }
 
-        &:active {
-          @include btn-colors(var(--im-#{$color}-color-3),
-            var(--im-#{$color}-color-9),
-            var(--im-#{$color}-color-3));
-        }
-
         &.is-disabled,
         &.is-disabled:hover {
           @include btn-colors(var(--im-#{$color}-color-1),
@@ -193,10 +175,6 @@ const handleClick = () => {
 
         &:hover {
           background-color: var(--im-#{$color}-color-1);
-        }
-
-        &:active {
-          background-color: var(--im-#{$color}-color-2);
         }
 
         &.is-disabled,
@@ -244,11 +222,6 @@ const handleClick = () => {
       background-color: var(--im-rgb-color-2);
       color: var(--im-gray-color-10);
     }
-
-    &:active {
-      background-color: var(--im-rgb-color-3);
-      color: var(--im-gray-color-10);
-    }
   }
 
   .im-button--tonal {
@@ -257,11 +230,6 @@ const handleClick = () => {
 
     &:hover {
       background-color: var(--im-rgb-color-2);
-      color: var(--im-gray-color-10);
-    }
-
-    &:active {
-      background-color: var(--im-rgb-color-3);
       color: var(--im-gray-color-10);
     }
   }
