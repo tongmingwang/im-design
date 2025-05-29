@@ -61,7 +61,6 @@
   --im-gray-color-10: #262626;
   --im-gray-color-11: #1f1f1f;
   --im-gray-color-12: #141414;
-  --im-gray-color-13: #000000;
 
   // 其他
   --im-border-color: #d9d9d9;
@@ -70,4 +69,87 @@
   --im-rgb-color-1: rgba(0, 0, 0, 0.08);
   --im-rgb-color-2: rgba(0, 0, 0, 0.15);
   --im-rgb-color-3: rgba(0, 0, 0, 0.25);
+
+  // 背景色
+  --im-bg-content-color: #ffffff;
+  --im-bg-container-color: #f5f5f5;
+}
+
+// 兼容暗黑模式
+html[data-theme='dark'],
+html.dark,
+body[data-theme='dark'],
+body.dark {
+  // 主色系 (暗黑模式)
+  --im-primary-color-1: #0a1a2a;
+  --im-primary-color-2: #0d243f;
+  --im-primary-color-3: #113155;
+  --im-primary-color-4: #153e6b;
+  --im-primary-color-5: #1a4b81;
+  --im-primary-color-6: #1e5997;
+  --im-primary-color-7: #2367ad;
+  --im-primary-color-8: #2775c3;
+  --im-primary-color-9: #2c83d9;
+  --im-primary-color-10: #3091ef;
+
+  // 辅助色系 (暗黑模式)
+  --im-success-color-1: #0a1e0b;
+  --im-success-color-2: #0d2e0f;
+  --im-success-color-3: #113e13;
+  --im-success-color-4: #154e17;
+  --im-success-color-5: #1a5e1b;
+  --im-success-color-6: #1e6e1f;
+  --im-success-color-7: #237e23;
+  --im-success-color-8: #278e27;
+  --im-success-color-9: #2c9e2b;
+  --im-success-color-10: #30ae2f;
+
+  // 警告色系 (暗黑模式)
+  --im-warning-color-1: #2a1e0a;
+  --im-warning-color-2: #3f2c0d;
+  --im-warning-color-3: #553a11;
+  --im-warning-color-4: #6b4815;
+  --im-warning-color-5: #81561a;
+  --im-warning-color-6: #97641e;
+  --im-warning-color-7: #ad7223;
+  --im-warning-color-8: #c38027;
+  --im-warning-color-9: #d98e2c;
+  --im-warning-color-10: #ef9c30;
+
+  // 错误色系 (暗黑模式)
+  --im-error-color-1: #2a0a0a;
+  --im-error-color-2: #3f0d0d;
+  --im-error-color-3: #551111;
+  --im-error-color-4: #6b1515;
+  --im-error-color-5: #811a1a;
+  --im-error-color-6: #971e1e;
+  --im-error-color-7: #ad2323;
+  --im-error-color-8: #c32727;
+  --im-error-color-9: #d92c2c;
+  --im-error-color-10: #ef3030;
+
+  // 中性色系 (暗黑模式)
+  --im-gray-color-1: #141414; // 最暗背景
+  --im-gray-color-2: #1f1f1f; // 次级背景
+  --im-gray-color-3: #262626; // 三级背景
+  --im-gray-color-4: #434343; // 四级背景
+  --im-gray-color-5: #595959; // 边框/分割线
+  --im-gray-color-6: #8c8c8c; // 次要文本
+  --im-gray-color-7: #bfbfbf; // 常规文本
+  --im-gray-color-8: #d9d9d9; // 标题文本
+  --im-gray-color-9: #f0f0f0; // 强调文本
+  --im-gray-color-10: #f5f5f5; // 最亮文本
+  --im-gray-color-11: #fafafa; // 特殊强调
+  --im-gray-color-12: #ffffff; // 纯白元素
+
+  // 其他
+  --im-border-color: #6b6b6b;
+  --im-shadow-color: rgba(255, 255, 255, 0.12);
+  --im-rgb-color-1: rgba(255, 255, 255, 0.08);
+  --im-rgb-color-2: rgba(255, 255, 255, 0.15);
+  --im-rgb-color-3: rgba(255, 255, 255, 0.25);
+
+  // 背景色
+  --im-bg-content-color: #151b23;
+  --im-bg-container-color: #1f2329;
 }

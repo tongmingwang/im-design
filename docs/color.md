@@ -84,6 +84,6 @@ Im Design 默认的主题色是明亮、友好的蓝色。
 
 <script setup>
 const colors = [10,9,8,6,5,4,3,2,1];
-const colors2 = [13,12,11,9,8,7,6,5,4,3,2,1];
+const colors2 = [12,11,9,8,7,6,5,4,3,2,1];
 
 </script>

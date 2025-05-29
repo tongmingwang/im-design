@@ -1,4 +1,4 @@
-import RippleTask from '@/utils/RippleTask';
+import RippleTask from '@/utils/rippleTask';
 // 水波纹指令
 export const ripple = {
   // 及他自己的所有子节点都挂载完成后调用
