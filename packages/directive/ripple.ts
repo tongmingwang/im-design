@@ -2,7 +2,7 @@ import RippleTask from '@/utils/RippleTask';
 // 水波纹指令
 export const ripple = {
   // 及他自己的所有子节点都挂载完成后调用
-  mounted(el: HTMLElement) {
+  mounted(el: HTMLElement, binding: any) {
     const init = function () {
       // 判断浏览器是否支持按下或者鼠标按下事件
       el.addEventListener('mousedown', createRipple, {
@@ -13,6 +13,8 @@ export const ripple = {
     init();
     const task = new RippleTask();
     async function createRipple(event: any) {
+      console.log('createRipple');
+      if (!binding.value) return;
       // 缓存DOM查询和样式计算
       const computedStyle = window.getComputedStyle(el);
       const rect = el.getBoundingClientRect();
@@ -43,8 +45,8 @@ export const ripple = {
         height: `${size}px`,
         left: `${x}px`,
         top: `${y}px`,
-        opacity: 0.35,
-        transform: isD ? 'scale(1)' : 'scale(0.85)',
+        opacity: '0.08',
+        transform: isD ? 'scale(0.88)' : 'scale(0.5)',
         'will-change': 'transform,opacity', // 提示浏览器优化动画
       });
 
@@ -61,7 +63,8 @@ export const ripple = {
       ripple.getBoundingClientRect();
 
       // 触发动画
-      ripple.style.transform = 'scale(5)';
+      ripple.style.transform = 'scale(2)';
+      ripple.style.opacity = '0.2';
 
       // 动画结束后移除元素
       ripple.addEventListener(
@@ -72,8 +75,9 @@ export const ripple = {
         { once: true }
       );
     }
-
     function hideRipple() {
+      console.log('hideRipple');
+
       task.remove();
     }
   },

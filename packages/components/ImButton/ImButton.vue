@@ -1,12 +1,6 @@
 <template>
-  <button
-    :class="classname"
-    @click="handleClick"
-    :style="style"
-    :tabindex="props.tabindex || 0"
-    v-ripple
-    :type="props.type || 'button'"
-    :disabled="props.disabled || props.loading">
+  <button :class="classname" @click="handleClick" :style="style" :tabindex="props.tabindex || 0"
+    :type="props.type || 'button'" :disabled="props.disabled || props.loading">
     <span :class="[bem.e('loading')]" v-if="props.loading">
       <ImIconLoading />
     </span>
@@ -41,7 +35,8 @@ const style = computed(() => {
   let s = +(props.size || sizeToken.value || 36);
   return {
     '--im-button-size': s + 'px',
-    '--im-button-padding': (s * 0.4).toFixed(0) + 'px',
+    '--im-button-padding': (s * 0.45).toFixed(0) + 'px',
+    width: props.width
   };
 });
 
@@ -57,195 +52,226 @@ const handleClick = () => {
 </script>
 
 <style lang="scss">
-@mixin btn-colors($bg, $color, $borderColor) {
-  background-color: $bg;
-  border-color: $borderColor;
-  color: $color;
-}
-
-@keyframes loading {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.im-button {
-  border: 1px solid transparent;
-  outline: none;
-  user-select: none;
-  cursor: pointer;
-  border-radius: var(--im-radius);
-  height: var(--im-button-size);
-  padding: 0 var(--im-button-padding);
-  letter-spacing: 0.125em;
-  font-family: inherit;
-  transition: all 0.2s ease-out;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  align-self: center;
-  overflow: hidden;
-  vertical-align: middle;
-  text-wrap: nowrap;
-  @include btn-colors(
-    var(--im-gray-color-1),
-    var(--im-gray-color-10),
-    var(--im-gray-color-5)
-  );
-  &:hover {
-    @include btn-colors(
-      var(--im-gray-color-1),
-      var(--im-primary-color-7),
-      var(--im-primary-color-7)
-    );
+  @mixin btn-colors($bg, $color, $borderColor) {
+    background-color: $bg;
+    border-color: $borderColor;
+    color: $color;
   }
 
-  &.is-loading {
-    pointer-events: none;
-    opacity: 0.75;
-  }
-  &.is-disabled {
-    cursor: not-allowed;
-    @include btn-colors(
-      var(--im-gray-color-3),
-      var(--im-gray-color-6),
-      var(--im-gray-color-5)
-    );
-    &:hover {
-      @include btn-colors(
-        var(--im-gray-color-3),
-        var(--im-gray-color-6),
-        var(--im-gray-color-5)
-      );
+  @keyframes loading {
+    to {
+      transform: rotate(360deg);
     }
   }
-}
 
-@each $color in (primary, success, warning, error) {
-  .im-button--#{$color} {
-    @include btn-colors(
-      var(--im-#{$color}-color-6),
-      var(--im-gray-color-1),
-      var(--im-#{$color}-color-6)
-    );
+  .im-button {
+    border: 1px solid transparent;
+    outline: none;
+    user-select: none;
+    cursor: pointer;
+    border-radius: var(--im-radius);
+    height: var(--im-button-size);
+    padding: 0 var(--im-button-padding);
+    letter-spacing: 0.02857em;
+    font-family: inherit;
+    transition: all 0.12s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    overflow: hidden;
+    vertical-align: middle;
+    text-wrap: nowrap;
+    @include btn-colors(var(--im-gray-color-1),
+      var(--im-gray-color-10),
+      var(--im-gray-color-5));
+
     &:hover {
-      @include btn-colors(
-        var(--im-#{$color}-color-7),
-        var(--im-gray-color-1),
-        var(--im-#{$color}-color-7)
-      );
+      @include btn-colors(var(--im-gray-color-1),
+        var(--im-primary-color-8),
+        var(--im-primary-color-8));
     }
-    &.is-disabled,
-    &.is-disabled:hover {
+
+    &.is-loading {
+      pointer-events: none;
+      opacity: 0.75;
+    }
+
+    &.is-disabled {
       cursor: not-allowed;
-      @include btn-colors(
-        var(--im-#{$color}-color-3),
+      @include btn-colors(var(--im-gray-color-3),
+        var(--im-gray-color-6),
+        var(--im-gray-color-5));
+
+      &:hover {
+        @include btn-colors(var(--im-gray-color-3),
+          var(--im-gray-color-6),
+          var(--im-gray-color-5));
+      }
+    }
+  }
+
+  @each $color in (primary, success, warning, error) {
+    .im-button--#{$color} {
+      border-width: 0;
+      @include btn-colors(var(--im-#{$color}-color-8),
         var(--im-gray-color-1),
-        var(--im-#{$color}-color-3)
-      );
-    }
+        var(--im-#{$color}-color-8));
 
-    &.im-button--text {
-      color: var(--im-#{$color}-color-6);
       &:hover {
-        background-color: var(--im-#{$color}-color-2);
-        border-color: transparent;
-        color: var(--im-#{$color}-color-7);
+        @include btn-colors(var(--im-#{$color}-color-7),
+          var(--im-gray-color-1),
+          var(--im-#{$color}-color-7));
       }
-      &.is-disabled,
-      &.is-disabled:hover {
-        @include btn-colors(
-          transparent,
-          var(--im-#{$color}-color-4),
-          transparent
-        );
-      }
-    }
 
-    &.im-button--tonal {
-      @include btn-colors(
-        var(--im-#{$color}-color-1),
-        var(--im-#{$color}-color-6),
-        var(--im-#{$color}-color-1)
-      );
-      &:hover {
-        @include btn-colors(
-          var(--im-#{$color}-color-2),
-          var(--im-#{$color}-color-7),
-          var(--im-#{$color}-color-2)
-        );
+      &:active {
+        @include btn-colors(var(--im-#{$color}-color-9),
+          var(--im-gray-color-1),
+          var(--im-#{$color}-color-9));
       }
-      &.is-disabled,
-      &.is-disabled:hover {
-        @include btn-colors(
-          var(--im-#{$color}-color-1),
-          var(--im-#{$color}-color-4),
-          var(--im-#{$color}-color-1)
-        );
-      }
-    }
 
-    &.im-button--outlined {
-      color: var(--im-#{$color}-color-6);
-      &:hover {
-        background-color: var(--im-#{$color}-color-2);
-      }
       &.is-disabled,
-      &.is-disabled:hover {
-        @include btn-colors(
-          transparent,
-          var(--im-#{$color}-color-4),
-          var(--im-#{$color}-color-3)
-        );
+      &.is-disabled:hover,
+      &.is-disabled:active {
+        cursor: not-allowed;
+        @include btn-colors(var(--im-#{$color}-color-3),
+          var(--im-gray-color-1),
+          var(--im-#{$color}-color-3));
+      }
+
+      &.im-button--text {
+        color: var(--im-#{$color}-color-8);
+
+        &:hover {
+          background-color: var(--im-#{$color}-color-1);
+          border-color: transparent;
+          color: var(--im-#{$color}-color-8);
+        }
+
+        &:active {
+          background-color: var(--im-#{$color}-color-2);
+          border-color: transparent;
+          color: var(--im-#{$color}-color-9);
+        }
+
+        &.is-disabled,
+        &.is-disabled:hover {
+          @include btn-colors(transparent,
+            var(--im-#{$color}-color-4),
+            transparent);
+        }
+      }
+
+      &.im-button--tonal {
+        @include btn-colors(var(--im-#{$color}-color-1),
+          var(--im-#{$color}-color-8),
+          var(--im-#{$color}-color-1));
+
+        &:hover {
+          @include btn-colors(var(--im-#{$color}-color-2),
+            var(--im-#{$color}-color-9),
+            var(--im-#{$color}-color-2));
+        }
+
+        &:active {
+          @include btn-colors(var(--im-#{$color}-color-3),
+            var(--im-#{$color}-color-9),
+            var(--im-#{$color}-color-3));
+        }
+
+        &.is-disabled,
+        &.is-disabled:hover {
+          @include btn-colors(var(--im-#{$color}-color-1),
+            var(--im-#{$color}-color-4),
+            var(--im-#{$color}-color-1));
+        }
+      }
+
+      &.im-button--outlined {
+        color: var(--im-#{$color}-color-8);
+        border-width: 1px;
+
+        &:hover {
+          background-color: var(--im-#{$color}-color-1);
+        }
+
+        &:active {
+          background-color: var(--im-#{$color}-color-2);
+        }
+
+        &.is-disabled,
+        &.is-disabled:hover {
+          @include btn-colors(transparent,
+            var(--im-#{$color}-color-4),
+            var(--im-#{$color}-color-3));
+        }
       }
     }
   }
-}
 
-.im-button--round {
-  border-radius: calc(var(--im-button-size) / 2);
-}
-.im-button--circle {
-  border-radius: 50%;
-  max-width: var(--im-button-size);
-  width: var(--im-button-size);
-  min-width: var(--im-button-size);
-  padding: 0;
+  .im-button--round {
+    border-radius: calc(var(--im-button-size) / 2);
+  }
+
+  .im-button--circle {
+    border-radius: 50%;
+    max-width: var(--im-button-size) !important;
+    width: var(--im-button-size);
+    min-width: var(--im-button-size);
+    padding: 0;
+
+    .im-button__loading {
+      margin-right: 0;
+    }
+  }
+
+  .im-button--square {
+    max-width: var(--im-button-size) !important;
+    width: var(--im-button-size);
+    min-width: var(--im-button-size);
+    padding: 0;
+
+    .im-button__loading {
+      margin-right: 0;
+    }
+  }
+
+  .im-button--text {
+    border: none;
+    background-color: transparent;
+
+    &:hover {
+      background-color: var(--im-rgb-color-2);
+      color: var(--im-gray-color-10);
+    }
+
+    &:active {
+      background-color: var(--im-rgb-color-3);
+      color: var(--im-gray-color-10);
+    }
+  }
+
+  .im-button--tonal {
+    background-color: var(--im-rgb-color-1);
+    border: none;
+
+    &:hover {
+      background-color: var(--im-rgb-color-2);
+      color: var(--im-gray-color-10);
+    }
+
+    &:active {
+      background-color: var(--im-rgb-color-3);
+      color: var(--im-gray-color-10);
+    }
+  }
+
+  .im-button--outlined {
+    background-color: var(--im-gray-color-1);
+  }
+
   .im-button__loading {
-    margin-right: 0;
+    animation: loading 1.2s linear infinite;
+    margin-right: 8px;
   }
-}
-.im-button--square {
-  max-width: var(--im-button-size);
-  width: var(--im-button-size);
-  min-width: var(--im-button-size);
-  padding: 0;
-  .im-button__loading {
-    margin-right: 0;
-  }
-}
-.im-button--text {
-  border: none;
-  background-color: transparent;
-  &:hover {
-    background-color: var(--im-rgb-color-2);
-  }
-}
-
-.im-button--tonal {
-  background-color: var(--im-rgb-color-1);
-  border: none;
-  &:hover {
-    background-color: var(--im-rgb-color-2);
-  }
-}
-
-.im-button--outlined {
-  background-color: var(--im-gray-color-1);
-}
-
-.im-button__loading {
-  animation: loading 1.2s linear infinite;
-  margin-right: 8px;
-}
 </style>

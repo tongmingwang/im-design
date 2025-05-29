@@ -4,144 +4,116 @@
 
 ## 基础用法
 
-使用 `color` `shape` `variant` 属性来定义按钮形状和色彩。
+使用 `color` `variant` 属性组合来定义按钮色彩。
 
 <style>
  .im-button {
   margin-right: 8px;
   margin-bottom: 8px;
  }
-
+.im-row {
+  flex-wrap: wrap;
+}
 </style>
 
 <script setup>
-import { ImIconSearch } from 'im-design'
+import { ImIconSearch,ImIconShare } from 'im-design'
+const colors = ['default', 'primary', 'error', 'warning', 'success'];
 
 </script>
 
-<div>
-  <im-button color="default">Default</im-button>
-  <im-button color="success">Success</im-button>
-  <im-button color="warning">Warning</im-button>
-  <im-button color="error">Error</im-button>
-  <im-button color="primary">Primary</im-button>
-</div>
-<div>
-  <im-button variant="outlined" color="default">Default</im-button>
-  <im-button variant="outlined" color="success">Success</im-button>
-  <im-button variant="outlined" color="warning">Warning</im-button>
-  <im-button variant="outlined" color="error">Error</im-button>
-  <im-button variant="outlined" color="primary">Primary</im-button>
-</div>
-<div>
-  <im-button variant="tonal" color="default">Default</im-button>
-  <im-button variant="tonal" color="success">Success</im-button>
-  <im-button variant="tonal" color="warning">Warning</im-button>
-  <im-button variant="tonal" color="error">Error</im-button>
-  <im-button variant="tonal" color="primary">Primary</im-button>
-</div>
-<div>
-  <im-button variant="text" color="default">Default</im-button>
-  <im-button variant="text" color="success">Success</im-button>
-  <im-button variant="text" color="warning">Warning</im-button>
-  <im-button variant="text" color="error">Error</im-button>
-  <im-button variant="text" color="primary">Primary</im-button>
-</div>
-<div>
- <im-button shape="round" color="default">Default</im-button>
-  <im-button shape="round" color="success">Success</im-button>
-  <im-button shape="round" color="warning">Warning</im-button>
-  <im-button shape="round" color="error">Error</im-button>
-  <im-button shape="round" color="primary">Primary</im-button>
-</div>
-<div>
- <im-button shape="square" color="default"><ImIconSearch width="18" height="18" /></im-button>
-  <im-button shape="square" color="success"><ImIconSearch width="18" height="18" /></im-button>
-  <im-button shape="square" color="warning"><ImIconSearch width="18" height="18" /></im-button>
-  <im-button shape="square" color="error"><ImIconSearch width="18" height="18" /></im-button>
-  <im-button shape="square" color="primary"><ImIconSearch width="18" height="18" /></im-button>
-</div>
+<im-row>
+    <im-button :color="item" v-for="(item, index) in colors" :key="index">{{ item.toLocaleUpperCase() }}</im-button>
+  </im-row>
+  <im-row>
+    <im-button :color="item" v-for="(item, index) in colors" variant="outlined" :key="index">{{ item.toLocaleUpperCase()
+    }}</im-button>
+  </im-row>
+  <im-row>
+    <im-button :color="item" v-for="(item, index) in colors" variant="tonal" :key="index">{{ item.toLocaleUpperCase()
+    }}</im-button>
+  </im-row>
+  <im-row>
+    <im-button :color="item" v-for="(item, index) in colors" variant="text" :key="index">{{ item.toLocaleUpperCase()
+    }}</im-button>
+  </im-row>
 
-<div>
- <im-button shape="circle" color="default"><ImIconSearch width="18" height="18" /></im-button>
-  <im-button shape="circle" color="success"><ImIconSearch width="18" height="18" /></im-button>
-  <im-button shape="circle" color="warning"><ImIconSearch width="18" height="18" /></im-button>
-  <im-button shape="circle" color="error"><ImIconSearch width="18" height="18" /></im-button>
-  <im-button shape="circle" color="primary"><ImIconSearch width="18" height="18" /></im-button>
-</div>
+## 圆形按钮
 
-```html
-<div>
-  <im-button color="default">Default</im-button>
-  <im-button color="success">Success</im-button>
-  <im-button color="warning">Warning</im-button>
-  <im-button color="error">Error</im-button>
-  <im-button color="primary">Primary</im-button>
-</div>
-<div>
-  <im-button variant="outlined" color="default">Default</im-button>
-  <im-button variant="outlined" color="success">Success</im-button>
-  <im-button variant="outlined" color="warning">Warning</im-button>
-  <im-button variant="outlined" color="error">Error</im-button>
-  <im-button variant="outlined" color="primary">Primary</im-button>
-</div>
-<div>
-  <im-button variant="tonal" color="default">Default</im-button>
-  <im-button variant="tonal" color="success">Success</im-button>
-  <im-button variant="tonal" color="warning">Warning</im-button>
-  <im-button variant="tonal" color="error">Error</im-button>
-  <im-button variant="tonal" color="primary">Primary</im-button>
-</div>
-<div>
-  <im-button variant="text" color="default">Default</im-button>
-  <im-button variant="text" color="success">Success</im-button>
-  <im-button variant="text" color="warning">Warning</im-button>
-  <im-button variant="text" color="error">Error</im-button>
-  <im-button variant="text" color="primary">Primary</im-button>
-</div>
-<div>
-  <im-button shape="round" color="default">Default</im-button>
-  <im-button shape="round" color="success">Success</im-button>
-  <im-button shape="round" color="warning">Warning</im-button>
-  <im-button shape="round" color="error">Error</im-button>
-  <im-button shape="round" color="primary">Primary</im-button>
-</div>
-<div>
-  <im-button shape="square" color="default"
-    ><ImIconSearch width="18" height="18"
-  /></im-button>
-  <im-button shape="square" color="success"
-    ><ImIconSearch width="18" height="18"
-  /></im-button>
-  <im-button shape="square" color="warning"
-    ><ImIconSearch width="18" height="18"
-  /></im-button>
-  <im-button shape="square" color="error"
-    ><ImIconSearch width="18" height="18"
-  /></im-button>
-  <im-button shape="square" color="primary"
-    ><ImIconSearch width="18" height="18"
-  /></im-button>
-</div>
+`shape` 为 `circle` 的按钮组合
 
-<div>
-  <im-button shape="circle" color="default"
-    ><ImIconSearch width="18" height="18"
-  /></im-button>
-  <im-button shape="circle" color="success"
-    ><ImIconSearch width="18" height="18"
-  /></im-button>
-  <im-button shape="circle" color="warning"
-    ><ImIconSearch width="18" height="18"
-  /></im-button>
-  <im-button shape="circle" color="error"
-    ><ImIconSearch width="18" height="18"
-  /></im-button>
-  <im-button shape="circle" color="primary"
-    ><ImIconSearch width="18" height="18"
-  /></im-button>
-</div>
-```
+  <im-row>
+    <im-button :color="item" v-for="(item, index) in colors" shape="circle" :key="index">
+      <ImIconShare />
+    </im-button>
+  </im-row>
+  <im-row>
+    <im-button :color="item" v-for="(item, index) in colors" shape="circle" variant="outlined" :key="index">
+      <ImIconShare />
+    </im-button>
+  </im-row>
+  <im-row>
+    <im-button :color="item" v-for="(item, index) in colors" shape="circle" variant="tonal" :key="index">
+      <ImIconShare />
+    </im-button>
+  </im-row>
+  <im-row>
+    <im-button :color="item" v-for="(item, index) in colors" shape="circle" variant="text" :key="index">
+      <ImIconShare />
+    </im-button>
+  </im-row>
+
+## 矩形按钮
+
+`shape` 为 `square` 的按钮组合
+
+<im-row>
+<im-button :color="item" v-for="(item, index) in colors" shape="square" :key="index">
+<ImIconShare />
+</im-button>
+</im-row>
+<im-row>
+<im-button :color="item" v-for="(item, index) in colors" shape="square" variant="outlined" :key="index">
+<ImIconShare />
+</im-button>
+</im-row>
+<im-row>
+<im-button :color="item" v-for="(item, index) in colors" shape="square" variant="tonal" :key="index">
+<ImIconShare />
+</im-button>
+</im-row>
+<im-row>
+<im-button :color="item" v-for="(item, index) in colors" shape="square" variant="text" :key="index">
+<ImIconShare />
+</im-button>
+</im-row>
+
+## 大圆角按钮
+
+`shape` 为 `round` 的按钮组合
+<im-row>
+<im-button :color="item" v-for="(item, index) in colors" shape="round" :key="index">{{ item.toUpperCase()
+    }}</im-button>
+</im-row>
+<im-row>
+<im-button :color="item" v-for="(item, index) in colors" shape="round" variant="outlined" :key="index">{{
+      item.toUpperCase() }}</im-button>
+</im-row>
+<im-row>
+<im-button :color="item" v-for="(item, index) in colors" shape="round" variant="tonal" :key="index">{{
+      item.toUpperCase() }}</im-button>
+</im-row>
+<im-row>
+<im-button :color="item" v-for="(item, index) in colors" shape="round" variant="text" :key="index">{{
+      item.toUpperCase() }}</im-button>
+</im-row>
+
+## 宽度铺满
+
+  <section>
+    <im-button style="width:100%;margin-bottom:12px" :color="item" v-for="(item, index) in colors" :key="index">{{
+      item.toUpperCase() }}</im-button>
+  </section>
 
 ## 禁用状态
 
@@ -197,20 +169,20 @@ import { ImIconSearch } from 'im-design'
 支持数字类型的 n 多尺寸，默认大小为 `36`。你可以设置 `size` 属性来定义按钮的大小。
 
 <div>
-    <im-button color="primary" size="24">Mini</im-button>
-    <im-button color="primary" size="32">Small</im-button>
-    <im-button color="primary" size="36">Default</im-button>
-    <im-button color="primary" size="48">Large</im-button>
-    <im-button color="primary" size="60">Extra Large</im-button>
+    <im-button color="primary" size="24">24</im-button>
+    <im-button color="primary" size="32">32</im-button>
+    <im-button color="primary" size="36">36</im-button>
+    <im-button color="primary" size="48">48</im-button>
+    <im-button color="primary" size="60">60</im-button>
 </div>
 
 ```html
 <div>
-  <im-button color="primary" size="24">Mini</im-button>
-  <im-button color="primary" size="32">Small</im-button>
-  <im-button color="primary" size="36">Default</im-button>
-  <im-button color="primary" size="48">Large</im-button>
-  <im-button color="primary" size="60">Extra Large</im-button>
+  <im-button color="primary" size="24">24</im-button>
+  <im-button color="primary" size="32">32</im-button>
+  <im-button color="primary" size="36">36</im-button>
+  <im-button color="primary" size="48">48</im-button>
+  <im-button color="primary" size="60">60</im-button>
 </div>
 ```
 
@@ -219,20 +191,28 @@ import { ImIconSearch } from 'im-design'
 采用 css 变量自定义颜色,直接在按钮组件上覆盖掉默认的颜色变量即可
 
 <div>
-    <im-button color="primary" style="--im-gray-color-1: #fff;--im-primary-color-6: #262626;--im-primary-color-7: #000;">Custom</im-button>
-    <im-button color="primary" style="--im-gray-color-1: #fff;--im-primary-color-6:rgb(150, 14, 100);--im-primary-color-7: rgb(125, 8, 82);">Custom</im-button>
+  <im-button
+    color="primary"
+    style="--im-gray-color-1: #fff;--im-primary-color-8: #262626;--im-primary-color-7: #565656;--im-primary-color-9: #000;"
+    >Custom</im-button
+  >
+  <im-button
+    color="primary"
+    style="--im-gray-color-1: #fff;--im-primary-color-7: rgb(187, 37, 132);--im-primary-color-8:rgb(150, 14, 100);--im-primary-color-9: rgb(125, 8, 82);"
+    >Custom</im-button
+  >
 </div>
 
 ```html
 <div>
   <im-button
     color="primary"
-    style="--im-gray-color-1: #fff;--im-primary-color-6: #262626;--im-primary-color-7: #000;"
+    style="--im-gray-color-1: #fff;--im-primary-color-8: #262626;--im-primary-color-7: #565656;--im-primary-color-9: #000;"
     >Custom</im-button
   >
   <im-button
     color="primary"
-    style="--im-gray-color-1: #fff;--im-primary-color-6:rgb(150, 14, 100);--im-primary-color-7: rgb(125, 8, 82);"
+    style="--im-gray-color-1: #fff;--im-primary-color-7: rgb(187, 37, 132);--im-primary-color-8:rgb(150, 14, 100);--im-primary-color-9: rgb(125, 8, 82);"
     >Custom</im-button
   >
 </div>
