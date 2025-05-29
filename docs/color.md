@@ -77,7 +77,7 @@ Im Design 默认的主题色是明亮、友好的蓝色。
   
 }
 .gray {
-  border: 1px solid rgb(188, 187, 187);
+  border: 1px solid rgb(227, 226, 226);
 }
 
 </style>

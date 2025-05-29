@@ -4,7 +4,7 @@ export default class RippleTask {
     this.#task = [];
   }
 
-  add(el: HTMLElement) {
+  async add(el: HTMLElement) {
     this.#task.push(el);
   }
   remove() {
@@ -21,11 +21,13 @@ export default class RippleTask {
       if (el.getAttribute('data-remove') === 'on') {
         const ripple: HTMLElement | null = el.querySelector('.im-ripple__item');
         if (!ripple) return;
-        ripple.style.opacity = '0'; // 淡出效果
-        ripple.style.transition = 'opacity 0.13s ease-out';
+
+        ripple.style.opacity = '0.1'; // 淡出效果
+        ripple.style.transition = 'all 100ms';
+        ripple.getBoundingClientRect(); // 触发重绘，以便应用过渡效果
         setTimeout(() => {
           el.remove();
-        }, 150);
+        }, 100);
       } else {
         setTimeout(() => {
           this.run(el);

@@ -73,3 +73,7 @@ const handleClick = () => {
 ## License
 
 MIT © [im-design](https://tongmingwang.github.io/im-design/)
+
+## Button Components
+
+<img src="https://tongmingwang.github.io/im-design/button" alt="Button Components">

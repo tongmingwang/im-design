@@ -16,54 +16,55 @@ ImDesign 是采用 css 全局变量来控制主题颜色的，你可以通过修
 全部变量如下所示：
 
 ```css
+// src/styles/variables.scss
 :root {
   // 主色系
-  --im-primary-color-1: #e6f7ff;
-  --im-primary-color-2: #b5e5ff;
-  --im-primary-color-3: #8bd1fc;
-  --im-primary-color-4: #5db3f0;
-  --im-primary-color-5: #3494e3;
-  --im-primary-color-6: #1077d7;
-  --im-primary-color-7: #0457b0;
-  --im-primary-color-8: #003e8a;
-  --im-primary-color-9: #002963;
-  --im-primary-color-10: #00173d;
+  --im-primary-color-1: #e3f2fd;
+  --im-primary-color-2: #bbdefb;
+  --im-primary-color-3: #90caf9;
+  --im-primary-color-4: #64b5f6;
+  --im-primary-color-5: #42a5f5;
+  --im-primary-color-6: #2196f3;
+  --im-primary-color-7: #1e88e5;
+  --im-primary-color-8: #1976d2;
+  --im-primary-color-9: #1565c0;
+  --im-primary-color-10: #0d47a1;
 
   // 辅助色系
-  --im-success-color-1: #f6ffed;
-  --im-success-color-2: #d9f7be;
-  --im-success-color-3: #b7eb8f;
-  --im-success-color-4: #95de64;
-  --im-success-color-5: #73d13d;
-  --im-success-color-6: #54cf16;
-  --im-success-color-7: #389e0d;
-  --im-success-color-8: #237804;
-  --im-success-color-9: #135200;
-  --im-success-color-10: #092b00;
+  --im-success-color-1: #e8f5e9;
+  --im-success-color-2: #c8e6c9;
+  --im-success-color-3: #a5d6a7;
+  --im-success-color-4: #81c784;
+  --im-success-color-5: #66bb6a;
+  --im-success-color-6: #4caf50;
+  --im-success-color-7: #43a047;
+  --im-success-color-8: #388e3c;
+  --im-success-color-9: #2e7d32;
+  --im-success-color-10: #1b5e20;
 
   // 警告色系
-  --im-warning-color-1: #fffbe6;
-  --im-warning-color-2: #fff3cd;
-  --im-warning-color-3: #ffe58f;
-  --im-warning-color-4: #ffd666;
-  --im-warning-color-5: #ffc53d;
-  --im-warning-color-6: #faad14;
-  --im-warning-color-7: #d48806;
-  --im-warning-color-8: #ad6800;
-  --im-warning-color-9: #874d00;
-  --im-warning-color-10: #613400;
+  --im-warning-color-1: #fffde7;
+  --im-warning-color-2: #fff9c4;
+  --im-warning-color-3: #fff59d;
+  --im-warning-color-4: #fff176;
+  --im-warning-color-5: #ffee58;
+  --im-warning-color-6: #ffeb3b;
+  --im-warning-color-7: #fdd835;
+  --im-warning-color-8: #fbc02d;
+  --im-warning-color-9: #f9a825;
+  --im-warning-color-10: #f57f17;
 
   // 错误色系
-  --im-error-color-1: #fff1f0;
-  --im-error-color-2: #ffccc7;
-  --im-error-color-3: #ffa39e;
-  --im-error-color-4: #ff7875;
-  --im-error-color-5: #ff4d4f;
-  --im-error-color-6: #f5222d;
-  --im-error-color-7: #cf1322;
-  --im-error-color-8: #a8071a;
-  --im-error-color-9: #820014;
-  --im-error-color-10: #5c0011;
+  --im-error-color-1: #ffebee;
+  --im-error-color-2: #ffcdd2;
+  --im-error-color-3: #ef9a9a;
+  --im-error-color-4: #e57373;
+  --im-error-color-5: #ef5350;
+  --im-error-color-6: #f44336;
+  --im-error-color-7: #e53935;
+  --im-error-color-8: #d32f2f;
+  --im-error-color-9: #c62828;
+  --im-error-color-10: #b71c1c;
 
   // 中性色系
   --im-gray-color-1: #ffffff;
@@ -84,7 +85,8 @@ ImDesign 是采用 css 全局变量来控制主题颜色的，你可以通过修
   --im-border-color: #d9d9d9;
   --im-shadow-color: rgba(0, 0, 0, 0.15);
   --im-radius: 4px;
-  --im-rgb-color-1: rgba(0, 0, 0, 0.05);
+  --im-rgb-color-1: rgba(0, 0, 0, 0.08);
   --im-rgb-color-2: rgba(0, 0, 0, 0.15);
+  --im-rgb-color-3: rgba(0, 0, 0, 0.25);
 }
 ```
