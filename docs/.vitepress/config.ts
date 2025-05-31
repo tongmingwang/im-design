@@ -2,12 +2,12 @@ import { defineConfig } from 'vitepress';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: 'ImDesign',
+  title: 'Im Design',
   lastUpdated: true,
   description:
     '一个基于 Vue3 的组件库，旨在通过提供丰富的组件和灵活的配置来帮助开发者快速构建高质量的前端应用。',
   base: '/im-design/',
-  head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
+  head: [['link', { rel: 'icon', href: '/im-design/favicon.ico' }]],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     siteTitle: 'Im Design',
@@ -16,6 +16,7 @@ export default defineConfig({
       message: 'Released under the MIT License.',
       copyright: 'Copyright © 2019-present TongMing Wang. All rights reserved.',
     },
+
     // carbonAds: {
     //   code: 'https://github.com/tongmingwang/im-design.git',
     //   placement: 'Hello',
