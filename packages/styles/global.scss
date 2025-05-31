@@ -13,7 +13,7 @@
   .im-ripple__item {
     position: absolute;
     border-radius: 50%;
-    transition: all 350ms cubic-bezier(1, 0.49, 0.67, 1.03);
+    transition: all 500ms linear;
   }
 }
 

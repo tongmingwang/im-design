@@ -1,10 +1,10 @@
-var D = (n) => {
+var E = (n) => {
   throw TypeError(n);
 };
-var R = (n, t, e) => t.has(n) || D("Cannot " + e);
-var v = (n, t, e) => (R(n, t, "read from private field"), e ? e.call(n) : t.get(n)), T = (n, t, e) => t.has(n) ? D("Cannot add the same private member more than once") : t instanceof WeakSet ? t.add(n) : t.set(n, e), V = (n, t, e, o) => (R(n, t, "write to private field"), o ? o.call(n, e) : t.set(n, e), e);
-import { inject as A, ref as w, createElementBlock as p, openBlock as u, createElementVNode as L, defineComponent as f, computed as g, resolveDirective as O, withDirectives as P, normalizeStyle as b, normalizeClass as y, createCommentVNode as E, renderSlot as j, unref as d, createVNode as U, createTextVNode as W, toDisplayString as G, useSlots as H, Fragment as J, renderList as K, createBlock as Q, resolveDynamicComponent as Z, mergeProps as ee, vModelDynamic as te } from "vue";
-const q = Symbol("im-design-token"), x = (n) => {
+var L = (n, t, e) => t.has(n) || E("Cannot " + e);
+var z = (n, t, e) => (L(n, t, "read from private field"), e ? e.call(n) : t.get(n)), W = (n, t, e) => t.has(n) ? E("Cannot add the same private member more than once") : t instanceof WeakSet ? t.add(n) : t.set(n, e), P = (n, t, e, o) => (L(n, t, "write to private field"), o ? o.call(n, e) : t.set(n, e), e);
+import { inject as O, ref as k, createElementBlock as p, openBlock as d, createElementVNode as j, defineComponent as _, computed as g, resolveDirective as U, withDirectives as q, normalizeStyle as f, normalizeClass as h, createCommentVNode as $, renderSlot as R, unref as m, createVNode as G, createTextVNode as H, toDisplayString as J, useSlots as K, Fragment as Q, renderList as Z, createBlock as ee, resolveDynamicComponent as te, mergeProps as ne, vModelDynamic as oe } from "vue";
+const F = Symbol("im-design-token"), x = (n) => {
   const t = "im-" + n;
   return {
     b: () => t,
@@ -12,10 +12,10 @@ const q = Symbol("im-design-token"), x = (n) => {
     m: (e) => `${t}--${e}`,
     is: (e, o) => o ? `is-${e}` : ""
   };
-}, F = (n, t) => {
-  const e = A(q), o = w(Number(e.size || 36)), s = w(e.zIndex || 1e3);
-  return { sizeToken: o, zIndexToken: s };
-}, ne = {
+}, M = (n, t) => {
+  const e = O(F), o = k(Number(e.size || 36)), i = k(e.zIndex || 1e3);
+  return { sizeToken: o, zIndexToken: i };
+}, ie = {
   xmlns: "http://www.w3.org/2000/svg",
   width: "1em",
   height: "1em",
@@ -23,12 +23,12 @@ const q = Symbol("im-design-token"), x = (n) => {
   class: "im-icon",
   viewBox: "0 0 1024 1024"
 };
-function oe(n, t) {
-  return u(), p("svg", ne, t[0] || (t[0] = [
-    L("path", { d: "M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.5 440.5 0 0 0-94.3-139.9 437.7 437.7 0 0 0-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150s83.9 101.8 109.7 162.7c26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36" }, null, -1)
+function se(n, t) {
+  return d(), p("svg", ie, t[0] || (t[0] = [
+    j("path", { d: "M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.5 440.5 0 0 0-94.3-139.9 437.7 437.7 0 0 0-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150s83.9 101.8 109.7 162.7c26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36" }, null, -1)
   ]));
 }
-const se = { render: oe }, ie = ["tabindex", "type", "disabled"], z = /* @__PURE__ */ f({
+const ae = { render: se }, ce = ["tabindex", "type", "disabled"], re = /* @__PURE__ */ _({
   name: "ImButton",
   __name: "ImButton",
   props: {
@@ -45,63 +45,68 @@ const se = { render: oe }, ie = ["tabindex", "type", "disabled"], z = /* @__PURE
   },
   emits: ["click"],
   setup(n, { emit: t }) {
-    const e = n, o = t, s = x("button"), { sizeToken: i } = F(), a = g(() => [
-      s.b(),
-      e.color && s.m(e.color),
-      e.shape && s.m(e.shape),
-      e.variant && s.m(e.variant),
-      s.is("disabled", e.disabled),
-      s.is("loading", e.loading)
-    ].filter(Boolean)), l = g(() => {
-      let c = +(e.size || i.value || 36);
+    const e = n, o = t, i = x("button"), { sizeToken: s } = M(), a = g(() => [
+      i.b(),
+      e.color && i.m(e.color),
+      e.shape && i.m(e.shape),
+      e.variant && i.m(e.variant),
+      i.is("disabled", e.disabled),
+      i.is("loading", e.loading)
+    ].filter(Boolean)), r = g(() => {
+      let c = +(e.size || s.value || 36);
       return {
         "--im-button-size": c + "px",
         "--im-button-padding": (c * 0.45).toFixed(0) + "px",
         width: e.width
       };
-    }), r = g(() => e.loading && ["square", "circle"].includes(e.shape)), m = () => {
+    }), l = g(() => e.loading && ["square", "circle"].includes(e.shape)), u = () => {
       e.disabled || e.loading || o("click");
     };
-    return (c, N) => {
-      const I = O("ripple");
-      return P((u(), p("button", {
-        class: y(a.value),
-        onClick: m,
-        style: b(l.value),
+    return (c, T) => {
+      const w = U("ripple");
+      return q((d(), p("button", {
+        class: h(a.value),
+        onClick: u,
+        style: f(r.value),
         tabindex: e.tabindex || 0,
         type: e.type || "button",
         disabled: e.disabled || e.loading
       }, [
-        e.loading ? (u(), p("span", {
+        e.loading ? (d(), p("span", {
           key: 0,
-          class: y([d(s).e("loading")])
+          class: h([m(i).e("loading")])
         }, [
-          U(d(se))
-        ], 2)) : E("", !0),
-        r.value ? E("", !0) : j(c.$slots, "default", { key: 1 }, () => [
-          W(G(e.text), 1)
-        ])
-      ], 14, ie)), [
-        [I, !0]
+          G(m(ae))
+        ], 2)) : $("", !0),
+        l.value ? $("", !0) : R(c.$slots, "default", { key: 1 }, () => [
+          H(J(e.text), 1)
+        ], !0)
+      ], 14, ce)), [
+        [w, !0]
       ]);
     };
   }
-});
-z.install = (n) => {
-  n.component("ImButton", z);
+}), y = (n, t) => {
+  const e = n.__vccOpts || n;
+  for (const [o, i] of t)
+    e[o] = i;
+  return e;
+}, C = /* @__PURE__ */ y(re, [["__scopeId", "data-v-706dad03"]]);
+C.install = (n) => {
+  n.component("ImButton", C);
 };
-var h;
-class ae {
+var v;
+class le {
   constructor() {
-    T(this, h);
-    V(this, h, []);
+    W(this, v);
+    P(this, v, []);
   }
   async add(t) {
-    v(this, h).push(t);
+    z(this, v).push(t);
   }
   remove() {
     try {
-      const t = v(this, h).shift();
+      const t = z(this, v).shift();
       t && this.run(t);
     } catch (t) {
       console.error(t);
@@ -111,16 +116,16 @@ class ae {
     try {
       const e = t.querySelector(".im-ripple__item");
       if (!e) return;
-      let o = Date.now(), s = e.getAttribute("data-time");
-      const i = o - Number(s) || 0;
-      i && await new Promise((a) => {
-        e.style.opacity = "0.2";
-        const l = 320 - i;
+      let o = Date.now(), i = e.getAttribute("data-time");
+      const s = o - Number(i) || 0;
+      s && await new Promise((a) => {
+        e.style.opacity = "0.1";
+        const r = 200 - s;
         setTimeout(
           () => {
             a(null);
           },
-          l > 0 ? l : 0
+          r > 0 ? r : 0
         );
       }), e.style.opacity = "0", e.style.transition = "all 50ms ", setTimeout(() => {
         t && (t == null || t.remove());
@@ -130,42 +135,42 @@ class ae {
     }
   }
 }
-h = new WeakMap();
-const ce = {
+v = new WeakMap();
+const de = {
   // 及他自己的所有子节点都挂载完成后调用
   mounted(n, t) {
     (function() {
-      n.addEventListener("mousedown", s, {
+      n.addEventListener("mousedown", i, {
         passive: !0
-      }), n.addEventListener("mouseup", i, { passive: !0 });
+      }), n.addEventListener("mouseup", s, { passive: !0 });
     })();
-    const o = new ae();
-    async function s(a) {
+    const o = new le();
+    async function i(a) {
       if (!t.value) return;
-      const l = window.getComputedStyle(n), r = n.getBoundingClientRect(), m = document.createElement("div");
-      m.className = "im-ripple", o.add(m);
+      const r = window.getComputedStyle(n), l = n.getBoundingClientRect(), u = document.createElement("div");
+      u.className = "im-ripple", o.add(u);
       const c = document.createElement("div");
       c.className = "im-ripple__item";
-      const N = a.clientX || a.touches && a.touches[0].clientX, I = a.clientY || a.touches && a.touches[0].clientY, _ = Math.max(r.width, r.height), M = N - r.left - _ / 2, X = I - r.top - _ / 2, Y = r.width - r.height <= 5;
+      const T = a.clientX || a.touches && a.touches[0].clientX, w = a.clientY || a.touches && a.touches[0].clientY, I = Math.max(l.width, l.height), X = T - l.left - I / 2, Y = w - l.top - I / 2, A = l.width - l.height <= 5;
       Object.assign(c.style, {
-        "background-color": l.color,
-        width: `${_}px`,
-        height: `${_}px`,
-        left: `${M}px`,
-        top: `${X}px`,
-        opacity: "0.25",
-        transform: Y ? "scale(0.88)" : "scale(0.66)",
+        "background-color": r.color,
+        width: `${I}px`,
+        height: `${I}px`,
+        left: `${X}px`,
+        top: `${Y}px`,
+        opacity: "0.33",
+        transform: A ? "scale(1)" : "scale(0.25)",
         "will-change": "transform,opacity"
         // 提示浏览器优化动画
-      }), c.setAttribute("data-time", Date.now() + ""), m.appendChild(c), n.appendChild(m);
-      const S = l.position;
-      S === "static" && (n.style.position = "relative", n.dataset.originalPosition = S), c.getBoundingClientRect(), c.style.transform = "scale(2.8)", c.style.opacity = "0.33";
+      }), c.setAttribute("data-time", Date.now() + ""), u.appendChild(c), n.appendChild(u);
+      const V = r.position;
+      V === "static" && (n.style.position = "relative", n.dataset.originalPosition = V), c.getBoundingClientRect(), c.style.transform = "scale(2.8)", c.style.opacity = "0.33";
     }
-    function i() {
+    function s() {
       o.remove();
     }
   }
-}, k = /* @__PURE__ */ f({
+}, me = /* @__PURE__ */ _({
   name: "ImRow",
   __name: "ImRow",
   props: {
@@ -179,21 +184,21 @@ const ce = {
     }
   },
   setup(n) {
-    const t = n, e = H(), o = g(() => {
-      var i;
-      return ((i = e.default) == null ? void 0 : i.call(e)) || [];
-    }), s = x("row");
-    return (i, a) => (u(), p("div", {
-      class: y([d(s).b()]),
-      style: b({
+    const t = n, e = K(), o = g(() => {
+      var s;
+      return ((s = e.default) == null ? void 0 : s.call(e)) || [];
+    }), i = x("row");
+    return (s, a) => (d(), p("div", {
+      class: h([m(i).b()]),
+      style: f({
         "--im-row-gutter": t.gutter + "px",
         "align-items": t.align
       })
     }, [
-      (u(!0), p(J, null, K(o.value, (l, r) => (u(), Q(Z(l), { key: r }))), 128))
+      (d(!0), p(Q, null, Z(o.value, (r, l) => (d(), ee(te(r), { key: l }))), 128))
     ], 6));
   }
-}), C = /* @__PURE__ */ f({
+}), B = /* @__PURE__ */ y(me, [["__scopeId", "data-v-08122e1f"]]), pe = /* @__PURE__ */ _({
   name: "ImCol",
   __name: "ImCol",
   props: {
@@ -210,24 +215,24 @@ const ce = {
     const t = n, e = x("col"), o = g(
       () => +((Number(t.span) || 0) / 24).toFixed(2) * 100 + "%"
     );
-    return (s, i) => (u(), p("div", {
-      class: y([d(e).b()]),
-      style: b({
+    return (i, s) => (d(), p("div", {
+      class: h([m(e).b()]),
+      style: f({
         "--im-col-w": o.value,
         "--im-col-offset": t.offset
       })
     }, [
-      j(s.$slots, "default")
+      R(i.$slots, "default", {}, void 0, !0)
     ], 6));
   }
-});
-k.install = (n) => {
-  n.component("ImRow", k);
+}), N = /* @__PURE__ */ y(pe, [["__scopeId", "data-v-ecf91058"]]);
+B.install = (n) => {
+  n.component("ImRow", B);
 };
-C.install = (n) => {
-  n.component("ImCol", C);
+N.install = (n) => {
+  n.component("ImCol", N);
 };
-const B = /* @__PURE__ */ f({
+const ue = /* @__PURE__ */ _({
   name: "ImInput",
   __name: "ImInput",
   props: {
@@ -253,28 +258,28 @@ const B = /* @__PURE__ */ f({
   },
   emits: ["update:modelValue", "change"],
   setup(n, { emit: t }) {
-    const e = n, { sizeToken: o } = F(), s = t, i = w(e.modelValue), a = x("input"), l = () => {
-      s("update:modelValue", i.value), s("change", i.value);
+    const e = n, { sizeToken: o } = M(), i = t, s = k(e.modelValue), a = x("input"), r = () => {
+      i("update:modelValue", s.value), i("change", s.value);
     };
-    return (r, m) => (u(), p("div", {
-      class: y([d(a).b()]),
-      style: b({
-        "--in-input-size": (e.size || d(o) || 36) + "px"
+    return (l, u) => (d(), p("div", {
+      class: h([m(a).b()]),
+      style: f({
+        "--in-input-size": (e.size || m(o) || 36) + "px"
       })
     }, [
-      P(L("input", ee({
-        class: [d(a).e("input")],
-        "onUpdate:modelValue": m[0] || (m[0] = (c) => i.value = c)
-      }, e, { onInput: l }), null, 16), [
-        [te, i.value]
+      q(j("input", ne({
+        class: [m(a).e("input")],
+        "onUpdate:modelValue": u[0] || (u[0] = (c) => s.value = c)
+      }, e, { onInput: r }), null, 16), [
+        [oe, s.value]
       ])
     ], 6));
   }
-});
-B.install = (n) => {
-  n.component("ImInput", B);
+}), D = /* @__PURE__ */ y(ue, [["__scopeId", "data-v-6c70856c"]]);
+D.install = (n) => {
+  n.component("ImInput", D);
 };
-const $ = /* @__PURE__ */ f({
+const he = /* @__PURE__ */ _({
   name: "ImIcon",
   __name: "ImIcon",
   props: {
@@ -284,33 +289,70 @@ const $ = /* @__PURE__ */ f({
   },
   setup(n) {
     const t = n;
-    return (e, o) => (u(), p("i", {
-      class: y(["im-icon", [`im-icon-${t.name}`]]),
-      style: b({
+    return (e, o) => (d(), p("i", {
+      class: h(["im-icon", [`im-icon-${t.name}`]]),
+      style: f({
         "--icon-size": t.size || "16px",
         "--icon-color": t.color
       })
     }, null, 6));
   }
-});
-$.install = function(n) {
-  n.component("ImIcon", $);
+}), S = /* @__PURE__ */ y(he, [["__scopeId", "data-v-458c0f87"]]);
+S.install = function(n) {
+  n.component("ImIcon", S);
 };
-const le = [z, C, k, B, $], ue = {
+const ve = /* @__PURE__ */ _({
+  __name: "ImDivider",
+  props: {
+    vertical: { type: Boolean },
+    color: {},
+    size: {},
+    margin: {},
+    className: {},
+    textLeftWidth: {},
+    textRightWidth: {}
+  },
+  setup(n) {
+    const t = x("divider"), e = n;
+    return (o, i) => (d(), p("div", {
+      class: h([m(t).b(), m(t).is("vertical", e.vertical)]),
+      style: f({
+        "--im-divider-color": e.color || "var(--im-gray-color-4)",
+        "--im-divider-margin-size": `${e.margin || 8}px`,
+        "--im-divider-size": `${e.size || 1}px`,
+        "--im-divider-text-left-width": e.textLeftWidth ? e.textLeftWidth : "100%",
+        "--im-divider-text-right-width": e.textRightWidth ? e.textRightWidth : "100%"
+      })
+    }, [
+      e.vertical ? $("", !0) : (d(), p("span", {
+        key: 0,
+        class: h([m(t).e("text")])
+      }, [
+        R(o.$slots, "default", {}, void 0, !0)
+      ], 2))
+    ], 6));
+  }
+}), b = /* @__PURE__ */ y(ve, [["__scopeId", "data-v-108f9bec"]]);
+b.name = "ImDivider";
+b.install = function(n) {
+  n.component("ImDivider", b);
+};
+const _e = [C, N, B, D, S, b], ge = {
   install(n, t) {
-    n.provide(q, {
+    n.provide(F, {
       size: (t == null ? void 0 : t.size) || 36,
       zIndex: (t == null ? void 0 : t.zIndex) || 1e3
-    }), n.directive("ripple", ce), le.forEach((e) => {
+    }), n.directive("ripple", de), _e.forEach((e) => {
       e.name ? n.component(e.name, e) : console.warn(`组件${e}缺少name属性`);
     });
   }
 };
 export {
-  z as ImButton,
-  C as ImCol,
-  $ as ImIcon,
-  B as ImInput,
-  k as ImRow,
-  ue as default
+  C as ImButton,
+  N as ImCol,
+  b as ImDivider,
+  S as ImIcon,
+  D as ImInput,
+  B as ImRow,
+  ge as default
 };

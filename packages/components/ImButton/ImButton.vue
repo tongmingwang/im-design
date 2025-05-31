@@ -51,7 +51,7 @@ const handleClick = () => {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @mixin btn-colors($bg, $color, $borderColor) {
     background-color: $bg;
     border-color: $borderColor;

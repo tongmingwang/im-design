@@ -74,6 +74,40 @@ const handleClick = () => {
 
 MIT © [im-design](https://tongmingwang.github.io/im-design/)
 
-## Button Components
+## Components
 
-<img src="https://tongmingwang.github.io/im-design/button.png" alt="Button Components">
+### 已完成组件
+
+- [✓] Button (ImButton)
+- [✓] Divider (ImDivider)
+- [✓] Icon (ImIcon)
+- [✓] Input (ImInput)
+- [✓] Layout (ImLayout)
+
+### TODO 列表
+
+#### 组件开发
+
+- [ ] 表单组件 (Form)
+- [ ] 选择器组件 (Select)
+- [ ] 弹窗组件 (Modal)
+- [ ] 表格组件 (Table)
+
+#### 文档完善
+
+- [ ] 补充各组件详细使用文档
+- [ ] 添加组件 API 文档
+- [ ] 完善示例代码
+
+#### 测试覆盖
+
+- [ ] 添加单元测试
+- [ ] 添加 E2E 测试
+- [ ] 测试覆盖率报告
+
+#### 其他改进
+
+- [ ] 主题定制方案
+- [ ] 国际化支持
+- [ ] 性能优化
+- [ ] 构建流程优化

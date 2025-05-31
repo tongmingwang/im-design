@@ -1,14 +1,9 @@
 <template>
-  <div
-    :class="[bem.b()]"
-    :style="{
-      '--im-row-gutter': props.gutter + 'px',
-      'align-items': props.align,
-    }">
-    <component
-      :is="item"
-      v-for="(item, index) in items"
-      :key="index"></component>
+  <div :class="[bem.b()]" :style="{
+    '--im-row-gutter': props.gutter + 'px',
+    'align-items': props.align,
+  }">
+    <component :is="item" v-for="(item, index) in items" :key="index"></component>
   </div>
 </template>
 
@@ -36,13 +31,13 @@ const items = computed(() => {
 const bem = useBem('row');
 </script>
 
-<style lang="scss">
-.im-row {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: nowrap;
-  gap: var(--im-row-gutter, 0px);
-  max-width: 100%;
-  overflow: hidden;
-}
+<style lang="scss" scoped>
+  .im-row {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    gap: var(--im-row-gutter, 0px);
+    max-width: 100%;
+    overflow: hidden;
+  }
 </style>

@@ -28,7 +28,7 @@ const handInput = () => {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .im-input {
     display: inline-flex;
     align-items: center;

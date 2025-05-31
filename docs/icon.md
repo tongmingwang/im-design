@@ -12,7 +12,7 @@ import iconData  from './public/imicon.json'
 
   .icon-list {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap!important;
   }
 
   .icon-item {
@@ -30,7 +30,8 @@ import iconData  from './public/imicon.json'
     transition: all .3s;
 
     &:hover {
-      background: var(--im-rgb-color-1)
+      background: var(--im-rgb-color-1);
+      color: var(--im-primary-color-8);
     }
 
   }
@@ -53,7 +54,7 @@ import iconData  from './public/imicon.json'
 ## 图标列表
 
 <ImRow class="icon-list">
-  <ImCol v-for="(item, index) in iconData.glyphs" :key="index" span="4">
+  <ImCol v-for="(item, index) in iconData.glyphs" :key="index" span="5">
     <div class="icon-item" v-ripple="true">
       <ImIcon :name="item.font_class" size="36px" />
       {{ item.font_class }}

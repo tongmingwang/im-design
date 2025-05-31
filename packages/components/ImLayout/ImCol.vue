@@ -1,10 +1,8 @@
 <template>
-  <div
-    :class="[bem.b()]"
-    :style="{
-      '--im-col-w': spanW,
-      '--im-col-offset': props.offset,
-    }">
+  <div :class="[bem.b()]" :style="{
+    '--im-col-w': spanW,
+    '--im-col-offset': props.offset,
+  }">
     <slot></slot>
   </div>
 </template>
@@ -32,9 +30,9 @@ const spanW = computed(
 );
 </script>
 
-<style lang="scss">
-.im-col {
-  max-width: var(--im-col-w);
-  flex: 0 0 var(--im-col-w);
-}
+<style lang="scss" scoped>
+  .im-col {
+    max-width: var(--im-col-w);
+    flex: 0 0 var(--im-col-w);
+  }
 </style>

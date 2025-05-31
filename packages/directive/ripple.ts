@@ -44,8 +44,8 @@ export const ripple = {
         height: `${size}px`,
         left: `${x}px`,
         top: `${y}px`,
-        opacity: '0.25',
-        transform: isD ? 'scale(0.88)' : 'scale(0.66)',
+        opacity: '0.33',
+        transform: isD ? 'scale(1)' : 'scale(0.25)',
         'will-change': 'transform,opacity', // 提示浏览器优化动画
       });
       ripple.setAttribute('data-time', Date.now() + '');

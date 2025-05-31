@@ -4,12 +4,18 @@ import { defineConfig } from 'vitepress';
 export default defineConfig({
   title: 'ImDesign',
   lastUpdated: true,
-  description: 'A Vue 3 UI library for building high-quality web interfaces.',
+  description:
+    '一个基于 Vue3 的组件库，旨在通过提供丰富的组件和灵活的配置来帮助开发者快速构建高质量的前端应用。',
   base: '/im-design/',
+  head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     siteTitle: 'Im Design',
     logo: '/logo.svg',
+    footer: {
+      message: 'Released under the MIT License.',
+      copyright: 'Copyright © 2019-present TongMing Wang. All rights reserved.',
+    },
     // carbonAds: {
     //   code: 'https://github.com/tongmingwang/im-design.git',
     //   placement: 'Hello',
@@ -55,6 +61,16 @@ export default defineConfig({
           { text: 'Icon 图标', link: '/icon' },
           { text: 'Layout 布局', link: '/layout' },
           { text: 'Color 色彩', link: '/color' },
+          { text: 'Divider 分割线', link: '/divider' },
+        ],
+      },
+      {
+        text: '导航组件',
+        items: [
+          {
+            text: 'Anchor 锚点',
+            link: '/anchor',
+          },
         ],
       },
     ],
