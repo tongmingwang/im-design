@@ -5,14 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc -b && vite build",
+    "build": "vue-tsc -b && vite build && npm run build:types",
     "preview": "vite preview",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "build:types": "vue-tsc --declaration --emitDeclarationOnly --outDir types"
   },
   "dependencies": {
-    "im-design": "^0.0.12",
+    "im-design": "^0.0.13",
     "sass": "^1.89.0",
     "vite-svg-loader": "^5.1.0",
     "vue": "^3.5.13"
@@ -23,7 +24,6 @@
     "@vue/tsconfig": "^0.7.0",
     "typescript": "~5.8.3",
     "vite": "^6.3.5",
-    "vite-plugin-dts": "^4.5.4",
     "vitepress": "^1.6.3",
     "vue-tsc": "^2.2.8"
   }

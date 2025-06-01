@@ -25,6 +25,7 @@ const props = defineProps({
 });
 const slots = useSlots();
 const items = computed(() => {
+  // @ts-ignore
   return slots.default?.() || [];
 });
 

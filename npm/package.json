@@ -1,6 +1,6 @@
 {
   "name": "im-design",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "type": "module",
   "files": [
     "dist",
@@ -8,12 +8,12 @@
   ],
   "main": "./dist/im-design.cjs",
   "module": "./dist/im-design.js",
-  "types": "./types/index.d.ts",
+  "types": "./types/global.d.ts",
   "exports": {
     ".": {
       "import": "./dist/im-design.js",
       "require": "./dist/im-design.cjs",
-      "types": "./types/index.d.ts"
+      "types": "./types/global.d.ts"
     },
     "./*": "./*"
   }

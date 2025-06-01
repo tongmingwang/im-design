@@ -4,7 +4,83 @@ var E = (n) => {
 var L = (n, t, e) => t.has(n) || E("Cannot " + e);
 var z = (n, t, e) => (L(n, t, "read from private field"), e ? e.call(n) : t.get(n)), W = (n, t, e) => t.has(n) ? E("Cannot add the same private member more than once") : t instanceof WeakSet ? t.add(n) : t.set(n, e), P = (n, t, e, o) => (L(n, t, "write to private field"), o ? o.call(n, e) : t.set(n, e), e);
 import { inject as O, ref as k, createElementBlock as p, openBlock as d, createElementVNode as j, defineComponent as _, computed as g, resolveDirective as U, withDirectives as q, normalizeStyle as f, normalizeClass as h, createCommentVNode as $, renderSlot as R, unref as m, createVNode as G, createTextVNode as H, toDisplayString as J, useSlots as K, Fragment as Q, renderList as Z, createBlock as ee, resolveDynamicComponent as te, mergeProps as ne, vModelDynamic as oe } from "vue";
-const F = Symbol("im-design-token"), x = (n) => {
+const F = Symbol("im-design-token");
+var v;
+class ie {
+  constructor() {
+    W(this, v);
+    P(this, v, []);
+  }
+  async add(t) {
+    z(this, v).push(t);
+  }
+  remove() {
+    try {
+      const t = z(this, v).shift();
+      t && this.run(t);
+    } catch (t) {
+      console.error(t);
+    }
+  }
+  async run(t) {
+    try {
+      const e = t.querySelector(".im-ripple__item");
+      if (!e) return;
+      let o = Date.now(), i = e.getAttribute("data-time");
+      const s = o - Number(i) || 0;
+      s && await new Promise((a) => {
+        e.style.opacity = "0.1";
+        const r = 200 - s;
+        setTimeout(
+          () => {
+            a(null);
+          },
+          r > 0 ? r : 0
+        );
+      }), e.style.opacity = "0", e.style.transition = "all 50ms ", setTimeout(() => {
+        t && (t == null || t.remove());
+      }, 50);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+}
+v = new WeakMap();
+const se = {
+  // 及他自己的所有子节点都挂载完成后调用
+  mounted(n, t) {
+    (function() {
+      n.addEventListener("mousedown", i, {
+        passive: !0
+      }), n.addEventListener("mouseup", s, { passive: !0 });
+    })();
+    const o = new ie();
+    async function i(a) {
+      if (!t.value) return;
+      const r = window.getComputedStyle(n), l = n.getBoundingClientRect(), u = document.createElement("div");
+      u.className = "im-ripple", o.add(u);
+      const c = document.createElement("div");
+      c.className = "im-ripple__item";
+      const T = a.clientX || a.touches && a.touches[0].clientX, w = a.clientY || a.touches && a.touches[0].clientY, I = Math.max(l.width, l.height), X = T - l.left - I / 2, Y = w - l.top - I / 2, A = l.width - l.height <= 5;
+      Object.assign(c.style, {
+        "background-color": r.color,
+        width: `${I}px`,
+        height: `${I}px`,
+        left: `${X}px`,
+        top: `${Y}px`,
+        opacity: "0.33",
+        transform: A ? "scale(1)" : "scale(0.25)",
+        "will-change": "transform,opacity"
+        // 提示浏览器优化动画
+      }), c.setAttribute("data-time", Date.now() + ""), u.appendChild(c), n.appendChild(u);
+      const V = r.position;
+      V === "static" && (n.style.position = "relative", n.dataset.originalPosition = V), c.getBoundingClientRect(), c.style.transform = "scale(2.8)", c.style.opacity = "0.33";
+    }
+    function s() {
+      o.remove();
+    }
+  }
+}, x = (n) => {
   const t = "im-" + n;
   return {
     b: () => t,
@@ -15,7 +91,7 @@ const F = Symbol("im-design-token"), x = (n) => {
 }, M = (n, t) => {
   const e = O(F), o = k(Number(e.size || 36)), i = k(e.zIndex || 1e3);
   return { sizeToken: o, zIndexToken: i };
-}, ie = {
+}, ae = {
   xmlns: "http://www.w3.org/2000/svg",
   width: "1em",
   height: "1em",
@@ -23,12 +99,12 @@ const F = Symbol("im-design-token"), x = (n) => {
   class: "im-icon",
   viewBox: "0 0 1024 1024"
 };
-function se(n, t) {
-  return d(), p("svg", ie, t[0] || (t[0] = [
+function ce(n, t) {
+  return d(), p("svg", ae, t[0] || (t[0] = [
     j("path", { d: "M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.5 440.5 0 0 0-94.3-139.9 437.7 437.7 0 0 0-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150s83.9 101.8 109.7 162.7c26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36" }, null, -1)
   ]));
 }
-const ae = { render: se }, ce = ["tabindex", "type", "disabled"], re = /* @__PURE__ */ _({
+const re = { render: ce }, le = ["tabindex", "type", "disabled"], de = /* @__PURE__ */ _({
   name: "ImButton",
   __name: "ImButton",
   props: {
@@ -76,12 +152,12 @@ const ae = { render: se }, ce = ["tabindex", "type", "disabled"], re = /* @__PUR
           key: 0,
           class: h([m(i).e("loading")])
         }, [
-          G(m(ae))
+          G(m(re))
         ], 2)) : $("", !0),
         l.value ? $("", !0) : R(c.$slots, "default", { key: 1 }, () => [
           H(J(e.text), 1)
         ], !0)
-      ], 14, ce)), [
+      ], 14, le)), [
         [w, !0]
       ]);
     };
@@ -91,86 +167,11 @@ const ae = { render: se }, ce = ["tabindex", "type", "disabled"], re = /* @__PUR
   for (const [o, i] of t)
     e[o] = i;
   return e;
-}, C = /* @__PURE__ */ y(re, [["__scopeId", "data-v-706dad03"]]);
+}, C = /* @__PURE__ */ y(de, [["__scopeId", "data-v-706dad03"]]);
 C.install = (n) => {
   n.component("ImButton", C);
 };
-var v;
-class le {
-  constructor() {
-    W(this, v);
-    P(this, v, []);
-  }
-  async add(t) {
-    z(this, v).push(t);
-  }
-  remove() {
-    try {
-      const t = z(this, v).shift();
-      t && this.run(t);
-    } catch (t) {
-      console.error(t);
-    }
-  }
-  async run(t) {
-    try {
-      const e = t.querySelector(".im-ripple__item");
-      if (!e) return;
-      let o = Date.now(), i = e.getAttribute("data-time");
-      const s = o - Number(i) || 0;
-      s && await new Promise((a) => {
-        e.style.opacity = "0.1";
-        const r = 200 - s;
-        setTimeout(
-          () => {
-            a(null);
-          },
-          r > 0 ? r : 0
-        );
-      }), e.style.opacity = "0", e.style.transition = "all 50ms ", setTimeout(() => {
-        t && (t == null || t.remove());
-      }, 50);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-}
-v = new WeakMap();
-const de = {
-  // 及他自己的所有子节点都挂载完成后调用
-  mounted(n, t) {
-    (function() {
-      n.addEventListener("mousedown", i, {
-        passive: !0
-      }), n.addEventListener("mouseup", s, { passive: !0 });
-    })();
-    const o = new le();
-    async function i(a) {
-      if (!t.value) return;
-      const r = window.getComputedStyle(n), l = n.getBoundingClientRect(), u = document.createElement("div");
-      u.className = "im-ripple", o.add(u);
-      const c = document.createElement("div");
-      c.className = "im-ripple__item";
-      const T = a.clientX || a.touches && a.touches[0].clientX, w = a.clientY || a.touches && a.touches[0].clientY, I = Math.max(l.width, l.height), X = T - l.left - I / 2, Y = w - l.top - I / 2, A = l.width - l.height <= 5;
-      Object.assign(c.style, {
-        "background-color": r.color,
-        width: `${I}px`,
-        height: `${I}px`,
-        left: `${X}px`,
-        top: `${Y}px`,
-        opacity: "0.33",
-        transform: A ? "scale(1)" : "scale(0.25)",
-        "will-change": "transform,opacity"
-        // 提示浏览器优化动画
-      }), c.setAttribute("data-time", Date.now() + ""), u.appendChild(c), n.appendChild(u);
-      const V = r.position;
-      V === "static" && (n.style.position = "relative", n.dataset.originalPosition = V), c.getBoundingClientRect(), c.style.transform = "scale(2.8)", c.style.opacity = "0.33";
-    }
-    function s() {
-      o.remove();
-    }
-  }
-}, me = /* @__PURE__ */ _({
+const me = /* @__PURE__ */ _({
   name: "ImRow",
   __name: "ImRow",
   props: {
@@ -198,7 +199,7 @@ const de = {
       (d(!0), p(Q, null, Z(o.value, (r, l) => (d(), ee(te(r), { key: l }))), 128))
     ], 6));
   }
-}), B = /* @__PURE__ */ y(me, [["__scopeId", "data-v-08122e1f"]]), pe = /* @__PURE__ */ _({
+}), B = /* @__PURE__ */ y(me, [["__scopeId", "data-v-5179967f"]]), pe = /* @__PURE__ */ _({
   name: "ImCol",
   __name: "ImCol",
   props: {
@@ -337,15 +338,15 @@ b.name = "ImDivider";
 b.install = function(n) {
   n.component("ImDivider", b);
 };
-const _e = [C, N, B, D, S, b], ge = {
-  install(n, t) {
-    n.provide(F, {
-      size: (t == null ? void 0 : t.size) || 36,
-      zIndex: (t == null ? void 0 : t.zIndex) || 1e3
-    }), n.directive("ripple", de), _e.forEach((e) => {
-      e.name ? n.component(e.name, e) : console.warn(`组件${e}缺少name属性`);
-    });
-  }
+const _e = [C, N, B, D, S, b], fe = (n, t) => {
+  n.provide(F, {
+    size: (t == null ? void 0 : t.size) || 36,
+    zIndex: (t == null ? void 0 : t.zIndex) || 1e3
+  }), n.directive("ripple", se), _e.forEach((e) => {
+    e.name ? n.component(e.name, e) : console.warn(`组件${e}缺少name属性`);
+  });
+}, xe = {
+  install: fe
 };
 export {
   C as ImButton,
@@ -354,5 +355,5 @@ export {
   S as ImIcon,
   D as ImInput,
   B as ImRow,
-  ge as default
+  xe as default
 };
