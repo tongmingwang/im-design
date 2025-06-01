@@ -2,8 +2,8 @@ var j = (t) => {
   throw TypeError(t);
 };
 var X = (t, n, e) => n.has(t) || j("Cannot " + e);
-var N = (t, n, e) => (X(t, n, "read from private field"), e ? e.call(t) : n.get(t)), U = (t, n, e) => n.has(t) ? j("Cannot add the same private member more than once") : n instanceof WeakSet ? n.add(t) : n.set(t, e), H = (t, n, e, s) => (X(t, n, "write to private field"), s ? s.call(t, e) : n.set(t, e), e);
-import { inject as te, ref as B, createElementBlock as m, openBlock as d, createElementVNode as R, defineComponent as x, computed as C, resolveDirective as O, withDirectives as W, normalizeStyle as S, normalizeClass as p, createCommentVNode as b, renderSlot as $, unref as a, createVNode as Y, createTextVNode as D, toDisplayString as A, useSlots as G, Fragment as J, renderList as K, createBlock as ne, resolveDynamicComponent as oe, mergeProps as se, vModelDynamic as ie, watch as re, onMounted as le, onUnmounted as ae } from "vue";
+var L = (t, n, e) => (X(t, n, "read from private field"), e ? e.call(t) : n.get(t)), U = (t, n, e) => n.has(t) ? j("Cannot add the same private member more than once") : n instanceof WeakSet ? n.add(t) : n.set(t, e), H = (t, n, e, s) => (X(t, n, "write to private field"), s ? s.call(t, e) : n.set(t, e), e);
+import { inject as te, ref as B, createElementBlock as m, openBlock as d, createElementVNode as R, defineComponent as x, computed as C, resolveDirective as O, withDirectives as W, normalizeStyle as E, normalizeClass as p, createCommentVNode as b, renderSlot as $, unref as a, createVNode as Y, createTextVNode as D, toDisplayString as A, useSlots as G, Fragment as J, renderList as K, createBlock as ne, resolveDynamicComponent as oe, mergeProps as se, vModelDynamic as ie, watch as re, onMounted as le, onUnmounted as ae } from "vue";
 const Q = Symbol("im-design-token");
 var z;
 class ce {
@@ -12,11 +12,11 @@ class ce {
     H(this, z, []);
   }
   async add(n) {
-    N(this, z).push(n);
+    L(this, z).push(n);
   }
   remove() {
     try {
-      const n = N(this, z).shift();
+      const n = L(this, z).shift();
       n && this.run(n);
     } catch (n) {
       console.error(n);
@@ -38,7 +38,7 @@ class ce {
           v > 0 ? v : 0
         );
       }), e.style.opacity = "0", e.style.transition = "all 50ms ", setTimeout(() => {
-        n && (n == null || n.remove()), N(this, z).length && this.remove();
+        n && (n == null || n.remove()), L(this, z).length && this.remove();
       }, 50);
     } catch (e) {
       console.log(e);
@@ -52,7 +52,7 @@ const ue = {
     (function() {
       t.addEventListener("mousedown", o, {
         passive: !0
-      }), window.addEventListener("mouseup", r, { passive: !0 }), window.addEventListener("touchstart", o, { passive: !0 }), window.addEventListener("touchend", r, { passive: !0 });
+      }), window.addEventListener("mouseup", r, { passive: !0 });
     })();
     const s = new ce();
     async function o(i) {
@@ -82,9 +82,9 @@ const ue = {
     }
   },
   unmounted(t) {
-    t && (t != null && t.im_add_ripple_fn__) && (t.removeEventListener("mousedown", t.im_add_ripple_fn__), window.removeEventListener("touchstart", t.im_add_ripple_fn__)), t && t.im_remove_ripple_fn__ && (window.removeEventListener("mouseup", t.im_remove_ripple_fn__), window.removeEventListener("touchend", t.im_remove_ripple_fn__));
+    t && (t != null && t.im_add_ripple_fn__) && t.removeEventListener("mousedown", t.im_add_ripple_fn__), t && t.im_remove_ripple_fn__ && window.removeEventListener("mouseup", t.im_remove_ripple_fn__);
   }
-}, E = (t) => {
+}, S = (t) => {
   const n = "im-" + t;
   return {
     b: () => n,
@@ -125,7 +125,7 @@ const pe = { render: me }, fe = ["tabindex", "type", "disabled"], ve = /* @__PUR
   },
   emits: ["click"],
   setup(t, { emit: n }) {
-    const e = t, s = n, o = E("button"), { sizeToken: r } = Z(), i = C(() => [
+    const e = t, s = n, o = S("button"), { sizeToken: r } = Z(), i = C(() => [
       o.b(),
       e.color && o.m(e.color),
       e.shape && o.m(e.shape),
@@ -147,7 +147,7 @@ const pe = { render: me }, fe = ["tabindex", "type", "disabled"], ve = /* @__PUR
       return W((d(), m("button", {
         class: p(i.value),
         onClick: g,
-        style: S(v.value),
+        style: E(v.value),
         tabindex: e.tabindex || 0,
         type: e.type || "button",
         disabled: e.disabled || e.loading
@@ -192,10 +192,10 @@ const _e = /* @__PURE__ */ x({
     const n = t, e = G(), s = C(() => {
       var r;
       return ((r = e.default) == null ? void 0 : r.call(e)) || [];
-    }), o = E("row");
+    }), o = S("row");
     return (r, i) => (d(), m("div", {
       class: p([a(o).b()]),
-      style: S({
+      style: E({
         "--im-row-gutter": n.gutter + "px",
         "align-items": n.align
       })
@@ -217,12 +217,12 @@ const _e = /* @__PURE__ */ x({
     }
   },
   setup(t) {
-    const n = t, e = E("col"), s = C(
+    const n = t, e = S("col"), s = C(
       () => +((Number(n.span) || 0) / 24).toFixed(2) * 100 + "%"
     );
     return (o, r) => (d(), m("div", {
       class: p([a(e).b()]),
-      style: S({
+      style: E({
         "--im-col-w": s.value,
         "--im-col-offset": n.offset
       })
@@ -263,12 +263,12 @@ const ge = /* @__PURE__ */ x({
   },
   emits: ["update:modelValue", "change"],
   setup(t, { emit: n }) {
-    const e = t, { sizeToken: s } = Z(), o = n, r = B(e.modelValue), i = E("input"), v = () => {
+    const e = t, { sizeToken: s } = Z(), o = n, r = B(e.modelValue), i = S("input"), v = () => {
       o("update:modelValue", r.value), o("change", r.value);
     };
     return (f, g) => (d(), m("div", {
       class: p([a(i).b()]),
-      style: S({
+      style: E({
         "--in-input-size": (e.size || a(s) || 36) + "px"
       })
     }, [
@@ -296,15 +296,15 @@ const ye = /* @__PURE__ */ x({
     const n = t;
     return (e, s) => (d(), m("i", {
       class: p(["im-icon", [`im-icon-${n.name}`]]),
-      style: S({
+      style: E({
         "--icon-size": (parseInt(String(n.size)) || 16) + "px",
         "--icon-color": n.color
       })
     }, null, 6));
   }
-}), L = /* @__PURE__ */ k(ye, [["__scopeId", "data-v-1e711363"]]);
-L.install = function(t) {
-  t.component("ImIcon", L);
+}), N = /* @__PURE__ */ k(ye, [["__scopeId", "data-v-1e711363"]]);
+N.install = function(t) {
+  t.component("ImIcon", N);
 };
 const Ie = /* @__PURE__ */ x({
   __name: "ImDivider",
@@ -318,10 +318,10 @@ const Ie = /* @__PURE__ */ x({
     textRightWidth: {}
   },
   setup(t) {
-    const n = E("divider"), e = t;
+    const n = S("divider"), e = t;
     return (s, o) => (d(), m("div", {
       class: p([a(n).b(), a(n).is("vertical", e.vertical)]),
-      style: S({
+      style: E({
         "--im-divider-color": e.color || "var(--im-gray-color-4)",
         "--im-divider-margin-size": `${e.margin || 8}px`,
         "--im-divider-size": `${e.size || 1}px`,
@@ -367,7 +367,7 @@ const ee = (t, n) => (n.install = (e) => {
     target: { default: null }
   },
   setup(t) {
-    const n = E("anchor");
+    const n = S("anchor");
     let e = null;
     const s = B(null), o = B(null), r = B(null), i = t;
     re(
@@ -472,7 +472,7 @@ const ee = (t, n) => (n.install = (e) => {
   },
   emits: ["close"],
   setup(t, { emit: n }) {
-    const e = n, s = B(null), o = t, r = E("alert"), i = G(), v = C(() => !!(o.showIcon && o.title)), f = C(() => {
+    const e = n, s = B(null), o = t, r = S("alert"), i = G(), v = C(() => !!(o.showIcon && o.title)), f = C(() => {
       switch (o.color) {
         case "error":
           return "close-circle-fill";
@@ -515,7 +515,7 @@ const ee = (t, n) => (n.install = (e) => {
           class: p([a(r).e("icon")])
         }, [
           $(c.$slots, "icon", {}, () => [
-            Y(a(L), {
+            Y(a(N), {
               name: f.value,
               size: v.value ? 24 : 16
             }, null, 8, ["name", "size"])
@@ -546,7 +546,7 @@ const ee = (t, n) => (n.install = (e) => {
           onClick: g
         }, [
           $(c.$slots, "close", {}, () => [
-            Y(a(L), {
+            Y(a(N), {
               name: "close",
               size: "16"
             })
@@ -557,24 +557,24 @@ const ee = (t, n) => (n.install = (e) => {
       ], 2);
     };
   }
-}), Be = /* @__PURE__ */ k(ze, [["__scopeId", "data-v-d11fdcb2"]]), Ce = ee("ImAlert", Be), Ee = [
+}), Be = /* @__PURE__ */ k(ze, [["__scopeId", "data-v-d11fdcb2"]]), Ce = ee("ImAlert", Be), Se = [
   P,
   F,
   q,
   M,
-  L,
+  N,
   V,
   $e,
   Ce
-], Se = (t, n) => {
+], Ee = (t, n) => {
   t.provide(Q, {
     size: (n == null ? void 0 : n.size) || 36,
     zIndex: (n == null ? void 0 : n.zIndex) || 1e3
-  }), t.directive("ripple", ue), Ee.forEach((e) => {
+  }), t.directive("ripple", ue), Se.forEach((e) => {
     e.name ? t.component(e.name, e) : console.warn(`组件${e}缺少name属性`);
   });
 }, Re = {
-  install: Se
+  install: Ee
 };
 export {
   Ce as ImAlert,
@@ -582,7 +582,7 @@ export {
   P as ImButton,
   F as ImCol,
   V as ImDivider,
-  L as ImIcon,
+  N as ImIcon,
   M as ImInput,
   q as ImRow,
   Re as default

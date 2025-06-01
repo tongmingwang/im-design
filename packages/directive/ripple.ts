@@ -4,13 +4,10 @@ export const ripple = {
   // 及他自己的所有子节点都挂载完成后调用
   mounted(el: HTMLElement, binding: any) {
     const init = function () {
-      // 判断浏览器是否支持按下或者鼠标按下事件
       el.addEventListener('mousedown', createRipple, {
         passive: true,
       });
       window.addEventListener('mouseup', hideRipple, { passive: true });
-      window.addEventListener('touchstart', createRipple, { passive: true });
-      window.addEventListener('touchend', hideRipple, { passive: true });
     };
     init();
     const task = new RippleTask();
@@ -80,15 +77,11 @@ export const ripple = {
     if (el && el?.im_add_ripple_fn__) {
       // @ts-ignore
       el.removeEventListener('mousedown', el.im_add_ripple_fn__);
-      // @ts-ignore
-      window.removeEventListener('touchstart', el.im_add_ripple_fn__);
     }
     // @ts-ignore
     if (el && el.im_remove_ripple_fn__) {
       // @ts-ignore
       window.removeEventListener('mouseup', el.im_remove_ripple_fn__);
-      // @ts-ignore
-      window.removeEventListener('touchend', el.im_remove_ripple_fn__);
     }
   },
 };

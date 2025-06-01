@@ -1,9 +1,9 @@
 <template>
   <div class="main">
-    <!-- <Button /> -->
+    <Button />
     <!-- <Divider /> -->
     <!-- <Anchor /> -->
-    <Alert />
+    <!-- <Alert /> -->
   </div>
 </template>
 

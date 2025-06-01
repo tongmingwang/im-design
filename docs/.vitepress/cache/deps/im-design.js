@@ -28,12 +28,12 @@ import {
   withDirectives
 } from "./chunk-K6JRRAUI.js";
 
-// node_modules/.pnpm/im-design@0.0.20/node_modules/im-design/dist/im-design.js
+// node_modules/.pnpm/im-design@0.0.21/node_modules/im-design/dist/im-design.js
 var j = (t) => {
   throw TypeError(t);
 };
 var X = (t, n, e) => n.has(t) || j("Cannot " + e);
-var N = (t, n, e) => (X(t, n, "read from private field"), e ? e.call(t) : n.get(t));
+var L = (t, n, e) => (X(t, n, "read from private field"), e ? e.call(t) : n.get(t));
 var U = (t, n, e) => n.has(t) ? j("Cannot add the same private member more than once") : n instanceof WeakSet ? n.add(t) : n.set(t, e);
 var H = (t, n, e, s) => (X(t, n, "write to private field"), s ? s.call(t, e) : n.set(t, e), e);
 var Q = Symbol("im-design-token");
@@ -44,11 +44,11 @@ var ce = class {
     H(this, z, []);
   }
   async add(n) {
-    N(this, z).push(n);
+    L(this, z).push(n);
   }
   remove() {
     try {
-      const n = N(this, z).shift();
+      const n = L(this, z).shift();
       n && this.run(n);
     } catch (n) {
       console.error(n);
@@ -70,7 +70,7 @@ var ce = class {
           v > 0 ? v : 0
         );
       }), e.style.opacity = "0", e.style.transition = "all 50ms ", setTimeout(() => {
-        n && (n == null || n.remove()), N(this, z).length && this.remove();
+        n && (n == null || n.remove()), L(this, z).length && this.remove();
       }, 50);
     } catch (e) {
       console.log(e);
@@ -84,7 +84,7 @@ var ue = {
     (function() {
       t.addEventListener("mousedown", o, {
         passive: true
-      }), window.addEventListener("mouseup", r, { passive: true }), window.addEventListener("touchstart", o, { passive: true }), window.addEventListener("touchend", r, { passive: true });
+      }), window.addEventListener("mouseup", r, { passive: true });
     })();
     const s = new ce();
     async function o(i) {
@@ -114,10 +114,10 @@ var ue = {
     }
   },
   unmounted(t) {
-    t && (t != null && t.im_add_ripple_fn__) && (t.removeEventListener("mousedown", t.im_add_ripple_fn__), window.removeEventListener("touchstart", t.im_add_ripple_fn__)), t && t.im_remove_ripple_fn__ && (window.removeEventListener("mouseup", t.im_remove_ripple_fn__), window.removeEventListener("touchend", t.im_remove_ripple_fn__));
+    t && (t != null && t.im_add_ripple_fn__) && t.removeEventListener("mousedown", t.im_add_ripple_fn__), t && t.im_remove_ripple_fn__ && window.removeEventListener("mouseup", t.im_remove_ripple_fn__);
   }
 };
-var E = (t) => {
+var S = (t) => {
   const n = "im-" + t;
   return {
     b: () => n,
@@ -162,7 +162,7 @@ var ve = defineComponent({
   },
   emits: ["click"],
   setup(t, { emit: n }) {
-    const e = t, s = n, o = E("button"), { sizeToken: r } = Z(), i = computed(() => [
+    const e = t, s = n, o = S("button"), { sizeToken: r } = Z(), i = computed(() => [
       o.b(),
       e.color && o.m(e.color),
       e.shape && o.m(e.shape),
@@ -231,7 +231,7 @@ var _e = defineComponent({
     const n = t, e = useSlots(), s = computed(() => {
       var r;
       return ((r = e.default) == null ? void 0 : r.call(e)) || [];
-    }), o = E("row");
+    }), o = S("row");
     return (r, i) => (openBlock(), createElementBlock("div", {
       class: normalizeClass([unref(o).b()]),
       style: normalizeStyle({
@@ -258,7 +258,7 @@ var he = defineComponent({
     }
   },
   setup(t) {
-    const n = t, e = E("col"), s = computed(
+    const n = t, e = S("col"), s = computed(
       () => +((Number(n.span) || 0) / 24).toFixed(2) * 100 + "%"
     );
     return (o, r) => (openBlock(), createElementBlock("div", {
@@ -305,7 +305,7 @@ var ge = defineComponent({
   },
   emits: ["update:modelValue", "change"],
   setup(t, { emit: n }) {
-    const e = t, { sizeToken: s } = Z(), o = n, r = ref(e.modelValue), i = E("input"), v = () => {
+    const e = t, { sizeToken: s } = Z(), o = n, r = ref(e.modelValue), i = S("input"), v = () => {
       o("update:modelValue", r.value), o("change", r.value);
     };
     return (f, g) => (openBlock(), createElementBlock("div", {
@@ -346,9 +346,9 @@ var ye = defineComponent({
     }, null, 6));
   }
 });
-var L = k(ye, [["__scopeId", "data-v-1e711363"]]);
-L.install = function(t) {
-  t.component("ImIcon", L);
+var N = k(ye, [["__scopeId", "data-v-1e711363"]]);
+N.install = function(t) {
+  t.component("ImIcon", N);
 };
 var Ie = defineComponent({
   __name: "ImDivider",
@@ -362,7 +362,7 @@ var Ie = defineComponent({
     textRightWidth: {}
   },
   setup(t) {
-    const n = E("divider"), e = t;
+    const n = S("divider"), e = t;
     return (s, o) => (openBlock(), createElementBlock("div", {
       class: normalizeClass([unref(n).b(), unref(n).is("vertical", e.vertical)]),
       style: normalizeStyle({
@@ -416,7 +416,7 @@ var ke = defineComponent({
     target: { default: null }
   },
   setup(t) {
-    const n = E("anchor");
+    const n = S("anchor");
     let e = null;
     const s = ref(null), o = ref(null), r = ref(null), i = t;
     watch(
@@ -524,7 +524,7 @@ var ze = defineComponent({
   },
   emits: ["close"],
   setup(t, { emit: n }) {
-    const e = n, s = ref(null), o = t, r = E("alert"), i = useSlots(), v = computed(() => !!(o.showIcon && o.title)), f = computed(() => {
+    const e = n, s = ref(null), o = t, r = S("alert"), i = useSlots(), v = computed(() => !!(o.showIcon && o.title)), f = computed(() => {
       switch (o.color) {
         case "error":
           return "close-circle-fill";
@@ -567,7 +567,7 @@ var ze = defineComponent({
           class: normalizeClass([unref(r).e("icon")])
         }, [
           renderSlot(c.$slots, "icon", {}, () => [
-            createVNode(unref(L), {
+            createVNode(unref(N), {
               name: f.value,
               size: v.value ? 24 : 16
             }, null, 8, ["name", "size"])
@@ -598,7 +598,7 @@ var ze = defineComponent({
           onClick: g
         }, [
           renderSlot(c.$slots, "close", {}, () => [
-            createVNode(unref(L), {
+            createVNode(unref(N), {
               name: "close",
               size: "16"
             })
@@ -612,26 +612,26 @@ var ze = defineComponent({
 });
 var Be = k(ze, [["__scopeId", "data-v-d11fdcb2"]]);
 var Ce = ee("ImAlert", Be);
-var Ee = [
+var Se = [
   P,
   F,
   q,
   M,
-  L,
+  N,
   V,
   $e,
   Ce
 ];
-var Se = (t, n) => {
+var Ee = (t, n) => {
   t.provide(Q, {
     size: (n == null ? void 0 : n.size) || 36,
     zIndex: (n == null ? void 0 : n.zIndex) || 1e3
-  }), t.directive("ripple", ue), Ee.forEach((e) => {
+  }), t.directive("ripple", ue), Se.forEach((e) => {
     e.name ? t.component(e.name, e) : console.warn(`组件${e}缺少name属性`);
   });
 };
 var Re = {
-  install: Se
+  install: Ee
 };
 export {
   Ce as ImAlert,
@@ -639,7 +639,7 @@ export {
   P as ImButton,
   F as ImCol,
   V as ImDivider,
-  L as ImIcon,
+  N as ImIcon,
   M as ImInput,
   q as ImRow,
   Re as default
