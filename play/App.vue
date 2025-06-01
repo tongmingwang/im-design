@@ -1,13 +1,15 @@
 <template>
   <div class="main">
     <!-- <Button /> -->
-    <Divider />
+    <!-- <Divider /> -->
+    <Anchor />
   </div>
 </template>
 
 <script setup lang="ts">
 import Button from './views/Button.vue'
 import Divider from './views/Divider.vue'
+import Anchor from './views/Anchor.vue';
 </script>
 
 <style scoped lang="scss">

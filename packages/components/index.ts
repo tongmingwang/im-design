@@ -13,8 +13,9 @@ import { ImCol, ImRow } from './ImLayout';
 import ImInput from './ImInput';
 import ImIcon from './ImIcon';
 import ImDivider from './ImDivider';
+import ImAnchor from './ImAnchor';
 // 定义组件列表
-const list = [ImButton, ImCol, ImRow, ImInput, ImIcon, ImDivider];
+const list = [ImButton, ImCol, ImRow, ImInput, ImIcon, ImDivider, ImAnchor];
 
 const install = (app: App, option?: ImDesignOptions) => {
   app.provide(token, {
@@ -31,7 +32,7 @@ const install = (app: App, option?: ImDesignOptions) => {
   });
 };
 
-export { ImButton, ImCol, ImRow, ImInput, ImIcon, ImDivider };
+export { ImButton, ImCol, ImRow, ImInput, ImIcon, ImDivider, ImAnchor };
 // 导出插件安装函数
 export default {
   install,
