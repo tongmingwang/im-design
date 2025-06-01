@@ -8,7 +8,9 @@ export const ripple = {
       el.addEventListener('mousedown', createRipple, {
         passive: true,
       });
-      el.addEventListener('mouseup', hideRipple, { passive: true });
+      window.addEventListener('mouseup', hideRipple, { passive: true });
+      window.addEventListener('touchstart', createRipple, { passive: true });
+      window.addEventListener('touchend', hideRipple, { passive: true });
     };
     init();
     const task = new RippleTask();
@@ -65,8 +67,28 @@ export const ripple = {
       ripple.style.transform = 'scale(2.8)';
       ripple.style.opacity = '0.33';
     }
+    // @ts-ignore
+    el.im_add_ripple_fn__ = createRipple;
+    // @ts-ignore
+    el.im_remove_ripple_fn__ = hideRipple;
     function hideRipple() {
       task.remove();
+    }
+  },
+  unmounted(el: HTMLElement) {
+    // @ts-ignore
+    if (el && el?.im_add_ripple_fn__) {
+      // @ts-ignore
+      el.removeEventListener('mousedown', el.im_add_ripple_fn__);
+      // @ts-ignore
+      window.removeEventListener('touchstart', el.im_add_ripple_fn__);
+    }
+    // @ts-ignore
+    if (el && el.im_remove_ripple_fn__) {
+      // @ts-ignore
+      window.removeEventListener('mouseup', el.im_remove_ripple_fn__);
+      // @ts-ignore
+      window.removeEventListener('touchend', el.im_remove_ripple_fn__);
     }
   },
 };

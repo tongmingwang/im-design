@@ -2,7 +2,8 @@
   <div class="main">
     <!-- <Button /> -->
     <!-- <Divider /> -->
-    <Anchor />
+    <!-- <Anchor /> -->
+    <Alert />
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import Button from './views/Button.vue'
 import Divider from './views/Divider.vue'
 import Anchor from './views/Anchor.vue';
+import Alert from './views/Alert.vue';
 </script>
 
 <style scoped lang="scss">

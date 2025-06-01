@@ -43,6 +43,7 @@ export default class RippleTask {
 
       setTimeout(() => {
         el && el?.remove();
+        if (this.#task.length) this.remove();
       }, 50);
     } catch (error) {
       console.log(error);

@@ -18,6 +18,9 @@ pnpm add im-design
 ## 使用
 
 全局引入 (推荐用于小型项目)
+<ImAlert color="primary" title="提示">
+全局引入 ImDesign 组件库，并设置全局配置。例如：`size: '36'`，`zIndex: 1000` 。
+</ImAlert>
 
 ```js
 // main.js
@@ -47,6 +50,10 @@ app.mount('#app');
 
 ## 组件使用示例
 
+<ImAlert color="primary" title="提示">
+在单文件组件中使用 ImDesign 组件，例如：ImButton组件。
+</ImAlert>
+
 ```vue
 <template>
   <div class="demo-container">
@@ -66,4 +73,8 @@ const handleClick = () => {
 </script>
 
 <style></style>
+```
+
+```
+
 ```

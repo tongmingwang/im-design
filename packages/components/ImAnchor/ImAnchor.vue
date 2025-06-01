@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { withDefaults, onMounted, onUnmounted, watch, ref } from 'vue';
-import type { AnchorProps, AnchorData } from './AnchorProps';
+import type { AnchorProps } from './AnchorProps';
 import { useBem } from '@/utils/bem';
 import { throttle, debounce } from '@/utils';
 
@@ -10,7 +10,6 @@ let unBindFn: Function | null = null;
 const target = ref<HTMLElement | null | Window>(null);
 const activeId = ref<string | null>(null);
 const clickId = ref<string | null>(null);
-
 const props = withDefaults(defineProps<AnchorProps>(), {
   target: null,
   offset: 0,
@@ -25,29 +24,33 @@ watch(
 );
 
 onMounted(() => {
-  // 注册事件监听
   unBindFn = bindEvent();
 });
 
 onUnmounted(() => {
-  // 移除事件监听
   unBindFn && unBindFn();
 });
+/**
+ * 获取指定元素的滚动位置
+ *
+ * @param el HTML元素，表示需要获取滚动位置的元素
+ * @returns 返回滚动位置的值
+ */
 function getScrollTop(el: HTMLElement) {
-  console.log(el, el?.scrollTop, 'el');
-
   let scrollTop = el?.scrollTop;
   // 处理滚动为window的情况
   if (target.value === window) {
     scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
   }
-
   return scrollTop;
 }
-// 滚动事件
+/**
+ * 处理滚动事件，根据滚动位置更新当前激活的锚点
+ *
+ * @param e - 滚动事件对象，可选参数
+ */
 function handleScroll(e?: any) {
-  if (clickId.value) return;
-  if (!target.value) return;
+  if (clickId.value || !target.value) return;
   const scrollTarget = target.value === window ? (e.target) : target.value;
 
   // 1. 获取滚动位置
@@ -98,7 +101,11 @@ function handleScroll(e?: any) {
     }
   }
 }
-
+/**
+ * 绑定滚动事件
+ *
+ * @returns 返回移除滚动事件监听的函数
+ */
 function bindEvent() {
   const _target = props.target
     ? typeof props.target === 'string'
@@ -119,25 +126,30 @@ function bindEvent() {
   };
 }
 
+/**
+ * 滚动到指定锚点位置
+ *
+ * @param id 锚点的id
+ */
 async function onScrollToThis(id: string) {
-  if (id) {
-    clickId.value = id;
-    activeId.value = id;
-    const el = document.getElementById(id);
-    if (!el) return;
-    // 滚动到锚点位置
-
-    el.scrollIntoView({
-      behavior: "smooth",
-      block: 'start',
-      inline: 'start',
-    });
-    const handle = debounce(() => {
-      clickId.value = null;
-      target.value?.removeEventListener('scroll', handle);
-    }, 300);
-    target.value?.addEventListener('scroll', handle, { passive: true });
-  }
+  if (activeId.value === id || !id) return;
+  clickId.value = id;
+  activeId.value = id;
+  const el = document.getElementById(id);
+  if (!el) return;
+  // 滚动到锚点位置
+  target.value?.scrollTo({
+    // @ts-ignore
+    top: el.offsetTop - (props.offset || 0) - (target.value?.offsetTop || 0),
+    behavior: "smooth",
+    left: 0
+  })
+  // 延迟300ms后移除滚动监听,防抖处理，等到滚动完成后移除滚动监听事件
+  const handle = debounce(() => {
+    clickId.value = null;
+    target.value?.removeEventListener('scroll', handle);
+  }, 300);
+  target.value?.addEventListener('scroll', handle, { passive: true });
 }
 </script>
 
@@ -155,21 +167,25 @@ async function onScrollToThis(id: string) {
   .im-anchor {
     list-style: none;
     padding: 8px;
+    border-radius: var(--im-radius);
     margin: 0;
     background-color: var(--im-bg-content-color);
 
     @keyframes showBar {
       from {
         opacity: 0;
+        height: 0
       }
 
       to {
         opacity: 1;
+        height: 1em;
       }
     }
 
     .im-anchor__item {
       padding: 5px 16px;
+      margin: 0;
       font-size: 14px;
       color: var(--im-gray-color-8);
       min-width: 80px;
@@ -199,8 +215,8 @@ async function onScrollToThis(id: string) {
       height: 1em;
       transform: translateY(-50%);
       background-color: var(--im-primary-color-8);
-      border-radius: 4px;
-      animation: showBar 200ms ease forwards;
+      border-radius: 3px;
+      animation: showBar 300ms ease-in forwards;
     }
   }
 </style>

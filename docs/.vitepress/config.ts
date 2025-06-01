@@ -74,6 +74,10 @@ export default defineConfig({
           },
         ],
       },
+      {
+        text: '反馈组件',
+        items: [{ text: 'Alert 警告提示', link: '/alert' }],
+      },
     ],
 
     socialLinks: [

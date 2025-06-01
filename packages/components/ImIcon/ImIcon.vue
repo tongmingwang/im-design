@@ -1,6 +1,6 @@
 <template>
   <i class="im-icon" :class="[`im-icon-${props.name}`]" :style="{
-    '--icon-size': props.size || 16 + 'px',
+    '--icon-size': (parseInt(String(props.size)) || 16) + 'px',
     '--icon-color': props.color,
   }">
 
@@ -12,7 +12,7 @@
 defineOptions({ name: 'ImIcon' })
 const props = defineProps({
   name: String,
-  size: Number,
+  size: [Number, String],
   color: String,
 })
 </script>
