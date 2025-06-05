@@ -24,22 +24,22 @@ export default defineConfig({
     search: {
       provider: 'local',
       options: {
-        // translations: {
-        //   button: {
-        //     buttonText: '搜索文档',
-        //     buttonAriaLabel: '搜索文档',
-        //   },
-        //   modal: {
-        //     noResultsText: '无法找到相关结果',
-        //     resetButtonTitle: '清除查询条件',
-        //     footer: {
-        //       selectText: '选择',
-        //       navigateText: '切换',
-        //       closeKeyAriaLabel: '关闭',
-        //       closeText: '关闭',
-        //     },
-        //   },
-        // },
+        translations: {
+          button: {
+            buttonText: '搜索文档',
+            buttonAriaLabel: '搜索文档',
+          },
+          modal: {
+            noResultsText: '无法找到相关结果',
+            resetButtonTitle: '清除查询条件',
+            footer: {
+              selectText: '选择',
+              navigateText: '切换',
+              closeKeyAriaLabel: '关闭',
+              closeText: '关闭',
+            },
+          },
+        },
       },
     },
     nav: [
@@ -72,11 +72,48 @@ export default defineConfig({
             text: 'Anchor 锚点',
             link: '/anchor',
           },
+          {
+            text: 'Breadcrumb 面包屑',
+            link: '/breadcrumb',
+          },
+          {
+            text: 'Dropdown 下拉菜单',
+            link: '/dropdown',
+          },
+        ],
+      },
+      {
+        text: 'Form表单组件',
+        items: [
+          {
+            text: 'Input 输入框',
+            link: '/input',
+          },
+          {
+            text: 'Radio 单选框',
+            link: '/radio',
+          },
+          {
+            text: 'Checkbox 复选框',
+            link: '/checkbox',
+          },
+          {
+            text: 'Select 下拉选择',
+            link: '/select',
+          },
+          {
+            text: 'Switch 开关',
+            link: '/switch',
+          },
         ],
       },
       {
         text: '反馈组件',
         items: [{ text: 'Alert 警告提示', link: '/alert' }],
+      },
+      {
+        text: '数据展示',
+        items: [{ text: 'List 列表', link: '/list' }],
       },
     ],
 

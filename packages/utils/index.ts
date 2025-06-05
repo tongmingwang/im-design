@@ -1,10 +1,12 @@
 // 节流函数
-export const throttle = (fn: (e: Event) => void, delay: number) => {
-  let timer: any = null;
-  return function (...args: Array<any>) {
+export const throttle = <T extends unknown[]>(
+  fn: (...args: T) => void,
+  delay: number
+): ((...args: T) => void) => {
+  let timer: any;
+  return function (this: unknown, ...args: T) {
     if (timer) return;
     timer = setTimeout(() => {
-      // @ts-ignore
       fn.apply(this, args);
       timer = null;
     }, delay);
@@ -12,13 +14,32 @@ export const throttle = (fn: (e: Event) => void, delay: number) => {
 };
 
 // 防抖函数
-export const debounce = (fn: (e: Event) => void, delay: number) => {
-  let timer: any = null;
-  return function (...args: Array<any>) {
+export const debounce = <T extends unknown[]>(
+  fn: (...args: T) => void,
+  delay: number
+): ((...args: T) => void) => {
+  let timer: any;
+  return function (this: unknown, ...args: T) {
     if (timer) clearTimeout(timer);
     timer = setTimeout(() => {
-      // @ts-ignore
       fn.apply(this, args);
     }, delay);
   };
+};
+
+// 判断一个节点是否在x,y坐标范围内
+export const isInRange = (
+  x: number,
+  y: number,
+  node: HTMLElement | null
+): boolean => {
+  if (!node) return false;
+  const rect = node.getBoundingClientRect();
+
+  return (
+    x >= rect.left &&
+    x <= rect.left + rect.width &&
+    y >= rect.top &&
+    y <= rect.top + rect.height
+  );
 };

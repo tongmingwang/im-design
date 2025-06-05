@@ -15,6 +15,9 @@ import ImIcon from './ImIcon';
 import ImDivider from './ImDivider';
 import ImAnchor from './ImAnchor';
 import ImAlert from './ImAlert';
+import { ImBreadcrumb, ImBreadcrumbItem } from './ImBreadcrumb';
+import ImDropdown from './ImDropdown';
+import { ImList, ImListItem } from './ImList';
 // 定义组件列表
 const list = [
   ImButton,
@@ -25,6 +28,11 @@ const list = [
   ImDivider,
   ImAnchor,
   ImAlert,
+  ImBreadcrumb,
+  ImBreadcrumbItem,
+  ImDropdown,
+  ImList,
+  ImListItem,
 ];
 
 const install = (app: App, option?: ImDesignOptions) => {
@@ -51,6 +59,11 @@ export {
   ImDivider,
   ImAnchor,
   ImAlert,
+  ImBreadcrumb,
+  ImBreadcrumbItem,
+  ImDropdown,
+  ImList,
+  ImListItem,
 };
 // 导出插件安装函数
 export default {

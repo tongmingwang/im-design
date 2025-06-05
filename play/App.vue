@@ -1,9 +1,12 @@
 <template>
   <div class="main">
-    <Button />
+    <!-- <Button /> -->
     <!-- <Divider /> -->
     <!-- <Anchor /> -->
     <!-- <Alert /> -->
+    <!-- <Breadcrumb /> -->
+    <Dropdown />
+    <List />
   </div>
 </template>
 
@@ -12,6 +15,9 @@ import Button from './views/Button.vue'
 import Divider from './views/Divider.vue'
 import Anchor from './views/Anchor.vue';
 import Alert from './views/Alert.vue';
+import Breadcrumb from './views/Breadcrumb.vue';
+import Dropdown from './views/Dropdown.vue';
+import List from './views/List.vue'
 </script>
 
 <style scoped lang="scss">
