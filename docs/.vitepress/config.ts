@@ -89,31 +89,21 @@ export default defineConfig({
             text: 'Input 输入框',
             link: '/input',
           },
-          {
-            text: 'Radio 单选框',
-            link: '/radio',
-          },
-          {
-            text: 'Checkbox 复选框',
-            link: '/checkbox',
-          },
-          {
-            text: 'Select 下拉选择',
-            link: '/select',
-          },
-          {
-            text: 'Switch 开关',
-            link: '/switch',
-          },
         ],
       },
       {
         text: '反馈组件',
-        items: [{ text: 'Alert 警告提示', link: '/alert' }],
+        items: [
+          { text: 'Alert 警告提示', link: '/alert' },
+          { text: 'Drawer 抽屉', link: '/drawer' },
+        ],
       },
       {
         text: '数据展示',
-        items: [{ text: 'List 列表', link: '/list' }],
+        items: [
+          { text: 'List 列表', link: '/list' },
+          { text: 'Card 卡片', link: '/card' },
+        ],
       },
     ],
 

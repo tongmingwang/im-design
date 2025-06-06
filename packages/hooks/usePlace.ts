@@ -23,13 +23,16 @@ export const usePlace = (
     const trig: HTMLElement = triggerRef?.value; // 触发器元素
     const cont: HTMLElement | null = contentRef?.value; // 内容元素
     if (!trig || !cont) return;
-    const triggerRect = trig.getBoundingClientRect(); // 触发器元素的位置信息
+    const trigEl: HTMLElement =
+      trig.children?.length != 1 ? trig : (trig.children[0] as HTMLElement); // 触发器元素的首个子元素
+    const triggerRect = trigEl.getBoundingClientRect(); // 触发器元素的位置信息
+    const trigBottom = triggerRect.bottom; // 触发器元素的下边界位置
     const contentRect = cont.getBoundingClientRect(); // 内容元素的位置信息
-    const dpx = 4;
+    const dpx = 2;
 
     switch (place) {
       case 'bottom':
-        cont.style.setProperty('top', `${triggerRect.bottom + dpx}px`);
+        cont.style.setProperty('top', `${trigBottom + dpx}px`);
         cont.style.setProperty(
           'left',
           `${
@@ -39,7 +42,7 @@ export const usePlace = (
 
         break;
       case 'bottomRight':
-        cont.style.setProperty('top', `${triggerRect.bottom + dpx}px`);
+        cont.style.setProperty('top', `${trigBottom + dpx}px`);
         cont.style.setProperty(
           'left',
           `${triggerRect.left + triggerRect.width - contentRect.width}px`
@@ -76,7 +79,7 @@ export const usePlace = (
         break;
 
       default: // bottomLeft
-        cont.style.setProperty('top', `${triggerRect.bottom + dpx}px`);
+        cont.style.setProperty('top', `${trigBottom + dpx}px`);
         cont.style.setProperty('left', `${triggerRect.left}px`);
         break;
     }

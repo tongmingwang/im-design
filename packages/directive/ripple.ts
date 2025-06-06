@@ -43,7 +43,7 @@ export const ripple = {
         height: `${size}px`,
         left: `${x}px`,
         top: `${y}px`,
-        opacity: '0.33',
+        opacity: '0.15',
         transform: isD ? 'scale(1)' : 'scale(0.25)',
         'will-change': 'transform,opacity', // 提示浏览器优化动画
       });

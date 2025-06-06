@@ -1,3 +1,5 @@
+@use './reset.scss';
+
 .im-ripple {
   overflow: hidden;
   position: absolute;
@@ -13,8 +15,8 @@
   .im-ripple__item {
     position: absolute;
     border-radius: 50%;
-    transition: background-color 500ms linear, transform 500ms linear,
-      opacity 500ms linear;
+    transition: background-color 300ms linear, transform 300ms linear,
+      opacity 300ms linear;
   }
 }
 
@@ -29,6 +31,7 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
+  line-height: 24px;
 }
 
 .im-icon {
@@ -37,8 +40,9 @@ body {
 }
 
 .im-dropdown__content {
-  box-shadow: 0 1px 3px var(--im-shadow-color, rgba(0, 0, 0, 0.1)),
+  box-shadow: 0 1px 2px var(--im-shadow-color, rgba(0, 0, 0, 0.1)),
     0 5px 12px 1px var(--im-shadow-color, rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(0 1px 3px var(--im-shadow-color, rgba(0, 0, 0, 0.1)));
   display: inline-flex;
   position: fixed;
   background-color: var(--im-bg-container-color);

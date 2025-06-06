@@ -18,6 +18,10 @@ import ImAlert from './ImAlert';
 import { ImBreadcrumb, ImBreadcrumbItem } from './ImBreadcrumb';
 import ImDropdown from './ImDropdown';
 import { ImList, ImListItem } from './ImList';
+import ImAvatar from './ImAvatar';
+import ImMask from './ImMask';
+import ImDrawer from './ImDrawer';
+import ImCard from './ImCard';
 // 定义组件列表
 const list = [
   ImButton,
@@ -33,6 +37,10 @@ const list = [
   ImDropdown,
   ImList,
   ImListItem,
+  ImAvatar,
+  ImMask,
+  ImDrawer,
+  ImCard,
 ];
 
 const install = (app: App, option?: ImDesignOptions) => {
@@ -64,6 +72,10 @@ export {
   ImDropdown,
   ImList,
   ImListItem,
+  ImAvatar,
+  ImMask,
+  ImDrawer,
+  ImCard,
 };
 // 导出插件安装函数
 export default {

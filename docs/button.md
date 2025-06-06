@@ -6,7 +6,7 @@
 
 使用 `color` `variant` 属性组合来定义按钮色彩。
 
-<style>
+<style scoped>
  .im-button {
   margin-right: 8px;
   margin-bottom: 8px;

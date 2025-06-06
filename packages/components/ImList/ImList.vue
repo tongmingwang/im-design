@@ -39,8 +39,6 @@ const items = computed(() => {
     return list
   }
 })
-console.log(items.value);
-
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void;
   (e: 'change', value: string): void;

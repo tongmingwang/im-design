@@ -135,4 +135,8 @@ const val = ref('1')
     height: 500px;
     overflow-y: auto;
   }
+
+  .im-button {
+    margin: 8px !important;
+  }
 </style>

@@ -27,14 +27,16 @@ const props = withDefaults(defineProps<{
 
 <style scoped lang="scss">
   .im-list__item {
-    padding: 8px 12px;
+    padding: 5px 12px;
+    margin: 0;
+    font-size: 14px;
+    line-height: 24px;
     width: 100%;
     box-sizing: border-box;
     border-radius: var(--im-radius, 4px);
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     color: var(--im-gray-color-8);
-
 
     &:hover {
       background-color: var(--im-rgb-color-1);

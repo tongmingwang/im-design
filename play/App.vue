@@ -5,8 +5,11 @@
     <!-- <Anchor /> -->
     <!-- <Alert /> -->
     <!-- <Breadcrumb /> -->
-    <Dropdown />
-    <List />
+    <!-- <Dropdown /> -->
+    <!-- <List /> -->
+    <!-- <Avatar /> -->
+    <Drawer />
+    <Card />
   </div>
 </template>
 
@@ -18,6 +21,9 @@ import Alert from './views/Alert.vue';
 import Breadcrumb from './views/Breadcrumb.vue';
 import Dropdown from './views/Dropdown.vue';
 import List from './views/List.vue'
+import Avatar from './views/Avatar.vue';
+import Drawer from './views/Drawer.vue';
+import Card from './views/Card.vue'
 </script>
 
 <style scoped lang="scss">

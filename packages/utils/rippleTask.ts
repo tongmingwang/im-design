@@ -39,7 +39,7 @@ export default class RippleTask {
         });
       }
       ripple.style.opacity = '0'; // 淡出效果
-      ripple.style.transition = 'all 50ms ';
+      ripple.style.transition = 'all 50ms';
 
       setTimeout(() => {
         el && el?.remove();
