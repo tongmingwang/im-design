@@ -96,6 +96,7 @@ export default defineConfig({
         items: [
           { text: 'Alert 警告提示', link: '/alert' },
           { text: 'Drawer 抽屉', link: '/drawer' },
+          { text: 'Message 消息提示', link: '/message' },
         ],
       },
       {
@@ -103,6 +104,7 @@ export default defineConfig({
         items: [
           { text: 'List 列表', link: '/list' },
           { text: 'Card 卡片', link: '/card' },
+          { text: 'Avatar 头像', link: '/avatar' },
         ],
       },
     ],

@@ -22,6 +22,7 @@ import ImAvatar from './ImAvatar';
 import ImMask from './ImMask';
 import ImDrawer from './ImDrawer';
 import ImCard from './ImCard';
+import { useImMessage } from './Message';
 // 定义组件列表
 const list = [
   ImButton,
@@ -76,6 +77,7 @@ export {
   ImMask,
   ImDrawer,
   ImCard,
+  useImMessage,
 };
 // 导出插件安装函数
 export default {
