@@ -7,9 +7,10 @@
 引入 `useImMessage` 方法内部支持 `info` `success` `error` `warning` 四个方法调用
 
 <script setup>
-import { useImMessage } from 'im-design'
+import { useImMessage } from '../npm/dist/im-design.js'
 
 const { info,error,success,warning } = useImMessage()
+console.log('useImMessage', useImMessage())
 </script>
 
 <ImButton @click="info('这是一个提示消息！')">提示消息</ImButton>

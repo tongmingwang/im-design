@@ -1,6 +1,7 @@
 <template>
   <TransitionGroup tag="ul" name="list" :css="true" :class="[bem.b()]">
-    <li v-for="item in list" :key="item.id" :data-index="item.id" class="im-message__item"
+    <li v-for="item in list" :key="item.id" :data-index="item.id" @mouseenter="() => onHover(item)"
+      @mouseleave="() => onLeave(item)" class="im-message__item"
       :class="[bem.e('item'), item.color ? bem.e(item.color) : '']">
       <ImIcon :name="getIconName(item.color)" size="18px" />
       <span class="im-message__text">{{ item.msg }}</span>
@@ -20,16 +21,17 @@ const bem = useBem('message')
  * 实现逻辑：
  * 定义一个组件，支持添加每一条消息，消息添加后，会在页面上显示，并且在一定时间后自动消失。
  */
-const props = defineProps<{ callback: () => void }>()
+const props = defineProps<{
+  callback: () => void,
+  add: (fn: (item: MessageItem) => void) => void
+}>()
 const list = ref<MessageItem[]>([])
 
 let timer: any = null
 
-
 watch(() => list.value, () => {
   // 当列表为空时，执行回调函数
   if (list.value.length === 0) {
-    console.log('消息列表为空，执行回调函数');
     timer = setTimeout(() => {
       !list.value.length && props.callback()
     }, 500)
@@ -51,13 +53,28 @@ const getIconName = (color: string | undefined) => {
   }
 }
 
-// 暴露一个方法
-const addMsg = (item: MessageItem) => {
-  list.value.push(item)
-  setTimeout(() => {
+const onHover = (item: MessageItem) => {
+  if (item.timer) {
+    clearTimeout(item.timer)
+    item.timer = null
+  }
+}
+
+const onLeave = (item: MessageItem) => {
+  item.timer && clearTimeout(item.timer)
+  item.timer = setTimeout(() => {
     list.value = list.value.filter(o => o.id !== item.id)
   }, item.duration || 3000)
 }
+
+// 暴露一个方法
+const addMsg = (item: MessageItem) => {
+  const timer = setTimeout(() => {
+    list.value = list.value.filter(o => o.id !== item.id)
+  }, item.duration || 3000)
+  list.value.push({ ...item, timer })
+}
+if (props.add) props.add(addMsg)
 defineExpose({ addMsg })
 </script>
 
@@ -66,7 +83,7 @@ defineExpose({ addMsg })
   .im-message {
     position: fixed;
     z-index: 9999;
-    top: 8px;
+    top: 16px;
     left: 0;
     width: 100%;
     display: flex;
@@ -78,7 +95,7 @@ defineExpose({ addMsg })
 
   .im-message__item {
     padding: 0 16px;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     box-shadow: none;
     pointer-events: all;
     text-align: left;

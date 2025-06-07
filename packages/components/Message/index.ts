@@ -6,23 +6,33 @@ import { type MessageItem } from './types';
 class Message {
   app: App | null;
   container: HTMLElement | null;
+  addMsgToList: null | ((msgItem: MessageItem) => void);
   constructor() {
     this.app = null;
     this.container = null;
+    this.addMsgToList = null;
   }
   // 创建一个Vue应用实例
   createApp() {
-    this.container = document.createElement('div');
-    this.container.classList.add('im-message-container');
-    document.body.appendChild(this.container);
-    const _this = this;
-    this.app = createApp(MsgComponent, {
-      callback: () => {
-        // 等待动画结束后，删除消息组件
-        _this.destroy();
-      },
-    });
-    this.app.mount(this.container);
+    // 判断当前是否是浏览器环境
+    if (typeof window !== 'undefined' && window) {
+      this.container = document.createElement('div');
+      this.container.classList.add('im-message-container');
+      document.body.appendChild(this.container);
+      const _this = this;
+      this.app = createApp(MsgComponent, {
+        callback: () => {
+          // 等待动画结束后，删除消息组件
+          _this.destroy();
+        },
+        add: (fn: (item: MessageItem) => void) => {
+          _this.addMsgToList = fn;
+        },
+      });
+      this.app.mount(this.container);
+    } else {
+      throw new Error('只能在浏览器环境下使用');
+    }
   }
 
   destroy() {
@@ -35,7 +45,9 @@ class Message {
     if (!this.app) {
       this.createApp();
     }
-    this.app?._instance?.exposed?.addMsg({
+    if (!this.addMsgToList) return console.error('addMsgToList is null');
+
+    this.addMsgToList({
       msg: option.msg,
       id: Math.random().toString().slice(2) + '_' + Date.now(),
       duration: option.duration || 3000,
@@ -76,9 +88,12 @@ class Message {
   }
 }
 // 全局使用一个实例，防止多次创建。
-const instance = new Message();
+let instance: Message | null = null;
 
 export const useImMessage = () => {
+  if (!instance) {
+    instance = new Message();
+  }
   return {
     info: (msg: string, duration = 3000) => {
       instance?.info(msg, duration);

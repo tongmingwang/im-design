@@ -3,4 +3,5 @@ export interface MessageItem {
   msg: string;
   duration?: number;
   color?: 'primary' | 'error' | 'warning' | 'success';
+  timer?: any;
 }

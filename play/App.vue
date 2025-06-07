@@ -8,12 +8,9 @@
     <!-- <Dropdown /> -->
     <!-- <List /> -->
     <!-- <Avatar /> -->
-    <Drawer />
-    <Card />
-    <ImButton @click="msg.info('基础提示，这是提示消息')">Primary</ImButton>
-    <ImButton @click="info('Hello' + new Date().getTime())">Error</ImButton>
-    <ImButton @click="msg.success('Hello' + new Date().getTime())">Error</ImButton>
-    <ImButton @click="msg.warning('Hello' + new Date().getTime())">Error</ImButton>
+    <!-- <Drawer />
+    <Card /> -->
+    <Message />
   </div>
 </template>
 
@@ -28,12 +25,7 @@ import List from './views/List.vue'
 import Avatar from './views/Avatar.vue';
 import Drawer from './views/Drawer.vue';
 import Card from './views/Card.vue'
-import { useImMessage } from '../packages/components'
-
-const { info } = useImMessage()
-
-const msg = useImMessage()
-
+import Message from './views/Message.vue'
 
 </script>
 

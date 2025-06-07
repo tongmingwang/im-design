@@ -82,7 +82,7 @@ const handleClick = () => {
     overflow: hidden;
     vertical-align: middle;
     text-wrap: nowrap;
-    @include btn-colors(var(--im-gray-color-1),
+    @include btn-colors(var(--im-bg-content-color),
       var(--im-gray-color-10),
       var(--im-gray-color-5));
 
