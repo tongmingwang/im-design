@@ -32,3 +32,20 @@ textarea {
   outline: none;
   border: none;
 }
+
+// 滚动条
+::-webkit-scrollbar {
+  width: 6px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--im-scrollbar-track-color);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--im-scrollbar-color);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--im-scrollbar-hover-color);
+}

@@ -25,11 +25,14 @@ export const useAnimation = (placement: string) => {
     el.style.transform = transformValue;
     el.style.opacity = '0';
     el.getBoundingClientRect();
-    // 等待动画完成
-    el.addEventListener('transitionend', () => {
+    const leaveHandle = () => {
       done();
-      el.style.transform = 'translateY(0px)';
-    });
+      if (el) {
+        el.style.transform = 'translateY(0px)';
+      }
+      el.removeEventListener('transitionend', leaveHandle);
+    };
+    el.addEventListener('transitionend', leaveHandle, { passive: true });
   }
 
   return {

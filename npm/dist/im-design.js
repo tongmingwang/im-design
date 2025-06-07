@@ -1,24 +1,24 @@
-var be = Object.defineProperty;
-var pe = (n) => {
+var Ie = Object.defineProperty;
+var ve = (n) => {
   throw TypeError(n);
 };
-var we = (n, t, e) => t in n ? be(n, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : n[t] = e;
-var G = (n, t, e) => we(n, typeof t != "symbol" ? t + "" : t, e), fe = (n, t, e) => t.has(n) || pe("Cannot " + e);
-var J = (n, t, e) => (fe(n, t, "read from private field"), e ? e.call(n) : t.get(n)), ve = (n, t, e) => t.has(n) ? pe("Cannot add the same private member more than once") : t instanceof WeakSet ? t.add(n) : t.set(n, e), he = (n, t, e, o) => (fe(n, t, "write to private field"), o ? o.call(n, e) : t.set(n, e), e);
-import { inject as ke, ref as L, createElementBlock as h, openBlock as m, createElementVNode as T, defineComponent as b, computed as A, resolveDirective as Z, withDirectives as R, normalizeStyle as M, normalizeClass as v, createCommentVNode as E, renderSlot as I, unref as i, createVNode as O, createTextVNode as q, toDisplayString as Y, useSlots as ee, Fragment as X, renderList as j, createBlock as S, resolveDynamicComponent as re, mergeProps as xe, vModelDynamic as $e, watch as W, onMounted as le, onUnmounted as ie, Teleport as ye, Transition as ce, withCtx as te, vShow as ue, TransitionGroup as Le, createApp as Ce } from "vue";
-const ge = Symbol("im-design-token");
+var we = (n, t, e) => t in n ? Ie(n, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : n[t] = e;
+var J = (n, t, e) => we(n, typeof t != "symbol" ? t + "" : t, e), ye = (n, t, e) => t.has(n) || ve("Cannot " + e);
+var K = (n, t, e) => (ye(n, t, "read from private field"), e ? e.call(n) : t.get(n)), he = (n, t, e) => t.has(n) ? ve("Cannot add the same private member more than once") : t instanceof WeakSet ? t.add(n) : t.set(n, e), _e = (n, t, e, o) => (ye(n, t, "write to private field"), o ? o.call(n, e) : t.set(n, e), e);
+import { inject as ke, ref as x, createElementBlock as y, openBlock as p, createElementVNode as C, defineComponent as g, computed as A, resolveDirective as ee, withDirectives as D, normalizeStyle as M, normalizeClass as v, createCommentVNode as z, renderSlot as _, unref as i, createVNode as S, createTextVNode as W, toDisplayString as O, useSlots as te, Fragment as X, renderList as H, createBlock as P, resolveDynamicComponent as ie, mergeProps as xe, vModelDynamic as Le, watch as q, onMounted as ce, onUnmounted as de, Teleport as ue, Transition as se, withCtx as j, vShow as ne, TransitionGroup as $e, createApp as Ce } from "vue";
+const be = Symbol("im-design-token");
 var N;
-class Be {
+class Ee {
   constructor() {
-    ve(this, N);
-    he(this, N, []);
+    he(this, N);
+    _e(this, N, []);
   }
   async add(t) {
-    J(this, N).push(t);
+    K(this, N).push(t);
   }
   remove() {
     try {
-      const t = J(this, N).shift();
+      const t = K(this, N).shift();
       t && this.run(t);
     } catch (t) {
       console.error(t);
@@ -29,18 +29,18 @@ class Be {
       const e = t.querySelector(".im-ripple__item");
       if (!e) return;
       let o = Date.now(), s = e.getAttribute("data-time");
-      const r = o - Number(s) || 0;
-      r && await new Promise((a) => {
+      const l = o - Number(s) || 0;
+      l && await new Promise((a) => {
         e.style.opacity = "0.1";
-        const p = 200 - r;
+        const m = 200 - l;
         setTimeout(
           () => {
             a(null);
           },
-          p > 0 ? p : 0
+          m > 0 ? m : 0
         );
       }), e.style.opacity = "0", e.style.transition = "all 50ms", setTimeout(() => {
-        t && (t == null || t.remove()), J(this, N).length && this.remove();
+        t && (t == null || t.remove()), K(this, N).length && this.remove();
       }, 50);
     } catch (e) {
       console.log(e);
@@ -48,38 +48,38 @@ class Be {
   }
 }
 N = new WeakMap();
-const Ee = {
+const Be = {
   // 及他自己的所有子节点都挂载完成后调用
   mounted(n, t) {
     (function() {
       n.addEventListener("mousedown", s, {
         passive: !0
-      }), window.addEventListener("mouseup", r, { passive: !0 });
+      }), window.addEventListener("mouseup", l, { passive: !0 });
     })();
-    const o = new Be();
+    const o = new Ee();
     async function s(a) {
       if (!t.value) return;
-      const p = window.getComputedStyle(n), c = n.getBoundingClientRect(), d = document.createElement("div");
-      d.className = "im-ripple", o.add(d);
-      const l = document.createElement("div");
-      l.className = "im-ripple__item";
-      const u = a.clientX || a.touches && a.touches[0].clientX, f = a.clientY || a.touches && a.touches[0].clientY, _ = Math.max(c.width, c.height), y = u - c.left - _ / 2, C = f - c.top - _ / 2, B = c.width - c.height <= 5;
-      Object.assign(l.style, {
-        "background-color": p.color,
-        width: `${_}px`,
-        height: `${_}px`,
-        left: `${y}px`,
-        top: `${C}px`,
+      const m = window.getComputedStyle(n), d = n.getBoundingClientRect(), c = document.createElement("div");
+      c.className = "im-ripple", o.add(c);
+      const r = document.createElement("div");
+      r.className = "im-ripple__item";
+      const u = a.clientX || a.touches && a.touches[0].clientX, f = a.clientY || a.touches && a.touches[0].clientY, h = Math.max(d.width, d.height), I = u - d.left - h / 2, B = f - d.top - h / 2, T = d.width - d.height <= 5;
+      Object.assign(r.style, {
+        "background-color": m.color,
+        width: `${h}px`,
+        height: `${h}px`,
+        left: `${I}px`,
+        top: `${B}px`,
         opacity: "0.15",
-        transform: B ? "scale(1)" : "scale(0.25)",
+        transform: T ? "scale(1)" : "scale(0.25)",
         "will-change": "transform,opacity"
         // 提示浏览器优化动画
-      }), l.setAttribute("data-time", Date.now() + ""), d.appendChild(l), n.appendChild(d);
-      const g = p.position;
-      g === "static" && (n.style.position = "relative", n.dataset.originalPosition = g), l.getBoundingClientRect(), l.style.transform = "scale(2.8)", l.style.opacity = "0.33";
+      }), r.setAttribute("data-time", Date.now() + ""), c.appendChild(r), n.appendChild(c);
+      const w = m.position;
+      w === "static" && (n.style.position = "relative", n.dataset.originalPosition = w), r.getBoundingClientRect(), r.style.transform = "scale(2.8)", r.style.opacity = "0.33";
     }
-    n.im_add_ripple_fn__ = s, n.im_remove_ripple_fn__ = r;
-    function r() {
+    n.im_add_ripple_fn__ = s, n.im_remove_ripple_fn__ = l;
+    function l() {
       o.remove();
     }
   },
@@ -94,8 +94,8 @@ const Ee = {
     m: (e) => `${t}--${e}`,
     is: (e, o) => o ? `is-${e}` : ""
   };
-}, H = (n, t) => {
-  const e = ke(ge), o = L(Number(e.size || 36)), s = L(e.zIndex || 1e3);
+}, U = (n, t) => {
+  const e = ke(be), o = x(Number(e.size || 36)), s = x(e.zIndex || 1e3);
   return { sizeToken: o, zIndexToken: s };
 }, Te = {
   xmlns: "http://www.w3.org/2000/svg",
@@ -106,11 +106,11 @@ const Ee = {
   viewBox: "0 0 1024 1024"
 };
 function ze(n, t) {
-  return m(), h("svg", Te, t[0] || (t[0] = [
-    T("path", { d: "M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.5 440.5 0 0 0-94.3-139.9 437.7 437.7 0 0 0-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150s83.9 101.8 109.7 162.7c26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36" }, null, -1)
+  return p(), y("svg", Te, t[0] || (t[0] = [
+    C("path", { d: "M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.5 440.5 0 0 0-94.3-139.9 437.7 437.7 0 0 0-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150s83.9 101.8 109.7 162.7c26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36" }, null, -1)
   ]));
 }
-const Me = { render: ze }, Ve = ["tabindex", "type", "disabled"], Ae = /* @__PURE__ */ b({
+const Me = { render: ze }, Ve = ["tabindex", "type", "disabled"], Ae = /* @__PURE__ */ g({
   name: "ImButton",
   __name: "ImButton",
   props: {
@@ -127,57 +127,57 @@ const Me = { render: ze }, Ve = ["tabindex", "type", "disabled"], Ae = /* @__PUR
   },
   emits: ["click"],
   setup(n, { emit: t }) {
-    const e = n, o = t, s = k("button"), { sizeToken: r } = H(), a = A(() => [
+    const e = n, o = t, s = k("button"), { sizeToken: l } = U(), a = A(() => [
       s.b(),
       e.color && s.m(e.color),
       e.shape && s.m(e.shape),
       e.variant && s.m(e.variant),
       s.is("disabled", e.disabled),
       s.is("loading", e.loading)
-    ].filter(Boolean)), p = A(() => {
-      let l = +(e.size || r.value || 36);
+    ].filter(Boolean)), m = A(() => {
+      let r = +(e.size || l.value || 36);
       return {
-        "--im-button-size": l + "px",
-        "--im-button-padding": (l * 0.45).toFixed(0) + "px",
+        "--im-button-size": r + "px",
+        "--im-button-padding": (r * 0.45).toFixed(0) + "px",
         width: e.width
       };
-    }), c = A(() => e.loading && ["square", "circle"].includes(e.shape)), d = () => {
+    }), d = A(() => e.loading && ["square", "circle"].includes(e.shape)), c = () => {
       e.disabled || e.loading || o("click");
     };
-    return (l, u) => {
-      const f = Z("ripple");
-      return R((m(), h("button", {
+    return (r, u) => {
+      const f = ee("ripple");
+      return D((p(), y("button", {
         class: v(a.value),
-        onClick: d,
-        style: M(p.value),
+        onClick: c,
+        style: M(m.value),
         tabindex: e.tabindex || 0,
         type: e.type || "button",
         disabled: e.disabled || e.loading
       }, [
-        e.loading ? (m(), h("span", {
+        e.loading ? (p(), y("span", {
           key: 0,
           class: v([i(s).e("loading")])
         }, [
-          O(i(Me))
-        ], 2)) : E("", !0),
-        c.value ? E("", !0) : I(l.$slots, "default", { key: 1 }, () => [
-          q(Y(e.text), 1)
+          S(i(Me))
+        ], 2)) : z("", !0),
+        d.value ? z("", !0) : _(r.$slots, "default", { key: 1 }, () => [
+          W(O(e.text), 1)
         ], !0)
       ], 14, Ve)), [
         [f, !0]
       ]);
     };
   }
-}), w = (n, t) => {
+}), b = (n, t) => {
   const e = n.__vccOpts || n;
   for (const [o, s] of t)
     e[o] = s;
   return e;
-}, ne = /* @__PURE__ */ w(Ae, [["__scopeId", "data-v-fe80f42d"]]);
-ne.install = (n) => {
-  n.component("ImButton", ne);
+}, oe = /* @__PURE__ */ b(Ae, [["__scopeId", "data-v-fe80f42d"]]);
+oe.install = (n) => {
+  n.component("ImButton", oe);
 };
-const De = /* @__PURE__ */ b({
+const Pe = /* @__PURE__ */ g({
   name: "ImRow",
   __name: "ImRow",
   props: {
@@ -191,21 +191,21 @@ const De = /* @__PURE__ */ b({
     }
   },
   setup(n) {
-    const t = n, e = ee(), o = A(() => {
-      var r;
-      return ((r = e.default) == null ? void 0 : r.call(e)) || [];
+    const t = n, e = te(), o = A(() => {
+      var l;
+      return ((l = e.default) == null ? void 0 : l.call(e)) || [];
     }), s = k("row");
-    return (r, a) => (m(), h("div", {
+    return (l, a) => (p(), y("div", {
       class: v([i(s).b()]),
       style: M({
         "--im-row-gutter": t.gutter + "px",
         "align-items": t.align
       })
     }, [
-      (m(!0), h(X, null, j(o.value, (p, c) => (m(), S(re(p), { key: c }))), 128))
+      (p(!0), y(X, null, H(o.value, (m, d) => (p(), P(ie(m), { key: d }))), 128))
     ], 6));
   }
-}), se = /* @__PURE__ */ w(De, [["__scopeId", "data-v-5179967f"]]), Se = /* @__PURE__ */ b({
+}), ae = /* @__PURE__ */ b(Pe, [["__scopeId", "data-v-5179967f"]]), De = /* @__PURE__ */ g({
   name: "ImCol",
   __name: "ImCol",
   props: {
@@ -222,24 +222,24 @@ const De = /* @__PURE__ */ b({
     const t = n, e = k("col"), o = A(
       () => +((Number(t.span) || 0) / 24).toFixed(2) * 100 + "%"
     );
-    return (s, r) => (m(), h("div", {
+    return (s, l) => (p(), y("div", {
       class: v([i(e).b()]),
       style: M({
         "--im-col-w": o.value,
         "--im-col-offset": t.offset
       })
     }, [
-      I(s.$slots, "default", {}, void 0, !0)
+      _(s.$slots, "default", {}, void 0, !0)
     ], 6));
   }
-}), oe = /* @__PURE__ */ w(Se, [["__scopeId", "data-v-ecf91058"]]);
-se.install = (n) => {
-  n.component("ImRow", se);
+}), re = /* @__PURE__ */ b(De, [["__scopeId", "data-v-ecf91058"]]);
+ae.install = (n) => {
+  n.component("ImRow", ae);
 };
-oe.install = (n) => {
-  n.component("ImCol", oe);
+re.install = (n) => {
+  n.component("ImCol", re);
 };
-const Re = /* @__PURE__ */ b({
+const Re = /* @__PURE__ */ g({
   name: "ImInput",
   __name: "ImInput",
   props: {
@@ -265,28 +265,28 @@ const Re = /* @__PURE__ */ b({
   },
   emits: ["update:modelValue", "change"],
   setup(n, { emit: t }) {
-    const e = n, { sizeToken: o } = H(), s = t, r = L(e.modelValue), a = k("input"), p = () => {
-      s("update:modelValue", r.value), s("change", r.value);
+    const e = n, { sizeToken: o } = U(), s = t, l = x(e.modelValue), a = k("input"), m = () => {
+      s("update:modelValue", l.value), s("change", l.value);
     };
-    return (c, d) => (m(), h("div", {
+    return (d, c) => (p(), y("div", {
       class: v([i(a).b()]),
       style: M({
         "--in-input-size": (e.size || i(o) || 36) + "px"
       })
     }, [
-      R(T("input", xe({
+      D(C("input", xe({
         class: [i(a).e("input")],
-        "onUpdate:modelValue": d[0] || (d[0] = (l) => r.value = l)
-      }, e, { onInput: p }), null, 16), [
-        [$e, r.value]
+        "onUpdate:modelValue": c[0] || (c[0] = (r) => l.value = r)
+      }, e, { onInput: m }), null, 16), [
+        [Le, l.value]
       ])
     ], 6));
   }
-}), ae = /* @__PURE__ */ w(Re, [["__scopeId", "data-v-6c70856c"]]);
-ae.install = (n) => {
-  n.component("ImInput", ae);
+}), le = /* @__PURE__ */ b(Re, [["__scopeId", "data-v-6c70856c"]]);
+le.install = (n) => {
+  n.component("ImInput", le);
 };
-const Pe = /* @__PURE__ */ b({
+const Se = /* @__PURE__ */ g({
   name: "ImIcon",
   __name: "ImIcon",
   props: {
@@ -296,7 +296,7 @@ const Pe = /* @__PURE__ */ b({
   },
   setup(n) {
     const t = n;
-    return (e, o) => (m(), h("i", {
+    return (e, o) => (p(), y("i", {
       class: v(["im-icon", [`im-icon-${t.name}`]]),
       style: M({
         "--icon-size": (parseInt(String(t.size)) || 16) + "px",
@@ -304,11 +304,11 @@ const Pe = /* @__PURE__ */ b({
       })
     }, null, 6));
   }
-}), F = /* @__PURE__ */ w(Pe, [["__scopeId", "data-v-1e711363"]]);
+}), F = /* @__PURE__ */ b(Se, [["__scopeId", "data-v-1e711363"]]);
 F.install = function(n) {
   n.component("ImIcon", F);
 };
-const Ne = /* @__PURE__ */ b({
+const Ye = /* @__PURE__ */ g({
   __name: "ImDivider",
   props: {
     vertical: { type: Boolean },
@@ -321,7 +321,7 @@ const Ne = /* @__PURE__ */ b({
   },
   setup(n) {
     const t = k("divider"), e = n;
-    return (o, s) => (m(), h("div", {
+    return (o, s) => (p(), y("div", {
       class: v([i(t).b(), i(t).is("vertical", e.vertical)]),
       style: M({
         "--im-divider-color": e.color || "var(--im-gray-color-4)",
@@ -331,40 +331,40 @@ const Ne = /* @__PURE__ */ b({
         "--im-divider-text-right-width": e.textRightWidth ? e.textRightWidth : "100%"
       })
     }, [
-      e.vertical ? E("", !0) : (m(), h("span", {
+      e.vertical ? z("", !0) : (p(), y("span", {
         key: 0,
         class: v([i(t).e("text")])
       }, [
-        I(o.$slots, "default", {}, void 0, !0)
+        _(o.$slots, "default", {}, void 0, !0)
       ], 2))
     ], 6));
   }
-}), Q = /* @__PURE__ */ w(Ne, [["__scopeId", "data-v-108f9bec"]]);
-Q.name = "ImDivider";
-Q.install = function(n) {
-  n.component("ImDivider", Q);
+}), Z = /* @__PURE__ */ b(Ye, [["__scopeId", "data-v-108f9bec"]]);
+Z.name = "ImDivider";
+Z.install = function(n) {
+  n.component("ImDivider", Z);
 };
-const z = (n, t) => (t.install = (e) => {
+const E = (n, t) => (t.install = (e) => {
   e.component(n, t);
-}, t), de = (n, t) => {
+}, t), me = (n, t) => {
   let e;
   return function(...o) {
     e || (e = setTimeout(() => {
       n.apply(this, o), e = null;
     }, t));
   };
-}, K = (n, t) => {
+}, Q = (n, t) => {
   let e;
   return function(...o) {
     e && clearTimeout(e), e = setTimeout(() => {
       n.apply(this, o);
     }, t);
   };
-}, _e = (n, t, e) => {
+}, ge = (n, t, e) => {
   if (!e) return !1;
   const o = e.getBoundingClientRect();
   return n >= o.left && n <= o.left + o.width && t >= o.top && t <= o.top + o.height;
-}, Ye = ["onClick"], Oe = /* @__PURE__ */ b({
+}, Ne = ["onClick"], Oe = /* @__PURE__ */ g({
   name: "ImAnchor",
   __name: "ImAnchor",
   props: {
@@ -375,97 +375,97 @@ const z = (n, t) => (t.install = (e) => {
   setup(n) {
     const t = k("anchor");
     let e = null;
-    const o = L(null), s = L(null), r = L(null), a = n;
-    W(
+    const o = x(null), s = x(null), l = x(null), a = n;
+    q(
       () => a.target,
       () => {
-        e && e(), e = d();
+        e && e(), e = c();
       }
-    ), le(() => {
-      e = d();
-    }), ie(() => {
+    ), ce(() => {
+      e = c();
+    }), de(() => {
       e && e();
     });
-    function p(u) {
+    function m(u) {
       let f = u == null ? void 0 : u.scrollTop;
       return o.value === window && (f = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop), f;
     }
-    function c(u) {
-      var B;
-      if (r.value || !o.value) return;
+    function d(u) {
+      var T;
+      if (l.value || !o.value) return;
       const f = o.value === window ? u.target : o.value;
-      let _ = p(f);
-      const y = f.offsetTop || 0, C = (a.data || []).map(({ id: g }) => {
-        const x = document.getElementById(g);
-        return x ? {
-          id: g,
-          offsetTop: x.offsetTop - y,
-          el: x
+      let h = m(f);
+      const I = f.offsetTop || 0, B = (a.data || []).map(({ id: w }) => {
+        const L = document.getElementById(w);
+        return L ? {
+          id: w,
+          offsetTop: L.offsetTop - I,
+          el: L
         } : null;
       }).filter(Boolean);
       s.value = null;
-      for (let g = 0; g < C.length; g++) {
-        const x = C[g];
-        if (_ >= x.offsetTop - (a.offset || 0) && _ <= x.offsetTop + (((B = x.el) == null ? void 0 : B.clientHeight) || 0) - (a.offset || 0)) {
-          s.value = x.id;
+      for (let w = 0; w < B.length; w++) {
+        const L = B[w];
+        if (h >= L.offsetTop - (a.offset || 0) && h <= L.offsetTop + (((T = L.el) == null ? void 0 : T.clientHeight) || 0) - (a.offset || 0)) {
+          s.value = L.id;
           return;
         }
       }
-      if (!s.value && _ >= (parseInt(String(a.offset)) || 0)) {
-        const g = C.find((x) => _ <= x.offsetTop - (a.offset || 0) && _ > (a.offset || 0) ? (s.value = x.id, !0) : !1);
-        g && (s.value = g.id);
+      if (!s.value && h >= (parseInt(String(a.offset)) || 0)) {
+        const w = B.find((L) => h <= L.offsetTop - (a.offset || 0) && h > (a.offset || 0) ? (s.value = L.id, !0) : !1);
+        w && (s.value = w.id);
       }
     }
-    function d() {
+    function c() {
       const u = a.target ? typeof a.target == "string" ? document.querySelector(a.target) : a.target : window;
       if (!u)
         return null;
       o.value = u;
-      const f = de(c, 50);
-      return c({ target: u }), u.addEventListener("scroll", f, { passive: !0 }), () => {
+      const f = me(d, 50);
+      return d({ target: u }), u.addEventListener("scroll", f, { passive: !0 }), () => {
         u.removeEventListener("scroll", f);
       };
     }
-    async function l(u) {
-      var y, C, B;
+    async function r(u) {
+      var I, B, T;
       if (s.value === u || !u) return;
-      r.value = u, s.value = u;
+      l.value = u, s.value = u;
       const f = document.getElementById(u);
       if (!f) return;
-      (C = o.value) == null || C.scrollTo({
+      (B = o.value) == null || B.scrollTo({
         // @ts-ignore
-        top: f.offsetTop - (a.offset || 0) - (((y = o.value) == null ? void 0 : y.offsetTop) || 0),
+        top: f.offsetTop - (a.offset || 0) - (((I = o.value) == null ? void 0 : I.offsetTop) || 0),
         behavior: "smooth",
         left: 0
       });
-      const _ = K(() => {
-        var g;
-        r.value = null, (g = o.value) == null || g.removeEventListener("scroll", _);
+      const h = Q(() => {
+        var w;
+        l.value = null, (w = o.value) == null || w.removeEventListener("scroll", h);
       }, 300);
-      (B = o.value) == null || B.addEventListener("scroll", _, { passive: !0 });
+      (T = o.value) == null || T.addEventListener("scroll", h, { passive: !0 });
     }
     return (u, f) => {
-      const _ = Z("ripple");
-      return a.data && a.data.length ? (m(), h("ul", {
+      const h = ee("ripple");
+      return a.data && a.data.length ? (p(), y("ul", {
         key: 0,
         class: v([i(t).b()])
       }, [
-        (m(!0), h(X, null, j(a.data, (y) => R((m(), h("li", {
-          class: v([i(t).e("item"), i(t).is("active", s.value === y.id)]),
-          onClick: () => l(y.id)
+        (p(!0), y(X, null, H(a.data, (I) => D((p(), y("li", {
+          class: v([i(t).e("item"), i(t).is("active", s.value === I.id)]),
+          onClick: () => r(I.id)
         }, [
-          s.value === y.id ? (m(), h("span", {
+          s.value === I.id ? (p(), y("span", {
             key: 0,
             class: v([i(t).e("bar")])
-          }, null, 2)) : E("", !0),
-          q(" " + Y(y.text), 1)
-        ], 10, Ye)), [
-          [_, !0]
+          }, null, 2)) : z("", !0),
+          W(" " + O(I.text), 1)
+        ], 10, Ne)), [
+          [h, !0]
         ])), 256))
-      ], 2)) : E("", !0);
+      ], 2)) : z("", !0);
     };
   }
-}), Xe = /* @__PURE__ */ w(Oe, [["__scopeId", "data-v-4840d244"]]), Fe = z("ImAnchor", Xe), qe = /* @__PURE__ */ b({
+}), Xe = /* @__PURE__ */ b(Oe, [["__scopeId", "data-v-4840d244"]]), qe = E("ImAnchor", Xe), Fe = /* @__PURE__ */ g({
   name: "ImAlert",
   __name: "ImAlert",
   props: {
@@ -478,7 +478,7 @@ const z = (n, t) => (t.install = (e) => {
   },
   emits: ["close"],
   setup(n, { emit: t }) {
-    const e = t, o = L(null), s = n, r = k("alert"), a = ee(), p = A(() => !!(s.showIcon && s.title)), c = A(() => {
+    const e = t, o = x(null), s = n, l = k("alert"), a = te(), m = A(() => !!(s.showIcon && s.title)), d = A(() => {
       switch (s.color) {
         case "error":
           return "close-circle-fill";
@@ -489,9 +489,9 @@ const z = (n, t) => (t.install = (e) => {
         default:
           return "info-circle-fill";
       }
-    }), d = async () => {
-      var l, u;
-      e("close"), (l = o.value) == null || l.animate([{
+    }), c = async () => {
+      var r, u;
+      e("close"), (r = o.value) == null || r.animate([{
         offset: 0,
         opacity: 1,
         transform: "scaleY(1)"
@@ -509,61 +509,61 @@ const z = (n, t) => (t.install = (e) => {
         fill: "forwards"
       }), await new Promise((f) => setTimeout(f, 300)), (u = o.value) == null || u.remove();
     };
-    return (l, u) => {
-      const f = Z("ripple");
-      return m(), h("div", {
+    return (r, u) => {
+      const f = ee("ripple");
+      return p(), y("div", {
         ref_key: "alertRef",
         ref: o,
-        class: v([i(r).b(), i(r).m(s.color || "primary"), s.variant && i(r).m(s.variant || "")])
+        class: v([i(l).b(), i(l).m(s.color || "primary"), s.variant && i(l).m(s.variant || "")])
       }, [
-        s.showIcon ? (m(), h("div", {
+        s.showIcon ? (p(), y("div", {
           key: 0,
-          class: v([i(r).e("icon")])
+          class: v([i(l).e("icon")])
         }, [
-          I(l.$slots, "icon", {}, () => [
-            O(i(F), {
-              name: c.value,
-              size: p.value ? 24 : 16
+          _(r.$slots, "icon", {}, () => [
+            S(i(F), {
+              name: d.value,
+              size: m.value ? 24 : 16
             }, null, 8, ["name", "size"])
           ], !0)
-        ], 2)) : E("", !0),
-        T("div", {
-          class: v([i(r).e("content")])
+        ], 2)) : z("", !0),
+        C("div", {
+          class: v([i(l).e("content")])
         }, [
-          s.title || i(a).title ? (m(), h("div", {
+          s.title || i(a).title ? (p(), y("div", {
             key: 0,
-            class: v([i(r).e("title")])
+            class: v([i(l).e("title")])
           }, [
-            I(l.$slots, "title", {}, () => [
-              q(Y(s.title), 1)
+            _(r.$slots, "title", {}, () => [
+              W(O(s.title), 1)
             ], !0)
-          ], 2)) : E("", !0),
-          T("div", {
-            class: v([i(r).e("message")])
+          ], 2)) : z("", !0),
+          C("div", {
+            class: v([i(l).e("message")])
           }, [
-            I(l.$slots, "default", {}, () => [
-              q(Y(s.message), 1)
+            _(r.$slots, "default", {}, () => [
+              W(O(s.message), 1)
             ], !0)
           ], 2)
         ], 2),
-        s.closable ? R((m(), h("div", {
+        s.closable ? D((p(), y("div", {
           key: 1,
-          class: v([i(r).e("close")]),
-          onClick: d
+          class: v([i(l).e("close")]),
+          onClick: c
         }, [
-          I(l.$slots, "close", {}, () => [
-            O(i(F), {
+          _(r.$slots, "close", {}, () => [
+            S(i(F), {
               name: "close",
               size: "16"
             })
           ], !0)
         ], 2)), [
           [f, !0]
-        ]) : E("", !0)
+        ]) : z("", !0)
       ], 2);
     };
   }
-}), We = /* @__PURE__ */ w(qe, [["__scopeId", "data-v-d11fdcb2"]]), je = z("ImAlert", We), He = /* @__PURE__ */ b({
+}), We = /* @__PURE__ */ b(Fe, [["__scopeId", "data-v-d11fdcb2"]]), He = E("ImAlert", We), je = /* @__PURE__ */ g({
   name: "ImBreadcrumb",
   __name: "ImBreadcrumb",
   props: {
@@ -572,37 +572,37 @@ const z = (n, t) => (t.install = (e) => {
   },
   emits: ["update:modelValue", "change"],
   setup(n, { emit: t }) {
-    const e = ee(), o = t, s = k("breadcrumb"), r = n, a = A(
+    const e = te(), o = t, s = k("breadcrumb"), l = n, a = A(
       () => {
-        var c, d;
-        return (d = (c = e.default) == null ? void 0 : c.call(e)) == null ? void 0 : d.filter((l) => {
+        var d, c;
+        return (c = (d = e.default) == null ? void 0 : d.call(e)) == null ? void 0 : c.filter((r) => {
           var u;
-          return (l == null ? void 0 : l.type) && ((u = l == null ? void 0 : l.type) == null ? void 0 : u.name) === "ImBreadcrumbItem";
+          return (r == null ? void 0 : r.type) && ((u = r == null ? void 0 : r.type) == null ? void 0 : u.name) === "ImBreadcrumbItem";
         });
       }
-    ), p = (c) => {
-      c && r.modelValue !== c && (o("update:modelValue", c), o("change", c));
+    ), m = (d) => {
+      d && l.modelValue !== d && (o("update:modelValue", d), o("change", d));
     };
-    return (c, d) => (m(), h("div", {
+    return (d, c) => (p(), y("div", {
       class: v([i(s).b()])
     }, [
-      (m(!0), h(X, null, j(a.value, (l, u) => (m(), h(X, null, [
-        (m(), S(re(l), {
-          active: r.modelValue,
-          onClick: p
+      (p(!0), y(X, null, H(a.value, (r, u) => (p(), y(X, null, [
+        (p(), P(ie(r), {
+          active: l.modelValue,
+          onClick: m
         }, null, 8, ["active"])),
-        a.value && a.value.length > 0 && u < a.value.length - 1 ? (m(), h("span", {
+        a.value && a.value.length > 0 && u < a.value.length - 1 ? (p(), y("span", {
           key: 0,
           class: v([i(s).e("separator")])
         }, [
-          I(c.$slots, "separator", {}, () => [
-            q(Y(r.separator), 1)
+          _(d.$slots, "separator", {}, () => [
+            W(O(l.separator), 1)
           ], !0)
-        ], 2)) : E("", !0)
+        ], 2)) : z("", !0)
       ], 64))), 256))
     ], 2));
   }
-}), Ue = /* @__PURE__ */ w(He, [["__scopeId", "data-v-64336468"]]), Ge = /* @__PURE__ */ b({
+}), Ue = /* @__PURE__ */ b(je, [["__scopeId", "data-v-64336468"]]), Ge = /* @__PURE__ */ g({
   name: "ImBreadcrumbItem",
   __name: "ImBreadcrumbItem",
   props: {
@@ -612,24 +612,24 @@ const z = (n, t) => (t.install = (e) => {
   emits: ["click"],
   setup(n, { emit: t }) {
     const e = k("breadcrumb__item"), o = n, s = t;
-    return (r, a) => (m(), h("div", {
+    return (l, a) => (p(), y("div", {
       onClick: a[0] || (a[0] = () => s("click", o.value)),
       class: v([i(e).b(), i(e).is("active", o.active === o.value && !!o.value)])
     }, [
-      I(r.$slots, "default", {}, void 0, !0)
+      _(l.$slots, "default", {}, void 0, !0)
     ], 2));
   }
-}), Je = /* @__PURE__ */ w(Ge, [["__scopeId", "data-v-40ed04b1"]]), Ke = z("ImBreadcrumb", Ue), Qe = z("ImBreadcrumb", Je), Ze = (n = 50) => {
-  const t = L(0), e = L(0), o = de((s) => {
+}), Je = /* @__PURE__ */ b(Ge, [["__scopeId", "data-v-40ed04b1"]]), Ke = E("ImBreadcrumb", Ue), Qe = E("ImBreadcrumb", Je), Ze = (n = 50) => {
+  const t = x(0), e = x(0), o = me((s) => {
     t.value = s.clientX, e.value = s.clientY;
   }, n);
-  return le(() => {
+  return ce(() => {
     window.addEventListener("mousemove", o, { passive: !0 });
-  }), ie(() => {
+  }), de(() => {
     window.removeEventListener("mousemove", o);
   }), { x: t, y: e };
 }, et = (n, t, e, o = "bottomLeft") => {
-  W(
+  q(
     () => n.value,
     () => {
       n.value && s();
@@ -637,67 +637,69 @@ const z = (n, t) => (t.install = (e) => {
   );
   async function s() {
     var f;
-    await new Promise((_) => requestAnimationFrame(_));
-    const r = t == null ? void 0 : t.value, a = e == null ? void 0 : e.value;
-    if (!r || !a) return;
-    const c = (((f = r.children) == null ? void 0 : f.length) != 1 ? r : r.children[0]).getBoundingClientRect(), d = c.bottom, l = a.getBoundingClientRect(), u = 2;
+    await new Promise((h) => requestAnimationFrame(h));
+    const l = t == null ? void 0 : t.value, a = e == null ? void 0 : e.value;
+    if (!l || !a) return;
+    const d = (((f = l.children) == null ? void 0 : f.length) != 1 ? l : l.children[0]).getBoundingClientRect(), c = d.bottom, r = a.getBoundingClientRect(), u = 2;
     switch (o) {
       case "bottom":
-        a.style.setProperty("top", `${d + u}px`), a.style.setProperty(
+        a.style.setProperty("top", `${c + u}px`), a.style.setProperty(
           "left",
-          `${c.left + c.width / 2 - l.width / 2}px`
+          `${d.left + d.width / 2 - r.width / 2}px`
         );
         break;
       case "bottomRight":
-        a.style.setProperty("top", `${d + u}px`), a.style.setProperty(
+        a.style.setProperty("top", `${c + u}px`), a.style.setProperty(
           "left",
-          `${c.left + c.width - l.width}px`
+          `${d.left + d.width - r.width}px`
         );
         break;
       case "top":
         a.style.setProperty(
           "top",
-          `${c.top - l.height - u}px`
+          `${d.top - r.height - u}px`
         ), a.style.setProperty(
           "left",
-          `${c.left + c.width / 2 - l.width / 2}px`
+          `${d.left + d.width / 2 - r.width / 2}px`
         );
         break;
       case "topRight":
         a.style.setProperty(
           "top",
-          `${c.top - l.height - u}px`
+          `${d.top - r.height - u}px`
         ), a.style.setProperty(
           "left",
-          `${c.right - l.width}px`
+          `${d.right - r.width}px`
         );
         break;
       case "topLeft":
         a.style.setProperty(
           "top",
-          `${c.top - l.height - u}px`
-        ), a.style.setProperty("left", `${c.left}px`);
+          `${d.top - r.height - u}px`
+        ), a.style.setProperty("left", `${d.left}px`);
         break;
       default:
-        a.style.setProperty("top", `${d + u}px`), a.style.setProperty("left", `${c.left}px`);
+        a.style.setProperty("top", `${c + u}px`), a.style.setProperty("left", `${d.left}px`);
         break;
     }
   }
 }, tt = (n) => {
   const t = n.toLowerCase().includes("bottom") ? "translateY(-10px)" : "translateY(10px)";
-  function e(s, r) {
-    s.style.transform = t, s.style.opacity = "0", s.style.pointerEvents = "none", s.getBoundingClientRect(), s.style.transform = "translateY(0px)", s.style.opacity = "1", s.style.pointerEvents = "auto", r();
+  function e(s, l) {
+    s.style.transform = t, s.style.opacity = "0", s.style.pointerEvents = "none", s.getBoundingClientRect(), s.style.transform = "translateY(0px)", s.style.opacity = "1", s.style.pointerEvents = "auto", l();
   }
-  async function o(s, r) {
-    s.style.transform = t, s.style.opacity = "0", s.getBoundingClientRect(), s.addEventListener("transitionend", () => {
-      r(), s.style.transform = "translateY(0px)";
-    });
+  async function o(s, l) {
+    s.style.transform = t, s.style.opacity = "0", s.getBoundingClientRect();
+    const a = () => {
+      l(), s && (s.style.transform = "translateY(0px)"), s.removeEventListener("transitionend", a);
+    };
+    s.addEventListener("transitionend", a, { passive: !0 });
   }
   return {
     onEnter: e,
     onLeave: o
   };
-}, nt = /* @__PURE__ */ b({
+}, st = /* @__PURE__ */ g({
   name: "ImDropdown",
   __name: "ImDropdown",
   props: {
@@ -708,79 +710,79 @@ const z = (n, t) => (t.install = (e) => {
   },
   emits: ["update:modelValue", "change"],
   setup(n, { emit: t }) {
-    var x;
-    const e = t, o = k("dropdown"), s = n, r = L(null), a = L(null), p = L(s.modelValue || !1), c = tt((x = s.placement) != null && x.includes("top") ? "top" : "bottom");
-    let d = null, l = 100;
-    const { x: u, y: f } = Ze(30), { zIndexToken: _ } = H();
-    et(p, r, a, s.placement), le(() => {
-      d && d(), d = g();
-    }), ie(() => {
-      d && d();
-    }), W(() => s.trigger, () => {
-      d && d(), d = g();
+    var L;
+    const e = t, o = k("dropdown"), s = n, l = x(null), a = x(null), m = x(s.modelValue || !1), d = tt((L = s.placement) != null && L.includes("top") ? "top" : "bottom");
+    let c = null, r = 100;
+    const { x: u, y: f } = Ze(30), { zIndexToken: h } = U();
+    et(m, l, a, s.placement), ce(() => {
+      c && c(), c = w();
+    }), de(() => {
+      c && c();
+    }), q(() => s.trigger, () => {
+      c && c(), c = w();
     });
-    const y = de(() => {
-      const D = _e(u.value, f.value, a.value);
-      _e(u.value, f.value, r.value) || D || (p.value = !1);
-    }, l);
-    W(() => [u.value, f.value], () => {
-      s.trigger != "hover" || !p.value || y();
+    const I = me(() => {
+      const R = ge(u.value, f.value, a.value);
+      ge(u.value, f.value, l.value) || R || (m.value = !1);
+    }, r);
+    q(() => [u.value, f.value], () => {
+      s.trigger != "hover" || !m.value || I();
     });
-    function C() {
-      p.value = !0, e("update:modelValue", p.value), e("change", p.value), window.addEventListener("scroll", B, { passive: !0, capture: !0 });
-    }
     function B() {
-      p.value = !1, e("update:modelValue", p.value), e("change", p.value), window.removeEventListener("scroll", close);
+      m.value = !0, e("update:modelValue", m.value), e("change", m.value), window.addEventListener("scroll", T, { passive: !0, capture: !0 });
     }
-    function g() {
-      var U, me;
-      d && d();
-      const D = K((P) => {
+    function T() {
+      m.value = !1, e("update:modelValue", m.value), e("change", m.value), window.removeEventListener("scroll", close);
+    }
+    function w() {
+      var G, fe;
+      c && c();
+      const R = Q((Y) => {
         var V;
-        (V = r.value) != null && V.contains(P.target) || B();
-      }, l);
-      if (document.addEventListener("click", D, { passive: !0 }), s.trigger === "hover") {
-        const P = K(C, l);
-        return (U = r.value) == null || U.addEventListener("mouseenter", P, { passive: !0 }), () => {
+        (V = l.value) != null && V.contains(Y.target) || T();
+      }, r);
+      if (document.addEventListener("click", R, { passive: !0 }), s.trigger === "hover") {
+        const Y = Q(B, r);
+        return (G = l.value) == null || G.addEventListener("mouseenter", Y, { passive: !0 }), () => {
           var V;
-          (V = r.value) == null || V.removeEventListener("mouseenter", P), document.removeEventListener("click", D);
+          (V = l.value) == null || V.removeEventListener("mouseenter", Y), document.removeEventListener("click", R);
         };
       }
       if (s.trigger === "click") {
-        const P = K(() => {
-          p.value ? B() : C();
-        }, l);
-        return (me = r.value) == null || me.addEventListener("click", P, { passive: !0 }), () => {
+        const Y = Q(() => {
+          m.value ? T() : B();
+        }, r);
+        return (fe = l.value) == null || fe.addEventListener("click", Y, { passive: !0 }), () => {
           var V;
-          (V = r.value) == null || V.removeEventListener("click", P), document.removeEventListener("click", D);
+          (V = l.value) == null || V.removeEventListener("click", Y), document.removeEventListener("click", R);
         };
       }
       return null;
     }
-    return (D, U) => (m(), h("span", {
+    return (R, G) => (p(), y("span", {
       class: v([i(o).b()]),
       ref_key: "dropdownRef",
-      ref: r
+      ref: l
     }, [
-      I(D.$slots, "default", {}, void 0, !0),
-      (m(), S(ye, { to: "body" }, [
-        O(ce, {
-          onEnter: i(c).onEnter,
-          onLeave: i(c).onLeave,
+      _(R.$slots, "default", {}, void 0, !0),
+      (p(), P(ue, { to: "body" }, [
+        S(se, {
+          onEnter: i(d).onEnter,
+          onLeave: i(d).onLeave,
           duration: { enter: 300, leave: 200 }
         }, {
-          default: te(() => [
-            R(T("div", {
+          default: j(() => [
+            D(C("div", {
               class: v([i(o).e("content")]),
               ref_key: "contentRef",
               ref: a,
               style: M({
-                zIndex: s.zIndex || i(_)
+                zIndex: s.zIndex || i(h)
               })
             }, [
-              I(D.$slots, "content", {}, void 0, !0)
+              _(R.$slots, "content", {}, void 0, !0)
             ], 6), [
-              [ue, p.value]
+              [ne, m.value]
             ])
           ]),
           _: 3
@@ -788,7 +790,7 @@ const z = (n, t) => (t.install = (e) => {
       ]))
     ], 2));
   }
-}), st = /* @__PURE__ */ w(nt, [["__scopeId", "data-v-c394ceaa"]]), ot = z("ImDropdown", st), at = /* @__PURE__ */ b({
+}), nt = /* @__PURE__ */ b(st, [["__scopeId", "data-v-c394ceaa"]]), ot = E("ImDropdown", nt), at = /* @__PURE__ */ g({
   name: "ImList",
   __name: "ImList",
   props: {
@@ -796,31 +798,31 @@ const z = (n, t) => (t.install = (e) => {
   },
   emits: ["update:modelValue", "change"],
   setup(n, { emit: t }) {
-    const e = n, o = ee(), s = k("list"), r = A(() => {
-      var d;
-      const c = ((d = o.default) == null ? void 0 : d.call(o)) || [];
-      if (c.length) {
-        const l = [];
-        return c.forEach((u) => {
-          var f, _;
-          typeof u.type == "object" ? l.push(u) : u.children && ((f = u.children) != null && f.length) && ((_ = u.children) == null || _.forEach((y) => {
-            typeof (y == null ? void 0 : y.type) == "object" && l.push(y);
+    const e = n, o = te(), s = k("list"), l = A(() => {
+      var c;
+      const d = ((c = o.default) == null ? void 0 : c.call(o)) || [];
+      if (d.length) {
+        const r = [];
+        return d.forEach((u) => {
+          var f, h;
+          typeof u.type == "object" ? r.push(u) : u.children && ((f = u.children) != null && f.length) && ((h = u.children) == null || h.forEach((I) => {
+            typeof (I == null ? void 0 : I.type) == "object" && r.push(I);
           }));
-        }), l;
+        }), r;
       }
-    }), a = t, p = (c) => {
-      a("update:modelValue", c.value), a("change", c.value);
+    }), a = t, m = (d) => {
+      a("update:modelValue", d.value), a("change", d.value);
     };
-    return (c, d) => (m(), h("ul", {
+    return (d, c) => (p(), y("ul", {
       class: v([i(s).b()])
     }, [
-      (m(!0), h(X, null, j(r.value, (l) => (m(), S(re(l), {
+      (p(!0), y(X, null, H(l.value, (r) => (p(), P(ie(r), {
         active: e.modelValue,
-        onClick: () => p(l.props)
+        onClick: () => m(r.props)
       }, null, 8, ["active", "onClick"]))), 256))
     ], 2));
   }
-}), rt = /* @__PURE__ */ w(at, [["__scopeId", "data-v-9599f63c"]]), lt = /* @__PURE__ */ b({
+}), rt = /* @__PURE__ */ b(at, [["__scopeId", "data-v-9599f63c"]]), lt = /* @__PURE__ */ g({
   name: "ImListItem",
   __name: "ImListItem",
   props: {
@@ -832,19 +834,19 @@ const z = (n, t) => (t.install = (e) => {
   emits: ["click"],
   setup(n, { emit: t }) {
     const e = k("list__item"), o = t, s = n;
-    return (r, a) => {
-      const p = Z("ripple");
-      return R((m(), h("li", {
+    return (l, a) => {
+      const m = ee("ripple");
+      return D((p(), y("li", {
         class: v([i(e).b(), i(e).is("active", !!(s.active && s.active === s.value))]),
-        onClick: a[0] || (a[0] = (c) => o("click", c))
+        onClick: a[0] || (a[0] = (d) => o("click", d))
       }, [
-        I(r.$slots, "default", {}, void 0, !0)
+        _(l.$slots, "default", {}, void 0, !0)
       ], 2)), [
-        [p, s.ripple]
+        [m, s.ripple]
       ]);
     };
   }
-}), it = /* @__PURE__ */ w(lt, [["__scopeId", "data-v-41ec0ba7"]]), ct = z("ImList", rt), ut = z("ImListItem", it), dt = ["src", "srcset", "alt", "loading"], mt = /* @__PURE__ */ b({
+}), it = /* @__PURE__ */ b(lt, [["__scopeId", "data-v-41ec0ba7"]]), ct = E("ImList", rt), dt = E("ImListItem", it), ut = ["src", "srcset", "alt", "loading"], mt = /* @__PURE__ */ g({
   name: "ImAvatar",
   __name: "ImAvatar",
   props: {
@@ -861,10 +863,10 @@ const z = (n, t) => (t.install = (e) => {
   },
   emits: ["error"],
   setup(n, { emit: t }) {
-    const e = t, o = k("avatar"), s = n, r = (a) => {
+    const e = t, o = k("avatar"), s = n, l = (a) => {
       console.log(a.target), e("error", a);
     };
-    return (a, p) => (m(), h("span", {
+    return (a, m) => (p(), y("span", {
       class: v([i(o).b(), s.shape ? i(o).m(s.shape) : ""]),
       style: M({
         "--im-avatar-size": (Number(s.size) || 36) + "px",
@@ -872,30 +874,34 @@ const z = (n, t) => (t.install = (e) => {
         "--im-avatar-fit": s.fit
       })
     }, [
-      !s.src && !s.srcset ? (m(), h("div", {
+      !s.src && !s.srcset ? (p(), y("div", {
         key: 0,
         class: v([i(o).e("icon")])
       }, [
-        I(a.$slots, "default", {}, void 0, !0)
-      ], 2)) : (m(), h("img", {
+        _(a.$slots, "default", {}, void 0, !0)
+      ], 2)) : (p(), y("img", {
         key: 1,
-        onError: r,
+        onError: l,
         src: s.src,
         srcset: s.srcset,
         alt: s.alt,
         loading: s.loading,
         class: v([i(o).e("img")])
-      }, null, 42, dt))
+      }, null, 42, ut))
     ], 6));
   }
-}), pt = /* @__PURE__ */ w(mt, [["__scopeId", "data-v-c4c32038"]]), ft = z("ImAvatar", pt), vt = () => ({
+}), pt = /* @__PURE__ */ b(mt, [["__scopeId", "data-v-c4c32038"]]), ft = E("ImAvatar", pt), vt = () => ({
   onEnter: (n, t) => {
     n.style.opacity = 0, n.style.transition = "opacity 200ms ease", n.getBoundingClientRect(), n.style.opacity = 1, t();
   },
   onLeave: async (n, t) => {
-    n.style.opacity = 0, n.style.transition = "opacity 200ms ease", await new Promise((e) => requestAnimationFrame(e)), n.addEventListener("transitionend", t);
+    n.style.opacity = 0, n.style.transition = "opacity 200ms ease", await new Promise((o) => requestAnimationFrame(o));
+    const e = () => {
+      t(), n && n.removeEventListener("transitionend", e);
+    };
+    n.addEventListener("transitionend", e);
   }
-}), ht = (n = "right") => {
+}), yt = (n = "right") => {
   let t = "", e = "";
   switch (n) {
     case "left":
@@ -919,12 +925,14 @@ const z = (n, t) => (t.install = (e) => {
       o.style.transform = t, o.style.transition = "transform 200ms ease, opacity 200ms ease", o.style.opacity = "0", o.getBoundingClientRect(), o.style.transform = "translateX(0)", o.style.opacity = "1", s();
     },
     onLeave: async (o, s) => {
-      o.style.transform = e, o.style.opacity = "0", o.style.transition = "transform 200ms ease, opacity 200ms ease", await new Promise((r) => requestAnimationFrame(r)), o.addEventListener("transitionend", () => {
-        s();
-      });
+      o.style.transform = e, o.style.opacity = "0", o.style.transition = "transform 200ms ease, opacity 200ms ease", await new Promise((a) => requestAnimationFrame(a));
+      const l = () => {
+        s(), o && o.removeEventListener("transitionend", l);
+      };
+      o.addEventListener("transitionend", l, { passive: !0 });
     }
   };
-}, _t = /* @__PURE__ */ b({
+}, ht = /* @__PURE__ */ g({
   name: "ImMask",
   __name: "ImMask",
   props: {
@@ -934,30 +942,30 @@ const z = (n, t) => (t.install = (e) => {
   },
   emits: ["close"],
   setup(n, { emit: t }) {
-    const e = k("mask"), { zIndexToken: o } = H(), s = n, r = vt(), a = t, p = () => {
+    const e = k("mask"), { zIndexToken: o } = U(), s = n, l = vt(), a = t, m = () => {
       s.closeOnClickMask && a("close", !1);
     };
-    return (c, d) => (m(), S(ce, {
-      onEnter: i(r).onEnter,
-      onLeave: i(r).onLeave
+    return (d, c) => (p(), P(se, {
+      onEnter: i(l).onEnter,
+      onLeave: i(l).onLeave
     }, {
-      default: te(() => [
-        R(T("div", {
+      default: j(() => [
+        D(C("div", {
           class: v([i(e).b()]),
           style: M({
             zIndex: s.zIndex || i(o)
           }),
-          onClick: p
+          onClick: m
         }, [
-          I(c.$slots, "default", {}, void 0, !0)
+          _(d.$slots, "default", {}, void 0, !0)
         ], 6), [
-          [ue, s.visible]
+          [ne, s.visible]
         ])
       ]),
       _: 3
     }, 8, ["onEnter", "onLeave"]));
   }
-}), yt = /* @__PURE__ */ w(_t, [["__scopeId", "data-v-2ba470f4"]]), Ie = z("ImMask", yt), gt = ["aria-modal"], It = /* @__PURE__ */ b({
+}), _t = /* @__PURE__ */ b(ht, [["__scopeId", "data-v-2ba470f4"]]), pe = E("ImMask", _t), gt = ["aria-modal"], bt = /* @__PURE__ */ g({
   name: "ImDrawer",
   __name: "ImDrawer",
   props: {
@@ -970,36 +978,36 @@ const z = (n, t) => (t.install = (e) => {
   },
   emits: ["update:modelValue"],
   setup(n, { emit: t }) {
-    const e = k("drawer"), o = t, s = n, r = L(null), a = ht(s.placement), { zIndexToken: p } = H(), c = () => {
+    const e = k("drawer"), o = t, s = n, l = x(null), a = yt(s.placement), { zIndexToken: m } = U(), d = () => {
       o("update:modelValue", !1);
     };
-    return (d, l) => (m(), S(ye, { to: "body" }, [
-      T("div", {
+    return (c, r) => (p(), P(ue, { to: "body" }, [
+      C("div", {
         tabindex: "-1",
         ref_key: "containerRef",
-        ref: r,
+        ref: l,
         class: v([i(e).b(), s.placement ? i(e).m(s.placement) : ""]),
-        style: M({ "--im-drawer-size": (parseInt(String(s.size)) || 378) + "px", zIndex: s.zIndex || i(p) }),
+        style: M({ "--im-drawer-size": (parseInt(String(s.size)) || 378) + "px", zIndex: s.zIndex || i(m) }),
         "aria-modal": s.modelValue
       }, [
-        s.mask ? (m(), S(i(Ie), {
+        s.mask ? (p(), P(i(pe), {
           key: 0,
           visible: s.modelValue,
           closeOnClickMask: s.closeOnClickMask,
-          onClose: c,
+          onClose: d,
           zIndex: "1"
-        }, null, 8, ["visible", "closeOnClickMask"])) : E("", !0),
-        O(ce, {
+        }, null, 8, ["visible", "closeOnClickMask"])) : z("", !0),
+        S(se, {
           onEnter: i(a).onEnter,
           onLeave: i(a).onLeave
         }, {
-          default: te(() => [
-            R(T("div", {
+          default: j(() => [
+            D(C("div", {
               class: v([i(e).e("content")])
             }, [
-              I(d.$slots, "default", {}, void 0, !0)
+              _(c.$slots, "default", {}, void 0, !0)
             ], 2), [
-              [ue, s.modelValue]
+              [ne, s.modelValue]
             ])
           ]),
           _: 3
@@ -1007,7 +1015,7 @@ const z = (n, t) => (t.install = (e) => {
       ], 14, gt)
     ]));
   }
-}), bt = /* @__PURE__ */ w(It, [["__scopeId", "data-v-1b0178a0"]]), wt = z("ImDrawer", bt), kt = /* @__PURE__ */ b({
+}), It = /* @__PURE__ */ b(bt, [["__scopeId", "data-v-1b0178a0"]]), wt = E("ImDrawer", It), kt = /* @__PURE__ */ g({
   name: "ImCard",
   __name: "ImCard",
   props: {
@@ -1017,43 +1025,43 @@ const z = (n, t) => (t.install = (e) => {
   },
   setup(n) {
     const t = k("card"), e = n;
-    return (o, s) => (m(), h("div", {
+    return (o, s) => (p(), y("div", {
       class: v([i(t).b(), i(t).is("borderless", e.borderless), e.shadow ? i(t).m(e.shadow) : ""])
     }, [
-      I(o.$slots, "header", {}, () => [
-        T("div", {
+      _(o.$slots, "header", {}, () => [
+        e.title || o.$slots["header-action"] ? (p(), y("div", {
+          key: 0,
           class: v([i(t).e("header")])
         }, [
-          e.title ? (m(), h("span", {
-            key: 0,
+          C("span", {
             class: v([i(t).e("title")])
-          }, Y(e.title), 3)) : E("", !0),
-          I(o.$slots, "header-action", {}, void 0, !0)
-        ], 2)
+          }, O(e.title), 3),
+          _(o.$slots, "header-action", {}, void 0, !0)
+        ], 2)) : z("", !0)
       ], !0),
-      T("div", {
+      C("div", {
         class: v([i(t).e("body")])
       }, [
-        I(o.$slots, "default", {}, void 0, !0)
+        _(o.$slots, "default", {}, void 0, !0)
       ], 2)
     ], 2));
   }
-}), xt = /* @__PURE__ */ w(kt, [["__scopeId", "data-v-cf1ecfc0"]]), $t = z("ImCard", xt), Lt = ["data-index", "onMouseenter", "onMouseleave"], Ct = { class: "im-message__text" }, Bt = /* @__PURE__ */ b({
+}), xt = /* @__PURE__ */ b(kt, [["__scopeId", "data-v-bb9cd52c"]]), Lt = E("ImCard", xt), $t = ["data-index", "onMouseenter", "onMouseleave"], Ct = { class: "im-message__text" }, Et = /* @__PURE__ */ g({
   __name: "Message",
   props: {
     callback: { type: Function },
     add: { type: Function }
   },
   setup(n, { expose: t }) {
-    const e = k("message"), o = n, s = L([]);
-    let r = null;
-    W(() => s.value, () => {
-      s.value.length === 0 ? r = setTimeout(() => {
+    const e = k("message"), o = n, s = x([]);
+    let l = null;
+    q(() => s.value, () => {
+      s.value.length === 0 ? l = setTimeout(() => {
         !s.value.length && o.callback();
-      }, 500) : (r && clearTimeout(r), r = null);
+      }, 500) : (l && clearTimeout(l), l = null);
     });
-    const a = (l) => {
-      switch (l) {
+    const a = (r) => {
+      switch (r) {
         case "success":
           return "check-circle-fill";
         case "warning":
@@ -1063,48 +1071,48 @@ const z = (n, t) => (t.install = (e) => {
         default:
           return "info-circle-fill";
       }
-    }, p = (l) => {
-      l.timer && (clearTimeout(l.timer), l.timer = null);
-    }, c = (l) => {
-      l.timer && clearTimeout(l.timer), l.timer = setTimeout(() => {
-        s.value = s.value.filter((u) => u.id !== l.id);
-      }, l.duration || 3e3);
-    }, d = (l) => {
+    }, m = (r) => {
+      r.timer && (clearTimeout(r.timer), r.timer = null);
+    }, d = (r) => {
+      r.timer && clearTimeout(r.timer), r.timer = setTimeout(() => {
+        s.value = s.value.filter((u) => u.id !== r.id);
+      }, r.duration || 3e3);
+    }, c = (r) => {
       const u = setTimeout(() => {
-        s.value = s.value.filter((f) => f.id !== l.id);
-      }, l.duration || 3e3);
-      s.value.push({ ...l, timer: u });
+        s.value = s.value.filter((f) => f.id !== r.id);
+      }, r.duration || 3e3);
+      s.value.push({ ...r, timer: u });
     };
-    return o.add && o.add(d), t({ addMsg: d }), (l, u) => (m(), S(Le, {
+    return o.add && o.add(c), t({ addMsg: c }), (r, u) => (p(), P($e, {
       tag: "ul",
       name: "list",
       css: !0,
       class: v([i(e).b()])
     }, {
-      default: te(() => [
-        (m(!0), h(X, null, j(s.value, (f) => (m(), h("li", {
+      default: j(() => [
+        (p(!0), y(X, null, H(s.value, (f) => (p(), y("li", {
           key: f.id,
           "data-index": f.id,
-          onMouseenter: () => p(f),
-          onMouseleave: () => c(f),
+          onMouseenter: () => m(f),
+          onMouseleave: () => d(f),
           class: v(["im-message__item", [i(e).e("item"), f.color ? i(e).e(f.color) : ""]])
         }, [
-          O(i(F), {
+          S(i(F), {
             name: a(f.color),
             size: "18px"
           }, null, 8, ["name"]),
-          T("span", Ct, Y(f.msg), 1)
-        ], 42, Lt))), 128))
+          C("span", Ct, O(f.msg), 1)
+        ], 42, $t))), 128))
       ]),
       _: 1
     }, 8, ["class"]));
   }
-}), Et = /* @__PURE__ */ w(Bt, [["__scopeId", "data-v-820c83a9"]]);
+}), Bt = /* @__PURE__ */ b(Et, [["__scopeId", "data-v-820c83a9"]]);
 class Tt {
   constructor() {
-    G(this, "app");
-    G(this, "container");
-    G(this, "addMsgToList");
+    J(this, "app");
+    J(this, "container");
+    J(this, "addMsgToList");
     this.app = null, this.container = null, this.addMsgToList = null;
   }
   // 创建一个Vue应用实例
@@ -1112,7 +1120,7 @@ class Tt {
     if (typeof window < "u" && window) {
       this.container = document.createElement("div"), this.container.classList.add("im-message-container"), document.body.appendChild(this.container);
       const t = this;
-      this.app = Ce(Et, {
+      this.app = Ce(Bt, {
         callback: () => {
           t.destroy();
         },
@@ -1170,7 +1178,7 @@ class Tt {
   }
 }
 let $ = null;
-const Dt = () => ($ || ($ = new Tt()), {
+const Yt = () => ($ || ($ = new Tt()), {
   info: (n, t = 3e3) => {
     $ == null || $.info(n, t);
   },
@@ -1183,52 +1191,136 @@ const Dt = () => ($ || ($ = new Tt()), {
   error: (n, t = 3e3) => {
     $ == null || $.error(n, t);
   }
-}), zt = [
-  ne,
+}), zt = ["data-visible", "data-esc"], Mt = /* @__PURE__ */ g({
+  name: "ImDialog",
+  __name: "ImDialog",
+  props: {
+    modelValue: { type: Boolean, default: !1 },
+    closeOnClickMask: { type: Boolean, default: !0 },
+    width: { default: "420px" },
+    height: { default: "auto" },
+    fullscreen: { type: Boolean, default: !1 },
+    closeOnEscape: { type: Boolean, default: !0 }
+  },
+  emits: ["update:modelValue"],
+  setup(n, { emit: t }) {
+    const e = k("dialog"), o = t, s = n, l = x(null);
+    q(
+      () => s.modelValue,
+      (c) => {
+        c ? s.closeOnEscape && window.addEventListener("keydown", a, { passive: !0 }) : window.removeEventListener("keydown", a);
+      }
+    );
+    function a(c) {
+      if (c.key === "Escape" || c.code === "Escape") {
+        const r = document.querySelectorAll(
+          '.im-dialog[data-visible="true"][data-esc="true"]'
+        );
+        r.length && l.value && Array.from(r).pop() === l.value && o("update:modelValue", !1);
+      }
+    }
+    const m = async (c, r) => {
+      c.style.setProperty("opacity", "0"), c.style.setProperty("transition", "all 0.2s ease"), s.fullscreen ? c.style.setProperty("transform", "translateY(100%)") : c.style.setProperty("transform", "scale(0.98)"), c.getBoundingClientRect(), c.style.setProperty("opacity", "1"), c.style.setProperty("transform", "translateY(0) scale(1)"), r(), !document.body.classList.contains("im-overflow-hidden") && document.body.classList.add("im-overflow-hidden");
+    }, d = async (c, r) => {
+      c.style.setProperty("opacity", "0"), s.fullscreen ? c.style.setProperty("transform", "translateY(100%)") : c.style.setProperty("transform", "scale(0.98)"), c.style.setProperty("transition", "all 0.2s ease");
+      const u = () => {
+        r(), Array.from(
+          document.body.querySelectorAll('.im-dialog[data-visible="true"]')
+        ).length || document.body.classList.remove("im-overflow-hidden"), c.removeEventListener("transitionend", u);
+      };
+      c.addEventListener("transitionend", u, { passive: !0 });
+    };
+    return (c, r) => (p(), P(ue, { to: "body" }, [
+      C("div", {
+        "aria-modal": "true",
+        class: v([i(e).b()]),
+        tabindex: "-1",
+        "data-visible": s.modelValue,
+        "data-esc": s.closeOnEscape,
+        ref_key: "dialogRef",
+        ref: l
+      }, [
+        S(i(pe), {
+          closeOnClickMask: s.closeOnClickMask,
+          visible: s.modelValue,
+          onClose: r[0] || (r[0] = () => o("update:modelValue", !1))
+        }, null, 8, ["closeOnClickMask", "visible"]),
+        S(se, {
+          onEnter: m,
+          duration: { enter: 200, leave: 200 },
+          onLeave: d
+        }, {
+          default: j(() => [
+            D(C("div", {
+              class: v([
+                i(e).e("content"),
+                i(e).is("fullscreen", s.fullscreen),
+                "im-shadow"
+              ]),
+              style: M({
+                maxWidth: s.width,
+                width: s.width,
+                height: s.height
+              })
+            }, [
+              _(c.$slots, "default", {}, void 0, !0)
+            ], 6), [
+              [ne, s.modelValue]
+            ])
+          ]),
+          _: 3
+        })
+      ], 10, zt)
+    ]));
+  }
+}), Vt = /* @__PURE__ */ b(Mt, [["__scopeId", "data-v-b6a6ad9a"]]), At = E("ImDialog", Vt), Pt = [
   oe,
-  se,
+  re,
   ae,
+  le,
   F,
-  Q,
-  Fe,
-  je,
+  Z,
+  qe,
+  He,
   Ke,
   Qe,
   ot,
   ct,
-  ut,
+  dt,
   ft,
-  Ie,
+  pe,
   wt,
-  $t
-], Mt = (n, t) => {
-  n.provide(ge, {
+  Lt,
+  At
+], Dt = (n, t) => {
+  n.provide(be, {
     size: (t == null ? void 0 : t.size) || 36,
     zIndex: (t == null ? void 0 : t.zIndex) || 1e3
-  }), n.directive("ripple", Ee), zt.forEach((e) => {
+  }), n.directive("ripple", Be), Pt.forEach((e) => {
     e.name ? n.component(e.name, e) : console.warn(`组件${e}缺少name属性`);
   });
-}, St = {
-  install: Mt
+}, Nt = {
+  install: Dt
 };
 export {
-  je as ImAlert,
-  Fe as ImAnchor,
+  He as ImAlert,
+  qe as ImAnchor,
   ft as ImAvatar,
   Ke as ImBreadcrumb,
   Qe as ImBreadcrumbItem,
-  ne as ImButton,
-  $t as ImCard,
-  oe as ImCol,
-  Q as ImDivider,
+  oe as ImButton,
+  Lt as ImCard,
+  re as ImCol,
+  At as ImDialog,
+  Z as ImDivider,
   wt as ImDrawer,
   ot as ImDropdown,
   F as ImIcon,
-  ae as ImInput,
+  le as ImInput,
   ct as ImList,
-  ut as ImListItem,
-  Ie as ImMask,
-  se as ImRow,
-  St as default,
-  Dt as useImMessage
+  dt as ImListItem,
+  pe as ImMask,
+  ae as ImRow,
+  Nt as default,
+  Yt as useImMessage
 };

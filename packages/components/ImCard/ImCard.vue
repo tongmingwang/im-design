@@ -1,8 +1,8 @@
 <template>
   <div :class="[bem.b(), bem.is('borderless', props.borderless), props.shadow ? bem.m(props.shadow) : '']">
     <slot name="header">
-      <div :class="[bem.e('header')]">
-        <span :class="[bem.e('title')]" v-if="props.title">{{ props.title }}</span>
+      <div :class="[bem.e('header')]" v-if="props.title || $slots['header-action']">
+        <span :class="[bem.e('title')]">{{ props.title }}</span>
         <slot name="header-action" />
       </div>
     </slot>
@@ -14,7 +14,6 @@
 
 <script setup lang="ts">
 import { useBem } from '@/utils/bem';
-import { useSlots } from 'vue';
 
 defineOptions({ name: 'ImCard' });
 const bem = useBem('card');
@@ -37,19 +36,25 @@ const props = withDefaults(defineProps<{
     background-color: var(--im-bg-content-color, #fff);
     overflow: hidden;
     transition: box-shadow .3s ease-in-out;
+    width: 100%;
+    position: relative;
+    margin: 0;
+    padding: 0;
 
     &.is-borderless {
       border: none;
     }
 
     .im-card__header {
-      padding: 0 8px 0 24px;
-      height: 56px;
+      padding: 8px;
+      padding-left: 24px;
       display: flex;
+      min-height: 36px;
       align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid var(--im-gray-color-4);
     }
+
 
     .im-card__title {
       font-size: 18px;
@@ -64,6 +69,10 @@ const props = withDefaults(defineProps<{
 
     .im-card__body {
       padding: 24px;
+      overflow: auto;
+      line-height: 24px;
+      margin: 0;
+      font-size: 14px;
     }
 
     &.im-card--hover {

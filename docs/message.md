@@ -7,7 +7,7 @@
 引入 `useImMessage` 方法内部支持 `info` `success` `error` `warning` 四个方法调用
 
 <script setup>
-import { useImMessage } from '../npm/dist/im-design.js'
+import { useImMessage } from 'im-design'
 
 const { info,error,success,warning } = useImMessage()
 console.log('useImMessage', useImMessage())

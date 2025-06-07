@@ -75,6 +75,10 @@
   --im-bg-container-color: #f5f5f5;
   // 模态框背景色
   --im-bg-dialog-color: rgba(0, 0, 0, 0.33);
+  // 滚动条颜色
+  --im-scrollbar-color: rgba(0, 0, 0, 0.3);
+  --im-scrollbar-hover-color: rgba(0, 0, 0, 0.5);
+  --im-scrollbar-track-color: rgba(0, 0, 0, 0.06);
 }
 
 // 兼容暗黑模式
@@ -155,4 +159,9 @@ body.dark {
   --im-bg-content-color: #161618;
   --im-bg-container-color: #1b1b1f;
   --im-bg-dialog-color: rgba(255, 255, 255, 0.33);
+
+  // 滚动条颜色
+  --im-scrollbar-color: rgba(255, 255, 255, 0.3);
+  --im-scrollbar-hover-color: rgba(255, 255, 255, 0.5);
+  --im-scrollbar-track-color: rgba(255, 255, 255, 0.06);
 }

@@ -97,6 +97,7 @@ export default defineConfig({
           { text: 'Alert 警告提示', link: '/alert' },
           { text: 'Drawer 抽屉', link: '/drawer' },
           { text: 'Message 消息提示', link: '/message' },
+          { text: 'Dialog 对话框', link: '/dialog' },
         ],
       },
       {

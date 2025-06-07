@@ -23,6 +23,7 @@ import ImMask from './ImMask';
 import ImDrawer from './ImDrawer';
 import ImCard from './ImCard';
 import { useImMessage } from './Message';
+import ImDialog from './ImDialog';
 // 定义组件列表
 const list = [
   ImButton,
@@ -42,6 +43,7 @@ const list = [
   ImMask,
   ImDrawer,
   ImCard,
+  ImDialog,
 ];
 
 const install = (app: App, option?: ImDesignOptions) => {
@@ -78,6 +80,7 @@ export {
   ImDrawer,
   ImCard,
   useImMessage,
+  ImDialog,
 };
 // 导出插件安装函数
 export default {

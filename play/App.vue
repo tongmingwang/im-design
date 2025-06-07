@@ -8,9 +8,10 @@
     <!-- <Dropdown /> -->
     <!-- <List /> -->
     <!-- <Avatar /> -->
-    <!-- <Drawer />
-    <Card /> -->
-    <Message />
+    <!-- <Drawer /> -->
+    <!-- <Card /> -->
+    <!-- <Message /> -->
+    <Dialog />
   </div>
 </template>
 
@@ -26,6 +27,7 @@ import Avatar from './views/Avatar.vue';
 import Drawer from './views/Drawer.vue';
 import Card from './views/Card.vue'
 import Message from './views/Message.vue'
+import Dialog from './views/Dialog.vue';
 
 </script>
 

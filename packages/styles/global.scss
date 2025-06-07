@@ -1,4 +1,4 @@
-@use './reset.scss';
+@use './reset.scss' as *;
 
 .im-ripple {
   overflow: hidden;
@@ -51,4 +51,13 @@ body {
   transition: background-color 200ms ease, transform 200ms ease,
     opacity 300ms ease;
   transform-origin: 0 0;
+}
+
+.im-shadow {
+  box-shadow: 0 8px 15px var(--im-shadow-color, rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(0 0px 5px var(--im-shadow-color, rgba(0, 0, 0, 0.1)));
+}
+
+.im-overflow-hidden {
+  overflow: hidden;
 }

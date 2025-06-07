@@ -11,7 +11,13 @@ export const fadeApi = () => {
       el.style.opacity = 0;
       el.style.transition = 'opacity 200ms ease';
       await new Promise((resolve) => requestAnimationFrame(resolve));
-      el.addEventListener('transitionend', done);
+      const handle = () => {
+        done();
+        if (el) {
+          el.removeEventListener('transitionend', handle);
+        }
+      };
+      el.addEventListener('transitionend', handle);
     },
   };
 };
@@ -60,9 +66,13 @@ export const slidTo = (placement = 'right') => {
       el.style.transition = 'transform 200ms ease, opacity 200ms ease';
       // 等待动画完成
       await new Promise((resolve) => requestAnimationFrame(resolve));
-      el.addEventListener('transitionend', () => {
+      const handle = () => {
         done();
-      });
+        if (el) {
+          el.removeEventListener('transitionend', handle);
+        }
+      };
+      el.addEventListener('transitionend', handle, { passive: true });
     },
   };
 };
