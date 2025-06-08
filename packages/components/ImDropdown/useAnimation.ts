@@ -25,10 +25,12 @@ export const useAnimation = (placement: string) => {
     el.style.transform = transformValue;
     el.style.opacity = '0';
     el.getBoundingClientRect();
+    el.style.pointerEvents = 'none';
     const leaveHandle = () => {
       done();
       if (el) {
         el.style.transform = 'translateY(0px)';
+        el.style.pointerEvents = 'auto';
       }
       el.removeEventListener('transitionend', leaveHandle);
     };

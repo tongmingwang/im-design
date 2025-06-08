@@ -55,15 +55,16 @@
           Child
         </ImButton>
       </ImCard>
+      <ImDialog v-model="child">
+        <ImCard borderless title="Child">
+          <div>text ...</div>
+          <div>text ...</div>
+        </ImCard>
+      </ImDialog>
     </ImDialog>
     <ImButton @click="parent = true">Parent</ImButton>
 
-    <ImDialog v-model="child">
-      <ImCard borderless>
-        <div>text ...</div>
-        <div>text ...</div>
-      </ImCard>
-    </ImDialog>
+
   </div>
 </template>
 

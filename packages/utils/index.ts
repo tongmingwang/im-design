@@ -43,3 +43,18 @@ export const isInRange = (
     y <= rect.top + rect.height
   );
 };
+
+// 判断一个数据是否是百分比字符串还是数字还是带有单位字符串
+const suffixes = ['%', 'px', 'em', 'rem', 'vh', 'vw', 'vmin', 'vmax'];
+export const getSizeValue = (value: string | number): string => {
+  if (typeof value === 'number') return `${value}px`;
+  const str = String(value);
+  // 判断% px em rem vh vw vmin vmax 等单位字符串
+  return value
+    ? suffixes.some((suffix) => {
+        return str.includes(suffix);
+      })
+      ? str
+      : `${value}px`
+    : '';
+};

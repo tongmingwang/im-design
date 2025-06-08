@@ -2,7 +2,7 @@
   <span :class="[bem.b()]" ref="dropdownRef">
     <slot />
     <Teleport to="body">
-      <Transition @enter="animation.onEnter" @leave="animation.onLeave" :duration="{ enter: 300, leave: 200 }">
+      <Transition @enter="animation.onEnter" @leave="animation.onLeave" :duration="{ enter: 200, leave: 200 }">
         <div :class="[bem.e('content')]" v-show="visible" ref="contentRef" :style="{
           zIndex: props.zIndex || zIndexToken
         }">
@@ -50,7 +50,7 @@ const visible = ref(props.modelValue || false);
 const animation = useAnimation(props.placement?.includes('top') ? 'top' : 'bottom')
 
 let unbind: (() => void) | null = null;
-let delay: number = 100
+let delay: number = 60
 const { x, y } = useMouse(30)
 const { zIndexToken } = useToken()
 // 计算位置信息
@@ -79,20 +79,25 @@ watch(() => [x.value, y.value], () => {
   onMouseLeave()
 })
 
+
 function setShow() {
   visible.value = true;
   emit('update:modelValue', visible.value);
   emit('change', visible.value);
   // 不支持滚动
-  window.addEventListener('scroll', setClose, { passive: true, capture: true })
+  window.addEventListener('scroll', scrollHandle, { passive: true, capture: true })
 }
 function setClose() {
   visible.value = false;
   emit('update:modelValue', visible.value);
   emit('change', visible.value);
-  window.removeEventListener('scroll', close)
+  window.removeEventListener('scroll', scrollHandle)
 }
 
+function scrollHandle(e: Event) {
+  if (contentRef.value?.contains(e.target as Node)) return;
+  setClose()
+}
 
 function bindEvent() {
   unbind && unbind();
@@ -125,6 +130,8 @@ function bindEvent() {
       document.removeEventListener('click', handClickClose);
     }
   }
+
+
   return null
 }
 </script>

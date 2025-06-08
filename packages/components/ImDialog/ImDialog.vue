@@ -1,19 +1,21 @@
 <template>
   <Teleport to="body">
     <div aria-modal="true" :class="[bem.b()]" tabindex="-1" :data-visible="props.modelValue"
-      :data-esc="props.closeOnEscape" ref="dialogRef">
-      <ImMask :closeOnClickMask="props.closeOnClickMask" :visible="props.modelValue"
-        @close="() => emit('update:modelValue', false)" />
+      :data-esc="props.closeOnEscape" ref="dialogRef" :style="{
+        zIndex: props.zIndex || zIndexToken,
+      }">
+      <ImMask v-if="props.mask && !props.fullscreen" :closeOnClickMask="props.closeOnClickMask"
+        :visible="props.modelValue" @close="() => emit('update:modelValue', false)" />
       <Transition @enter="onEnter" :duration="{ enter: 200, leave: 200 }" @leave="onLeave">
         <div v-show="props.modelValue" :class="[
           bem.e('content'),
           bem.is('fullscreen', props.fullscreen),
           'im-shadow',
         ]" :style="{
-            maxWidth: props.width,
-            width: props.width,
-            height: props.height,
-          }">
+          maxWidth: props.width,
+          width: props.width,
+          height: props.height,
+        }">
           <slot />
         </div>
       </Transition>
@@ -25,6 +27,7 @@
 import { useBem } from '@/utils/bem';
 import ImMask from '../ImMask';
 import { watch, ref } from 'vue';
+import { useToken } from '@/hooks/useToken';
 
 defineOptions({ name: 'ImDialog' });
 const bem = useBem('dialog');
@@ -37,6 +40,8 @@ const props = withDefaults(
     height?: string;
     fullscreen?: boolean;
     closeOnEscape?: boolean;
+    mask?: boolean;
+    zIndex?: number;
   }>(),
   {
     modelValue: false,
@@ -45,9 +50,12 @@ const props = withDefaults(
     height: 'auto',
     fullscreen: false,
     closeOnEscape: true,
+    mask: true,
+    zIndex: 1000
   }
 );
 const dialogRef = ref<HTMLElement | null>(null);
+const { zIndexToken } = useToken()
 
 watch(
   () => props.modelValue,

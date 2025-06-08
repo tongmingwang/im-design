@@ -80,6 +80,10 @@ export default defineConfig({
             text: 'Dropdown 下拉菜单',
             link: '/dropdown',
           },
+          {
+            text: 'Pagination 分页',
+            link: '/pagination',
+          },
         ],
       },
       {
@@ -89,6 +93,7 @@ export default defineConfig({
             text: 'Input 输入框',
             link: '/input',
           },
+          { text: 'Select 选择器', link: '/select' },
         ],
       },
       {

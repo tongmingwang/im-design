@@ -11,7 +11,8 @@
     <!-- <Drawer /> -->
     <!-- <Card /> -->
     <!-- <Message /> -->
-    <Dialog />
+    <!-- <Dialog /> -->
+    <Pagination />
   </div>
 </template>
 
@@ -28,6 +29,7 @@ import Drawer from './views/Drawer.vue';
 import Card from './views/Card.vue'
 import Message from './views/Message.vue'
 import Dialog from './views/Dialog.vue';
+import Pagination from './views/Pagination.vue';
 
 </script>
 
