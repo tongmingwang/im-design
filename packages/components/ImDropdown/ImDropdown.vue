@@ -3,7 +3,7 @@
     <slot />
     <Teleport to="body">
       <Transition @enter="animation.onEnter" @leave="animation.onLeave" :duration="{ enter: 200, leave: 200 }">
-        <div :class="[bem.e('content')]" v-show="visible" ref="contentRef" :style="{
+        <div :class="[bem.e('content'), 'im-shadow']" v-show="visible" ref="contentRef" :style="{
           zIndex: props.zIndex || zIndexToken
         }">
           <slot name="content" />
@@ -144,5 +144,18 @@ function bindEvent() {
     cursor: pointer;
     margin: 0;
     padding: 0;
+  }
+</style>
+
+<style lang="scss">
+
+  .im-dropdown__content {
+    display: inline-flex;
+    position: fixed;
+    background-color: var(--im-bg-container-color);
+    border-radius: var(--im-radius, 4px);
+    overflow: hidden;
+    transition: background-color 200ms ease, transform 200ms ease,
+      opacity 200ms ease;
   }
 </style>

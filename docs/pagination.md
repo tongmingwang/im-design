@@ -16,8 +16,8 @@ layout="prev,next,pager"
 <script setup >
 import { ref } from 'vue';
 
-const pageNumber = ref(10);
-const pageSize = ref(10);
+const pageNumber = ref(1);
+const pageSize = ref(30);
 
 const onChange = (data) => {
   console.log(data);

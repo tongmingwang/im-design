@@ -1,5 +1,5 @@
 <template>
-  <div style="width:500px">
+  <div>
     <ImPagination :total="600" :pageNumber="pageNumber" :pageSize="pageSize" @change="onChange" />
     <ImPagination layout="prev,next,pager" :total="600" size="28" :pageNumber="pageNumber" :pageSize="pageSize"
       @change="onChange" />

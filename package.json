@@ -13,7 +13,7 @@
     "build:types": "vue-tsc --declaration --emitDeclarationOnly --outDir types"
   },
   "dependencies": {
-    "im-design": "^0.0.32",
+    "im-design": "^0.0.37",
     "sass": "^1.89.0",
     "vite-svg-loader": "^5.1.0",
     "vue": "^3.5.13"

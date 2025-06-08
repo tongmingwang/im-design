@@ -39,22 +39,9 @@ body {
   vertical-align: middle;
 }
 
-.im-dropdown__content {
-  box-shadow: 0 5px 12px 1px var(--im-shadow-color, rgba(0, 0, 0, 0.1));
-  filter: drop-shadow(0 1px 5px var(--im-shadow-color, rgba(0, 0, 0, 0.1)));
-  display: inline-flex;
-  position: fixed;
-  background-color: var(--im-bg-container-color);
-  border-radius: var(--im-radius, 4px);
-  overflow: hidden;
-  transition: background-color 200ms ease, transform 200ms ease,
-    opacity 200ms ease;
-  transform-origin: 0 0;
-}
-
 .im-shadow {
-  box-shadow: 0 5px 12px var(--im-shadow-color, rgba(0, 0, 0, 0.1));
-  filter: drop-shadow(0 0px 5px var(--im-shadow-color, rgba(0, 0, 0, 0.1)));
+  box-shadow: 0 5px 15px var(--im-shadow-color, rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(0 0px 2px var(--im-shadow-color, rgba(0, 0, 0, 0.1)));
 }
 
 .im-overflow-hidden {

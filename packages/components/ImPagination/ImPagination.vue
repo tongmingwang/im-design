@@ -89,7 +89,7 @@ watch(() => sizeValue.value, (val) => {
 })
 watch(() => [props.pageNumber, props.pageSize], () => {
   sizeValue.value = props.pageSize
-  updatePager(props.pageNumber)
+  updatePager(totalPage.value < props.pageNumber ? totalPage.value : props.pageNumber)
 }, { immediate: true })
 
 // 当前页码变化时，更新页面
@@ -306,7 +306,7 @@ function onPrevGroup() {
       align-items: center;
       justify-content: space-between;
       margin-left: 24px;
-      min-width: 120px;
+      width: 100px;
     }
   }
 

@@ -12,7 +12,8 @@
     <!-- <Card /> -->
     <!-- <Message /> -->
     <!-- <Dialog /> -->
-    <Pagination />
+    <!-- <Pagination /> -->
+    <Select />
   </div>
 </template>
 
@@ -30,6 +31,7 @@ import Card from './views/Card.vue'
 import Message from './views/Message.vue'
 import Dialog from './views/Dialog.vue';
 import Pagination from './views/Pagination.vue';
+import Select from './views/Select.vue'
 
 </script>
 

@@ -3,62 +3,63 @@
     '--im-select-width': width,
     '--im-select-height': height,
   }">
-    <label :class="[bem.e('trigger')]" ref="triggerRef">
-      <input :class="[bem.e('input')]" ref="inputRef" :value="label" readonly type="text" placeholder="请选择"
-        @focus="onFocus" @blur="onBlur">
-      <div :class="[bem.e('icon')]">
-        <slot name="rightIcon">
+    <div @click="onClickTrigger" :class="[bem.e('trigger'), bem.is('open', show)]" ref="triggerRef" tabindex="-1">
+      <input :class="[bem.e('input')]" ref="inputRef" tabindex="-1" :value="label" readonly type="text"
+        :placeholder="props.placeholder">
+      <span :class="[bem.e('icon-down'), bem.is('rotate', show)]">
+        <slot name="downIcon">
           <ImIcon name="down" size="12" />
         </slot>
-      </div>
-    </label>
-    <Teleport to="body">
-      <Transition name="select">
-        <ul :class="[bem.e('list'), 'im-shadow']" v-show="show" :style="contentStyle" ref="listRef">
-          <li @click="() => onSelectItem(item.value)"
-            :class="[bem.e('option'), bem.is('active', item.value === props.modelValue)]" v-ripple="true"
-            v-for="(item, index) in props.options" :key="item.value || index">
-            {{ item.label || item.value }}
-          </li>
-        </ul>
-      </Transition>
-    </Teleport>
+      </span>
+      <span :class="[bem.e('clear-icon')]" v-if="props.allowClear && label" @click="onClearValue">
+        <slot name="clearIcon">
+          <ImIcon name="close-circle-fill" size="18" />
+        </slot>
+      </span>
+    </div>
+    <ImLayer :visible="show" :getTarget="() => triggerRef" :z-index="props.zIndex">
+      <ul :class="[bem.e('list')]" ref="listRef">
+        <li @click="() => !item.disabled && onSelectItem(item.value)"
+          :class="[bem.e('option'), bem.is('disabled', !!item.disabled), bem.is('active', item.value === props.modelValue)]"
+          v-ripple="!item.disabled" v-for="(item, index) in props.options" :key="item.value || index">
+          {{ item.label || item.value }}
+        </li>
+      </ul>
+    </ImLayer>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useBem } from '@/utils/bem';
 import ImIcon from '../ImIcon';
-import { ref, computed, reactive } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { getSizeValue } from '@/utils'
 import { useToken } from '@/hooks/useToken';
+import ImLayer from '../Common/ImLayer.vue';
 
 defineOptions({ name: 'ImSelect' })
 const bem = useBem('select')
 const emit = defineEmits(['update:modelValue'])
 const props = withDefaults(defineProps<{
   modelValue?: string | number;
-  options: Array<{ label: string | number; value: string | number }>;
+  options: Array<{ label: string | number; value: string | number, disabled?: boolean | undefined }>;
   width?: string | number;
-  size?: string | number
+  size?: string | number;
+  placeholder?: string;
+  allowClear?: boolean;
+  zIndex?: number;
 }>(), {
   modelValue: '',
   options: () => [],
   width: '',
-  size: ''
+  allowClear: false,
+  placeholder: ''
 })
 const { sizeToken } = useToken()
 const show = ref(false)
-const contentStyle = reactive({
-  minWidth: '',
-  top: '',
-  left: ''
-})
 const triggerRef = ref<HTMLDivElement | null>(null)
 const listRef = ref<HTMLUListElement | null>(null)
 const inputRef = ref<HTMLInputElement | null>(null)
-let timer: any = null
-
 
 const width = computed(() => {
   return getSizeValue(props.width)
@@ -70,74 +71,65 @@ const label = computed(() => {
   return props.options.find(item => item.value === props.modelValue)?.label || ''
 })
 
+watch(() => show.value, (val) => {
+  document.removeEventListener('click', hideSelect, { capture: true })
+  if (val) {
+    document.addEventListener('click', hideSelect, { capture: true })
+  } else {
+    window.removeEventListener('scroll', scrollHandle, { capture: true })
+  }
+})
+
+function scrollHandle(e: Event) {
+  if (listRef.value?.contains(e.target as HTMLElement) || listRef.value === e.target as Node) {
+    return
+  }
+  show.value = false
+}
 
 function hideSelect(e: Event) {
-  // 滚动事件不是当前下拉菜单的子元素，则隐藏下拉菜单
-  if (!listRef.value?.contains(e.target as Node)) {
-    inputRef.value?.blur()
+  if (triggerRef.value?.contains(e.target as Node) || triggerRef.value === e.target || e.target === listRef.value) {
+    return
   }
+  show.value = false
 }
-
 // 聚焦事件处理函数
-async function onFocus() {
-  const rect = triggerRef.value?.getBoundingClientRect()
-  const screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
-
-  contentStyle.top = `${rect?.bottom}px`
-  contentStyle.minWidth = `${rect?.width}px`
-  contentStyle.left = `${rect?.left}px`
+async function onClickTrigger() {
+  if (show.value) return;
   show.value = true
-  timer && clearTimeout(timer)
-  timer = null
-  // 监听滚动的时候隐藏下拉菜单
-  window.addEventListener('scroll', hideSelect, { passive: true, capture: true })
-  // 找到激活的选项并滚动到视图中
-  const activeOption = listRef.value?.querySelector(`.${bem.is('active', true)}`)
   await new Promise(resolve => requestAnimationFrame(resolve))
-  console.log(rect?.bottom!, listRef.value!.offsetHeight);
-  const listHeight = listRef.value!.offsetHeight
-  // 判断下拉菜单是否超出视口，如果超出则调整位置
-  if (rect?.bottom! + listHeight > screenHeight) {
-    contentStyle.top = `${screenHeight - listHeight}px`
-  }
-  if (activeOption) {
-    activeOption.scrollIntoView({ behavior: 'instant', block: 'nearest' })
-  }
+  const activeOption = listRef.value?.querySelector(`.${bem.is('active', true)}`)
+  activeOption && activeOption.scrollIntoView({ behavior: 'instant', block: 'nearest' })
+  await new Promise(resolve => requestAnimationFrame(resolve))
+  window.addEventListener('scroll', scrollHandle, { capture: true })
 }
-
-function onBlur() {
-  timer && clearTimeout(timer)
-  timer = setTimeout(() => {
-    show.value = false
-    window.removeEventListener('scroll', hideSelect)
-    timer = null
-  }, 150)
-
-}
-
 function onSelectItem(value: string | number) {
   emit('update:modelValue', value)
+}
+// 点击清除按钮
+function onClearValue(e: Event) {
+  e.preventDefault();
+  e.stopPropagation();
+  emit('update:modelValue', '')
 }
 </script>
 
 <style scoped lang="scss">
+  @keyframes icon-fade {
+    from {
+      opacity: 0;
+      transform: scale(0.33);
+    }
 
-  // 动画效果
-  .select-enter-active,
-  .select-leave-active {
-    transition: all 0.2s ease;
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 
-  .select-enter-from,
-  .select-leave-to {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-
-  // 编写组件基础样式
   .im-select {
     display: inline-flex;
-    width: var(--im-select-width, 100%);
+    width: var(--im-select-width, 200px);
 
     .im-select__trigger {
       display: flex;
@@ -154,9 +146,15 @@ function onSelectItem(value: string | number) {
       overflow: hidden;
       cursor: pointer;
       transition: all 0.2s ease;
+      position: relative;
+      background-color: var(--im-bg-content-color);
 
       &:hover {
         border-color: var(--im-primary-color-8);
+
+        .im-select__clear-icon {
+          display: inline-flex;
+        }
       }
 
       &:focus-within {
@@ -173,23 +171,50 @@ function onSelectItem(value: string | number) {
       font-size: 14px;
     }
 
-    .im-select__icon {
+    .im-select__icon-down {
       min-width: max-content;
       margin-left: 8px;
+      color: var(--im-gray-color-6);
+      pointer-events: none;
+      transition: transform 200ms ease;
+
+      &.is-rotate {
+        transform: rotate(180deg);
+      }
+    }
+
+    .im-select__clear-icon {
+      min-width: max-content;
+      color: var(--im-gray-color-6);
+      position: absolute;
+      right: 10px;
+      top: 0;
+      height: 100%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      height: 100%;
+      z-index: 1;
+      background-color: var(--im-bg-content-color);
+      transition: color 200ms ease;
+      animation: icon-fade 200ms ease;
+
+      &:hover {
+        color: var(--im-gray-color-8);
+      }
     }
   }
 </style>
 <style lang="scss">
   .im-select__list {
-    position: fixed;
-    z-index: 1000;
     background-color: var(--im-bg-content-color);
     list-style: none;
-    padding: 4px 0;
+    padding: 0;
     margin: 0;
-    border-radius: var(--im-radius, 4px);
+    box-sizing: border-box;
+    overflow: auto;
     max-height: 320px;
-    overflow-y: auto;
 
     .im-select__option {
       padding: 0 12px;
@@ -203,6 +228,8 @@ function onSelectItem(value: string | number) {
       color: var(--im-gray-color-10);
       transition: all 0.2s ease;
       min-width: max-content;
+      margin: 0;
+
 
       &:hover {
         background-color: var(--im-rgb-color-1);
@@ -210,7 +237,13 @@ function onSelectItem(value: string | number) {
 
       &.is-active {
         background-color: var(--im-primary-color-1);
-        color: var(--im-primary-color-8)
+        color: var(--im-primary-color-8);
+        font-weight: 600;
+      }
+
+      &.is-disabled {
+        pointer-events: none;
+        color: var(--im-gray-color-6);
       }
     }
   }
