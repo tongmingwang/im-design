@@ -4,29 +4,72 @@
 
 ## 基础用法
 
-Dialog 弹出一个对话框，适合需要定制性更大的场景。
+Dialog 默认从底部弹出居中显示。
 
 <script setup>
 import { ref } from 'vue'
 
 const open = ref(false)
+const open2 = ref(false)
 const fullShow = ref(false)
 const parent = ref(false)
 const child = ref(false)
+const getTarget = () => {
+  return document.getElementById('trigger-id')
+}
 </script>
 
+<style scoped>
+.demo {
+  background-color: var(--im-primary-color-10);
+  padding: 20px;
+  border-radius: 4px;
+  color: #fff;
+  margin-bottom: 14px;
+}
+</style>
+
 <ImDialog v-model="open">
-    <ImCard title="Title 标题"> 这里是内容区域 </ImCard>
+    <ImCard title="Dialog Title"> <div class="demo">Hello World</div> </ImCard>
 </ImDialog>
-  <ImButton @click="open = true">打开对话框</ImButton>
+  <ImButton @click="open = true">Oen Dialog</ImButton>
 
 ```vue
 <template>
   <ImDialog v-model="open">
-    <ImCard title="Title 标题"> 这里是内容区域 </ImCard>
+    <ImCard title="Dialog Title"> <div class="demo">Hello World</div> </ImCard>
   </ImDialog>
-  <ImButton @click="open = true">打开对话框</ImButton>
+  <ImButton @click="open = true">Oen Dialog</ImButton>
 </template>
+```
+
+## 触发器打开
+
+需要传一个 `getTarget` 函数，该函数的返回值是触发器元素。
+
+<ImDialog v-model="open2" :getTarget="getTarget">
+  <ImCard title="Dialog">
+    <div class="demo">Hello World</div>
+  </ImCard>
+</ImDialog>
+<ImButton @click="open2 = true" id="trigger-id">Open Dialog2</ImButton>
+
+```vue
+<template>
+  <ImDialog v-model="open2" :getTarget="getTarget">
+    <ImCard title="Dialog">
+      <div class="demo">Hello World</div>
+    </ImCard>
+  </ImDialog>
+  <ImButton @click="open2 = true" id="trigger-id">Open Dialog2</ImButton>
+</template>
+
+<script setup>
+const open2 = ref(false);
+const getTarget = () => {
+  return document.getElementById('trigger-id');
+};
+</script>
 ```
 
 ## 全屏对话框
@@ -34,7 +77,7 @@ const child = ref(false)
 使用 fullscreen 属性可以让对话框的内容区全屏显示。
 
 <ImDialog v-model="fullShow" fullscreen>
-    <ImCard title="Title 标题" borderless>
+    <ImCard title="Dialog Title" borderless>
       <template #header-action>
         <ImButton
           size="48"
@@ -44,7 +87,9 @@ const child = ref(false)
           <ImIcon name="close" size="22" />
         </ImButton>
       </template>
-      这里是内容区域
+      <div style="height: 100%;" class="demo">
+        这里是内容区域
+      </div>
     </ImCard>
   </ImDialog>
 <ImButton @click="fullShow = true">打开全屏对话框</ImButton>
@@ -52,7 +97,7 @@ const child = ref(false)
 ```vue
 <template>
   <ImDialog v-model="fullShow" fullscreen>
-    <ImCard title="Title 标题" borderless>
+    <ImCard title="Dialog Title" borderless>
       <template #header-action>
         <ImButton
           size="48"
@@ -62,7 +107,7 @@ const child = ref(false)
           <ImIcon name="close" size="22" />
         </ImButton>
       </template>
-      这里是内容区域
+      <div style="height: 100%;" class="demo">这里是内容区域</div>
     </ImCard>
   </ImDialog>
   <ImButton @click="fullShow = true">打开全屏对话框</ImButton>
@@ -72,14 +117,15 @@ const child = ref(false)
 ## 嵌套使用
 
 <ImDialog v-model="parent">
-    <ImCard title="Parent 父层级">
-      这里是内容区域
-      <div style="padding: 8px">
+    <ImCard title="Parent Dialog">
+      <div class="demo">这里是内容区域</div>
       <ImButton @click="child = true">打开子级对话框</ImButton>
-      </div>
     </ImCard>
     <ImDialog v-model="child" >
-      <ImCard title="Title 标题"> 这里是内容区域 </ImCard>
+      <ImCard title="Child Dialog "> 
+        <div class="demo">这里是内容区域</div>
+        <div class="demo">这里是内容区域</div>
+       </ImCard>
     </ImDialog>
   </ImDialog>
 <ImButton @click="parent = true">打开父级对话框</ImButton>
@@ -102,7 +148,7 @@ const child = ref(false)
     这里是内容区域
     <ImButton @click="child = true">打开子级对话框</ImButton>
     <ImDialog v-model="child" parent>
-      <ImCard title="Title 标题"> 这里是内容区域 </ImCard>
+      <ImCard title="Dialog Title"> 这里是内容区域 </ImCard>
     </ImDialog>
   </ImDialog>
   <ImButton @click="parent = true">打开父级对话框</ImButton>
