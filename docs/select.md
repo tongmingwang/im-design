@@ -9,7 +9,7 @@
 <script setup >
 import { ref } from 'vue'
 const val = ref('')
-const options = new Array(4).fill().map((_, index) => ({ value: `${index}`, label: `选项 ${index} ` }))
+const options = new Array(4).fill().map((_, index) => ({ value: `${index}`, label: `Item ${index} ` }))
 </script>
 
 <ImSelect :options="options" v-model="val" />
@@ -24,7 +24,7 @@ import { ref } from 'vue';
 const val = ref('');
 const options = new Array(4)
   .fill()
-  .map((_, index) => ({ value: `${index}`, label: `选项 ${index} ` }));
+  .map((_, index) => ({ value: `${index}`, label: `Item ${index} ` }));
 </script>
 ```
 
@@ -32,9 +32,37 @@ const options = new Array(4)
 
 设置 width 为一个 css 样式值或者数字，单位默认为 px。
 
-<ImSelect :options="options" v-model="val" width="200" />
+<ImSelect :options="options" v-model="val" width="300" placeholder="选择试试" />
 
 ## 设置尺寸
 
 设置 `size` 为数字，默认为 36。
-<ImSelect :options="options" v-model="val" size="28" />
+<ImSelect :options="options" v-model="val" size="40" />
+
+## 多选模式
+
+设置 `multiple` 为 true，开启多选模式。
+
+<ImSelect :options="options" v-model="val" multiple placeholder="选择多个试试" />
+
+设置 `maxTag` 最多显示的选项数量，默认为 1。
+
+<ImSelect :options="options" v-model="val" multiple maxTag="2" width="280" />
+
+## 禁用状态
+
+设置 `disabled` 为 true，禁用选择器。
+
+<ImSelect :options="options" v-model="val" disabled />
+
+## 清空选中
+
+设置 `clearable` 为 true，开启清空选中功能。
+
+<ImSelect :options="options" v-model="val" clearable />
+
+## 隐藏箭头
+
+设置 `arrow` 为 false，隐藏下拉箭头。
+
+<ImSelect :options="options" v-model="val" :arrow="false" />

@@ -1,17 +1,29 @@
 # Dropdown 下拉菜单
 
-当页面上的操作命令过多时，用此组件可以收纳操作元素。点击或移入触点，会出现一个下拉菜单。可在列表中进行选择，并执行相应的命令。
+页面上的操作命令过多时，用此组件可以收纳操作元素。
 
 ## 基本用法
 
-最简单的下拉菜单。
+默认下拉菜单，鼠标移入则显示下拉菜单。
+
+<script setup>
+import { ref } from 'vue'
+
+const selected = ref('1')
+const list = [
+  '三国演义',
+  '水浒传',
+  '西游记',
+  '红楼梦',
+]
+</script>
 
  <ImDropdown>
-    <ImButton variant="text" color="primary">Hover Me</ImButton>
+    <ImButton >鼠标移入试试</ImButton>
     <template #content>
       <ImList>
-        <ImListItem :value="String(item)" v-for="item in 3"
-          >Menu Item Index {{ item }}</ImListItem
+        <ImListItem :value="item" v-for="item in list"
+          >{{ item }}</ImListItem
         >
       </ImList>
     </template>
@@ -20,29 +32,41 @@
 ```vue
 <template>
   <ImDropdown>
-    <ImButton variant="text" color="primary">Hover Me</ImButton>
+    <ImButton>鼠标移入试试</ImButton>
     <template #content>
       <ImList>
-        <ImListItem :value="String(item)" v-for="item in 3"
-          >Menu Item Index {{ item }}</ImListItem
-        >
+        <ImListItem :value="item" v-for="item in list">{{ item }}</ImListItem>
       </ImList>
     </template>
   </ImDropdown>
 </template>
+
+<script setup>
+import { ref } from 'vue';
+
+const selected = ref('1');
+const list = ['三国演义', '水浒传', '西游记', '红楼梦'];
+</script>
 ```
 
 ## 触发方式
 
-下拉菜单可以被触发的方式有两种：`click` 和 `hover`。通过设置 `trigger` 属性来设置触发方式。默认为 `hover`。
+通过设置 `trigger` 属性来定义触发下拉菜单的行为，默认为 `hover`。
 
-<ImDropdown trigger="click">
-    <ImButton variant="outlined" color="primary">Click Me</ImButton>
+<ImDropdown style="margin-right:8px">
+    <ImButton>鼠标移入试试</ImButton>
     <template #content>
       <ImList>
-        <ImListItem :value="String(item)" v-for="item in 3"
-          >Menu Item Index {{ item }}</ImListItem
-        >
+        <ImListItem :value="item" v-for="item in list">{{ item }}</ImListItem>
+      </ImList>
+    </template>
+  </ImDropdown>
+
+<ImDropdown trigger="click">
+    <ImButton>点击试试</ImButton>
+    <template #content>
+      <ImList>
+        <ImListItem :value="item" v-for="item in list">{{ item }}</ImListItem>
       </ImList>
     </template>
   </ImDropdown>
@@ -52,42 +76,35 @@
 通过设置 `placement` 属性来设置下拉菜单出现的位置。默认为 `bottom-left`。
 
 <ImRow gutter="8">
-  <ImDropdown placement="topLeft">
-    <ImButton  color="primary" width="120px">topLeft</ImButton>
+  <ImDropdown placement="top-left">
+    <ImButton  color="primary">top-left</ImButton>
     <template #content>
       <ImList>
-        <ImListItem :value="String(item)" v-for="item in 3"
-          >Menu Item Index {{ item }}</ImListItem
-        >
+        <ImListItem :value="item" v-for="item in list">{{ item }}</ImListItem>
       </ImList>
     </template>
 </ImDropdown>
 <ImDropdown placement="top">
-    <ImButton  color="primary" width="120px">top</ImButton>
+    <ImButton  color="primary">top</ImButton>
     <template #content>
       <ImList>
-        <ImListItem :value="String(item)" v-for="item in 3"
-          >Menu Item Index {{ item }}</ImListItem
-        >
+        <ImListItem :value="item" v-for="item in list">{{ item }}</ImListItem>
       </ImList>
     </template>
 </ImDropdown>
-<ImDropdown placement="topRight">
-    <ImButton  color="primary" width="120px">topRight</ImButton>
+<ImDropdown placement="top-right">
+    <ImButton  color="primary">top-right</ImButton>
     <template #content>
       <ImList>
-        <ImListItem :value="String(item)" v-for="item in 3"
-          >Menu Item Index {{ item }}</ImListItem
-        >
+        <ImListItem :value="item" v-for="item in list">{{ item }}</ImListItem>
       </ImList>
     </template>
 </ImDropdown>
 </ImRow>
 <br />
-
 <ImRow gutter="8">
-  <ImDropdown placement="bottomLeft">
-    <ImButton  color="primary" width="120px">bottomLeft</ImButton>
+  <ImDropdown placement="bottom-left">
+    <ImButton  color="primary">bottom-left</ImButton>
     <template #content>
       <ImList>
         <ImListItem :value="String(item)" v-for="item in 3"
@@ -97,7 +114,7 @@
     </template>
 </ImDropdown>
 <ImDropdown placement="bottom">
-    <ImButton  color="primary" width="120px">bottom</ImButton>
+    <ImButton  color="primary">bottom</ImButton>
     <template #content>
       <ImList>
         <ImListItem :value="String(item)" v-for="item in 3"
@@ -106,8 +123,8 @@
       </ImList>
     </template>
 </ImDropdown>
-<ImDropdown placement="bottomRight">
-    <ImButton  color="primary" width="120px">bottomRight</ImButton>
+<ImDropdown placement="bottom-right">
+    <ImButton  color="primary">bottom-right</ImButton>
     <template #content>
       <ImList>
         <ImListItem :value="String(item)" v-for="item in 3"
@@ -118,7 +135,7 @@
 </ImDropdown>
 </ImRow>
 
-## 选择菜单
+## 支持选中
 
 下拉菜单支持选择模式，只需要设置 v-model 和对应的 value 即可。
 
@@ -132,12 +149,6 @@
       </ImList>
     </template>
 </ImDropdown>
-
-<script setup>
-import { ref } from 'vue'
-
-const selected = ref('1')
-</script>
 
 ```vue
 <template>
@@ -158,3 +169,27 @@ import { ref } from 'vue';
 const selected = ref('1');
 </script>
 ```
+
+## 箭头
+
+通过设置 `arrow` 属性来控制是否显示下拉菜单的箭头。默认为 true。
+
+<ImDropdown arrow style="margin-right:8px;">
+    <ImButton  color="primary">有箭头</ImButton>
+    <template #content>
+      <ImList>
+        <ImListItem :value="item" v-for="item in list">{{ item }}</ImListItem>
+      </ImList>
+    </template>
+</ImDropdown>
+
+<ImDropdown :arrow="false">
+    <ImButton  color="primary">无箭头</ImButton>
+    <template #content>
+      <ImList>
+        <ImListItem :value="item" v-for="item in list">{{ item }}</ImListItem>
+      </ImList>
+    </template>
+</ImDropdown>
+
+## API

@@ -21,23 +21,38 @@ const getTarget = () => {
 
 <style scoped>
 .demo {
-  background-color: var(--im-primary-color-10);
-  padding: 20px;
+  padding: 24px;
   border-radius: 4px;
-  color: #fff;
   margin-bottom: 14px;
+  background-color: var(--im-primary-color-2);
 }
 </style>
 
-<ImDialog v-model="open">
-    <ImCard title="Dialog Title"> <div class="demo">Hello World</div> </ImCard>
-</ImDialog>
+ <ImDialog v-model="open">
+    <ImCard title="Dialog Title">
+      <div>Text...</div>
+      <div>Text...</div>
+      <div>Text...</div>
+    </ImCard>
+    <footer style="padding:8px;;display:flex;gap:8px;justify-content:flex-end">
+      <ImButton @click="open = false">Cancel</ImButton>
+      <ImButton @click="open = false">Confirm</ImButton>
+    </footer>
+  </ImDialog>
   <ImButton @click="open = true">Oen Dialog</ImButton>
 
 ```vue
 <template>
   <ImDialog v-model="open">
-    <ImCard title="Dialog Title"> <div class="demo">Hello World</div> </ImCard>
+    <ImCard title="Dialog Title">
+      <div>Text...</div>
+      <div>Text...</div>
+      <div>Text...</div>
+    </ImCard>
+    <footer>
+      <ImButton @click="open = false">Cancel</ImButton>
+      <ImButton @click="open = false">Confirm</ImButton>
+    </footer>
   </ImDialog>
   <ImButton @click="open = true">Oen Dialog</ImButton>
 </template>
@@ -49,7 +64,10 @@ const getTarget = () => {
 
 <ImDialog v-model="open2" :getTarget="getTarget">
   <ImCard title="Dialog">
-    <div class="demo">Hello World</div>
+    <div class="demo">
+     <div>Text...</div>
+      <div>Text...</div>
+      <div>Text...</div></div>
   </ImCard>
 </ImDialog>
 <ImButton @click="open2 = true" id="trigger-id">Open Dialog2</ImButton>
@@ -58,7 +76,11 @@ const getTarget = () => {
 <template>
   <ImDialog v-model="open2" :getTarget="getTarget">
     <ImCard title="Dialog">
-      <div class="demo">Hello World</div>
+      <div class="demo">
+        <div>Text...</div>
+        <div>Text...</div>
+        <div>Text...</div>
+      </div>
     </ImCard>
   </ImDialog>
   <ImButton @click="open2 = true" id="trigger-id">Open Dialog2</ImButton>
@@ -88,7 +110,9 @@ const getTarget = () => {
         </ImButton>
       </template>
       <div style="height: 100%;" class="demo">
-        这里是内容区域
+        <div>Text...</div>
+        <div>Text...</div>
+        <div>Text...</div>
       </div>
     </ImCard>
   </ImDialog>
@@ -107,7 +131,11 @@ const getTarget = () => {
           <ImIcon name="close" size="22" />
         </ImButton>
       </template>
-      <div style="height: 100%;" class="demo">这里是内容区域</div>
+      <div style="height: 100%;" class="demo">
+        <div>Text...</div>
+        <div>Text...</div>
+        <div>Text...</div>
+      </div>
     </ImCard>
   </ImDialog>
   <ImButton @click="fullShow = true">打开全屏对话框</ImButton>
