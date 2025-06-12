@@ -66,3 +66,9 @@ const options = new Array(4)
 设置 `arrow` 为 false，隐藏下拉箭头。
 
 <ImSelect :options="options" v-model="val" :arrow="false" />
+
+## 滚动关闭
+
+设置 `scrollClose` 属性为 true,即可实现
+
+<ImSelect :options="options" v-model="val" scrollClose />

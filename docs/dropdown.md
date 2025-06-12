@@ -192,4 +192,17 @@ const selected = ref('1');
     </template>
 </ImDropdown>
 
+## 滚动关闭
+
+设置 `scrollClose` 属性为 true,即可实现
+
+<ImDropdown trigger="click" scrollClose>
+    <ImButton  color="primary">滚动其他隐藏我</ImButton>
+    <template #content>
+      <ImList>
+        <ImListItem :value="item" v-for="item in list">{{ item }}</ImListItem>
+      </ImList>
+    </template>
+</ImDropdown>
+
 ## API

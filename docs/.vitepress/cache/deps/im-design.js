@@ -39,20 +39,20 @@ import {
   withModifiers
 } from "./chunk-K6JRRAUI.js";
 
-// node_modules/.pnpm/im-design@0.0.43/node_modules/im-design/dist/im-design.js
-var Fe = Object.defineProperty;
+// node_modules/.pnpm/im-design@0.0.44/node_modules/im-design/dist/im-design.js
+var He = Object.defineProperty;
 var ze = (n) => {
   throw TypeError(n);
 };
-var We = (n, a, t) => a in n ? Fe(n, a, { enumerable: true, configurable: true, writable: true, value: t }) : n[a] = t;
-var ue = (n, a, t) => We(n, typeof a != "symbol" ? a + "" : a, t);
+var Xe = (n, a, t) => a in n ? He(n, a, { enumerable: true, configurable: true, writable: true, value: t }) : n[a] = t;
+var ue = (n, a, t) => Xe(n, typeof a != "symbol" ? a + "" : a, t);
 var $e = (n, a, t) => a.has(n) || ze("Cannot " + t);
 var de = (n, a, t) => ($e(n, a, "read from private field"), t ? t.call(n) : a.get(n));
 var Te = (n, a, t) => a.has(n) ? ze("Cannot add the same private member more than once") : a instanceof WeakSet ? a.add(n) : a.set(n, t);
 var Be = (n, a, t, s) => ($e(n, a, "write to private field"), s ? s.call(n, t) : a.set(n, t), t);
-var Pe = Symbol("im-design-token");
+var Ne = Symbol("im-design-token");
 var se;
-var et = class {
+var tt = class {
   constructor() {
     Te(this, se);
     Be(this, se, []);
@@ -92,7 +92,7 @@ var et = class {
   }
 };
 se = /* @__PURE__ */ new WeakMap();
-async function tt(n, a, t) {
+async function at(n, a, t) {
   const s = window.getComputedStyle(t), e = t.getBoundingClientRect(), r = document.createElement("div");
   r.className = "im-ripple", a.add(r);
   const l = document.createElement("div");
@@ -112,11 +112,11 @@ async function tt(n, a, t) {
   const h = s.position;
   h === "static" && (t.style.position = "relative", t.dataset.originalPosition = h), l.getBoundingClientRect(), l.style.transform = "scale(2.8)", l.style.opacity = "0.33";
 }
-var at = {
+var nt = {
   mounted(n, a) {
     n.IM_RIPPLE_VALUE = a.value;
-    const t = new et(), s = (u) => {
-      n.IM_RIPPLE_VALUE && tt(u, t, n);
+    const t = new tt(), s = (u) => {
+      n.IM_RIPPLE_VALUE && at(u, t, n);
     }, e = () => {
       t.remove();
     }, r = () => {
@@ -134,7 +134,7 @@ var at = {
     n.IM_RIPPLE_VALUE = a.value;
   }
 };
-var L = (n) => {
+var B = (n) => {
   const a = "im-" + n;
   return {
     b: () => a,
@@ -143,11 +143,11 @@ var L = (n) => {
     is: (t, s) => s ? `is-${t}` : ""
   };
 };
-var ne = (n, a) => {
-  const t = inject(Pe), s = ref(Number(t.size || 36)), e = ref(t.zIndex || 1e3);
+var ae = (n, a) => {
+  const t = inject(Ne), s = ref(Number(t.size || 36)), e = ref(t.zIndex || 1e3);
   return { sizeToken: s, zIndexToken: e };
 };
-var nt = {
+var st = {
   xmlns: "http://www.w3.org/2000/svg",
   width: "1em",
   height: "1em",
@@ -155,14 +155,14 @@ var nt = {
   class: "im-icon",
   viewBox: "0 0 1024 1024"
 };
-function st(n, a) {
-  return openBlock(), createElementBlock("svg", nt, a[0] || (a[0] = [
+function ot(n, a) {
+  return openBlock(), createElementBlock("svg", st, a[0] || (a[0] = [
     createBaseVNode("path", { d: "M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.5 440.5 0 0 0-94.3-139.9 437.7 437.7 0 0 0-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150s83.9 101.8 109.7 162.7c26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36" }, null, -1)
   ]));
 }
-var ot = { render: st };
-var lt = ["tabindex", "type", "disabled"];
-var it = defineComponent({
+var lt = { render: ot };
+var it = ["tabindex", "type", "disabled"];
+var rt = defineComponent({
   name: "ImButton",
   __name: "ImButton",
   props: {
@@ -179,7 +179,7 @@ var it = defineComponent({
   },
   emits: ["click"],
   setup(n, { expose: a, emit: t }) {
-    const s = n, e = t, r = L("button"), { sizeToken: l } = ne(), u = useAttrs(), f = computed(() => [
+    const s = n, e = t, r = B("button"), { sizeToken: l } = ae(), u = useAttrs(), f = computed(() => [
       r.b(),
       s.color && r.m(s.color),
       s.shape && r.m(s.shape),
@@ -209,8 +209,8 @@ var it = defineComponent({
     const c = computed(() => s.loading && ["square", "circle"].includes(s.shape)), v = () => {
       s.disabled || s.loading || e("click");
     };
-    return (h, x) => {
-      const O = resolveDirective("ripple");
+    return (h, C) => {
+      const Y = resolveDirective("ripple");
       return withDirectives((openBlock(), createElementBlock("button", mergeProps(unref(u), {
         class: f.value,
         onClick: v,
@@ -225,28 +225,28 @@ var it = defineComponent({
           key: 0,
           class: normalizeClass([unref(r).e("loading")])
         }, [
-          createVNode(unref(ot))
+          createVNode(unref(lt))
         ], 2)) : createCommentVNode("", true),
         c.value ? createCommentVNode("", true) : renderSlot(h.$slots, "default", { key: 1 }, () => [
           createTextVNode(toDisplayString(s.text), 1)
         ], true)
-      ], 16, lt)), [
-        [O, true]
+      ], 16, it)), [
+        [Y, true]
       ]);
     };
   }
 });
-var V = (n, a) => {
+var L = (n, a) => {
   const t = n.__vccOpts || n;
   for (const [s, e] of a)
     t[s] = e;
   return t;
 };
-var be = V(it, [["__scopeId", "data-v-a3d92bde"]]);
-be.install = (n) => {
-  n.component("ImButton", be);
+var ye = L(rt, [["__scopeId", "data-v-a3d92bde"]]);
+ye.install = (n) => {
+  n.component("ImButton", ye);
 };
-var rt = defineComponent({
+var ct = defineComponent({
   name: "ImRow",
   __name: "ImRow",
   props: {
@@ -263,7 +263,7 @@ var rt = defineComponent({
     const a = n, t = useSlots(), s = computed(() => {
       var r;
       return ((r = t.default) == null ? void 0 : r.call(t)) || [];
-    }), e = L("row");
+    }), e = B("row");
     return (r, l) => (openBlock(), createElementBlock("div", {
       class: normalizeClass([unref(e).b()]),
       style: normalizeStyle({
@@ -275,8 +275,8 @@ var rt = defineComponent({
     ], 6));
   }
 });
-var _e = V(rt, [["__scopeId", "data-v-5179967f"]]);
-var ct = defineComponent({
+var _e = L(ct, [["__scopeId", "data-v-5179967f"]]);
+var ut = defineComponent({
   name: "ImCol",
   __name: "ImCol",
   props: {
@@ -290,7 +290,7 @@ var ct = defineComponent({
     }
   },
   setup(n) {
-    const a = n, t = L("col"), s = computed(
+    const a = n, t = B("col"), s = computed(
       () => +((Number(a.span) || 0) / 24).toFixed(2) * 100 + "%"
     );
     return (e, r) => (openBlock(), createElementBlock("div", {
@@ -304,14 +304,14 @@ var ct = defineComponent({
     ], 6));
   }
 });
-var Ie = V(ct, [["__scopeId", "data-v-ecf91058"]]);
+var Ie = L(ut, [["__scopeId", "data-v-ecf91058"]]);
 _e.install = (n) => {
   n.component("ImRow", _e);
 };
 Ie.install = (n) => {
   n.component("ImCol", Ie);
 };
-var ut = defineComponent({
+var dt = defineComponent({
   name: "ImInput",
   __name: "ImInput",
   props: {
@@ -337,7 +337,7 @@ var ut = defineComponent({
   },
   emits: ["update:modelValue", "change"],
   setup(n, { emit: a }) {
-    const t = n, { sizeToken: s } = ne(), e = a, r = ref(t.modelValue), l = L("input"), u = () => {
+    const t = n, { sizeToken: s } = ae(), e = a, r = ref(t.modelValue), l = B("input"), u = () => {
       e("update:modelValue", r.value), e("change", r.value);
     };
     return (f, m) => (openBlock(), createElementBlock("div", {
@@ -355,7 +355,7 @@ var ut = defineComponent({
     ], 6));
   }
 });
-var we = V(ut, [["__scopeId", "data-v-6c70856c"]]);
+var we = L(dt, [["__scopeId", "data-v-6c70856c"]]);
 we.install = (n) => {
   n.component("ImInput", we);
 };
@@ -367,7 +367,7 @@ var ie = (n, a) => {
     }, a));
   };
 };
-var dt = (n, a) => {
+var De = (n, a) => {
   let t;
   return function(...s) {
     t && clearTimeout(t), t = setTimeout(() => {
@@ -405,9 +405,9 @@ var pt = defineComponent({
     }, null, 6));
   }
 });
-var P = V(pt, [["__scopeId", "data-v-a82dfaa3"]]);
-P.install = function(n) {
-  n.component("ImIcon", P);
+var D = L(pt, [["__scopeId", "data-v-a82dfaa3"]]);
+D.install = function(n) {
+  n.component("ImIcon", D);
 };
 var ft = defineComponent({
   __name: "ImDivider",
@@ -421,7 +421,7 @@ var ft = defineComponent({
     textRightWidth: {}
   },
   setup(n) {
-    const a = L("divider"), t = n;
+    const a = B("divider"), t = n;
     return (s, e) => (openBlock(), createElementBlock("div", {
       class: normalizeClass([unref(a).b(), unref(a).is("vertical", t.vertical)]),
       style: normalizeStyle({
@@ -441,7 +441,7 @@ var ft = defineComponent({
     ], 6));
   }
 });
-var fe = V(ft, [["__scopeId", "data-v-108f9bec"]]);
+var fe = L(ft, [["__scopeId", "data-v-108f9bec"]]);
 fe.name = "ImDivider";
 fe.install = function(n) {
   n.component("ImDivider", fe);
@@ -459,7 +459,7 @@ var gt = defineComponent({
     target: { default: null }
   },
   setup(n) {
-    const a = L("anchor");
+    const a = B("anchor");
     let t = null;
     const s = ref(null), e = ref(null), r = ref(null), l = n;
     watch(
@@ -477,29 +477,29 @@ var gt = defineComponent({
       return s.value === window && (v = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop), v;
     }
     function f(c) {
-      var q;
+      var F;
       if (r.value || !s.value) return;
       const v = s.value === window ? c.target : s.value;
       let h = u(v);
-      const x = v.offsetTop || 0, O = (l.data || []).map(({ id: E }) => {
-        const S = document.getElementById(E);
-        return S ? {
-          id: E,
-          offsetTop: S.offsetTop - x,
-          el: S
+      const C = v.offsetTop || 0, Y = (l.data || []).map(({ id: M }) => {
+        const A = document.getElementById(M);
+        return A ? {
+          id: M,
+          offsetTop: A.offsetTop - C,
+          el: A
         } : null;
       }).filter(Boolean);
       e.value = null;
-      for (let E = 0; E < O.length; E++) {
-        const S = O[E];
-        if (h >= S.offsetTop - (l.offset || 0) && h <= S.offsetTop + (((q = S.el) == null ? void 0 : q.clientHeight) || 0) - (l.offset || 0)) {
-          e.value = S.id;
+      for (let M = 0; M < Y.length; M++) {
+        const A = Y[M];
+        if (h >= A.offsetTop - (l.offset || 0) && h <= A.offsetTop + (((F = A.el) == null ? void 0 : F.clientHeight) || 0) - (l.offset || 0)) {
+          e.value = A.id;
           return;
         }
       }
       if (!e.value && h >= (parseInt(String(l.offset)) || 0)) {
-        const E = O.find((S) => h <= S.offsetTop - (l.offset || 0) && h > (l.offset || 0) ? (e.value = S.id, true) : false);
-        E && (e.value = E.id);
+        const M = Y.find((A) => h <= A.offsetTop - (l.offset || 0) && h > (l.offset || 0) ? (e.value = A.id, true) : false);
+        M && (e.value = M.id);
       }
     }
     function m() {
@@ -513,22 +513,22 @@ var gt = defineComponent({
       };
     }
     async function i(c) {
-      var x, O, q;
+      var C, Y, F;
       if (e.value === c || !c) return;
       r.value = c, e.value = c;
       const v = document.getElementById(c);
       if (!v) return;
-      (O = s.value) == null || O.scrollTo({
+      (Y = s.value) == null || Y.scrollTo({
         // @ts-ignore
-        top: v.offsetTop - (l.offset || 0) - (((x = s.value) == null ? void 0 : x.offsetTop) || 0),
+        top: v.offsetTop - (l.offset || 0) - (((C = s.value) == null ? void 0 : C.offsetTop) || 0),
         behavior: "smooth",
         left: 0
       });
-      const h = dt(() => {
-        var E;
-        r.value = null, (E = s.value) == null || E.removeEventListener("scroll", h);
+      const h = De(() => {
+        var M;
+        r.value = null, (M = s.value) == null || M.removeEventListener("scroll", h);
       }, 300);
-      (q = s.value) == null || q.addEventListener("scroll", h, { passive: true });
+      (F = s.value) == null || F.addEventListener("scroll", h, { passive: true });
     }
     return (c, v) => {
       const h = resolveDirective("ripple");
@@ -536,15 +536,15 @@ var gt = defineComponent({
         key: 0,
         class: normalizeClass([unref(a).b()])
       }, [
-        (openBlock(true), createElementBlock(Fragment, null, renderList(l.data, (x) => withDirectives((openBlock(), createElementBlock("li", {
-          class: normalizeClass([unref(a).e("item"), unref(a).is("active", e.value === x.id)]),
-          onClick: () => i(x.id)
+        (openBlock(true), createElementBlock(Fragment, null, renderList(l.data, (C) => withDirectives((openBlock(), createElementBlock("li", {
+          class: normalizeClass([unref(a).e("item"), unref(a).is("active", e.value === C.id)]),
+          onClick: () => i(C.id)
         }, [
-          e.value === x.id ? (openBlock(), createElementBlock("span", {
+          e.value === C.id ? (openBlock(), createElementBlock("span", {
             key: 0,
             class: normalizeClass([unref(a).e("bar")])
           }, null, 2)) : createCommentVNode("", true),
-          createTextVNode(" " + toDisplayString(x.text), 1)
+          createTextVNode(" " + toDisplayString(C.text), 1)
         ], 10, vt)), [
           [h, true]
         ])), 256))
@@ -552,9 +552,9 @@ var gt = defineComponent({
     };
   }
 });
-var ht = V(gt, [["__scopeId", "data-v-4840d244"]]);
-var yt = H("ImAnchor", ht);
-var bt = defineComponent({
+var ht = L(gt, [["__scopeId", "data-v-4840d244"]]);
+var bt = H("ImAnchor", ht);
+var yt = defineComponent({
   name: "ImAlert",
   __name: "ImAlert",
   props: {
@@ -567,7 +567,7 @@ var bt = defineComponent({
   },
   emits: ["close"],
   setup(n, { emit: a }) {
-    const t = a, s = ref(null), e = n, r = L("alert"), l = useSlots(), u = computed(() => !!(e.showIcon && e.title)), f = computed(() => {
+    const t = a, s = ref(null), e = n, r = B("alert"), l = useSlots(), u = computed(() => !!(e.showIcon && e.title)), f = computed(() => {
       switch (e.color) {
         case "error":
           return "close-circle-fill";
@@ -610,7 +610,7 @@ var bt = defineComponent({
           class: normalizeClass([unref(r).e("icon")])
         }, [
           renderSlot(i.$slots, "icon", {}, () => [
-            createVNode(unref(P), {
+            createVNode(unref(D), {
               name: f.value,
               size: u.value ? 24 : 16
             }, null, 8, ["name", "size"])
@@ -641,7 +641,7 @@ var bt = defineComponent({
           onClick: m
         }, [
           renderSlot(i.$slots, "close", {}, () => [
-            createVNode(unref(P), {
+            createVNode(unref(D), {
               name: "close",
               size: "16"
             })
@@ -653,7 +653,7 @@ var bt = defineComponent({
     };
   }
 });
-var _t = V(bt, [["__scopeId", "data-v-d11fdcb2"]]);
+var _t = L(yt, [["__scopeId", "data-v-d11fdcb2"]]);
 var It = H("ImAlert", _t);
 var wt = defineComponent({
   name: "ImBreadcrumb",
@@ -664,7 +664,7 @@ var wt = defineComponent({
   },
   emits: ["update:modelValue", "change"],
   setup(n, { emit: a }) {
-    const t = useSlots(), s = a, e = L("breadcrumb"), r = n, l = computed(
+    const t = useSlots(), s = a, e = B("breadcrumb"), r = n, l = computed(
       () => {
         var f, m;
         return (m = (f = t.default) == null ? void 0 : f.call(t)) == null ? void 0 : m.filter((i) => {
@@ -695,7 +695,7 @@ var wt = defineComponent({
     ], 2));
   }
 });
-var kt = V(wt, [["__scopeId", "data-v-64336468"]]);
+var kt = L(wt, [["__scopeId", "data-v-64336468"]]);
 var xt = defineComponent({
   name: "ImBreadcrumbItem",
   __name: "ImBreadcrumbItem",
@@ -705,7 +705,7 @@ var xt = defineComponent({
   },
   emits: ["click"],
   setup(n, { emit: a }) {
-    const t = L("breadcrumb__item"), s = n, e = a;
+    const t = B("breadcrumb__item"), s = n, e = a;
     return (r, l) => (openBlock(), createElementBlock("div", {
       onClick: l[0] || (l[0] = () => e("click", s.value)),
       class: normalizeClass([unref(t).b(), unref(t).is("active", s.active === s.value && !!s.value)])
@@ -714,7 +714,7 @@ var xt = defineComponent({
     ], 2));
   }
 });
-var Ct = V(xt, [["__scopeId", "data-v-40ed04b1"]]);
+var Ct = L(xt, [["__scopeId", "data-v-40ed04b1"]]);
 var zt = H("ImBreadcrumb", kt);
 var $t = H("ImBreadcrumb", Ct);
 var Tt = (n = 50) => {
@@ -728,7 +728,7 @@ var Tt = (n = 50) => {
   }), { x: a, y: t };
 };
 var ve = (n, a) => !n || !n.getAnimations ? false : (n.getAnimations(a).forEach((t) => t.cancel()), true);
-var De = async (n, a) => {
+var Oe = async (n, a) => {
   if (!n || !n.getAnimations) return false;
   try {
     return await Promise.all(
@@ -743,7 +743,7 @@ var he = () => ({
   height: (window == null ? void 0 : window.innerHeight) || document.documentElement.clientHeight || document.body.clientHeight
 });
 var Bt = () => document ? document.body.style.overflow === "hidden" || document.body.classList.contains("im-lock-scroll") : false;
-var Oe = async () => {
+var Ye = async () => {
   try {
     if (await new Promise((a) => setTimeout(a, 0)), !document) return Promise.resolve();
     Array.from(document.querySelectorAll(".is-im-lock-scroll")).length ? Bt() || document.body.classList.add("im-lock-scroll") : document.body.classList.remove("im-lock-scroll");
@@ -761,112 +761,121 @@ var xe = defineComponent({
     getTriggerContainer: { type: Function, default: () => null },
     customClass: { default: "" },
     arrow: { type: Boolean, default: true },
-    scrollHide: { type: Boolean, default: false }
+    scrollClose: { type: Boolean, default: false }
   },
   emits: ["close"],
   setup(n, { emit: a }) {
-    const { zIndexToken: t } = ne(), s = L("layer"), e = ref(null), r = a, l = n, u = reactive({
+    const { zIndexToken: t } = ae(), s = B("layer"), e = ref(null), r = a, l = n, u = reactive({
       top: "",
       left: "",
       width: "fit-content"
-    }), f = computed(() => O(l.placement));
+    }), f = computed(() => Y(l.placement));
     onBeforeMount(() => {
       if (!document.getElementById("im-layer-container")) {
-        const I = document.createElement("div");
-        I.id = "im-layer-container", document.body.appendChild(I);
+        const y = document.createElement("div");
+        y.id = "im-layer-container", document.body.appendChild(y);
       }
     });
     const m = ["bottom", "bottom-left", "bottom-right"], i = ["top", "top-left", "top-right"], c = ["right", "right-top", "right-bottom"], v = ["left", "left-top", "left-bottom"];
-    function h(y, I, w = "bottom-left") {
-      const { height: U } = he();
-      let M = 0;
-      const ee = l.arrow ? parseInt(String(l.offset || 0)) : 0;
+    function h(b, y, w = "bottom-left") {
+      const { height: X } = he();
+      let E = 0;
+      const Z = l.arrow ? parseInt(String(l.offset || 0)) : 0;
       if (m.includes(w))
-        M = y.bottom, M += ee;
+        E = b.bottom, E += Z;
       else if (i.includes(w))
-        M = y.top - I.height, M -= ee;
+        E = b.top - y.height, E -= Z;
       else if (c.includes(w) || v.includes(w))
         switch (w) {
           case "right":
           case "left":
-            M = y.top + y.height * 0.5 - I.height / 2;
+            E = b.top + b.height * 0.5 - y.height / 2;
             break;
           case "right-top":
           case "left-top":
-            M = y.top;
+            E = b.top;
             break;
           case "right-bottom":
           case "left-bottom":
-            M = y.top + y.height - I.height;
+            E = b.top + b.height - y.height;
             break;
         }
-      return M <= 0 ? 0 : M + I.height >= U ? U - I.height : M || y.top || 0;
+      return E <= 0 ? 0 : E + y.height >= X ? X - y.height : E || b.top || 0;
     }
-    function x(y, I, w = "bottom-left") {
-      const U = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-      let M = 0;
-      const ee = l.arrow ? parseInt(String(l.offset || 0)) : 0;
+    function C(b, y, w = "bottom-left") {
+      const X = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+      let E = 0;
+      const Z = l.arrow ? parseInt(String(l.offset || 0)) : 0;
       if (m.includes(w) || i.includes(w))
         switch (w) {
           case "bottom":
           case "top":
-            M = y.right - y.width / 2 - I.width / 2;
+            E = b.right - b.width / 2 - y.width / 2;
             break;
           case "bottom-right":
           case "top-right":
-            M = y.left + y.width - I.width;
+            E = b.left + b.width - y.width;
             break;
           default:
-            M = y.left;
+            E = b.left;
             break;
         }
-      else c.includes(w) ? M = y.left + y.width + ee : v.includes(w) && (M = y.left - I.width - ee);
-      return M <= 0 ? 0 : M + I.width >= U ? U - I.width : M || y.left || 0;
+      else c.includes(w) ? E = b.left + b.width + Z : v.includes(w) && (E = b.left - y.width - Z);
+      return E <= 0 ? 0 : E + y.width >= X ? X - y.width : E || b.left || 0;
     }
-    const O = (y) => [...m, ...i, ...c, ...v].includes(y) ? l.placement : "bottom-left";
-    function q() {
-      l.scrollHide ? r("close", true) : b();
+    const Y = (b) => [...m, ...i, ...c, ...v].includes(b) ? l.placement : "bottom-left";
+    function F(b) {
+      if (l.scrollClose) {
+        const y = b.target, w = e.value;
+        if (y && y === w || w != null && w.contains(y))
+          return;
+        r("close", true);
+      } else
+        _();
     }
-    const E = ie(b, 100), S = ie(q, 100);
-    async function b() {
-      var ee;
-      const y = (ee = l.getTriggerContainer) == null ? void 0 : ee.call(l);
-      if (!y) {
+    const M = ie(_, 100), A = ie(F, 100);
+    async function _() {
+      var Z;
+      const b = (Z = l.getTriggerContainer) == null ? void 0 : Z.call(l);
+      if (!b) {
         r("close", true);
         return;
       }
-      F();
-      const I = f.value, w = e.value, U = y.getBoundingClientRect(), M = w.getBoundingClientRect();
-      u.width = `${U.width}px`, u.top = `${h(U, M, I)}px`, u.left = `${x(U, M, I)}px`;
+      P();
+      const y = f.value, w = e.value, X = b.getBoundingClientRect(), E = w.getBoundingClientRect();
+      u.width = `${X.width}px`, u.top = `${h(X, E, y)}px`, u.left = `${C(X, E, y)}px`;
     }
-    function W() {
-      window.removeEventListener("scroll", S), l.visible && window.addEventListener("scroll", S, {
+    function V() {
+      window.removeEventListener("scroll", A), l.visible && window.addEventListener("scroll", A, {
         passive: true,
         capture: true
       });
     }
     function R() {
-      window.removeEventListener("resize", E), l.visible && window.addEventListener("resize", E, { passive: true, capture: true });
+      window.removeEventListener("resize", M), l.visible && window.addEventListener("resize", M, {
+        passive: true,
+        capture: true
+      });
     }
-    function F() {
-      const y = e.value;
+    function P() {
+      const b = e.value;
       if (i.includes(f.value)) {
-        y.style.transformOrigin = "center bottom";
+        b.style.transformOrigin = "center bottom";
         return;
       }
       if ((c.includes(f.value) || v.includes(f.value)) && ["right-bottom", "left-bottom"].includes(f.value)) {
-        y.style.transformOrigin = "center bottom";
+        b.style.transformOrigin = "center bottom";
         return;
       }
-      y.style.transformOrigin = "center top";
+      b.style.transformOrigin = "center top";
     }
-    async function _(y) {
-      const I = y;
-      W(), R(), await new Promise((w) => requestAnimationFrame(w)), b(), I.style.setProperty("transition", "none");
+    async function ne(b) {
+      const y = b;
+      V(), R(), await new Promise((w) => requestAnimationFrame(w)), _(), y.style.setProperty("transition", "none");
       try {
-        I.getAnimations().forEach((w) => w == null ? void 0 : w.cancel()), I.animate(
+        y.getAnimations().forEach((w) => w == null ? void 0 : w.cancel()), y.animate(
           [
-            { opacity: 0, transform: "scaleY(0.8)" },
+            { opacity: 0, transform: "scaleY(0.9)" },
             { opacity: 1, transform: "scaleY(1)" }
           ],
           {
@@ -874,17 +883,17 @@ var xe = defineComponent({
             easing: "ease"
           }
         ), Promise.all(
-          I.getAnimations().map((w) => w.finished)
+          y.getAnimations().map((w) => w.finished)
         ).finally(() => {
-          I.style.setProperty("transition", "all 0.2s ease");
+          y.style.setProperty("transition", "all 0.2s ease");
         });
       } catch (w) {
         console.error(w);
       }
     }
-    function C(y, I) {
-      const w = y;
-      w.getAnimations().forEach((U) => U.cancel()), w.animate(
+    function I(b, y) {
+      const w = b;
+      w.getAnimations().forEach((X) => X.cancel()), w.animate(
         [
           { opacity: 1, transform: "scaleY(1)" },
           { opacity: 0, transform: "scaleY(0.9)" }
@@ -894,18 +903,18 @@ var xe = defineComponent({
           easing: "ease"
         }
       ), Promise.all(
-        w.getAnimations().map((U) => U.finished)
+        w.getAnimations().map((X) => X.finished)
       ).finally(() => {
-        I(), W(), R();
+        y(), V(), R();
       });
     }
-    return (y, I) => (openBlock(), createBlock(Teleport, { to: "#im-layer-container" }, [
+    return (b, y) => (openBlock(), createBlock(Teleport, { to: "#im-layer-container" }, [
       createVNode(Transition, {
         css: false,
         duration: { enter: 200, leave: 200 },
         mode: "out-in",
-        onBeforeEnter: _,
-        onLeave: C
+        onBeforeEnter: ne,
+        onLeave: I
       }, {
         default: withCtx(() => [
           withDirectives(createBaseVNode("div", {
@@ -934,7 +943,7 @@ var xe = defineComponent({
               fill: "currentColor",
               xmlns: "http://www.w3.org/2000/svg",
               "p-id": "19626"
-            }, I[0] || (I[0] = [
+            }, y[0] || (y[0] = [
               createBaseVNode("path", {
                 d: "M590.336 763.563l359.083-362.155A85.333 85.333 0 0 0 888.832 256H170.667a85.333 85.333 0 0 0-60.587 145.408l359.083 362.155a85.333 85.333 0 0 0 121.173 0z",
                 "p-id": "19626"
@@ -943,7 +952,7 @@ var xe = defineComponent({
             createBaseVNode("div", {
               class: normalizeClass([unref(s).e("content")])
             }, [
-              renderSlot(y.$slots, "default")
+              renderSlot(b.$slots, "default")
             ], 2)
           ], 6), [
             [vShow, l.visible]
@@ -963,68 +972,80 @@ var Lt = defineComponent({
     placement: { default: "bottom-left" },
     zIndex: { default: void 0 },
     arrow: { type: Boolean, default: true },
-    offset: { default: 8 }
+    offset: { default: 8 },
+    scrollClose: { type: Boolean, default: false }
   },
   emits: ["update:modelValue", "change"],
   setup(n, { emit: a }) {
-    const t = a, s = L("dropdown"), e = n, r = ref(null), l = ref(null), u = ref(e.modelValue || false);
-    let f = 120;
+    const t = a, s = B("dropdown"), e = n, r = ref(null), l = ref(null), u = ref(e.modelValue || false);
+    let f = 100;
     const { x: m, y: i } = Tt(30), c = ie(() => {
-      const b = Le(m.value, i.value, l.value);
-      Le(m.value, i.value, r.value) || b || (u.value = false);
+      const V = Le(m.value, i.value, l.value);
+      Le(m.value, i.value, r.value) || V || F(false);
     }, f);
     watch(
       () => [m.value, i.value],
       () => {
         e.trigger != "hover" || !u.value || !e.trigger || c();
       }
-    ), watch(() => u.value, (b) => {
-      document.removeEventListener("click", h), b && document.addEventListener("click", h, { passive: true });
-    }, { immediate: true }), watch(() => e.modelValue, (b) => {
-      u.value = b;
-    });
+    ), watch(
+      () => u.value,
+      (V) => {
+        document.removeEventListener("click", h), V && document.addEventListener("click", h, { passive: true });
+      },
+      { immediate: true }
+    ), watch(
+      () => e.modelValue,
+      (V) => {
+        u.value = V;
+      }
+    );
     function v() {
       return r.value;
     }
-    function h(b) {
+    function h(V) {
       if (u.value) {
-        const W = b.target, R = r.value;
-        if (W === R || R != null && R.contains(W)) return;
-        S();
+        const R = V.target, P = r.value;
+        if (R === P || P != null && P.contains(R)) return;
+        F(false);
       }
     }
-    function x() {
-      (e.trigger === "hover" || !e.trigger) && E();
+    function C() {
+      (e.trigger === "hover" || !e.trigger) && F(true);
     }
-    function O() {
+    function Y() {
       (e.trigger === "hover" || !e.trigger) && c();
     }
-    function q() {
-      e.trigger === "click" && (u.value ? S() : E());
+    const F = De((V) => {
+      V ? A() : _();
+    }, f);
+    function M() {
+      !u.value && F(true);
     }
-    function E() {
+    function A() {
       u.value = true, t("update:modelValue", u.value), t("change", u.value);
     }
-    function S() {
+    function _() {
       u.value = false, t("update:modelValue", u.value), t("change", u.value);
     }
-    return (b, W) => (openBlock(), createElementBlock("span", {
+    return (V, R) => (openBlock(), createElementBlock("span", {
       class: normalizeClass([unref(s).b()]),
       ref_key: "dropdownRef",
       ref: r,
-      onMouseenter: x,
-      onMouseleave: O,
-      onClick: q
+      onMouseenter: C,
+      onMouseleave: Y,
+      onClick: M
     }, [
-      renderSlot(b.$slots, "default", {}, void 0, true),
+      renderSlot(V.$slots, "default", {}, void 0, true),
       createVNode(xe, {
         visible: u.value,
         placement: e.placement,
         offset: e.offset,
         "z-index": e.zIndex,
         getTriggerContainer: v,
-        onClose: S,
-        arrow: e.arrow
+        onClose: _,
+        arrow: e.arrow,
+        scrollClose: e.scrollClose
       }, {
         default: withCtx(() => [
           createBaseVNode("div", {
@@ -1032,15 +1053,15 @@ var Lt = defineComponent({
             ref: l,
             class: normalizeClass([unref(s).e("content")])
           }, [
-            renderSlot(b.$slots, "content", {}, void 0, true)
+            renderSlot(V.$slots, "content", {}, void 0, true)
           ], 2)
         ]),
         _: 3
-      }, 8, ["visible", "placement", "offset", "z-index", "arrow"])
+      }, 8, ["visible", "placement", "offset", "z-index", "arrow", "scrollClose"])
     ], 34));
   }
 });
-var Vt = V(Lt, [["__scopeId", "data-v-db6f7bf8"]]);
+var Vt = L(Lt, [["__scopeId", "data-v-5b3abd7d"]]);
 var Et = H("ImDropdown", Vt);
 var St = defineComponent({
   name: "ImList",
@@ -1050,12 +1071,12 @@ var St = defineComponent({
   },
   emits: ["update:modelValue", "change"],
   setup(n, { emit: a }) {
-    const t = n, s = useSlots(), e = L("list"), r = (i) => typeof i.type == "object" && i.type !== null, l = (i, c) => {
+    const t = n, s = useSlots(), e = B("list"), r = (i) => typeof i.type == "object" && i.type !== null, l = (i, c) => {
       const v = [];
       return i.forEach((h) => {
         if (r(h) && h.type && h.type.name == c) {
-          const x = h.props || {};
-          v.push({ vnode: h, props: x });
+          const C = h.props || {};
+          v.push({ vnode: h, props: C });
         } else h && (h != null && h.children) && Array.isArray(h.children) && v.push(...l(h.children, c));
       }), v;
     }, u = computed(() => {
@@ -1077,7 +1098,7 @@ var St = defineComponent({
     ], 2));
   }
 });
-var Mt = V(St, [["__scopeId", "data-v-5a9d7c31"]]);
+var Mt = L(St, [["__scopeId", "data-v-5a9d7c31"]]);
 var At = defineComponent({
   name: "ImListItem",
   __name: "ImListItem",
@@ -1089,7 +1110,7 @@ var At = defineComponent({
   },
   emits: ["click"],
   setup(n, { emit: a }) {
-    const t = L("list__item"), s = a, e = n;
+    const t = B("list__item"), s = a, e = n;
     function r(l) {
       if (e.disabled) {
         l.stopPropagation();
@@ -1110,9 +1131,9 @@ var At = defineComponent({
     };
   }
 });
-var Rt = V(At, [["__scopeId", "data-v-6df1dd93"]]);
-var Nt = H("ImList", Mt);
-var Pt = H("ImListItem", Rt);
+var Rt = L(At, [["__scopeId", "data-v-6df1dd93"]]);
+var Pt = H("ImList", Mt);
+var Nt = H("ImListItem", Rt);
 var Dt = ["src", "srcset", "alt", "loading"];
 var Ot = defineComponent({
   name: "ImAvatar",
@@ -1131,7 +1152,7 @@ var Ot = defineComponent({
   },
   emits: ["error"],
   setup(n, { emit: a }) {
-    const t = a, s = L("avatar"), e = n, r = (l) => {
+    const t = a, s = B("avatar"), e = n, r = (l) => {
       console.log(l.target), t("error", l);
     };
     return (l, u) => (openBlock(), createElementBlock("span", {
@@ -1159,9 +1180,9 @@ var Ot = defineComponent({
     ], 6));
   }
 });
-var Yt = V(Ot, [["__scopeId", "data-v-c4c32038"]]);
-var Ht = H("ImAvatar", Yt);
-var Ft = defineComponent({
+var Yt = L(Ot, [["__scopeId", "data-v-c4c32038"]]);
+var Ft = H("ImAvatar", Yt);
+var Wt = defineComponent({
   name: "ImMask",
   __name: "ImMask",
   props: {
@@ -1171,7 +1192,7 @@ var Ft = defineComponent({
   },
   emits: ["close"],
   setup(n, { emit: a }) {
-    const t = L("mask"), { zIndexToken: s } = ne(), e = n, r = a, l = () => {
+    const t = B("mask"), { zIndexToken: s } = ae(), e = n, r = a, l = () => {
       e.closeOnClickMask && r("close", false);
     };
     return (u, f) => (openBlock(), createBlock(Transition, { name: "fade" }, {
@@ -1192,14 +1213,14 @@ var Ft = defineComponent({
     }));
   }
 });
-var Wt = V(Ft, [["__scopeId", "data-v-d5aadf77"]]);
-var Ce = H("ImMask", Wt);
-var ae = {
+var Ht = L(Wt, [["__scopeId", "data-v-d5aadf77"]]);
+var Ce = H("ImMask", Ht);
+var te = {
   duration: 200,
   delay: 0,
   easing: "ease-out"
 };
-function ye(n, a = "right") {
+function be(n, a = "right") {
   const t = (n == null ? void 0 : n.getBoundingClientRect()) || {}, s = (t == null ? void 0 : t.width) || 0, e = (t == null ? void 0 : t.height) || 0;
   switch (a) {
     case "left":
@@ -1215,44 +1236,44 @@ function ye(n, a = "right") {
   }
 }
 var me = async (n, a = true) => {
-  let t = ye(n, "right"), s = [];
+  let t = be(n, "right"), s = [];
   a ? s = [
     { transform: t, opacity: 0 },
     { transform: "translateX(0)", opacity: 1 }
   ] : s = [
     { transform: "translateX(0)", opacity: 1 },
     { transform: t, opacity: 0 }
-  ], n == null || n.animate(s, ae);
+  ], n == null || n.animate(s, te);
 };
 var Ve = async (n, a = true) => {
-  let t = ye(n, "left"), s = [];
+  let t = be(n, "left"), s = [];
   a ? s = [
     { transform: t, opacity: 0 },
     { transform: "translateX(0)", opacity: 1 }
   ] : s = [
     { transform: "translateX(0)", opacity: 1 },
     { transform: t, opacity: 0 }
-  ], n == null || n.animate(s, ae);
+  ], n == null || n.animate(s, te);
 };
 var Ee = async (n, a = true) => {
-  let t = ye(n, "top"), s = [];
+  let t = be(n, "top"), s = [];
   a ? s = [
     { transform: t, opacity: 0 },
     { transform: "translateY(0)", opacity: 1 }
   ] : s = [
     { transform: "translateY(0)", opacity: 1 },
     { transform: t, opacity: 0 }
-  ], n == null || n.animate(s, ae);
+  ], n == null || n.animate(s, te);
 };
 var Se = async (n, a = true) => {
-  let t = ye(n, "bottom"), s = [];
+  let t = be(n, "bottom"), s = [];
   a ? s = [
     { transform: t, opacity: 0 },
     { transform: "translateY(0)", opacity: 1 }
   ] : s = [
     { transform: "translateY(0)", opacity: 1 },
     { transform: t, opacity: 0 }
-  ], n == null || n.animate(s, ae);
+  ], n == null || n.animate(s, te);
 };
 var Xt = async (n, a) => {
   let t = [], s = "center";
@@ -1275,7 +1296,7 @@ var Xt = async (n, a) => {
       transformOrigin: s,
       transform: "scale(1)"
     }
-  ], n == null || n.animate(t, ae);
+  ], n == null || n.animate(t, te);
 };
 var qt = async (n, a) => {
   let t = [], s = "center";
@@ -1294,7 +1315,7 @@ var qt = async (n, a) => {
       transform: "scale(0.33)",
       offset: 1
     }
-  ], n == null || n.animate(t, ae);
+  ], n == null || n.animate(t, te);
 };
 var Me = (n, a = true) => {
   if (!n || !n.animate)
@@ -1305,13 +1326,13 @@ var Me = (n, a = true) => {
       { transform: `translateY(${t}px)`, opacity: 0 },
       { transform: "translateY(0)", opacity: 1 }
     ],
-    ae
+    te
   ) : n.animate(
     [
       { transform: "translateY(0)", opacity: 1 },
       { transform: `translateY(${t}px)`, opacity: 0 }
     ],
-    ae
+    te
   );
 };
 var Ut = ["aria-modal"];
@@ -1328,9 +1349,9 @@ var jt = defineComponent({
   },
   emits: ["update:modelValue"],
   setup(n, { emit: a }) {
-    const t = L("drawer"), s = a, e = n, r = ref(null), { zIndexToken: l } = ne(), u = computed(() => pe(e.size || l.value || "280px"));
+    const t = B("drawer"), s = a, e = n, r = ref(null), { zIndexToken: l } = ae(), u = computed(() => pe(e.size || l.value || "280px"));
     watch(() => e.modelValue, (c) => {
-      Oe();
+      Ye();
     }, { immediate: true });
     const f = () => {
       s("update:modelValue", false);
@@ -1373,7 +1394,7 @@ var jt = defineComponent({
           me(c, false);
           break;
       }
-      De(c).finally(v);
+      Oe(c).finally(v);
     }
     return (c, v) => (openBlock(), createBlock(Teleport, { to: "body" }, [
       createBaseVNode("div", {
@@ -1410,7 +1431,7 @@ var jt = defineComponent({
     ]));
   }
 });
-var Gt = V(jt, [["__scopeId", "data-v-230f0857"]]);
+var Gt = L(jt, [["__scopeId", "data-v-230f0857"]]);
 var Jt = H("ImDrawer", Gt);
 var Kt = defineComponent({
   name: "ImCard",
@@ -1421,7 +1442,7 @@ var Kt = defineComponent({
     shadow: { default: "" }
   },
   setup(n) {
-    const a = L("card"), t = n;
+    const a = B("card"), t = n;
     return (s, e) => (openBlock(), createElementBlock("div", {
       class: normalizeClass([unref(a).b(), unref(a).is("borderless", t.borderless), t.shadow ? unref(a).m(t.shadow) : ""])
     }, [
@@ -1444,7 +1465,7 @@ var Kt = defineComponent({
     ], 2));
   }
 });
-var Qt = V(Kt, [["__scopeId", "data-v-4ccad88b"]]);
+var Qt = L(Kt, [["__scopeId", "data-v-4ccad88b"]]);
 var Zt = H("ImCard", Qt);
 var ea = ["data-index", "onMouseenter", "onMouseleave"];
 var ta = { class: "im-message__text" };
@@ -1455,7 +1476,7 @@ var aa = defineComponent({
     add: { type: Function }
   },
   setup(n, { expose: a }) {
-    const t = L("message"), s = n, e = ref([]);
+    const t = B("message"), s = n, e = ref([]);
     let r = null;
     watch(() => e.value, () => {
       e.value.length === 0 ? r = setTimeout(() => {
@@ -1499,7 +1520,7 @@ var aa = defineComponent({
           onMouseleave: () => f(v),
           class: normalizeClass(["im-message__item", [unref(t).e("item"), v.color ? unref(t).e(v.color) : ""]])
         }, [
-          createVNode(unref(P), {
+          createVNode(unref(D), {
             name: l(v.color),
             size: "18px"
           }, null, 8, ["name"]),
@@ -1510,7 +1531,7 @@ var aa = defineComponent({
     }, 8, ["class"]));
   }
 });
-var na = V(aa, [["__scopeId", "data-v-820c83a9"]]);
+var na = L(aa, [["__scopeId", "data-v-820c83a9"]]);
 var sa = class {
   constructor() {
     ue(this, "app");
@@ -1580,19 +1601,19 @@ var sa = class {
     });
   }
 };
-var X = null;
-var Ta = () => (X || (X = new sa()), {
+var q = null;
+var Ta = () => (q || (q = new sa()), {
   info: (n, a = 3e3) => {
-    X == null || X.info(n, a);
+    q == null || q.info(n, a);
   },
   success: (n, a = 3e3) => {
-    X == null || X.success(n, a);
+    q == null || q.success(n, a);
   },
   warning: (n, a = 3e3) => {
-    X == null || X.warning(n, a);
+    q == null || q.warning(n, a);
   },
   error: (n, a = 3e3) => {
-    X == null || X.error(n, a);
+    q == null || q.error(n, a);
   }
 });
 var oa = ["data-esc"];
@@ -1612,11 +1633,11 @@ var la = defineComponent({
   },
   emits: ["update:modelValue"],
   setup(n, { emit: a }) {
-    const t = L("dialog"), s = a, e = n, r = ref(null), { zIndexToken: l } = ne();
+    const t = B("dialog"), s = a, e = n, r = ref(null), { zIndexToken: l } = ae();
     watch(
       () => e.modelValue,
       (i) => {
-        window.removeEventListener("keydown", u), i && e.closeOnEscape && window.addEventListener("keydown", u, { passive: true }), Oe();
+        window.removeEventListener("keydown", u), i && e.closeOnEscape && window.addEventListener("keydown", u, { passive: true }), Ye();
       },
       {
         immediate: true
@@ -1633,13 +1654,17 @@ var la = defineComponent({
     const f = async (i, c) => {
       ve(i, { subtree: true }), e.fullscreen ? Me(i) : Xt(i, e == null ? void 0 : e.getTarget()), c();
     }, m = async (i, c) => {
-      ve(i, { subtree: true }), e.fullscreen ? Me(i, false) : qt(i, e == null ? void 0 : e.getTarget()), await De(i, { subtree: true }), c();
+      ve(i, { subtree: true }), e.fullscreen ? Me(i, false) : qt(i, e == null ? void 0 : e.getTarget()), await Oe(i, { subtree: true }), c();
     };
     return (i, c) => (openBlock(), createBlock(Teleport, { to: "body" }, [
       createBaseVNode("div", {
         "aria-modal": "true",
         tabindex: -1,
-        class: normalizeClass([unref(t).b(), unref(t).is("im-lock-scroll", e.modelValue), unref(t).is("show", e.modelValue)]),
+        class: normalizeClass([
+          unref(t).b(),
+          unref(t).is("im-lock-scroll", e.modelValue),
+          unref(t).is("show", e.modelValue)
+        ]),
         "data-esc": e.closeOnEscape,
         ref_key: "dialogRef",
         ref: r,
@@ -1682,7 +1707,7 @@ var la = defineComponent({
     ]));
   }
 });
-var ia = V(la, [["__scopeId", "data-v-40b12ccd"]]);
+var ia = L(la, [["__scopeId", "data-v-8904b1d9"]]);
 var ra = H("ImDialog", ia);
 var ca = defineComponent({
   name: "ImOption",
@@ -1696,7 +1721,7 @@ var ca = defineComponent({
   },
   emits: ["change"],
   setup(n, { emit: a }) {
-    const t = L("option"), s = a, e = n;
+    const t = B("option"), s = a, e = n;
     function r(l) {
       if (l.preventDefault(), l.stopPropagation(), e.disabled) return;
       const u = e.value || e.label;
@@ -1716,7 +1741,7 @@ var ca = defineComponent({
             createTextVNode(toDisplayString(e.label || e.value), 1)
           ], true)
         ], 2),
-        e.multiple && ((i = e.selectList) != null && i.includes(e.value || e.label || "")) ? (openBlock(), createBlock(unref(P), {
+        e.multiple && ((i = e.selectList) != null && i.includes(e.value || e.label || "")) ? (openBlock(), createBlock(unref(D), {
           key: 0,
           name: "check",
           size: "12",
@@ -1734,7 +1759,7 @@ var ca = defineComponent({
     };
   }
 });
-var ua = V(ca, [["__scopeId", "data-v-baa1be82"]]);
+var ua = L(ca, [["__scopeId", "data-v-baa1be82"]]);
 var da = defineComponent({
   name: "ImTag",
   __name: "ImTag",
@@ -1746,7 +1771,7 @@ var da = defineComponent({
   },
   emits: ["close", "update:modelValue"],
   setup(n, { emit: a }) {
-    const t = L("tag"), s = a, e = n;
+    const t = B("tag"), s = a, e = n;
     function r(l) {
       s("update:modelValue", false), s("close", l);
     }
@@ -1760,7 +1785,7 @@ var da = defineComponent({
             class: normalizeClass([unref(t).e("content")])
           }, [
             renderSlot(l.$slots, "default", {}, void 0, true),
-            e.closeable ? (openBlock(), createBlock(unref(P), {
+            e.closeable ? (openBlock(), createBlock(unref(D), {
               key: 0,
               name: "close",
               size: "1em",
@@ -1774,8 +1799,8 @@ var da = defineComponent({
     }));
   }
 });
-var ma = V(da, [["__scopeId", "data-v-16275f2c"]]);
-var Ye = H("ImTag", ma);
+var ma = L(da, [["__scopeId", "data-v-16275f2c"]]);
+var Fe = H("ImTag", ma);
 var pa = defineComponent({
   name: "ImSelect",
   __name: "ImSelect",
@@ -1791,68 +1816,72 @@ var pa = defineComponent({
     disabled: { type: Boolean, default: false },
     maxTag: { default: 1 },
     arrow: { type: Boolean, default: true },
-    offset: { default: 8 }
+    offset: { default: 8 },
+    scrollClose: { type: Boolean, default: false }
   },
   emits: ["update:modelValue"],
   setup(n, { emit: a }) {
-    const t = L("select"), s = a, e = n, { sizeToken: r } = ne(), l = ref(false), u = ref([]), f = ref(null), m = ref(null), i = computed(() => pe(e.width)), c = computed(() => pe(e.size || r.value || "36px")), v = computed(() => {
-      var _;
-      return e.multiple ? e.options.filter((C) => u.value.includes(String(C.value))).map((C) => C.label) : ((_ = e.options.find((C) => C.value === e.modelValue)) == null ? void 0 : _.label) || "";
+    const t = B("select"), s = a, e = n, { sizeToken: r } = ae(), l = ref(false), u = ref([]), f = ref(null), m = ref(null), i = computed(() => pe(e.width)), c = computed(() => pe(e.size || r.value || "36px")), v = computed(() => {
+      var I;
+      return e.multiple ? e.options.filter((b) => u.value.includes(String(b.value))).map((b) => b.label) : ((I = e.options.find((b) => b.value === e.modelValue)) == null ? void 0 : I.label) || "";
     }), h = computed(() => e.options.filter(
-      (_) => u.value.includes(String(_.value))
-    )), x = computed(() => {
-      const _ = h.value.length - e.maxTag;
-      return h.value.length && e.maxTag && h.value.length - e.maxTag && _ > 0 ? _ : "";
-    }), O = computed(() => e.clearable && e.modelValue && v.value && !e.disabled);
+      (I) => u.value.includes(String(I.value))
+    )), C = computed(() => {
+      const I = h.value.length - e.maxTag;
+      return h.value.length && e.maxTag && h.value.length - e.maxTag && I > 0 ? I : "";
+    }), Y = computed(() => e.clearable && e.modelValue && v.value && !e.disabled), F = computed(() => {
+      var I;
+      return e.placeholder ? e.multiple ? !((I = h.value) != null && I.length) : !v.value : false;
+    });
     watch(
       () => e.modelValue,
       () => {
-        S();
+        _();
       },
       { immediate: true }
     ), watch(
       () => l.value,
-      (_) => {
-        document.removeEventListener("click", b, { capture: true }), _ && document.addEventListener("click", b, { capture: true });
+      (I) => {
+        document.removeEventListener("click", V, { capture: true }), I && document.addEventListener("click", V, { capture: true });
       }
     );
-    function q(_, C) {
-      C.preventDefault();
-      const y = u.value.filter((I) => I !== _.value);
+    function M(I, b) {
+      b.preventDefault();
+      const y = u.value.filter((w) => w !== I.value);
       s("update:modelValue", y.join(","));
     }
-    function E() {
+    function A() {
       l.value = false;
     }
-    function S() {
-      var _;
-      e.multiple ? u.value = ((_ = String(e.modelValue)) == null ? void 0 : _.split(",")) || [] : u.value = [e.modelValue];
+    function _() {
+      var I;
+      e.multiple ? u.value = ((I = String(e.modelValue)) == null ? void 0 : I.split(",")) || [] : u.value = [e.modelValue];
     }
-    function b(_) {
-      var C, y;
-      (C = f.value) != null && C.contains(_.target) || f.value === _.target || _.target === m.value || e.multiple && ((y = m.value) != null && y.contains(_.target)) || m.value === _.target || E();
+    function V(I) {
+      var b, y;
+      (b = f.value) != null && b.contains(I.target) || f.value === I.target || I.target === m.value || e.multiple && ((y = m.value) != null && y.contains(I.target)) || m.value === I.target || A();
     }
-    async function W() {
-      var C;
+    async function R() {
+      var b;
       if (l.value) return;
       l.value = true, await new Promise((y) => requestAnimationFrame(y));
-      const _ = (C = m.value) == null ? void 0 : C.querySelector(
+      const I = (b = m.value) == null ? void 0 : b.querySelector(
         `.${t.is("active", true)}`
       );
-      _ && _.scrollIntoView({ behavior: "instant", block: "nearest" }), await new Promise((y) => requestAnimationFrame(y));
+      I && I.scrollIntoView({ behavior: "instant", block: "nearest" }), await new Promise((y) => requestAnimationFrame(y));
     }
-    function R(_) {
+    function P(I) {
       if (e.multiple) {
-        const C = u.value;
-        C.includes(_) ? C.splice(C.indexOf(_), 1) : C.push(_), s("update:modelValue", C.filter((y) => y).join(","));
+        const b = u.value;
+        b.includes(I) ? b.splice(b.indexOf(I), 1) : b.push(I), s("update:modelValue", b.filter((y) => y).join(","));
         return;
       } else
-        s("update:modelValue", _);
+        s("update:modelValue", I);
     }
-    function F(_) {
-      _.preventDefault(), _.stopPropagation(), s("update:modelValue", "");
+    function ne(I) {
+      I.preventDefault(), I.stopPropagation(), s("update:modelValue", "");
     }
-    return (_, C) => (openBlock(), createElementBlock("div", {
+    return (I, b) => (openBlock(), createElementBlock("div", {
       class: normalizeClass([
         unref(t).b(),
         unref(t).is("open", l.value),
@@ -1865,13 +1894,13 @@ var pa = defineComponent({
       })
     }, [
       createBaseVNode("div", {
-        onClick: W,
+        onClick: R,
         class: normalizeClass([unref(t).e("trigger")]),
         ref_key: "triggerRef",
         ref: f,
         tabindex: "-1"
       }, [
-        e.placeholder && !v.value ? (openBlock(), createElementBlock("span", {
+        F.value ? (openBlock(), createElementBlock("span", {
           key: 0,
           class: normalizeClass([unref(t).e("placeholder")])
         }, toDisplayString(e.placeholder), 3)) : (openBlock(), createElementBlock("div", {
@@ -1882,10 +1911,10 @@ var pa = defineComponent({
             key: 0,
             class: normalizeClass([unref(t).e("tags")])
           }, [
-            (openBlock(true), createElementBlock(Fragment, null, renderList(h.value, (y, I) => (openBlock(), createElementBlock(Fragment, null, [
-              I < e.maxTag ? (openBlock(), createBlock(unref(Ye), {
-                key: I,
-                onClose: withModifiers((w) => q(y, w), ["stop"]),
+            (openBlock(true), createElementBlock(Fragment, null, renderList(h.value, (y, w) => (openBlock(), createElementBlock(Fragment, null, [
+              w < e.maxTag ? (openBlock(), createBlock(unref(Fe), {
+                key: w,
+                onClose: withModifiers((X) => M(y, X), ["stop"]),
                 closeable: ""
               }, {
                 default: withCtx(() => [
@@ -1895,15 +1924,15 @@ var pa = defineComponent({
               }, 1032, ["onClose"])) : createCommentVNode("", true)
             ], 64))), 256))
           ], 2)) : createCommentVNode("", true),
-          e.multiple && h.value.length && x.value ? (openBlock(), createElementBlock("div", {
+          e.multiple && h.value.length && C.value ? (openBlock(), createElementBlock("div", {
             key: 1,
             class: normalizeClass([unref(t).e("more")])
           }, [
-            createVNode(unref(P), {
+            createVNode(unref(D), {
               name: "plus",
               size: "12px"
             }),
-            createTextVNode(" " + toDisplayString(x.value), 1)
+            createTextVNode(" " + toDisplayString(C.value), 1)
           ], 2)) : createCommentVNode("", true),
           e.multiple ? createCommentVNode("", true) : (openBlock(), createElementBlock("div", {
             key: 2,
@@ -1913,20 +1942,20 @@ var pa = defineComponent({
         createBaseVNode("span", {
           class: normalizeClass([unref(t).e("icon-down"), unref(t).is("rotate", l.value)])
         }, [
-          renderSlot(_.$slots, "downIcon", {}, () => [
-            createVNode(unref(P), {
+          renderSlot(I.$slots, "downIcon", {}, () => [
+            createVNode(unref(D), {
               name: "down",
               size: "12"
             })
           ], true)
         ], 2),
-        O.value ? (openBlock(), createElementBlock("span", {
+        Y.value ? (openBlock(), createElementBlock("span", {
           key: 2,
           class: normalizeClass([unref(t).e("clear-icon")]),
-          onClick: F
+          onClick: ne
         }, [
-          renderSlot(_.$slots, "clearIcon", {}, () => [
-            createVNode(unref(P), {
+          renderSlot(I.$slots, "clearIcon", {}, () => [
+            createVNode(unref(D), {
               name: "close-circle-fill",
               size: "18"
             })
@@ -1937,9 +1966,10 @@ var pa = defineComponent({
         visible: l.value,
         getTriggerContainer: () => f.value,
         "z-index": e.zIndex,
-        onClose: E,
+        onClose: A,
         arrow: e.arrow,
-        offset: e.offset
+        offset: e.offset,
+        scrollClose: e.scrollClose
       }, {
         default: withCtx(() => [
           createBaseVNode("ul", {
@@ -1947,14 +1977,14 @@ var pa = defineComponent({
             ref_key: "listRef",
             ref: m
           }, [
-            (openBlock(true), createElementBlock(Fragment, null, renderList(e.options, (y, I) => (openBlock(), createBlock(ua, {
+            (openBlock(true), createElementBlock(Fragment, null, renderList(e.options, (y, w) => (openBlock(), createBlock(ua, {
               multiple: e.multiple,
-              key: y.value || y.label || I,
+              key: y.value || y.label || w,
               disabled: y.disabled,
               "select-list": u.value,
               value: y.value,
               label: y.label,
-              onChange: R
+              onChange: P
             }, {
               default: withCtx(() => [
                 createTextVNode(toDisplayString(y.label || y.value), 1)
@@ -1964,16 +1994,16 @@ var pa = defineComponent({
           ], 2)
         ]),
         _: 1
-      }, 8, ["visible", "getTriggerContainer", "z-index", "arrow", "offset"])
+      }, 8, ["visible", "getTriggerContainer", "z-index", "arrow", "offset", "scrollClose"])
     ], 6));
   }
 });
-var fa = V(pa, [["__scopeId", "data-v-35e35f7b"]]);
-var He = H("ImSelect", fa);
+var fa = L(pa, [["__scopeId", "data-v-51b7f08b"]]);
+var We = H("ImSelect", fa);
 var va = ["aria-disabled"];
 var ga = ["onClick", "title"];
 var ha = ["aria-disabled"];
-var ya = defineComponent({
+var ba = defineComponent({
   name: "ImPagination",
   __name: "ImPagination",
   props: {
@@ -1986,68 +2016,68 @@ var ya = defineComponent({
   },
   emits: ["change"],
   setup(n, { emit: a }) {
-    const t = L("pagination"), s = a, e = n, r = ref(e.pageSize), l = ref([1]), { sizeToken: u } = ne(), f = computed(() => parseInt(String(e.size || u.value || 36)) + "px"), m = computed(
+    const t = B("pagination"), s = a, e = n, r = ref(e.pageSize), l = ref([1]), { sizeToken: u } = ae(), f = computed(() => parseInt(String(e.size || u.value || 36)) + "px"), m = computed(
       () => Math.ceil(e.total / (r.value || 10))
     ), i = computed(() => e.pageNumber === 1), c = computed(() => e.pageNumber >= m.value), v = computed(
-      () => e.pageSizeItems.map((b) => ({ label: `${b} 条/页`, value: b }))
+      () => e.pageSizeItems.map((_) => ({ label: `${_} 条/页`, value: _ }))
     );
     watch(
       () => r.value,
-      (b) => {
-        m.value < e.pageNumber ? s("change", { pageSize: b, pageNumber: m.value }) : s("change", { pageSize: b, pageNumber: e.pageNumber });
+      (_) => {
+        m.value < e.pageNumber ? s("change", { pageSize: _, pageNumber: m.value }) : s("change", { pageSize: _, pageNumber: e.pageNumber });
       }
     ), watch(
       () => [e.pageNumber, e.pageSize],
       () => {
-        r.value = e.pageSize, x(
+        r.value = e.pageSize, C(
           m.value < e.pageNumber ? m.value : e.pageNumber
         );
       },
       { immediate: true }
     );
-    function h(b) {
-      e.pageNumber !== b && s("change", { pageNumber: b, pageSize: e.pageSize });
+    function h(_) {
+      e.pageNumber !== _ && s("change", { pageNumber: _, pageSize: e.pageSize });
     }
-    function x(b) {
+    function C(_) {
       if (m.value <= 1)
         l.value = [1];
       else {
-        const W = Math.ceil(b / 5), R = [];
-        let F = W * 5 - 4;
-        for (let _ = 0; _ < 5; _++) {
-          let C = F + _;
-          if (C > m.value)
+        const V = Math.ceil(_ / 5), R = [];
+        let P = V * 5 - 4;
+        for (let ne = 0; ne < 5; ne++) {
+          let I = P + ne;
+          if (I > m.value)
             break;
-          R.push(C);
+          R.push(I);
         }
-        b - 5 >= 1 && (R.unshift("left"), R.unshift(1)), b + 5 <= m.value && (R.push("right"), R.push(m.value)), l.value = R, h(b);
+        _ - 5 >= 1 && (R.unshift("left"), R.unshift(1)), _ + 5 <= m.value && (R.push("right"), R.push(m.value)), l.value = R, h(_);
       }
     }
-    function O() {
-      const b = e.pageNumber + 1;
-      if (b > m.value) return h(e.pageNumber);
-      if (l.value.includes(b))
-        return h(b);
-      x(b);
+    function Y() {
+      const _ = e.pageNumber + 1;
+      if (_ > m.value) return h(e.pageNumber);
+      if (l.value.includes(_))
+        return h(_);
+      C(_);
     }
-    function q() {
-      const b = e.pageNumber - 1;
-      if (b < 1) return h(e.pageNumber);
-      if (l.value.includes(b))
-        return h(b);
-      x(b);
+    function F() {
+      const _ = e.pageNumber - 1;
+      if (_ < 1) return h(e.pageNumber);
+      if (l.value.includes(_))
+        return h(_);
+      C(_);
     }
-    function E() {
-      const b = e.pageNumber + 5;
-      if (b > m.value) return h(m.value);
-      x(b);
+    function M() {
+      const _ = e.pageNumber + 5;
+      if (_ > m.value) return h(m.value);
+      C(_);
     }
-    function S() {
-      const b = e.pageNumber - 5;
-      if (b < 1) return h(1);
-      x(b);
+    function A() {
+      const _ = e.pageNumber - 5;
+      if (_ < 1) return h(1);
+      C(_);
     }
-    return (b, W) => {
+    return (_, V) => {
       const R = resolveDirective("ripple");
       return openBlock(), createElementBlock("div", {
         class: normalizeClass([unref(t).b()]),
@@ -2055,92 +2085,92 @@ var ya = defineComponent({
           "--im-pagination-size": f.value
         })
       }, [
-        b.layout.includes("total") ? (openBlock(), createElementBlock("div", {
+        _.layout.includes("total") ? (openBlock(), createElementBlock("div", {
           key: 0,
           class: normalizeClass([unref(t).e("total")])
-        }, " 共 " + toDisplayString(b.total) + " 条数据 ", 3)) : createCommentVNode("", true),
-        b.layout.includes("prev") ? withDirectives((openBlock(), createElementBlock("div", {
+        }, " 共 " + toDisplayString(_.total) + " 条数据 ", 3)) : createCommentVNode("", true),
+        _.layout.includes("prev") ? withDirectives((openBlock(), createElementBlock("div", {
           key: 1,
           class: normalizeClass([unref(t).e("prev"), unref(t).is("disabled", i.value)]),
           "aria-disabled": i.value,
-          onClick: q
+          onClick: F
         }, [
-          createVNode(unref(P), {
+          createVNode(unref(D), {
             name: "left",
             size: "14px"
           })
         ], 10, va)), [
           [R, !i.value]
         ]) : createCommentVNode("", true),
-        b.layout.includes("pager") ? (openBlock(), createElementBlock("div", {
+        _.layout.includes("pager") ? (openBlock(), createElementBlock("div", {
           key: 2,
           class: normalizeClass([unref(t).e("pager")])
         }, [
-          (openBlock(true), createElementBlock(Fragment, null, renderList(l.value, (F) => (openBlock(), createElementBlock(Fragment, null, [
-            F === "left" ? (openBlock(), createElementBlock("div", {
+          (openBlock(true), createElementBlock(Fragment, null, renderList(l.value, (P) => (openBlock(), createElementBlock(Fragment, null, [
+            P === "left" ? (openBlock(), createElementBlock("div", {
               key: 0,
               title: "向前5页",
               class: normalizeClass([unref(t).e("page-item"), unref(t).e("left")]),
-              onClick: S
+              onClick: A
             }, [
-              createVNode(unref(P), {
+              createVNode(unref(D), {
                 name: "ellipsis",
                 class: "im-icon--ellipsis"
               }),
-              createVNode(unref(P), {
+              createVNode(unref(D), {
                 name: "arrowleft",
                 class: "im-icon--arrowleft"
               })
-            ], 2)) : F !== "right" ? withDirectives((openBlock(), createElementBlock("div", {
+            ], 2)) : P !== "right" ? withDirectives((openBlock(), createElementBlock("div", {
               key: 1,
-              onClick: () => h(F),
+              onClick: () => h(P),
               class: normalizeClass([
                 unref(t).e("page-item"),
-                unref(t).is("active", F === e.pageNumber)
+                unref(t).is("active", P === e.pageNumber)
               ]),
-              title: String(F)
+              title: String(P)
             }, [
-              createTextVNode(toDisplayString(F), 1)
+              createTextVNode(toDisplayString(P), 1)
             ], 10, ga)), [
               [R, true]
-            ]) : F === "right" ? (openBlock(), createElementBlock("div", {
+            ]) : P === "right" ? (openBlock(), createElementBlock("div", {
               key: 2,
               class: normalizeClass([unref(t).e("page-item"), unref(t).e("right")]),
               title: "向后5页",
-              onClick: E
+              onClick: M
             }, [
-              createVNode(unref(P), {
+              createVNode(unref(D), {
                 name: "ellipsis",
                 class: "im-icon--ellipsis"
               }),
-              createVNode(unref(P), {
+              createVNode(unref(D), {
                 name: "arrowright",
                 class: "im-icon--arrowright"
               })
             ], 2)) : createCommentVNode("", true)
           ], 64))), 256))
         ], 2)) : createCommentVNode("", true),
-        b.layout.includes("next") ? withDirectives((openBlock(), createElementBlock("div", {
+        _.layout.includes("next") ? withDirectives((openBlock(), createElementBlock("div", {
           key: 3,
           class: normalizeClass([unref(t).e("next"), unref(t).is("disabled", c.value)]),
           "aria-disabled": c.value,
-          onClick: O
+          onClick: Y
         }, [
-          createVNode(unref(P), {
+          createVNode(unref(D), {
             name: "right",
             size: "14px"
           })
         ], 10, ha)), [
           [R, !c.value]
         ]) : createCommentVNode("", true),
-        b.layout.includes("sizes") ? (openBlock(), createElementBlock("div", {
+        _.layout.includes("sizes") ? (openBlock(), createElementBlock("div", {
           key: 4,
           class: normalizeClass([unref(t).e("size")])
         }, [
-          createVNode(unref(He), {
+          createVNode(unref(We), {
             options: v.value,
             modelValue: r.value,
-            "onUpdate:modelValue": W[0] || (W[0] = (F) => r.value = F),
+            "onUpdate:modelValue": V[0] || (V[0] = (P) => r.value = P),
             size: e.size
           }, null, 8, ["options", "modelValue", "size"])
         ], 2)) : createCommentVNode("", true)
@@ -2148,8 +2178,8 @@ var ya = defineComponent({
     };
   }
 });
-var ba = V(ya, [["__scopeId", "data-v-541697d0"]]);
-var _a = H("ImPagination", ba);
+var ya = L(ba, [["__scopeId", "data-v-541697d0"]]);
+var _a = H("ImPagination", ya);
 var Ia = defineComponent({
   name: "ImTooltip",
   __name: "ImTooltip",
@@ -2157,7 +2187,7 @@ var Ia = defineComponent({
     content: {}
   },
   setup(n) {
-    const a = L("tooltip"), t = ref(), s = ref(false), e = n, r = useSlots(), l = computed(() => {
+    const a = B("tooltip"), t = ref(), s = ref(false), e = n, r = useSlots(), l = computed(() => {
       var i;
       return (i = r == null ? void 0 : r.default) == null ? void 0 : i.call(r)[0];
     }), u = computed(() => {
@@ -2209,37 +2239,37 @@ var Ia = defineComponent({
     ], 64));
   }
 });
-var wa = V(Ia, [["__scopeId", "data-v-10f39d6c"]]);
+var wa = L(Ia, [["__scopeId", "data-v-10f39d6c"]]);
 var ka = H("ImTooltip", wa);
 var xa = [
-  be,
+  ye,
   Ie,
   _e,
   we,
-  P,
+  D,
   fe,
-  yt,
+  bt,
   It,
   zt,
   $t,
   Et,
-  Nt,
   Pt,
-  Ht,
+  Nt,
+  Ft,
   Ce,
   Jt,
   Zt,
   ra,
   _a,
-  He,
-  Ye,
+  We,
+  Fe,
   ka
 ];
 var Ca = (n, a) => {
-  n.provide(Pe, {
+  n.provide(Ne, {
     size: (a == null ? void 0 : a.size) || 36,
     zIndex: (a == null ? void 0 : a.zIndex) || 1e3
-  }), n.directive("ripple", at), xa.forEach((t) => {
+  }), n.directive("ripple", nt), xa.forEach((t) => {
     t.name ? n.component(t.name, t) : console.warn(`组件${t}缺少name属性`);
   });
 };
@@ -2248,26 +2278,26 @@ var Ba = {
 };
 export {
   It as ImAlert,
-  yt as ImAnchor,
-  Ht as ImAvatar,
+  bt as ImAnchor,
+  Ft as ImAvatar,
   zt as ImBreadcrumb,
   $t as ImBreadcrumbItem,
-  be as ImButton,
+  ye as ImButton,
   Zt as ImCard,
   Ie as ImCol,
   ra as ImDialog,
   fe as ImDivider,
   Jt as ImDrawer,
   Et as ImDropdown,
-  P as ImIcon,
+  D as ImIcon,
   we as ImInput,
-  Nt as ImList,
-  Pt as ImListItem,
+  Pt as ImList,
+  Nt as ImListItem,
   Ce as ImMask,
   _a as ImPagination,
   _e as ImRow,
-  He as ImSelect,
-  Ye as ImTag,
+  We as ImSelect,
+  Fe as ImTag,
   ka as ImTooltip,
   Ba as default,
   Ta as useImMessage
