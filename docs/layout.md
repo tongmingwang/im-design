@@ -8,7 +8,7 @@
 
 通过 `row` 和 `col` 组件，并通过 `col` 组件的 `span` 属性我们就可以自由地组合布局
 
-<style>
+<style scoped>
 .demo {
   background-color: #c2bfbf;
   height: 100px;

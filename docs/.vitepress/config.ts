@@ -84,6 +84,10 @@ export default defineConfig({
             text: 'Pagination 分页',
             link: '/pagination',
           },
+          {
+            text: 'BackTop 回到顶部',
+            link: '/backtop',
+          },
         ],
       },
       {
@@ -103,14 +107,19 @@ export default defineConfig({
           { text: 'Drawer 抽屉', link: '/drawer' },
           { text: 'Message 消息提示', link: '/message' },
           { text: 'Dialog 对话框', link: '/dialog' },
+          { text: 'Loading 加载中', link: '/loading' },
+          { text: 'Popover 气泡卡片', link: '/popover' },
+          { text: 'Tooltip 文字提示', link: '/tooltip' },
         ],
       },
       {
         text: '数据展示',
         items: [
           { text: 'List 列表', link: '/list' },
-          { text: 'Card 卡片', link: '/card' },
           { text: 'Avatar 头像', link: '/avatar' },
+          { text: 'Card 卡片', link: '/card' },
+          { text: 'Tag 标签', link: '/tag' },
+          { text: 'Badge 徽章', link: '/badge' },
         ],
       },
     ],
