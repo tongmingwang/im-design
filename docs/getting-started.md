@@ -1,6 +1,8 @@
 # 快速开始
 
-ImDesign 是一个基于 Vue3 和 TypeScript 开发的 UI 组件库，旨在提供一套高质量的、易于使用的 Vue UI 组件。ImDesign 的目标是帮助开发者快速构建美观、高效的应用程序界面。
+ImDesign 是一个基于 Vue3 和 TypeScript 开发的 UI 组件库，旨在提供一套高质量的、易于使用的 Vue UI 组件。
+
+ImDesign 的目标是帮助开发者快速构建美观、高效的应用程序界面。
 
 ## 安装
 
@@ -18,7 +20,7 @@ pnpm add im-design
 ## 使用
 
 全局引入 (推荐用于小型项目)
-<ImAlert color="primary" title="提示">
+<ImAlert color="primary" title="提示" variant="outlined">
 全局引入 ImDesign 组件库，并设置全局配置。例如：`size: '36'`，`zIndex: 1000` 。
 </ImAlert>
 
@@ -50,7 +52,7 @@ app.mount('#app');
 
 ## 组件使用示例
 
-<ImAlert color="primary" title="提示">
+<ImAlert color="primary" variant="outlined" title="提示">
 在单文件组件中使用 ImDesign 组件，例如：ImButton组件。
 </ImAlert>
 
@@ -73,8 +75,4 @@ const handleClick = () => {
 </script>
 
 <style></style>
-```
-
-```
-
 ```
