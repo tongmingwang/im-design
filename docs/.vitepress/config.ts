@@ -97,6 +97,7 @@ export default defineConfig({
             text: 'Input 输入框',
             link: '/input',
           },
+          { text: 'InputNumber 数字输入框', link: '/input-number' },
           { text: 'Select 选择器', link: '/select' },
         ],
       },
