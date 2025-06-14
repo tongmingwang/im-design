@@ -11,6 +11,7 @@
 <style scoped>
   .demo {
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
   }
   </style>
