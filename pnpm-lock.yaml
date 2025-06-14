@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       im-design:
-        specifier: ^0.0.47
-        version: 0.0.47
+        specifier: ^0.0.48
+        version: 0.0.48
       sass:
         specifier: ^1.89.0
         version: 1.89.0
@@ -973,8 +973,8 @@ packages:
   html-void-elements@3.0.0:
     resolution: {integrity: sha512-bEqo66MRXsUGxWHV5IP0PUiAWwoEjba4VCzg0LjFJBpchPaTfyfCKTG6bc5F8ucKec3q5y6qOdGyYTSBEvhCrg==}
 
-  im-design@0.0.47:
-    resolution: {integrity: sha512-KTVm2bFDna6p3LmuDSfpFL5dH7dSdCvoltj5n6t/s16K5m6Gu6loK2K8oYhAg4Ueou/2rSMUQ8Ou9TeiKIABvQ==}
+  im-design@0.0.48:
+    resolution: {integrity: sha512-qWZY8qa/p+jf5w25ZS3TIry+/jq/zj+0ee0G7H3uR33hCKxBkIA+3Sw6ZezRBfYlfYoiACwtb9A0EcztvJ9nBA==}
 
   immutable@5.1.2:
     resolution: {integrity: sha512-qHKXW1q6liAk1Oys6umoaZbDRqjcjgSrbnrifHsfsttza7zcvRAsL7mMV6xWcyhwQy7Xj5v4hhbr6b+iDYwlmQ==}
@@ -2127,7 +2127,7 @@ snapshots:
 
   html-void-elements@3.0.0: {}
 
-  im-design@0.0.47: {}
+  im-design@0.0.48: {}
 
   immutable@5.1.2: {}
 

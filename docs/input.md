@@ -30,6 +30,13 @@ const value = ref('');
 在输入框中添加前缀或后缀图标。
 
 <ImInput v-model="value" placeholder="基础使用" prefix="https" suffix=".com" />
+
+插槽方式
+<ImInput v-model="value" placeholder="基础使用">
+<template #prefix>https</template>
+<template #suffix>.com</template>
+</ImInput>
+
 ```vue
 <template>
   <ImInput
@@ -37,6 +44,11 @@ const value = ref('');
     placeholder="基础使用"
     prefix="https"
     suffix=".com" />
+
+  <ImInput v-model="value" placeholder="基础使用">
+    <template #prefix>https</template>
+    <template #suffix>.com</template>
+  </ImInput>
 </template>
 ```
 
@@ -46,9 +58,19 @@ const value = ref('');
 
 <ImInput prepend="Prepend" clearable append="Append" v-model="value" />
 
+插槽方式
+<ImInput v-model="value" placeholder="基础使用">
+<template #prepend>https</template>
+<template #append>.com</template>
+</ImInput>
+
 ```vue
 <template>
   <ImInput prepend="Prepend" clearable append="Append" v-model="value" />
+  <ImInput v-model="value" placeholder="基础使用">
+    <template #prepend>https</template>
+    <template #append>.com</template>
+  </ImInput>
 </template>
 ```
 

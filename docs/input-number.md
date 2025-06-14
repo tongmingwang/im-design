@@ -37,6 +37,35 @@ const value = ref('');
 </template>
 ```
 
+## 前缀和后缀
+
+<ImInputNumber
+    v-model="value"
+    placeholder="价值"
+    prefix="Total:"
+    suffix="亿" />
+
+插槽方式自定义前缀和后缀。
+
+<ImInputNumber v-model="value" placeholder="价值">
+    <template #prefix>Total:</template>
+    <template #suffix>亿</template>
+  </ImInputNumber>
+
+```vue
+<template>
+  <ImInputNumber
+    v-model="value"
+    placeholder="价值"
+    prefix="Total:"
+    suffix="亿" />
+  <ImInputNumber v-model="value" placeholder="价值">
+    <template #prefix>Total:</template>
+    <template #suffix>亿</template>
+  </ImInputNumber>
+</template>
+```
+
 ## 右侧按钮
 
 设置 `controlRight` 属性可以显示右侧按钮，点击可增加或减少输入框的值。
