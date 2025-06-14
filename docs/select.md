@@ -72,3 +72,4 @@ const options = new Array(4)
 设置 `scrollClose` 属性为 true,即可实现
 
 <ImSelect :options="options" v-model="val" scrollClose />
+## APIS

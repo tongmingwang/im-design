@@ -161,3 +161,5 @@ const value = ref('');
   <ImInputNumber size="48" v-model="value" />
 </template>
 ```
+
+## APIS

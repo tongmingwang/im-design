@@ -123,6 +123,7 @@ export default defineConfig({
           { text: 'Card 卡片', link: '/card' },
           { text: 'Tag 标签', link: '/tag' },
           { text: 'Badge 徽章', link: '/badge' },
+          { text: 'Collapse 折叠面板', link: '/collapse' },
         ],
       },
     ],

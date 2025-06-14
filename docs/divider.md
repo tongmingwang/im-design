@@ -47,3 +47,5 @@ Hello <ImDivider vertical /> World
 ```vue
 <template>Hello <ImDivider vertical /> World</template>
 ```
+
+## APIS

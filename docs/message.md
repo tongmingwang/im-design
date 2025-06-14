@@ -31,3 +31,5 @@ const { info } = useImMessage();
 <ImButton @click="error('这是一个提示消息！')" color="error">提示消息</ImButton>
 <ImButton @click="success('这是一个提示消息！')" color="success">提示消息</ImButton>
 <ImButton @click="warning('这是一个提示消息！')" color="warning">提示消息</ImButton>
+
+## APIS

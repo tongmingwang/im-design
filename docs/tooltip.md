@@ -102,3 +102,5 @@ placement 属性设置提示框出现的位置。
 <ImTooltip content="这是提示文字组件！" scrollClose trigger="click">
   <ImButton>滚动鼠标滚轮关闭提示</ImButton>
   </ImTooltip>
+
+## APIS

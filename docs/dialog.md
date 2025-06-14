@@ -182,3 +182,5 @@ const getTarget = () => {
   <ImButton @click="parent = true">打开父级对话框</ImButton>
 </template>
 ```
+
+## APIS
