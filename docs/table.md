@@ -66,9 +66,8 @@ const onItemChange = () => {
 </ImTable>
 
 <style scoped>
-
   td,th {
-    width: 500px;
+    min-width: 150px;
   }
   .w_48 {
     width: 48px;
