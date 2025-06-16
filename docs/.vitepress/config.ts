@@ -102,6 +102,7 @@ export default defineConfig({
           { text: 'InputNumber 数字输入框', link: '/input-number' },
           { text: 'Select 选择器', link: '/select' },
           { text: 'Checkbox 多选框', link: '/checkbox' },
+          { text: 'Radio 单选框', link: '/radio' },
         ],
       },
       {
@@ -126,6 +127,7 @@ export default defineConfig({
           { text: 'Badge 徽章', link: '/badge' },
           { text: 'Collapse 折叠面板', link: '/collapse' },
           { text: 'Table 表格', link: '/table' },
+          { text: 'Empty 空状态', link: '/empty' },
         ],
       },
     ],
