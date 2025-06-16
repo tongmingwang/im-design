@@ -90,6 +90,10 @@ export default defineConfig({
             text: 'BackTop 回到顶部',
             link: '/backtop',
           },
+          {
+            text: 'Tabs 标签页',
+            link: '/tabs',
+          },
         ],
       },
       {

@@ -6,6 +6,12 @@
 
 使用 `<ImTable>` 包裹 `<thead>` 和 `<tbody>` 来构建表格。
 
+<style scoped>
+  .w_48 {
+    width: 48px;
+    max-width: 48px;
+  }
+</style>
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 
@@ -17,7 +23,7 @@ const indeterminate = computed(
     list.length > checkedList.value.length &&
     !isCheckAll.value
 );
-const list: Array<number> = new Array(50).fill(null).map((_, i) => i + 1);
+const list: Array<number> = new Array(10).fill(null).map((_, i) => i + 1);
 
 const onCheckAll = () => {
   if (isCheckAll.value) {
@@ -31,7 +37,7 @@ const onItemChange = () => {
 };
 </script>
 
-<ImTable height="50vh">
+<ImTable >
   <thead>
     <tr>
       <th class="w_48">
@@ -55,7 +61,7 @@ const onItemChange = () => {
           :value="i"
           @change="onItemChange" />
       </td>
-      <td>张三</td>
+      <td>张三 {{ i }}</td>
       <td>男</td>
       <td>20</td>
       <td>
@@ -65,21 +71,73 @@ const onItemChange = () => {
   </tbody>
 </ImTable>
 
-<style scoped>
-  td,th {
-    min-width: 150px;
+```vue
+<script setup lang="ts">
+import { ref, computed } from 'vue';
+
+const checkedList: any = ref([]);
+const isCheckAll = ref(false);
+const indeterminate = computed(
+  () =>
+    checkedList.value.length > 0 &&
+    list.length > checkedList.value.length &&
+    !isCheckAll.value
+);
+const list: Array<number> = new Array(10).fill(null).map((_, i) => i + 1);
+
+const onCheckAll = () => {
+  if (isCheckAll.value) {
+    checkedList.value = [...list];
+  } else {
+    checkedList.value = [];
   }
-  .w_48 {
-    width: 48px;
-    max-width: 48px;
-  }
-</style>
+};
+const onItemChange = () => {
+  isCheckAll.value = checkedList.value.length === list.length;
+};
+</script>
+<template>
+  <ImTable>
+    <thead>
+      <tr>
+        <th class="w_48">
+          <ImCheckbox
+            v-model="isCheckAll"
+            :indeterminate="indeterminate"
+            @change="onCheckAll" />
+        </th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>年龄</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="i in list">
+        <td class="w_48">
+          <ImCheckbox
+            v-model="checkedList"
+            label=""
+            :value="i"
+            @change="onItemChange" />
+        </td>
+        <td>张三 {{ i }}</td>
+        <td>男</td>
+        <td>20</td>
+        <td>
+          <ImButton>编辑</ImButton>
+        </td>
+      </tr>
+    </tbody>
+  </ImTable>
+</template>
+```
 
 ## 固定表头
 
 在 `<ImTable>` 组件上设置 `fixed-header` 属性，可以固定表头。
 
-<ImTable height="50vh" fixedHeader>
+<ImTable height="300px" fixedHeader>
   <thead>
     <tr>
       <th class="w_48">
@@ -103,7 +161,7 @@ const onItemChange = () => {
           :value="i"
           @change="onItemChange" />
       </td>
-      <td>张三</td>
+      <td>张三 {{ i }}</td>
       <td>男</td>
       <td>20</td>
       <td>
