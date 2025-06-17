@@ -94,6 +94,14 @@ export default defineConfig({
             text: 'Tabs 标签页',
             link: '/tabs',
           },
+          {
+            text: 'Menu 菜单',
+            link: '/menu',
+          },
+          {
+            text: 'Page Header 页头',
+            link: '/page-header',
+          },
         ],
       },
       {
