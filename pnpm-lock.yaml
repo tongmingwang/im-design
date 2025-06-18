@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       im-design:
-        specifier: ^0.0.65
-        version: 0.0.65
+        specifier: ^0.0.67
+        version: 0.0.67(typescript@5.8.3)
       sass:
         specifier: ^1.89.0
         version: 1.89.0
@@ -889,6 +889,9 @@ packages:
   csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
 
+  dayjs@1.11.13:
+    resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==}
+
   de-indent@1.0.2:
     resolution: {integrity: sha512-e/1zu3xH5MQryN2zdVaF0OrdNLUbvWxzMbi+iNA6Bky7l1RoP8a2fIbRocyHclXt/arDrrR6lL3TqFD9pMQTsg==}
 
@@ -973,8 +976,8 @@ packages:
   html-void-elements@3.0.0:
     resolution: {integrity: sha512-bEqo66MRXsUGxWHV5IP0PUiAWwoEjba4VCzg0LjFJBpchPaTfyfCKTG6bc5F8ucKec3q5y6qOdGyYTSBEvhCrg==}
 
-  im-design@0.0.65:
-    resolution: {integrity: sha512-nRyqzywWU4oDMWP4qUYcTW8LaUhsdnHEYYNBCGUf0feSEBmCmkzhnO+js1WjNsHbpAF1foU8fUJ/YRLAQ+nAww==}
+  im-design@0.0.67:
+    resolution: {integrity: sha512-lGip9O9vWG6TdJVJYgxxtsx1dMj+fi/BDAzkjDb5sd3kgTjHlTolEd3qwghpqF/LFWc/PhA/WwxaTPqZF4mHsw==}
 
   immutable@5.1.2:
     resolution: {integrity: sha512-qHKXW1q6liAk1Oys6umoaZbDRqjcjgSrbnrifHsfsttza7zcvRAsL7mMV6xWcyhwQy7Xj5v4hhbr6b+iDYwlmQ==}
@@ -1998,6 +2001,8 @@ snapshots:
 
   csstype@3.1.3: {}
 
+  dayjs@1.11.13: {}
+
   de-indent@1.0.2: {}
 
   dequal@2.0.3: {}
@@ -2127,7 +2132,12 @@ snapshots:
 
   html-void-elements@3.0.0: {}
 
-  im-design@0.0.65: {}
+  im-design@0.0.67(typescript@5.8.3):
+    dependencies:
+      dayjs: 1.11.13
+      vue: 3.5.15(typescript@5.8.3)
+    transitivePeerDependencies:
+      - typescript
 
   immutable@5.1.2: {}
 

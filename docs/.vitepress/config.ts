@@ -115,6 +115,7 @@ export default defineConfig({
           { text: 'Select 选择器', link: '/select' },
           { text: 'Checkbox 多选框', link: '/checkbox' },
           { text: 'Radio 单选框', link: '/radio' },
+          { text: 'DatePicker 日期选择器', link: '/date-picker' },
         ],
       },
       {
