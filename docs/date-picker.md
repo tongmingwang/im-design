@@ -12,7 +12,7 @@ const selectedDate = ref('');
 使用 v-model 绑定日期值，默认为空字符串。
 
 
-<ImDatePicker v-model="selectedDate" />
+<ImDatePicker :clearable="false" v-model="selectedDate" />
 
 ```vue
 <template>
@@ -28,7 +28,7 @@ const selectedDate = ref('');
 ## 支持时间选择
 
 设置 showTime 为 true，则可以同时选择日期和时间。
-<ImDatePicker showTime v-model="selectedDate" />
+<ImDatePicker showTime :clearable="false" v-model="selectedDate" />
 
 ```vue
 <template>
