@@ -16,17 +16,46 @@ const selectedDate = ref('');
 
 ```vue
 <template>
-  <ImMenu>
-    <ImMenuItem>Home</ImMenuItem>
-    <ImMenuItem>Home</ImMenuItem>
-    <ImMenuItem>Home</ImMenuItem>
-  </ImMenu>
-  <ImButton>BUTTON</ImButton>
   <ImDatePicker v-model="selectedDate" />
-  <Anchor />
 </template>
+
+<script setup lang="ts">
+import { ref, watch } from 'vue';
+const selectedDate = ref('');
+</script>
 ```
 
+## 支持时间选择
+
+设置 showTime 为 true，则可以同时选择日期和时间。
+<ImDatePicker showTime v-model="selectedDate" />
+
+```vue
+<template>
+  <ImDatePicker showTime v-model="selectedDate" />
+</template>
+
+<script setup lang="ts">
+import { ref, watch } from 'vue';
+const selectedDate = ref('');
+</script>
+```
+
+## 支持清除
+
+设置 clearable 为 true，则可以清除已选择的日期。
+  <ImDatePicker clearable v-model="selectedDate" />
+
+```vue
+<template>
+  <ImDatePicker v-model="selectedDate" />
+</template>
+
+<script setup lang="ts">
+import { ref, watch } from 'vue';
+const selectedDate = ref('');
+</script>
+```
 ## APIS
 
 基础配置
