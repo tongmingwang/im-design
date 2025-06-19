@@ -48,7 +48,7 @@ const selectedDate = ref('');
 
 ```vue
 <template>
-  <ImDatePicker v-model="selectedDate" />
+  <ImDatePicker clearable v-model="selectedDate" />
 </template>
 
 <script setup lang="ts">
