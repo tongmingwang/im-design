@@ -1,6 +1,6 @@
 # DatePicker 日期选择器
 
-需要现在某一日期时使用该组件
+需要选择某一日期时使用
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
