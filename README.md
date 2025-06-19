@@ -1,6 +1,28 @@
+<div style="text-align:center">
+<img src="https://tongmingwang.github.io/im-design/logo.svg">
+</div>
+
 # Im Design
 
-ImDesign is a Vue 3.x component library
+ImDesign - A Vue.js 3 UI Component Library.
+
+Ingeniously crafted, the ultimate experience. Enterprise-level component library solution
+
+(匠心打造，极致体验。企业级组件库解决方案)
+
+## Getting Started
+
+Alright, for you to get started if you are looking for making ImDesign better you should keep reading. For developers that uses ImDesign to develop your website you should go ahead visit Getting Started.
+
+好了，如果你想让 ImDesign 变得更好，那就继续阅读吧。对于使用 ImDesign 开发网站的开发者，你应该继续阅读“入门”。
+
+## Buttons
+
+![Buttons](https://tongmingwang.github.io/im-design/button.png)
+
+## DatePicker
+
+![DatePicker](https://tongmingwang.github.io/im-design/date-picker.png)
 
 ## Installation
 
@@ -64,27 +86,12 @@ const handleClick = () => {
   count.value++;
 };
 </script>
-
-<style></style>
 ```
+
+## Docs
 
 [https://tongmingwang.github.io/im-design/](https://tongmingwang.github.io/im-design/)
 
 ## License
 
 MIT © [im-design](https://tongmingwang.github.io/im-design/)
-
-## Components
-
-### 已完成组件
-
-- [✓] Button (ImButton)
-- [✓] Divider (ImDivider)
-- [✓] Icon (ImIcon)
-- [✓] Input (ImInput)
-- [✓] Layout (ImLayout)
-- [✓] List (ImList)
-- [✓] Dropdown (ImDropdown)
-- [✓] Anchor (ImAnchor)
-- [✓] Breadcrumb (ImBreadcrumb)
-- [✓] Alert (ImAlert)
