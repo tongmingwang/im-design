@@ -5,6 +5,8 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 const selectedDate = ref('');
+const timer = ref('');
+
 </script>
 
 ## 基础使用
@@ -12,7 +14,7 @@ const selectedDate = ref('');
 使用 v-model 绑定日期值，默认为空字符串。
 
 
-<ImDatePicker :clearable="false" v-model="selectedDate" />
+<ImDatePicker  v-model="selectedDate" />
 
 ```vue
 <template>
@@ -28,16 +30,16 @@ const selectedDate = ref('');
 ## 支持时间选择
 
 设置 showTime 为 true，则可以同时选择日期和时间。
-<ImDatePicker showTime :clearable="false" format="YYYY-MM-DD HH:mm:ss" v-model="selectedDate" />
+<ImDatePicker showTime format="YYYY-MM-DD HH:mm:ss" v-model="timer" />
 
 ```vue
 <template>
-  <ImDatePicker showTime :clearable="false" format="YYYY-MM-DD HH:mm:ss" v-model="selectedDate" />
+  <ImDatePicker showTime format="YYYY-MM-DD HH:mm:ss" v-model="timer" />
 </template>
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-const selectedDate = ref('');
+const timer = ref('');
 </script>
 ```
 
