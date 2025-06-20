@@ -4,9 +4,9 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-const selectedDate = ref('');
-const timer = ref('');
 
+const selectedDate = ref('');
+const timeValue = ref('');
 </script>
 
 ## 基础使用
@@ -27,21 +27,7 @@ const selectedDate = ref('');
 </script>
 ```
 
-## 支持时间选择
 
-设置 showTime 为 true，则可以同时选择日期和时间。
-<ImDatePicker showTime format="YYYY-MM-DD HH:mm:ss" v-model="timer" />
-
-```vue
-<template>
-  <ImDatePicker showTime format="YYYY-MM-DD HH:mm:ss" v-model="timer" />
-</template>
-
-<script setup lang="ts">
-import { ref, watch } from 'vue';
-const timer = ref('');
-</script>
-```
 
 ## 支持清除
 
@@ -58,6 +44,22 @@ import { ref, watch } from 'vue';
 const selectedDate = ref('');
 </script>
 ```
-## APIS
 
-基础配置
+
+## 支持时间选择
+
+设置 showTime 为 true，则可以同时选择日期和时间。
+
+<ImDatePicker :showTime="true" format="YYYY-MM-DD HH:mm:ss" v-model="timeValue" />
+
+```vue
+<template>
+  <ImDatePicker showTime format="YYYY-MM-DD HH:mm:ss" v-model="timeValue" />
+</template>
+
+<script setup lang="ts">
+import { ref, watch } from 'vue';
+const timeValue = ref('');
+</script>
+```
+## APIS
