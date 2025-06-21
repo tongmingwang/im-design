@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress';
 import { nav, sidebar } from './menu';
+import enMenu from './menu/en-menu';
 import { search } from './search';
 
 // 基础配置常量
@@ -36,8 +37,26 @@ export default defineConfig({
     sidebar,
 
     // 搜索功能
-    search,
-
+    search: {
+      provider: 'local',
+      options: {
+        translations: {
+          button: {
+            buttonText: '搜索文档',
+            buttonAriaLabel: '搜索文档',
+          },
+          modal: {
+            noResultsText: '暂无相关结果',
+            resetButtonTitle: '清空搜索',
+            footer: {
+              selectText: '选择',
+              navigateText: '切换',
+              closeText: '关闭',
+            },
+          },
+        },
+      },
+    },
     // 国际化配置
     i18nRouting: true,
 
@@ -71,13 +90,9 @@ export default defineConfig({
       },
     },
 
-    // 返回顶部按钮
-    returnToTop: true,
-
     // 大纲配置
     outline: {
       level: 'deep',
-
       label: '本页目录',
     },
   },
@@ -105,28 +120,10 @@ export default defineConfig({
         outline: {
           label: 'On this page',
         },
+        ...enMenu,
       },
     },
   },
-
-  // 构建输出配置
-  build: {
-    chunkSizeWarningLimit: 2000,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vue: ['vue', 'vue-router'],
-        },
-      },
-    },
-  },
-
-  // 开发服务器配置
-  server: {
-    port: 5173,
-    host: '0.0.0.0',
-  },
-
   // Markdown 配置
   markdown: {
     lineNumbers: true,

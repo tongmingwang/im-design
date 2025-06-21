@@ -2,12 +2,12 @@
 layout: home
 
 hero:
-  name: 'Im Design 🚀 '
-  text: 'Powerful Vue3 UI Component Library'
-  tagline: 'Meticulously Crafted · Ultimate Experience · Ready-to-Use'
+  name: 'Im Design 🚀'
+  text: 'A trustworthy Vue3 component library'
+  tagline: 'Meticulously crafted · Premium experience · Ready to use'
   image:
     src: /logo.svg
-    alt: Im Design Logo
+    alt: Im Design
     width: 240
     height: 240
     loading: lazy
@@ -15,19 +15,19 @@ hero:
   actions:
     - theme: brand
       text: '🚀 Quick Start'
-      link: /getting-started
+      link: /en/getting-started
     - theme: alt
       text: '📚 Components'
-      link: /button
+      link: /en/button
 
 features:
   - icon: 🛠️
-    title: 'TypeScript First'
-    details: 'Full type definitions and API hints for better development efficiency and code quality'
+    title: 'TypeScript Integration'
+    details: 'Complete type definitions and API hints to improve development efficiency and code quality'
   - icon: 🎨
     title: 'Theme Customization'
-    details: 'Dynamic skin switching and CSS variables for easy brand customization'
+    details: 'Supports dynamic skin changing and CSS variables for easy branding customization'
   - icon: 🔒
-    title: 'Enterprise-Grade Reliability'
-    details: 'Rigorous code review and testing to ensure production stability'
+    title: 'Security & Reliability'
+    details: 'Rigorous code review and testing to ensure production environment stability'
 ---
