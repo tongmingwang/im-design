@@ -1,152 +1,137 @@
 import { defineConfig } from 'vitepress';
+import { nav, sidebar } from './menu';
+import { search } from './search';
 
-// https://vitepress.dev/reference/site-config
+// 基础配置常量
+const SITE_TITLE = 'Im Design';
+const SITE_DESCRIPTION = '匠心打造，极致体验的 Vue3 组件库';
+const REPO_LINK = 'https://github.com/tongmingwang/im-design';
+const BASE_PATH = '/im-design/';
+
 export default defineConfig({
-  title: 'Im Design',
-  lastUpdated: true,
-  description:
-    '一个基于 Vue3 的组件库，旨在通过提供丰富的组件和灵活的配置来帮助开发者快速构建高质量的前端应用。',
-  base: '/im-design/',
-  head: [['link', { rel: 'icon', href: '/im-design/favicon.ico' }]],
+  // 基础元数据
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  lang: 'zh-CN', // 使用标准语言代码
+  base: BASE_PATH,
+
+  // 头部配置
+  head: [
+    ['link', { rel: 'icon', href: `${BASE_PATH}favicon.ico` }],
+    ['meta', { name: 'theme-color', content: '#646cff' }],
+    ['meta', { property: 'og:title', content: SITE_TITLE }],
+    ['meta', { property: 'og:description', content: SITE_DESCRIPTION }],
+    ['meta', { property: 'og:url', content: `${REPO_LINK}${BASE_PATH}` }],
+  ],
+
+  // 主题配置
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
-    siteTitle: 'Im Design',
-    logo: '/logo.svg',
-    footer: {
-      message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2019-present TongMing Wang. All rights reserved.',
+    logo: {
+      src: '/logo.svg',
+      alt: `${SITE_TITLE} Logo`,
     },
 
-    // carbonAds: {
-    //   code: 'https://github.com/tongmingwang/im-design.git',
-    //   placement: 'Hello',
-    // },
-    search: {
-      provider: 'local',
-      options: {
-        translations: {
-          button: {
-            buttonText: '搜索文档',
-            buttonAriaLabel: '搜索文档',
-          },
-          modal: {
-            noResultsText: '无法找到相关结果',
-            resetButtonTitle: '清除查询条件',
-            footer: {
-              selectText: '选择',
-              navigateText: '切换',
-              closeKeyAriaLabel: '关闭',
-              closeText: '关闭',
-            },
-          },
+    // 导航与侧边栏
+    nav,
+    sidebar,
+
+    // 搜索功能
+    search,
+
+    // 国际化配置
+    i18nRouting: true,
+
+    // 社交链接
+    socialLinks: [{ icon: 'github', link: REPO_LINK }],
+
+    // 编辑链接
+    editLink: {
+      pattern: `${REPO_LINK}/edit/main/docs/:path`,
+      text: '在 GitHub 上编辑此页',
+    },
+
+    // 页脚
+    footer: {
+      message: '基于 MIT 协议发布',
+      copyright: `版权所有 © 2019-${new Date().getFullYear()} TongmingWang`,
+    },
+
+    // 文档页脚
+    docFooter: {
+      prev: '上一页',
+      next: '下一页',
+    },
+
+    // 最后更新时间
+    lastUpdated: {
+      text: '最后更新',
+      formatOptions: {
+        dateStyle: 'short',
+        timeStyle: 'medium',
+      },
+    },
+
+    // 返回顶部按钮
+    returnToTop: true,
+
+    // 大纲配置
+    outline: {
+      level: 'deep',
+
+      label: '本页目录',
+    },
+  },
+
+  // 多语言配置
+  locales: {
+    root: {
+      label: '简体中文',
+      lang: 'zh-CN',
+      link: '/',
+    },
+    en: {
+      label: 'English',
+      lang: 'en-US',
+      link: '/en/',
+      themeConfig: {
+        // 英文版覆盖配置
+        docFooter: {
+          prev: 'Previous',
+          next: 'Next',
+        },
+        lastUpdated: {
+          text: 'Last Updated',
+        },
+        outline: {
+          label: 'On this page',
         },
       },
     },
-    nav: [
-      { text: '指南', link: '/getting-started' },
-      { text: '设计原则', link: '/design' },
-      { text: '组件文档', link: '/button' },
-    ],
+  },
 
-    sidebar: [
-      {
-        text: '指南',
-        items: [
-          { text: '快速开始', link: '/getting-started' },
-          { text: '设计原则', link: '/design' },
-          { text: '全局主题', link: '/theme' },
-        ],
+  // 构建输出配置
+  build: {
+    chunkSizeWarningLimit: 2000,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vue: ['vue', 'vue-router'],
+        },
       },
-      {
-        text: '通用组件',
-        items: [
-          { text: 'Button 按钮', link: '/button' },
-          { text: 'Icon 图标', link: '/icon' },
-          { text: 'Layout 布局', link: '/layout' },
-          { text: 'Color 色彩', link: '/color' },
-          { text: 'Divider 分割线', link: '/divider' },
-        ],
-      },
-      {
-        text: '导航组件',
-        items: [
-          {
-            text: 'Anchor 锚点',
-            link: '/anchor',
-          },
-          {
-            text: 'Breadcrumb 面包屑',
-            link: '/breadcrumb',
-          },
-          {
-            text: 'Dropdown 下拉菜单',
-            link: '/dropdown',
-          },
-          {
-            text: 'Pagination 分页',
-            link: '/pagination',
-          },
-          {
-            text: 'BackTop 回到顶部',
-            link: '/backtop',
-          },
-          {
-            text: 'Tabs 标签页',
-            link: '/tabs',
-          },
-          {
-            text: 'Menu 菜单',
-            link: '/menu',
-          },
-          {
-            text: 'Page Header 页头',
-            link: '/page-header',
-          },
-        ],
-      },
-      {
-        text: 'Form表单组件',
-        items: [
-          {
-            text: 'Input 输入框',
-            link: '/input',
-          },
-          { text: 'InputNumber 数字输入框', link: '/input-number' },
-          { text: 'Select 选择器', link: '/select' },
-          { text: 'Checkbox 多选框', link: '/checkbox' },
-          { text: 'Radio 单选框', link: '/radio' },
-          { text: 'DatePicker 日期选择器', link: '/date-picker' },
-        ],
-      },
-      {
-        text: '反馈组件',
-        items: [
-          { text: 'Alert 警告提示', link: '/alert' },
-          { text: 'Drawer 抽屉', link: '/drawer' },
-          { text: 'Message 消息提示', link: '/message' },
-          { text: 'Dialog 对话框', link: '/dialog' },
-          { text: 'Loading 加载中', link: '/loading' },
-          { text: 'Popover 气泡卡片', link: '/popover' },
-          { text: 'Tooltip 文字提示', link: '/tooltip' },
-        ],
-      },
-      {
-        text: '数据展示',
-        items: [
-          { text: 'List 列表', link: '/list' },
-          { text: 'Avatar 头像', link: '/avatar' },
-          { text: 'Card 卡片', link: '/card' },
-          { text: 'Tag 标签', link: '/tag' },
-          { text: 'Badge 徽章', link: '/badge' },
-          { text: 'Collapse 折叠面板', link: '/collapse' },
-          { text: 'Table 表格', link: '/table' },
-          { text: 'Empty 空状态', link: '/empty' },
-        ],
-      },
-    ],
+    },
+  },
 
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/tongmingwang/im-design.git' },
-    ],
+  // 开发服务器配置
+  server: {
+    port: 5173,
+    host: '0.0.0.0',
+  },
+
+  // Markdown 配置
+  markdown: {
+    lineNumbers: true,
+    config: (md) => {
+      // 添加 markdown-it 插件
+    },
   },
 });

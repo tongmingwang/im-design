@@ -22,27 +22,27 @@
 
 </style>
 
-<im-row :gutter="8">
-    <im-col span="8"><div class="demo" style="height: 200px"></div></im-col>
-    <im-col span="4"><div class="demo"></div></im-col>
-    <im-col span="4"><div class="demo"></div></im-col>
-    <im-col span="4"><div class="demo"></div></im-col>
-  </im-row>
-  <im-row>
-    <im-col span="24"><div class="demo" style="height: 200px"></div></im-col>
-  </im-row>
+<ImRow :gutter="8">
+    <ImCol span="8"><div class="demo" style="height: 200px"></div></ImCol>
+    <ImCol span="4"><div class="demo"></div></ImCol>
+    <ImCol span="4"><div class="demo"></div></ImCol>
+    <ImCol span="4"><div class="demo"></div></ImCol>
+  </ImRow>
+  <ImRow>
+    <ImCol span="24"><div class="demo" style="height: 200px"></div></ImCol>
+  </ImRow>
 
 ```vue
 <template>
-  <im-row :gutter="8">
-    <im-col span="8"><div class="demo" style="height: 200px"></div></im-col>
-    <im-col span="4"><div class="demo"></div></im-col>
-    <im-col span="4"><div class="demo"></div></im-col>
-    <im-col span="4"><div class="demo"></div></im-col>
-  </im-row>
-  <im-row>
-    <im-col span="24"><div class="demo" style="height: 200px"></div></im-col>
-  </im-row>
+  <ImRow :gutter="8">
+    <ImCol span="8"><div class="demo" style="height: 200px"></div></ImCol>
+    <ImCol span="4"><div class="demo"></div></ImCol>
+    <ImCol span="4"><div class="demo"></div></ImCol>
+    <ImCol span="4"><div class="demo"></div></ImCol>
+  </ImRow>
+  <ImRow>
+    <ImCol span="24"><div class="demo" style="height: 200px"></div></ImCol>
+  </ImRow>
 </template>
 ```
 

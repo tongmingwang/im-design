@@ -1,42 +1,62 @@
 # 快速开始
 
-ImDesign 是一个基于 Vue3 和 TypeScript 开发的 UI 组件库，旨在提供一套高质量的、易于使用的 Vue UI 组件。
+ImDesign 提供了一套丰富的 UI 组件，帮助开发者快速搭建美观、高效的应用程序。
 
-ImDesign 的目标是帮助开发者快速构建美观、高效的应用程序界面。
+<script setup>
+import { ref } from 'vue'
+</script>
 
 ## 安装
 
+### 使用 npm 安装
+
 ```bash
-# 使用 npm
 npm install im-design --save
+```
 
-# 使用 yarn
+### 使用 cnpm 安装
+
+```bash
+cnpm install im-design --save
+```
+
+### 使用 yarn 安装
+
+```bash
 yarn add im-design
+```
 
-# 使用 pnpm
+### 使用 pnpm 安装
+
+```bash
 pnpm add im-design
 ```
 
-## 使用
+## 项目引入
 
-全局引入 (推荐用于小型项目)
-<ImAlert color="primary" title="提示" variant="outlined">
-全局引入 ImDesign 组件库，并设置全局配置。例如：`size: '36'`，`zIndex: 1000` 。
+<ImAlert color="primary" variant="outlined" title="提示">
+  全局引入和按需引入两种方式均可使用，具体选择哪种方式取决于项目需求。
 </ImAlert>
+
+### 全局引入
+
+全局引入 ImDesign 组件库，并设置全局配置。例如：`size: '36'`，`zIndex: 1000` 。
 
 ```js
 // main.js
 import { createApp } from 'vue';
 import App from './App.vue';
-import ImDesign from 'im-design';
+// 组件和指令的引入方式相同。
+import ImDesign, { ImDirective } from 'im-design';
 import 'im-design/dist/index.css';
 
 const app = createApp(App);
 app.use(ImDesign, { size: '36', zIndex: 1000 });
+app.use(ImDirective);
 app.mount('#app');
 ```
 
-按需引入 (推荐用于大型项目)
+### 按需引入
 
 ```js
 // main.js
@@ -50,7 +70,7 @@ app.component(ImButton.name, ImButton);
 app.mount('#app');
 ```
 
-## 组件使用示例
+## 示例
 
 <ImAlert color="primary" variant="outlined" title="提示">
 在单文件组件中使用 ImDesign 组件，例如：ImButton组件。
@@ -73,6 +93,4 @@ const handleClick = () => {
   count.value++;
 };
 </script>
-
-<style></style>
 ```

@@ -1,16 +1,15 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
 layout: home
 
 hero:
-  name: 'Im Design'
-  text: 'Vue3组件解决方案'
-  tagline: '匠心打造 · 极致体验 · 开箱即用'
+  name: 'Im Design 🚀 '
+  text: '一个值得信赖的Vue3组件库'
+  tagline: '匠心打造 · 极致体验 · 开箱即用 '
   image:
     src: /logo.svg
     alt: Im Design
-    width: 300
-    height: 300
+    width: 240
+    height: 240
     loading: lazy
     decoding: async
   actions:

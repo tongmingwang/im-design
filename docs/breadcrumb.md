@@ -1,6 +1,7 @@
 # Breadcrumb 面包屑
 
 显示当前页面在系统层级结构中的位置，并能向上返回。
+我相信你们公司肯定用自定义，所以这里就很简单的方式
 
 <script setup lang="ts">
 import { ref } from 'vue'
@@ -10,7 +11,9 @@ const change = (val: string) => {
 }
 </script>
 
-## 使用
+## 基础用法
+
+面包屑组件通过 `ImBreadcrumb` 和 `ImBreadcrumbItem` 组合使用，可以方便的生成面包屑导航。
 
 <ImBreadcrumb v-model="active" @change="change">
 <ImBreadcrumbItem value="1">首页</ImBreadcrumbItem>

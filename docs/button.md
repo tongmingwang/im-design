@@ -1,6 +1,6 @@
 # Button 按钮
 
-按钮是用来触发操作的组件，点击按钮会执行相应的业务逻辑。
+按钮组件用于触发一个操作，如提交表单。
 
 ## 基础用法
 
@@ -20,21 +20,30 @@
 const colors = ['default', 'primary', 'error', 'warning', 'success'];
 </script>
 
-<im-row>
-    <im-button :color="item" v-for="(item, index) in colors" :key="index">{{ item.toLocaleUpperCase() }}</im-button>
-  </im-row>
-  <im-row>
-    <im-button :color="item" v-for="(item, index) in colors" variant="outlined" :key="index">{{ item.toLocaleUpperCase()
-    }}</im-button>
-  </im-row>
-  <im-row>
-    <im-button :color="item" v-for="(item, index) in colors" variant="tonal" :key="index">{{ item.toLocaleUpperCase()
-    }}</im-button>
-  </im-row>
-  <im-row>
-    <im-button :color="item" v-for="(item, index) in colors" variant="text" :key="index">{{ item.toLocaleUpperCase()
-    }}</im-button>
-  </im-row>
+<ImRow>
+    <ImButton :color="item" v-for="(item, index) in colors" :key="index">{{ item.toLocaleUpperCase() }}</ImButton>
+  </ImRow>
+  <ImRow>
+    <ImButton :color="item" v-for="(item, index) in colors" variant="outlined" :key="index">{{ item.toLocaleUpperCase()
+    }}</ImButton>
+  </ImRow>
+  <ImRow>
+    <ImButton :color="item" v-for="(item, index) in colors" variant="tonal" :key="index">{{ item.toLocaleUpperCase()
+    }}</ImButton>
+  </ImRow>
+  <ImRow>
+    <ImButton :color="item" v-for="(item, index) in colors" variant="text" :key="index">{{ item.toLocaleUpperCase()
+    }}</ImButton>
+  </ImRow>
+
+```vue
+<template>
+  <ImButton color="primary">Primary</ImButton>
+  <ImButton color="primary" variant="outlined">Primary</ImButton>
+  <ImButton color="primary" variant="tonal">Primary</ImButton>
+  <ImButton color="primary" variant="text">Primary</ImButton>
+</template>
+```
 
 ## 圆形按钮
 
@@ -61,6 +70,12 @@ const colors = ['default', 'primary', 'error', 'warning', 'success'];
     </im-button>
   </im-row>
 
+```vue
+<template>
+  <ImButton color="primary" shape="circle"><ImIcon name="like" /></ImButton>
+</template>
+```
+
 ## 矩形按钮
 
 `shape` 为 `square` 的按钮组合
@@ -86,6 +101,12 @@ const colors = ['default', 'primary', 'error', 'warning', 'success'];
 </im-button>
 </im-row>
 
+```vue
+<template>
+  <ImButton color="primary" shape="square"><ImIcon name="like" /></ImButton>
+</template>
+```
+
 ## 大圆角按钮
 
 `shape` 为 `round` 的按钮组合
@@ -106,6 +127,12 @@ const colors = ['default', 'primary', 'error', 'warning', 'success'];
       item.toUpperCase() }}</im-button>
 </im-row>
 
+```vue
+<template>
+  <ImButton color="primary" shape="round"><ImIcon name="like" /></ImButton>
+</template>
+```
+
 ## 宽度铺满
 
 使用 `width` 属性来定义按钮的宽度。接受一个字符串，如何 `100px`。
@@ -114,6 +141,12 @@ const colors = ['default', 'primary', 'error', 'warning', 'success'];
     <im-button width="100%" :color="item" v-ripple="true" v-for="(item, index) in colors" :key="index">{{
       item.toUpperCase() }}</im-button>
   </section>
+
+```vue
+<template>
+  <ImButton width="100%" color="primary" shape="square">Button</ImButton>
+</template>
+```
 
 ## 禁用状态
 
@@ -132,19 +165,21 @@ const colors = ['default', 'primary', 'error', 'warning', 'success'];
 <im-button variant="outlined" color="error" disabled>Disabled</im-button>
 </div>
 
-```html
-<div>
-  <im-button color="success" disabled>Disabled</im-button>
-  <im-button color="warning" disabled>Disabled</im-button>
-  <im-button color="primary" disabled>Disabled</im-button>
-  <im-button color="error" disabled>Disabled</im-button>
-</div>
-<div>
-  <im-button variant="outlined" color="success" disabled>Disabled</im-button>
-  <im-button variant="outlined" color="warning" disabled>Disabled</im-button>
-  <im-button variant="outlined" color="primary" disabled>Disabled</im-button>
-  <im-button variant="outlined" color="error" disabled>Disabled</im-button>
-</div>
+```vue
+<template>
+  <div>
+    <im-button color="success" disabled>Disabled</im-button>
+    <im-button color="warning" disabled>Disabled</im-button>
+    <im-button color="primary" disabled>Disabled</im-button>
+    <im-button color="error" disabled>Disabled</im-button>
+  </div>
+  <div>
+    <im-button variant="outlined" color="success" disabled>Disabled</im-button>
+    <im-button variant="outlined" color="warning" disabled>Disabled</im-button>
+    <im-button variant="outlined" color="primary" disabled>Disabled</im-button>
+    <im-button variant="outlined" color="error" disabled>Disabled</im-button>
+  </div>
+</template>
 ```
 
 ## 加载状态
@@ -163,6 +198,12 @@ const colors = ['default', 'primary', 'error', 'warning', 'success'];
   <im-button variant="outlined" color="primary" loading>Loading</im-button>
   <im-button variant="outlined" color="error" loading>Loading</im-button>
 </div>
+
+```vue
+<template>
+  <ImButton loading>loading</ImButton>
+</template>
+```
 
 ## 调整尺寸
 

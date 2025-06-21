@@ -1,67 +1,39 @@
-<script setup lang="ts">
-import DefaultTheme from 'vitepress/theme'
-import { useData } from 'vitepress'
-import './styles/custom.css'
+<script setup>
+import DefaultTheme from 'vitepress/theme';
+import { ref } from 'vue';
+const { Layout } = DefaultTheme;
+const show = ref(false);
 
-const { Layout } = DefaultTheme
-const { frontmatter } = useData()
+console.log('Hello');
 </script>
 
 <template>
   <Layout>
-    <!-- 首页定制 -->
-    <template #home-hero-before>
-      <div class="home-banner">
-        <img src="/public/logo.svg" alt="Logo" class="home-logo">
-      </div>
+    <!-- <template #sidebar-nav-after> 菜单最后部分</template> -->
+    <!-- <template #sidebar-nav-before> 菜单最前部分</template> -->
+    <template #doc-after>
+      <ImButton
+        width="100%"
+        @click="show = true"
+        size="48"
+        color="primary"
+        class="mt-24">
+        联系作者
+      </ImButton>
+      <ImDialog v-model="show">
+        <ImCard title="添加微信" borderless> </ImCard>
+      </ImDialog>
     </template>
-
-    <template #home-hero-after>
-      <div class="features" v-if="frontmatter.features">
-        <div v-for="(feature, index) in frontmatter.features" :key="index" class="feature">
-          <h3>{{ feature.title }}</h3>
-          <p>{{ feature.details }}</p>
-        </div>
-      </div>
-    </template>
-
-    <!-- 全局页脚 -->
-    <template #layout-bottom>
-      <footer class="footer">
-        <p>© 2023 Im Design. All rights reserved.</p>
-      </footer>
-    </template>
+    <!-- <template #doc-footer-before> 页脚最前部分</template>
+    <template #doc-footer-after> 页脚最后部分</template> -->
+    <!-- <template #nav-bar-content-before> </template> -->
+    <!-- <template #nav-bar-content-after> 导航栏最后部分</template> -->
+    <Content />
   </Layout>
 </template>
 
-<style scoped>
-  .home-banner {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .home-logo {
-    height: 120px;
-    width: auto;
-  }
-
-  .features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0;
-  }
-
-  .feature {
-    padding: 1rem;
-    border-radius: 8px;
-    background: var(--vp-c-bg-soft);
-  }
-
-  .footer {
-    text-align: center;
-    padding: 2rem;
-    margin-top: 2rem;
-    border-top: 1px solid var(--vp-c-divider);
-  }
+<style scoped lang="scss">
+.mt-24 {
+  margin-top: 24px;
+}
 </style>

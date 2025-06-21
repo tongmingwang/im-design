@@ -19,7 +19,7 @@ const list = [
 </script>
 
  <ImDropdown>
-    <ImButton >鼠标移入试试</ImButton>
+    <ImButton color="primary">Hover Me </ImButton>
     <template #content>
       <ImList>
         <ImListItem :value="item" v-for="item in list"
@@ -54,7 +54,7 @@ const list = ['三国演义', '水浒传', '西游记', '红楼梦'];
 通过设置 `trigger` 属性来定义触发下拉菜单的行为，默认为 `hover`。
 
 <ImDropdown style="margin-right:8px">
-    <ImButton>鼠标移入试试</ImButton>
+    <ImButton>Hover 触发</ImButton>
     <template #content>
       <ImList>
         <ImListItem :value="item" v-for="item in list">{{ item }}</ImListItem>
@@ -63,7 +63,7 @@ const list = ['三国演义', '水浒传', '西游记', '红楼梦'];
   </ImDropdown>
 
 <ImDropdown trigger="click">
-    <ImButton>点击试试</ImButton>
+    <ImButton>点击触发</ImButton>
     <template #content>
       <ImList>
         <ImListItem :value="item" v-for="item in list">{{ item }}</ImListItem>
@@ -192,17 +192,52 @@ const selected = ref('1');
     </template>
 </ImDropdown>
 
+```vue
+<template>
+  <ImDropdown arrow style="margin-right:8px;">
+    <ImButton color="primary">有箭头</ImButton>
+    <template #content>
+      <ImList>
+        <ImListItem :value="item" v-for="item in list">{{ item }}</ImListItem>
+      </ImList>
+    </template>
+  </ImDropdown>
+
+  <ImDropdown :arrow="false">
+    <ImButton color="primary">无箭头</ImButton>
+    <template #content>
+      <ImList>
+        <ImListItem :value="item" v-for="item in list">{{ item }}</ImListItem>
+      </ImList>
+    </template>
+  </ImDropdown>
+</template>
+```
+
 ## 滚动关闭
 
 设置 `scrollClose` 属性为 true,即可实现
 
 <ImDropdown trigger="click" scrollClose>
-    <ImButton  color="primary">滚动其他隐藏我</ImButton>
+    <ImButton  color="primary">试试吧</ImButton>
     <template #content>
       <ImList>
         <ImListItem :value="item" v-for="item in list">{{ item }}</ImListItem>
       </ImList>
     </template>
 </ImDropdown>
+
+```vue
+<template>
+  <ImDropdown trigger="click" scrollClose>
+    <ImButton color="primary">试试吧</ImButton>
+    <template #content>
+      <ImList>
+        <ImListItem :value="item" v-for="item in list">{{ item }}</ImListItem>
+      </ImList>
+    </template>
+  </ImDropdown>
+</template>
+```
 
 ## APIS

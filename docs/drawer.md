@@ -30,7 +30,7 @@ const bottom = ref(false);
       <p>Text ...</p>
     </ImCard>
   </ImDrawer>
-  <ImButton @click="drawer = true">Right</ImButton>
+  <ImButton @click="drawer = true" color="primary">点击试试</ImButton>
 
 ```vue
 <template>

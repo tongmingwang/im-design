@@ -4,10 +4,8 @@
 
 ## 完整用法
 
-
- <ImPageHeader title="Order" subTitle="编辑订单信息">
+ <ImPageHeader title="Order" subTitle="编辑">
   <template #action>
-    <ImButton>导出</ImButton>
     <ImButton color="primary">保存</ImButton>
   </template>
   <template #content>
@@ -17,25 +15,24 @@
 
 ```vue
 <template>
-<ImPageHeader title="Order" subTitle="编辑订单信息">
-  <template #action>
-    <ImButton>导出</ImButton>
-    <ImButton color="primary">保存</ImButton>
-  </template>
-  <template #content>
-    <ImTag color="primary">Hot</ImTag>
-  </template>
-</ImPageHeader>
+  <ImPageHeader title="Order" subTitle="编辑">
+    <template #action>
+      <ImButton color="primary">保存</ImButton>
+    </template>
+    <template #content>
+      <ImTag color="primary">Hot</ImTag>
+    </template>
+  </ImPageHeader>
 </template>
 ```
 
 ## 简易用法
 
- <ImPageHeader title="Order" subTitle="编辑订单信息"></ImPageHeader>
+<ImPageHeader title="Order" subTitle="编辑订单信息"></ImPageHeader>
 
- ```vue
+```vue
 <template>
- <ImPageHeader title="Order" subTitle="编辑订单信息"></ImPageHeader>
+  <ImPageHeader title="Order" subTitle="编辑订单信息"></ImPageHeader>
 </template>
 ```
 

@@ -5,8 +5,8 @@ import DefaultTheme from 'vitepress/theme';
 import Layout from './Layout.vue';
 
 export default {
-  extends: DefaultTheme,
-  layout: Layout,
+  ...DefaultTheme,
+  Layout: Layout,
   enhanceApp({ app, router, siteData }) {
     app.use(Im);
   },

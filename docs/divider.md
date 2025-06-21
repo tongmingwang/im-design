@@ -4,19 +4,21 @@
 
 ## 基础使用
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a
+这是一段文字 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a
 te dicta? Refert tamen, quo modo.
 <ImDivider>Text</ImDivider>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a
+下一段文字 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a
 te dicta? Refert tamen, quo modo.
 
 ```vue
 <template>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti
-  licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.
+  这是一段文字 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+  nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen,
+  quo modo.
   <ImDivider>Text</ImDivider>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti
-  licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.
+  下一段文字 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne
+  merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo
+  modo.
 </template>
 ```
 
