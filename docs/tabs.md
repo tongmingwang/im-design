@@ -21,9 +21,7 @@ const arr = new Array(3).fill(0).map((_, index) => ({
 <ImPanes v-model="value">
   <ImPane v-for="item in arr" :name="item.value"
     >
-      <ImCard title="Title" style="margin-top: 20px">
        <div>This is a Panes Components, This Index is {{ item.label }}</div>
-      </ImCard>
     </ImPane>
 </ImPanes>
 
@@ -35,9 +33,7 @@ const arr = new Array(3).fill(0).map((_, index) => ({
 <ImPanes v-model="value">
   <ImPane v-for="item in arr" :name="item.value"
     >
-      <ImCard title="Title" style="margin-top: 20px">
        <div>This is a Panes Components, This Index is {{ item.label }}</div>
-      </ImCard>
     </ImPane>
 </ImPanes>
 </template>
@@ -64,9 +60,7 @@ const arr = new Array(3).fill(0).map((_, index) => ({
 <ImPanes v-model="value">
   <ImPane v-for="item in arr" :name="item.value"
     >
-      <ImCard title="Title" borderless shadow="always">
        <div>This is a Panes Components, This Index is {{ item.label }}</div>
-      </ImCard>
     </ImPane>
 </ImPanes>
 
@@ -77,9 +71,7 @@ const arr = new Array(3).fill(0).map((_, index) => ({
 <ImPanes v-model="value">
   <ImPane v-for="item in arr" :name="item.value"
     >
-      <ImCard title="Title" borderless shadow="always">
        <div>This is a Panes Components, This Index is {{ item.label }}</div>
-      </ImCard>
     </ImPane>
 </ImPanes>
 
@@ -90,9 +82,7 @@ const arr = new Array(3).fill(0).map((_, index) => ({
 <ImPanes v-model="value">
   <ImPane v-for="item in arr" :name="item.value"
     >
-      <ImCard title="Title" borderless shadow="always">
        <div>This is a Panes Components, This Index is {{ item.label }}</div>
-      </ImCard>
     </ImPane>
 </ImPanes>
 
@@ -103,9 +93,7 @@ const arr = new Array(3).fill(0).map((_, index) => ({
 <ImPanes v-model="value">
   <ImPane v-for="item in arr" :name="item.value"
     >
-      <ImCard title="Title" borderless shadow="always">
        <div>This is a Panes Components, This Index is {{ item.label }}</div>
-      </ImCard>
     </ImPane>
 </ImPanes>
 
@@ -121,9 +109,7 @@ const arr = new Array(3).fill(0).map((_, index) => ({
 <ImPanes v-model="value">
   <ImPane v-for="item in arr" :name="item.value"
     >
-      <ImCard title="Title" borderless shadow="always">
        <div>This is a Panes Components, This Index is {{ item.label }}</div>
-      </ImCard>
     </ImPane>
 </ImPanes>
 
@@ -135,9 +121,7 @@ const arr = new Array(3).fill(0).map((_, index) => ({
 <ImPanes v-model="value">
   <ImPane v-for="item in arr" :name="item.value"
     >
-      <ImCard title="Title" borderless shadow="always">
        <div>This is a Panes Components, This Index is {{ item.label }}</div>
-      </ImCard>
     </ImPane>
 </ImPanes>
 
@@ -149,8 +133,6 @@ const arr = new Array(3).fill(0).map((_, index) => ({
 <ImPanes v-model="value">
   <ImPane v-for="item in arr" :name="item.value"
     >
-      <ImCard title="Title" borderless shadow="always">
   <div>This is a Panes Components</div>
-</ImCard>
     </ImPane>
 </ImPanes>
