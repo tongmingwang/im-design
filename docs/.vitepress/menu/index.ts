@@ -1,7 +1,9 @@
 // 顶部导航
 export const nav = [
+  { text: '首页', link: '/' },
   { text: '快速开始', link: '/getting-started' },
   { text: '组件文档', link: '/button' },
+  { text: '主题定制', link: '/theme' },
 ];
 
 // side bar

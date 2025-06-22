@@ -1,7 +1,9 @@
 // Top navigation
 const nav = [
+  { text: 'Home', link: '/' },
   { text: 'Quick Start', link: '/en/getting-started' },
   { text: 'Components', link: '/en/button' },
+  { text: 'Theme', link: '/en/theme' },
 ];
 
 // Sidebar

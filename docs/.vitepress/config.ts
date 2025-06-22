@@ -1,7 +1,6 @@
 import { defineConfig } from 'vitepress';
 import { nav, sidebar } from './menu';
 import enMenu from './menu/en-menu';
-import { search } from './search';
 
 // 基础配置常量
 const SITE_TITLE = 'Im Design';

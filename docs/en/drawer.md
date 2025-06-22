@@ -1,54 +1,45 @@
 # Drawer Component
 
-A floating panel that slides in from the screen edge.
+A sliding panel that emerges from the screen edge, commonly used for navigation menus, settings panels, etc.
 
-## Basic Usage
-
-The drawer slides in from the screen edge and overlays content.
-
-<script setup>
+  <script setup>
 import { ref } from 'vue';
 
 const drawer = ref(false);
-const customW = ref(false);
 const left = ref(false);
 const top = ref(false);
 const bottom = ref(false);
+const customSize = ref(false);
+const open = ref(false);
 </script>
 
-<ImDrawer v-model="drawer" placement="right">
-  <ImCard title="Demo" borderless>
-    <template #header-action>
-      <ImButton @click="drawer = false" variant="text" shape="circle" size="48">
-        <ImIcon name="close" size="20" />
-      </ImButton>
-    </template>
-    <p>Text ...</p>
-    <p>Text ...</p>
-    <p>Text ...</p>
-  </ImCard>
-</ImDrawer>
-<ImButton @click="drawer = true" color="primary">Try it</ImButton>
+<style scoped>
 
+  .demo-buttons {
+    display: flex;
+    gap: 8px;
+  }
+</style>
+
+
+
+## Basic Usage
+
+Basic drawer component, slides in from right by default.
+
+<ImDrawer v-model="drawer">
+    <p>Drawer content area</p>
+    <p>Can contain forms, lists or any other content</p>
+  </ImDrawer>
+  <ImButton @click="drawer = true">Open Drawer</ImButton>
+  
 ```vue
 <template>
   <ImDrawer v-model="drawer">
-    <ImCard title="Demo" borderless>
-      <template #header-action>
-        <ImButton
-          @click="drawer = false"
-          variant="text"
-          shape="circle"
-          size="48">
-          <ImIcon name="close" size="20" />
-        </ImButton>
-      </template>
-      <p>Text ...</p>
-      <p>Text ...</p>
-      <p>Text ...</p>
-    </ImCard>
+    <p>Drawer content area</p>
+    <p>Can contain forms, lists or any other content</p>
   </ImDrawer>
-  <ImButton @click="drawer = true">Open</ImButton>
+  <ImButton @click="drawer = true">Open Drawer</ImButton>
 </template>
 
 <script setup>
@@ -56,51 +47,118 @@ import { ref } from 'vue';
 
 const drawer = ref(false);
 </script>
+
 ```
 
-## Drawer Direction
+## Different Directions
 
-Change drawer direction using the `placement` property. Supports `left`, `right`, `top`, `bottom`
+Control drawer direction using `placement` property. Supports four directions:
 
-<ImButton @click="left = true">Left</ImButton>
-<ImButton @click="top = true">Top</ImButton>
-<ImButton @click="bottom = true">Bottom</ImButton>
+ <div class="demo-buttons">
+    <ImButton @click="left = true">Left</ImButton>
+    <ImButton @click="top = true">Top</ImButton>
+    <ImButton @click="bottom = true">Bottom</ImButton>
+  </div>
 
-<ImDrawer v-model="left" placement="left">
-  <ImCard title="Demo" borderless>
-    <p>Text ...</p>
-    <p>Text ...</p>
-    <p>Text ...</p>
-  </ImCard>
+  <ImDrawer v-model="left" placement="left" >
+    <p>Left drawer content</p>
+  </ImDrawer>
+
+  <ImDrawer v-model="top" placement="top" >
+    <p>Top drawer content</p>
+  </ImDrawer>
+
+  <ImDrawer v-model="bottom" placement="bottom" >
+    <p>Bottom drawer content</p>
+  </ImDrawer>
+
+```vue
+<template>
+  <div class="demo-buttons">
+    <ImButton @click="left = true">Left</ImButton>
+    <ImButton @click="top = true">Top</ImButton>
+    <ImButton @click="bottom = true">Bottom</ImButton>
+  </div>
+
+  <ImDrawer v-model="left" placement="left" >
+    <p>Left drawer content</p>
+  </ImDrawer>
+
+  <ImDrawer v-model="top" placement="top" >
+    <p>Top drawer content</p>
+  </ImDrawer>
+
+  <ImDrawer v-model="bottom" placement="bottom" >
+    <p>Bottom drawer content</p>
+  </ImDrawer>
+</template>
+
+```
+
+## Custom Size
+
+Customize drawer size using `size` property, supports percentage or pixel values:
+
+<ImDrawer v-model="customSize" size="50%">
+    <p>Drawer with 50% width</p>
+  </ImDrawer>
+  <ImButton @click="customSize = true">Open Half-width Drawer</ImButton>
+
+```vue
+<template>
+  <ImDrawer v-model="customSize" size="50%">
+    <p>Drawer with 50% width</p>
+  </ImDrawer>
+  <ImButton @click="customSize = true">Open Half-width Drawer</ImButton>
+</template>
+```
+
+## Close Behavior Control
+
+<ImDrawer
+    v-model="open"
+    :close-on-click-mask="false"
+    >
+
+<p>Clicking mask won't close this drawer</p>
+<ImButton @click="open = false">Click to Close</ImButton>
 </ImDrawer>
+<ImButton @click="open = true">Open Drawer</ImButton>
 
-<ImDrawer v-model="top" placement="top">
-  <ImCard title="Demo" borderless>
-    <p>Text ...</p>
-    <p>Text ...</p>
-    <p>Text ...</p>
-  </ImCard>
-</ImDrawer>
+```vue
+<template>
+  <ImDrawer
+    v-model="open"
+    :close-on-click-mask="false"
+    >
+    <p>Clicking mask won't close this drawer</p>
+    <ImButton @click="open = false">Click to Close</ImButton>
+  </ImDrawer>
+  <ImButton @click="open = true">Open Drawer</ImButton>
+</template>
+```
 
-<ImDrawer v-model="bottom" placement="bottom">
-  <ImCard title="Demo" borderless>
-    <p>Text ...</p>
-    <p>Text ...</p>
-    <p>Text ...</p>
-  </ImCard>
-</ImDrawer>
+## API
 
-## Custom Drawer Width
+### ImDrawer Props
 
-Set a `size` property to customize drawer width. Example: `50%`
+| Property         | Description                                      | Type          | Default | Required |
+| ---------------- | ------------------------------------------------ | ------------- | ------- | -------- |
+| modelValue       | Controls drawer visibility                       | boolean       | false   | Yes      |
+| placement        | Drawer direction, options: left/right/top/bottom | string        | 'right' | No       |
+| size             | Drawer size, supports percentage or pixel value  | string/number | '378px' | No       |
+| mask             | Whether to show mask layer                       | boolean       | true    | No       |
+| closeOnClickMask | Whether clicking mask closes drawer              | boolean       | true    | No       |
+| zIndex           | Sets drawer's z-index                            | number/string | -       | No       |
 
-<ImDrawer v-model="customW" size="50%">
-  <ImCard title="Demo" borderless>
-    <p>Text ...</p>
-    <p>Text ...</p>
-    <p>Text ...</p>
-  </ImCard>
-</ImDrawer>
-<ImButton @click="customW = true">Custom Width</ImButton>
+### ImDrawer Events
 
-## APIs
+| Event             | Description                              | Callback Parameters      |
+| ----------------- | ---------------------------------------- | ------------------------ |
+| update:modelValue | Triggered when drawer visibility changes | (value: boolean) => void |
+
+### ImDrawer Slots
+
+| Slot    | Description         |
+| ------- | ------------------- |
+| default | Drawer content area |

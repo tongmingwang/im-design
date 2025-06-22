@@ -259,4 +259,39 @@ const colors = ['default', 'primary', 'error', 'warning', 'success'];
 </div>
 ```
 
-## APIS
+## API
+
+### ImButton 属性
+
+| 属性名   | 说明             | 类型                        | 默认值    | 必填 |
+| -------- | ---------------- | --------------------------- | --------- | ---- |
+| color    | 按钮颜色主题     | string                      | 'default' | 否   |
+| variant  | 按钮变体样式     | 'text'\|'outlined'\|'tonal' | -         | 否   |
+| shape    | 按钮形状         | 'circle'\|'square'\|'round' | -         | 否   |
+| size     | 按钮尺寸(px)     | number                      | 36        | 否   |
+| width    | 按钮宽度         | string                      | -         | 否   |
+| loading  | 是否显示加载状态 | boolean                     | false     | 否   |
+| disabled | 是否禁用按钮     | boolean                     | false     | 否   |
+| ripple   | 是否启用涟漪效果 | boolean                     | true      | 否   |
+
+### ImButton 事件
+
+| 事件名 | 说明           | 回调参数                |
+| ------ | -------------- | ----------------------- |
+| click  | 点击按钮时触发 | (e: MouseEvent) => void |
+
+### ImButton 插槽
+
+| 插槽名  | 说明             |
+| ------- | ---------------- |
+| default | 按钮内容区域     |
+| loading | 加载状态时的内容 |
+
+### 颜色变量 (CSS Variables)
+
+| 变量名               | 说明     |
+| -------------------- | -------- |
+| --im-primary-color-7 | 主色亮色 |
+| --im-primary-color-8 | 主色     |
+| --im-primary-color-9 | 主色暗色 |
+| --im-gray-color-1    | 文字颜色 |

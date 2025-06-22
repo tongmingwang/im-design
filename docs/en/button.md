@@ -1,10 +1,10 @@
 # Button Component
 
-Button components are used to trigger actions, such as submitting forms.
+Button component for triggering actions, such as submitting forms.
 
 ## Basic Usage
 
-Use the `color` and `variant` properties to define button styles.
+Use `color` and `variant` properties to define button styles.
 
 <style scoped>
  .im-button {
@@ -47,7 +47,7 @@ const colors = ['default', 'primary', 'error', 'warning', 'success'];
 
 ## Circular Buttons
 
-Button group with `shape` set to `circle`
+Buttons with `shape="circle"`:
 
   <im-row>
     <im-button :color="item" v-for="(item, index) in colors" shape="circle" :key="index">
@@ -78,7 +78,7 @@ Button group with `shape` set to `circle`
 
 ## Square Buttons
 
-Button group with `shape` set to `square`
+Buttons with `shape="square"`:
 
 <im-row>
 <im-button :color="item" v-for="(item, index) in colors" shape="square" :key="index">
@@ -109,7 +109,7 @@ Button group with `shape` set to `square`
 
 ## Rounded Buttons
 
-Button group with `shape` set to `round`
+Buttons with `shape="round"`:
 <im-row>
 <im-button :color="item" v-for="(item, index) in colors" shape="round" :key="index">{{ item.toUpperCase()
     }}</im-button>
@@ -135,7 +135,7 @@ Button group with `shape` set to `round`
 
 ## Full Width
 
-Use the `width` property to define button width. Accepts a string value like `100px`.
+Use `width` property to define button width (e.g. "100px" or "100%"):
 
   <section>
     <im-button width="100%" :color="item" v-ripple="true" v-for="(item, index) in colors" :key="index">{{
@@ -150,7 +150,7 @@ Use the `width` property to define button width. Accepts a string value like `10
 
 ## Disabled State
 
-Use the `disabled` property to disable buttons. Accepts a `Boolean` value.
+Use `disabled` property to disable the button:
 
 <div>
 <im-button color="success" disabled>Disabled</im-button>
@@ -184,7 +184,7 @@ Use the `disabled` property to disable buttons. Accepts a `Boolean` value.
 
 ## Loading State
 
-Use the `loading` property to show loading state. Accepts a `Boolean` value.
+Use `loading` property to show loading state:
 
 <div>
     <im-button color="success" loading>Loading</im-button>
@@ -207,7 +207,7 @@ Use the `loading` property to show loading state. Accepts a `Boolean` value.
 
 ## Sizing
 
-Supports multiple numeric sizes, default is `36`. Use the `size` property to define button size.
+Support multiple sizes, default size is `36`. Use `size` property to define button size.
 
 <div>
     <im-button color="primary" size="24">24</im-button>
@@ -229,7 +229,7 @@ Supports multiple numeric sizes, default is `36`. Use the `size` property to def
 
 ## Custom Colors
 
-Override default color variables using CSS variables directly on the button component
+Override CSS variables for custom colors:
 
 <div>
   <im-button
@@ -259,4 +259,39 @@ Override default color variables using CSS variables directly on the button comp
 </div>
 ```
 
-## APIs
+## API
+
+### ImButton Props
+
+| Property | Description           | Type                        | Default   | Required |
+| -------- | --------------------- | --------------------------- | --------- | -------- |
+| color    | Button color theme    | string                      | 'default' | No       |
+| variant  | Button style variant  | 'text'\|'outlined'\|'tonal' | -         | No       |
+| shape    | Button shape          | 'circle'\|'square'\|'round' | -         | No       |
+| size     | Button size in pixels | number                      | 36        | No       |
+| width    | Button width          | string                      | -         | No       |
+| loading  | Show loading state    | boolean                     | false     | No       |
+| disabled | Disable the button    | boolean                     | false     | No       |
+| ripple   | Enable ripple effect  | boolean                     | true      | No       |
+
+### ImButton Events
+
+| Event | Description            | Callback Parameters     |
+| ----- | ---------------------- | ----------------------- |
+| click | Triggered when clicked | (e: MouseEvent) => void |
+
+### ImButton Slots
+
+| Slot    | Description           |
+| ------- | --------------------- |
+| default | Button content area   |
+| loading | Loading state content |
+
+### CSS Variables
+
+| Variable             | Description         |
+| -------------------- | ------------------- |
+| --im-primary-color-7 | Light primary color |
+| --im-primary-color-8 | Primary color       |
+| --im-primary-color-9 | Dark primary color  |
+| --im-gray-color-1    | Text color          |
