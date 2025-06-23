@@ -2,7 +2,7 @@
 
 按钮组件用于触发一个操作，如提交表单。
 
-## 基础用法
+### 基础用法
 
 使用 `color` `variant` 属性组合来定义按钮色彩。
 
@@ -45,7 +45,7 @@ const colors = ['default', 'primary', 'error', 'warning', 'success'];
 </template>
 ```
 
-## 圆形按钮
+### 圆形按钮
 
 `shape` 为 `circle` 的按钮组合
 
@@ -76,7 +76,7 @@ const colors = ['default', 'primary', 'error', 'warning', 'success'];
 </template>
 ```
 
-## 矩形按钮
+### 矩形按钮
 
 `shape` 为 `square` 的按钮组合
 
@@ -107,7 +107,7 @@ const colors = ['default', 'primary', 'error', 'warning', 'success'];
 </template>
 ```
 
-## 大圆角按钮
+### 大圆角按钮
 
 `shape` 为 `round` 的按钮组合
 <im-row>
@@ -133,7 +133,7 @@ const colors = ['default', 'primary', 'error', 'warning', 'success'];
 </template>
 ```
 
-## 宽度铺满
+### 宽度铺满
 
 使用 `width` 属性来定义按钮的宽度。接受一个字符串，如何 `100px`。
 
@@ -148,7 +148,7 @@ const colors = ['default', 'primary', 'error', 'warning', 'success'];
 </template>
 ```
 
-## 禁用状态
+### 禁用状态
 
 使用 `disabled` 属性来定义按钮是否禁用。接受一个 `Boolean` 值。
 
@@ -182,7 +182,7 @@ const colors = ['default', 'primary', 'error', 'warning', 'success'];
 </template>
 ```
 
-## 加载状态
+### 加载状态
 
 可以使用 `loading` 属性来定义按钮是否处于加载状态。接受一个 `Boolean` 值。
 
@@ -205,7 +205,7 @@ const colors = ['default', 'primary', 'error', 'warning', 'success'];
 </template>
 ```
 
-## 调整尺寸
+### 调整尺寸
 
 支持数字类型的 n 多尺寸，默认大小为 `36`。你可以设置 `size` 属性来定义按钮的大小。
 
@@ -227,7 +227,7 @@ const colors = ['default', 'primary', 'error', 'warning', 'success'];
 </div>
 ```
 
-## 自定义颜色
+### 自定义颜色
 
 采用 css 变量自定义颜色,直接在按钮组件上覆盖掉默认的颜色变量即可
 
@@ -259,9 +259,9 @@ const colors = ['default', 'primary', 'error', 'warning', 'success'];
 </div>
 ```
 
-## API
+### API
 
-### ImButton 属性
+#### ImButton 属性
 
 | 属性名   | 说明             | 类型                        | 默认值    | 必填 |
 | -------- | ---------------- | --------------------------- | --------- | ---- |
@@ -274,20 +274,20 @@ const colors = ['default', 'primary', 'error', 'warning', 'success'];
 | disabled | 是否禁用按钮     | boolean                     | false     | 否   |
 | ripple   | 是否启用涟漪效果 | boolean                     | true      | 否   |
 
-### ImButton 事件
+#### ImButton 事件
 
 | 事件名 | 说明           | 回调参数                |
 | ------ | -------------- | ----------------------- |
 | click  | 点击按钮时触发 | (e: MouseEvent) => void |
 
-### ImButton 插槽
+#### ImButton 插槽
 
 | 插槽名  | 说明             |
 | ------- | ---------------- |
 | default | 按钮内容区域     |
 | loading | 加载状态时的内容 |
 
-### 颜色变量 (CSS Variables)
+#### 颜色变量 (CSS Variables)
 
 | 变量名               | 说明     |
 | -------------------- | -------- |

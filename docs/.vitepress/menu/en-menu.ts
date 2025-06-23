@@ -60,6 +60,7 @@ const sidebar = [
       { text: 'Loading', link: '/en/loading' },
       { text: 'Popover', link: '/en/popover' },
       { text: 'Tooltip', link: '/en/tooltip' },
+      { text: 'Skeleton', link: '/en/skeleton' },
     ],
   },
   {

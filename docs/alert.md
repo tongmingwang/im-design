@@ -2,7 +2,7 @@
 
 警告提示，展现需要关注的信息。
 
-## 基础用法
+### 基础用法
 
 ImAlert 组件提供四种主题，由`color`属性指定，默认值为`primary`。
 
@@ -20,7 +20,7 @@ const colors = ['success', 'warning', 'primary', 'error'];
 </script>
 ```
 
-## 可关闭
+### 可关闭
 
 ImAlert 组件提供了`closable`属性来控制是否可关闭
 
@@ -33,18 +33,23 @@ ImAlert 组件提供了`closable`属性来控制是否可关闭
 </template>
 ```
 
-## 变种 Alert
+### 变种 Alert
 
 ImAlert 组件提供了`variant="outlined"`属性。
 
 <ImAlert title="Alert" v-for="item in colors" :color="item" variant="outlined">This is a Alert Component</ImAlert>
 
+### tonal 警告提示
+
 ImAlert 组件提供了`variant="tonal"`属性。
 
 <ImAlert title="Alert" v-for="item in colors" :color="item" variant="tonal">This is a Alert Component</ImAlert>
 
-## 不需要标题
+### 不需要标题
 
+不设置`title`属性，则不显示标题。
+
+<ImAlert v-for="item in colors" :color="item">This is a Alert Component</ImAlert>
 <ImAlert v-for="item in colors" :color="item" variant="outlined">This is a Alert Component</ImAlert>
 
 ```vue
@@ -55,7 +60,9 @@ ImAlert 组件提供了`variant="tonal"`属性。
 </template>
 ```
 
-## 自定义 icon
+### 自定义 icon
+
+支持插槽自定义图标。
 
 <ImAlert title="Alert" v-for="item in colors" :color="item" variant="outlined">
   <template #icon><ImIcon name="bell" size="24" /></template> This is a Alert Component
@@ -91,4 +98,4 @@ ImAlert 组件提供了`variant="tonal"`属性。
 }
 </style>
 
-## APIS
+### APIS

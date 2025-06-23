@@ -4,7 +4,7 @@
 
 通过锚点，用户可以快速跳转到页面的不同部分，提高用户体验和导航效率。
 
-## 使用
+### 基础用法
 
 直接传入一个锚点列表，组件会自动生成对应的导航。
 
@@ -64,7 +64,7 @@ const list = ref([
 </script>
 ```
 
-## Props
+### Props
 
 <ImAlert color="primary" title="注意" variant="tonal">
   target 属性是比较重要的，如果你的锚点要和某个容器一起滚动，你需要设置这个属性，否则锚点将不会正常工作。
@@ -128,4 +128,4 @@ const list = ref([
   }
 </style>
 
-## APIS
+### APIS

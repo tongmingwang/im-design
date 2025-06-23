@@ -87,6 +87,7 @@ export const sidebar = [
       { text: 'Loading 加载中', link: '/loading' },
       { text: 'Popover 气泡卡片', link: '/popover' },
       { text: 'Tooltip 文字提示', link: '/tooltip' },
+      { text: 'Skeleton 骨架屏', link: '/skeleton' },
     ],
   },
   {

@@ -4,7 +4,7 @@
 
 <ImAlert title="Tips" variant="outlined">需要注意滚动元素是通过方法查找，不是传字符串</ImAlert>
 
-## 基础使用
+### 基础使用
 
 使用 `getTarget` 属性指定滚动容器，默认为 `window`。
 
@@ -63,4 +63,4 @@ function gatTarget() {
 
 </style>
 
-## APIS
+### APIS

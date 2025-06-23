@@ -11,7 +11,7 @@ const change = (val: string) => {
 }
 </script>
 
-## 基础用法
+### 基础用法
 
 面包屑组件通过 `ImBreadcrumb` 和 `ImBreadcrumbItem` 组合使用，可以方便的生成面包屑导航。
 
@@ -39,4 +39,4 @@ const change = (val: string) => {
 </script>
 ```
 
-## APIS
+### APIS
