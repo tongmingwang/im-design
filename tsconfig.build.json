@@ -1,0 +1,25 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "npm/dist/types",
+    "composite": false
+  },
+  "include": [
+    "packages/**/*",
+    "packages/types"
+  ],
+  "paths": {
+    "@/*": [
+      "./packages/*"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "play",
+    "scripts",
+    "docs"
+  ]
+}

@@ -32,20 +32,37 @@ textarea {
   outline: none;
   border: none;
 }
+li {
+  margin: 0;
+  padding: 0;
+}
 
+* {
+  box-sizing: border-box;
+  // 移动端点击高亮颜色
+  -webkit-tap-highlight-color: transparent;
+}
 // 滚动条
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 10px;
+  width: 5px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--im-scrollbar-track-color);
-  border-radius: 10px;
+  background: transparent;
+  border-radius: 8px;
 }
 ::-webkit-scrollbar-thumb {
   background: var(--im-scrollbar-color);
-  border-radius: 10px;
+  border-radius: 8px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--im-scrollbar-hover-color);
+}
+// 修改箭头样式
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
 }

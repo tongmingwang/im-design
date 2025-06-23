@@ -1,63 +1,79 @@
 <template>
   <ul :class="[bem.b()]">
     <template v-for="item in items">
-      <component :is="item" :active="props.modelValue" @click="() => onActive(item.props)"></component>
+      <component
+        :is="item"
+        :active="props.modelValue"
+        @click="() => onActive(item)"></component>
     </template>
   </ul>
 </template>
 
 <script setup lang="ts">
 import { useBem } from '@/utils/bem';
-import type { VNodeTypes } from 'vue';
-import { useSlots, computed } from 'vue';
+import { useSlots, computed, type VNode, type VNodeTypes } from 'vue';
 
-defineOptions({ name: 'ImList' })
-const props = withDefaults(defineProps<{
-  modelValue?: string
-}>(), {
-  modelValue: '',
-})
+defineOptions({ name: 'ImList' });
+const props = withDefaults(
+  defineProps<{
+    modelValue?: string;
+  }>(),
+  {
+    modelValue: '',
+  }
+);
 const slots = useSlots();
 const bem = useBem('list');
+
+// Helper function to check if a VNode is a component
+const isComponentVNode = (node: VNode) => {
+  return typeof node.type === 'object' && node.type !== null; // Ensure type is an object and not null
+};
+
+// Function to extract component VNodes with their props
+const extractComponentVNodes = (
+  nodes: VNode[],
+  name: string
+): { vnode: VNodeTypes; props: Record<string, any> }[] => {
+  const result: { vnode: VNodeTypes; props: Record<string, any> }[] = [];
+  nodes.forEach((node: any) => {
+    if (isComponentVNode(node) && node.type && node.type.name == name) {
+      const props = (node as any).props || {};
+      result.push({ vnode: node, props });
+    } else if (node && node?.children && Array.isArray(node.children)) {
+      result.push(...extractComponentVNodes(node.children, name));
+    }
+  });
+  return result;
+};
+
 const items = computed(() => {
-  const dArr = (slots.default?.() || [])
-  if (dArr.length) {
-    const list: VNodeTypes = []
-    dArr.forEach(o => {
-      if (typeof o.type === 'object') {
-        list.push(o)
-      } else if (o.children && o.children?.length) {
-        // @ts-ignore
-        o.children?.forEach((c: unknown) => {
-          // @ts-ignore
-          if (typeof c?.type === 'object') {
-            list.push(c)
-          }
-        })
-      }
-    })
-    return list
-  }
-})
+  const defaultSlots = slots.default?.() || [];
+  const componentNodes = extractComponentVNodes(defaultSlots, 'ImListItem');
+  return componentNodes.map((node) => node.vnode); // Return just the VNodes for rendering
+});
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void;
   (e: 'change', value: string): void;
-}>()
+}>();
 
-const onActive = (item: { value: string }) => {
-  emit('update:modelValue', item.value)
-  emit('change', item.value)
-}
-
+const onActive = (item: any) => {
+  const value = item.props?.value || '';
+  if (value !== 0 && !value) return;
+  emit('update:modelValue', value);
+  emit('change', value);
+};
 </script>
 
 <style scoped lang="scss">
-  .im-list {
-    list-style: none;
-    padding: 4px;
-    margin: 0;
-    overflow: auto;
-    width: 100%;
-    background-color: var(--im-bg-content-color, #fff);
-  }
+.im-list {
+  list-style: none;
+  padding: 8px 0;
+  margin: 0;
+  overflow: auto;
+  width: 100%;
+  background-color: var(--im-bg-content-color, #fff);
+  box-sizing: border-box;
+  border-radius: var(--im-radius, 4px);
+}
 </style>

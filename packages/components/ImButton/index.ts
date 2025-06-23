@@ -6,5 +6,5 @@ ImButton.install = (app: App) => {
   app.component('ImButton', ImButton);
 };
 
-export default ImButton as DefineComponent<ButtonProps>;
+export default ImButton;
 export { ImButton, type ButtonProps };

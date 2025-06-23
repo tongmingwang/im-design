@@ -1,0 +1,17 @@
+.im-input__password-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  min-width: fit-content;
+  padding: 0;
+  margin: 0;
+
+  .im-icon {
+    color: var(--im-gray-color-6);
+
+    &:hover {
+      color: var(--im-gray-color-8);
+    }
+  }
+}

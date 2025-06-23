@@ -1,12 +1,17 @@
-/** @type {import('vite').UserConfig} */
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import path from 'path';
 import svgLoader from 'vite-svg-loader';
+import dts from 'vite-plugin-dts';
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
+    dts({
+      tsconfigPath: './tsconfig.build.json',
+      entryRoot: 'packages',
+      outDir: 'npm/dist/types',
+      include: ['packages'],
+    }),
     vue(),
     svgLoader(),
   ],
@@ -15,25 +20,19 @@ export default defineConfig({
       '@': path.resolve(__dirname, './packages'),
     },
   },
-
-  css: {
-    preprocessorOptions: {
-      scss: {
-        // additionalData: `@use "@/styles/variables.scss";`,
-      },
-    },
-  },
   build: {
     lib: {
-      entry: path.resolve(__dirname, './packages/components'),
+      entry: path.resolve(__dirname, './packages/components/index.ts'), // 明确入口
       name: 'ImDesign',
       formats: ['es', 'umd', 'cjs'],
+      fileName: (format) => `im-design.${format}.js`,
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', 'dayjs'],
       output: {
         globals: {
           vue: 'Vue',
+          dayjs: 'dayjs',
         },
         exports: 'named',
         assetFileNames: 'index.css',
