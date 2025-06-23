@@ -9,7 +9,7 @@
     "preview": "vitepress preview docs",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs",
+    "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
     "im-design": "^0.0.91",
