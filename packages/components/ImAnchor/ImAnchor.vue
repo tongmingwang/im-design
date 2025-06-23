@@ -3,6 +3,9 @@ import { withDefaults, onMounted, onUnmounted, watch, ref } from 'vue';
 import type { AnchorProps } from './AnchorProps';
 import { useBem } from '@/utils/bem';
 import { throttle, debounce } from '@/utils';
+import { ripple } from '@/directive';
+// 注册指令,
+const vRipple = ripple;
 
 defineOptions({ name: 'ImAnchor' });
 const bem = useBem('anchor');
@@ -40,7 +43,10 @@ function getScrollTop(el: HTMLElement) {
   let scrollTop = el?.scrollTop;
   // 处理滚动为window的情况
   if (target.value === window) {
-    scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+    scrollTop =
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop;
   }
   return scrollTop;
 }
@@ -51,7 +57,7 @@ function getScrollTop(el: HTMLElement) {
  */
 function handleScroll(e?: any) {
   if (clickId.value || !target.value) return;
-  const scrollTarget = target.value === window ? (e.target) : target.value;
+  const scrollTarget = target.value === window ? e.target : target.value;
 
   // 1. 获取滚动位置
   let scrollTop = getScrollTop(scrollTarget);
@@ -79,7 +85,7 @@ function handleScroll(e?: any) {
     if (
       scrollTop >= item.offsetTop - (props.offset || 0) &&
       scrollTop <=
-      item.offsetTop + (item.el?.clientHeight || 0) - (props.offset || 0)
+        item.offsetTop + (item.el?.clientHeight || 0) - (props.offset || 0)
     ) {
       // 这里可以触发锚点激活的逻辑，例如更新当前激活的锚点的状态等。
       activeId.value = item.id;
@@ -89,13 +95,16 @@ function handleScroll(e?: any) {
   // 避免没有激活情况
   if (!activeId.value && scrollTop >= (parseInt(String(props.offset)) || 0)) {
     // 取最接近的锚点
-    const item = anchorList.find(item => {
-      if (scrollTop <= item.offsetTop - (props.offset || 0) && scrollTop > (props.offset || 0)) {
+    const item = anchorList.find((item) => {
+      if (
+        scrollTop <= item.offsetTop - (props.offset || 0) &&
+        scrollTop > (props.offset || 0)
+      ) {
         activeId.value = item.id;
         return true;
       }
       return false;
-    })
+    });
     if (item) {
       activeId.value = item.id;
     }
@@ -119,7 +128,7 @@ function bindEvent() {
   }
   target.value = _target as HTMLElement;
   const handle = throttle(handleScroll, 50);
-  handleScroll({ target: _target as HTMLElement })
+  handleScroll({ target: _target as HTMLElement });
   _target.addEventListener('scroll', handle, { passive: true });
   return () => {
     _target.removeEventListener('scroll', handle);
@@ -141,9 +150,9 @@ async function onScrollToThis(id: string) {
   target.value?.scrollTo({
     // @ts-ignore
     top: el.offsetTop - (props.offset || 0) - (target.value?.offsetTop || 0),
-    behavior: "smooth",
-    left: 0
-  })
+    behavior: 'smooth',
+    left: 0,
+  });
   // 延迟300ms后移除滚动监听,防抖处理，等到滚动完成后移除滚动监听事件
   const handle = debounce(() => {
     clickId.value = null;
@@ -155,7 +164,10 @@ async function onScrollToThis(id: string) {
 
 <template>
   <ul :class="[bem.b()]" v-if="props.data && props.data.length">
-    <li v-ripple="true" :class="[bem.e('item'), bem.is('active', activeId === item.id)]" v-for="item in props.data"
+    <li
+      v-ripple="true"
+      :class="[bem.e('item'), bem.is('active', activeId === item.id)]"
+      v-for="item in props.data"
       @click="() => onScrollToThis(item.id)">
       <span :class="[bem.e('bar')]" v-if="activeId === item.id" />
       {{ item.text }}
@@ -164,59 +176,57 @@ async function onScrollToThis(id: string) {
 </template>
 
 <style scoped lang="scss">
-  .im-anchor {
-    list-style: none;
-    padding: 8px;
-    border-radius: var(--im-radius);
-    margin: 0;
-    background-color: var(--im-bg-content-color);
+.im-anchor {
+  list-style: none;
+  padding: 8px;
+  border-radius: var(--im-radius);
+  margin: 0;
+  background-color: var(--im-bg-content-color);
 
-    @keyframes showBar {
-      from {
-        opacity: 0;
-        height: 0
-      }
-
-      to {
-        opacity: 1;
-        height: 1em;
-      }
+  @keyframes showBar {
+    from {
+      opacity: 0;
     }
 
-    .im-anchor__item {
-      padding: 5px 16px;
-      margin: 0;
-      font-size: 14px;
-      color: var(--im-gray-color-8);
-      min-width: 80px;
-      position: relative;
-      cursor: pointer;
-      transition: color 0.3s;
-      border-radius: var(--im-radius);
-      user-select: none;
-
-      &:hover {
-        color: var(--im-primary-color-8);
-        background-color: var(--im-rgb-color-1);
-      }
-
-      &.is-active {
-        color: var(--im-primary-color-8);
-      }
-    }
-
-    .im-anchor__bar {
-      position: absolute;
-      top: 50%;
-      left: 8px;
-      width: 3px;
-      min-width: 3px;
-      max-width: 3px;
-      height: 1em;
-      transform: translateY(-50%);
-      background-color: var(--im-primary-color-8);
-      border-radius: 3px;
-      animation: showBar 300ms ease-in forwards;
+    to {
+      opacity: 1;
     }
   }
+
+  .im-anchor__item {
+    padding: 5px 16px;
+    margin: 0;
+    font-size: 14px;
+    color: var(--im-gray-color-8);
+    min-width: 80px;
+    position: relative;
+    cursor: pointer;
+    transition: color 0.3s;
+    border-radius: var(--im-radius);
+    user-select: none;
+
+    &:hover {
+      color: var(--im-primary-color-8);
+      background-color: var(--im-rgb-color-1);
+    }
+
+    &.is-active {
+      color: var(--im-primary-color-8);
+    }
+  }
+
+  .im-anchor__bar {
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    width: 3px;
+    min-width: 3px;
+    max-width: 3px;
+    height: 1em;
+    transform: translateY(-50%);
+    background-color: var(--im-primary-color-8);
+    border-radius: 3px;
+    animation: showBar 300ms ease-in forwards;
+  }
+}
 </style>

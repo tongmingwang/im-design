@@ -1,30 +1,36 @@
 <template>
-  <span :class="[bem.b()]" ref="dropdownRef">
+  <span
+    :class="[bem.b()]"
+    ref="dropdownRef"
+    @mouseenter="onmouseenter"
+    @mouseleave="onmouseleave"
+    @click="handleClick">
     <slot />
-    <Teleport to="body">
-      <Transition @enter="animation.onEnter" @leave="animation.onLeave" :duration="{ enter: 200, leave: 200 }">
-        <div :class="[bem.e('content'), 'im-shadow']" v-show="visible" ref="contentRef" :style="{
-          zIndex: props.zIndex || zIndexToken
-        }">
-          <slot name="content" />
-        </div>
-      </Transition>
-    </Teleport>
+    <ImLayer
+      :visible="visible"
+      :customClass="bem.e('content')"
+      :placement="props.placement"
+      :offset="props.offset"
+      :z-index="props.zIndex"
+      :getTriggerContainer="getTriggerContainer"
+      :arrow="props.arrow"
+      :scrollClose="props.scrollClose"
+      @close="setClose"
+      @mouseenter="onmouseenter"
+      @mouseleave="onmouseleave">
+      <slot name="content" />
+    </ImLayer>
   </span>
 </template>
 
 <script setup lang="ts">
 import { useBem } from '@/utils/bem';
-import { ref, onMounted, onUnmounted, watch } from 'vue';
-import { debounce, isInRange, throttle } from '@/utils';
-import { useMouse } from '@/hooks/useMouse'
-import { usePlace } from '@/hooks/usePlace'
+import { ref, watch, onMounted } from 'vue';
+import { debounce } from '@/utils';
 import { type ImPlaceType } from '@/types';
-import { useToken } from '@/hooks/useToken';
-import { useAnimation } from './useAnimation'
+import ImLayer from '../Common/ImLayer.vue';
 
 defineOptions({ name: 'ImDropdown' });
-
 // 组件事件定义
 const emit = defineEmits(['update:modelValue', 'change']);
 // 组件bem封装
@@ -36,126 +42,144 @@ const props = withDefaults(
     trigger?: 'click' | 'hover' | 'contextmenu';
     placement?: ImPlaceType;
     zIndex?: number;
+    arrow?: boolean;
+    offset?: number;
+    scrollClose?: boolean;
   }>(),
   {
     modelValue: false,
     trigger: 'hover',
-    placement: 'bottomLeft',
-    zIndex: undefined
+    placement: 'bottom-left',
+    zIndex: undefined,
+    arrow: true,
+    offset: 8,
+    scrollClose: false,
   }
 );
 const dropdownRef = ref<HTMLElement | null>(null);
-const contentRef = ref<HTMLElement | null>(null);
 const visible = ref(props.modelValue || false);
-const animation = useAnimation(props.placement?.includes('top') ? 'top' : 'bottom')
+const delay: number = 100;
 
-let unbind: (() => void) | null = null;
-let delay: number = 60
-const { x, y } = useMouse(30)
-const { zIndexToken } = useToken()
-// 计算位置信息
-usePlace(visible, dropdownRef, contentRef, props.placement)
 onMounted(() => {
-  unbind && unbind();
-  unbind = bindEvent()
-})
-onUnmounted(() => {
-  unbind && unbind()
-})
-watch(() => props.trigger, () => {
-  unbind && unbind();
-  unbind = bindEvent()
-})
-// 节流
-const onMouseLeave = throttle(() => {
-  const isC = isInRange(x.value, y.value, contentRef.value)
-  const isD = isInRange(x.value, y.value, dropdownRef.value)
+  docHandleBind();
+});
+watch(
+  () => visible.value,
+  () => {
+    docHandleBind();
+  }
+);
 
-  if (isD || isC) return;
-  visible.value = false;
-}, delay)
-watch(() => [x.value, y.value], () => {
-  if (props.trigger != 'hover' || !visible.value) return;
-  onMouseLeave()
-})
+watch(
+  () => props.modelValue,
+  (val) => {
+    visible.value = val;
+  }
+);
 
+/**
+ * 处理绑定文档点击事件
+ *
+ * @description 当组件可见时，绑定文档的点击事件；当组件不可见时，移除文档的点击事件
+ */
+function docHandleBind() {
+  window.removeEventListener('click', checkHandleClick);
+  if (visible.value) {
+    window.addEventListener('click', checkHandleClick, {
+      passive: true,
+    });
+  }
+}
 
+/**
+ * 获取触发容器的引用
+ *
+ * @returns {any} 触发容器的引用
+ */
+function getTriggerContainer() {
+  return dropdownRef.value;
+}
+
+/**
+ * 处理点击事件
+ *
+ * @param e MouseEvent - 鼠标事件对象
+ */
+function checkHandleClick(e: MouseEvent) {
+  if (visible.value) {
+    const ta = e.target as HTMLElement;
+    const trig = dropdownRef.value;
+    // 触发器点击不需要处理
+    if (ta === trig || trig?.contains(ta)) return;
+    // 如果有内不类 is-disabled 不处理
+    if (ta.classList.contains('is-disabled')) return;
+
+    updateVisibleDebounce(false);
+  }
+}
+
+/**
+ * 当鼠标进入元素时触发的函数
+ */
+function onmouseenter() {
+  if (props.trigger === 'hover' || !props.trigger) {
+    updateVisibleDebounce(true);
+  }
+}
+/**
+ * 鼠标离开时触发的函数
+ *
+ * @function onmouseleave
+ */
+function onmouseleave() {
+  if (props.trigger === 'hover' || !props.trigger) {
+    updateVisibleDebounce(false);
+  }
+}
+const updateVisibleDebounce = debounce((bol: boolean) => {
+  bol ? setShow() : setClose();
+}, delay);
+/**
+ * 处理点击事件
+ *
+ * 当触发条件为点击时，如果当前可见性为true，则调用setClose方法关闭组件；
+ * 如果当前可见性为false，则调用setShow方法显示组件。
+ */
+function handleClick() {
+  !visible.value && updateVisibleDebounce(true);
+}
+
+/**
+ * 设置组件显示状态为可见
+ *
+ * 设置组件的显示状态为可见，并触发 'update:modelValue' 和 'change' 事件，传递新的显示状态值
+ */
 function setShow() {
   visible.value = true;
   emit('update:modelValue', visible.value);
   emit('change', visible.value);
-  // 不支持滚动
-  window.addEventListener('scroll', scrollHandle, { passive: true, capture: true })
 }
+/**
+ * 关闭弹窗
+ *
+ * 该函数用于关闭弹窗，并将弹窗的显示状态更新为 false。
+ * 同时触发两个自定义事件：'update:modelValue' 和 'change'，并将弹窗的显示状态作为参数传递。
+ */
 function setClose() {
   visible.value = false;
   emit('update:modelValue', visible.value);
   emit('change', visible.value);
-  window.removeEventListener('scroll', scrollHandle)
-}
-
-function scrollHandle(e: Event) {
-  if (contentRef.value?.contains(e.target as Node)) return;
-  setClose()
-}
-
-function bindEvent() {
-  unbind && unbind();
-  const handClickClose = debounce((e: Event) => {
-    if (dropdownRef.value?.contains(e.target as Node)) return;
-    setClose()
-  }, delay)
-  document.addEventListener('click', handClickClose, { passive: true })
-
-  // hover
-  if (props.trigger === 'hover') {
-    const mouseenterHandle = debounce(setShow, delay)
-    dropdownRef.value?.addEventListener('mouseenter', mouseenterHandle, { passive: true });
-    return () => {
-      dropdownRef.value?.removeEventListener('mouseenter', mouseenterHandle);
-      document.removeEventListener('click', handClickClose);
-    }
-  }
-
-  if (props.trigger === 'click') {
-    const onTrigger = debounce(() => {
-      const cur = visible.value
-      cur ? setClose() : setShow()
-    }, delay)
-    // 监听点击事件
-    dropdownRef.value?.addEventListener('click', onTrigger, { passive: true })
-
-    return () => {
-      dropdownRef.value?.removeEventListener('click', onTrigger);
-      document.removeEventListener('click', handClickClose);
-    }
-  }
-
-
-  return null
 }
 </script>
 
 <style scoped lang="scss">
-  .im-dropdown {
-    display: inline-flex;
-    width: fit-content;
-    height: fit-content;
-    cursor: pointer;
-    margin: 0;
-    padding: 0;
-  }
-</style>
-
-<style lang="scss">
-
-  .im-dropdown__content {
-    display: inline-flex;
-    position: fixed;
-    background-color: var(--im-bg-container-color);
-    border-radius: var(--im-radius, 4px);
-    overflow: hidden;
-    transition: background-color 200ms ease, transform 200ms ease,
-      opacity 200ms ease;
-  }
+.im-dropdown {
+  display: inline-flex;
+  width: fit-content;
+  height: fit-content;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
 </style>

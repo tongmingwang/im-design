@@ -1,20 +1,29 @@
 <template>
   <i class="im-icon" :class="[`im-icon-${props.name}`]" :style="{
-    '--icon-size': (parseInt(String(props.size)) || 16) + 'px',
-    '--icon-color': props.color,
+    '--im-icon-size': iconSize,
+    '--im-icon-color': props.color,
   }">
 
   </i>
 </template>
 
 <script setup lang="ts">
+import { getSizeValue } from '@/utils';
+import { computed } from 'vue';
 
 defineOptions({ name: 'ImIcon' })
-const props = defineProps({
-  name: String,
-  size: [Number, String],
-  color: String,
+const props = withDefaults(defineProps<{
+  size?: string | number,
+  name: string,
+  color?: string,
+}>(), {
+  size: 16,
+  color: ''
 })
+
+// 计算图标大小
+const iconSize = computed(() => getSizeValue(props.size))
+
 </script>
 
 <style lang="scss" scoped>
@@ -22,8 +31,8 @@ const props = defineProps({
 
   .im-icon {
     display: inline-block;
-    font-size: var(--icon-size, 16px);
-    fill: currentColor;
+    font-size: var(--im-icon-size, 16px);
+    color: var(--im-icon-color, currentColor);
   }
 
 </style>

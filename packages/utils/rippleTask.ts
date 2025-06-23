@@ -18,7 +18,7 @@ export default class RippleTask {
 
   async run(el: HTMLElement) {
     try {
-      const ripple: HTMLElement | null = el.querySelector('.im-ripple__item');
+      const ripple: HTMLElement | null = el.firstChild as HTMLElement;
       if (!ripple) return;
       let now = Date.now();
       let old = ripple.getAttribute('data-time');
@@ -26,9 +26,9 @@ export default class RippleTask {
 
       if (dpx) {
         await new Promise((resolve) => {
-          ripple.style.opacity = '0.1'; // 淡出效果
+          ripple.style.opacity = '0.15'; // 淡出效果
 
-          const delay = 200 - dpx; // 延迟时间，根据距离计算
+          const delay = 250 - dpx; // 延迟时间，根据距离计算
 
           setTimeout(
             () => {
@@ -39,12 +39,10 @@ export default class RippleTask {
         });
       }
       ripple.style.opacity = '0'; // 淡出效果
-      ripple.style.transition = 'all 50ms';
-
+      ripple.style.transition = 'all 200ms';
       setTimeout(() => {
         el && el?.remove();
-        if (this.#task.length) this.remove();
-      }, 50);
+      }, 150);
     } catch (error) {
       console.log(error);
     }

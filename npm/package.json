@@ -1,20 +1,50 @@
 {
   "name": "im-design",
-  "version": "0.0.38",
+  "version": "0.0.93",
   "type": "module",
-  "files": [
-    "dist",
-    "types"
+  "description": "A Component Library for Vue 3",
+  "keywords": [
+    "im-design",
+    "design",
+    "component library",
+    "ui framework",
+    "ui",
+    "vue"
   ],
-  "main": "./dist/im-design.cjs",
-  "module": "./dist/im-design.js",
-  "types": "./types/global.d.ts",
+  "homepage": "https://tongmingwang.github.io/im-design/",
+  "bugs": {
+    "url": "https://github.com/tongmingwang/im-design/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tongmingwang/im-design.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "author": "tongmingwang",
+  "license": "MIT",
+  "main": "./dist/im-design.cjs.js",
+  "module": "./dist/im-design.es.js",
   "exports": {
     ".": {
-      "import": "./dist/im-design.js",
-      "require": "./dist/im-design.cjs",
-      "types": "./types/global.d.ts"
+      "import": "./dist/im-design.es.js",
+      "require": "./dist/im-design.cjs.js",
+      "types": "./dist/types/components/index.d.ts"
     },
     "./*": "./*"
-  }
+  },
+  "peerDependencies": {
+    "vue": "^3.5.13"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.13",
+    "vue": "^3.5.13"
+  },
+  "browserslist": [
+    "> 1%",
+    "not ie 11",
+    "not op_mini all"
+  ],
+  "types": "dist/types/components/index.d.ts"
 }

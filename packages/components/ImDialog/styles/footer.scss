@@ -1,0 +1,14 @@
+.im-dialog__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 8px;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+
+  &.im-dialog__footer_border {
+    border-top: 1px solid var(--im-gray-color-4);
+  }
+}

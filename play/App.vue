@@ -1,46 +1,50 @@
 <template>
-  <div class="main">
-    <!-- <Button /> -->
-    <!-- <Divider /> -->
-    <!-- <Anchor /> -->
-    <!-- <Alert /> -->
-    <!-- <Breadcrumb /> -->
-    <!-- <Dropdown /> -->
-    <!-- <List /> -->
-    <!-- <Avatar /> -->
-    <!-- <Drawer /> -->
-    <!-- <Card /> -->
-    <!-- <Message /> -->
-    <!-- <Dialog /> -->
-    <!-- <Pagination /> -->
+  <div v-loading="show">
+    <ImDatePicker
+      v-model="selectedDate"
+      showTime
+      format="YYYY-MM-DD HH:mm:ss" />
+    <ImDatePicker v-model="selectedDate" format="YYYY-MM-DD" />
+    <ImInput />
+    <ImInputNumber />
+    <ImButton>BUTTON</ImButton>
+    <ImButton color="primary">BUTTON</ImButton>
+
+    <div v-ripple="true">选中：{{ selectedDate }}</div>
+    <Dialog />
+    <Drawer />
     <Select />
+    <Tabs />
+    <Input />
+    <Popover />
+    <Card />
   </div>
+  <ImButton @click="show = !show">Loading</ImButton>
+  <Dropdown />
 </template>
 
 <script setup lang="ts">
-import Button from './views/Button.vue'
-import Divider from './views/Divider.vue'
-import Anchor from './views/Anchor.vue';
-import Alert from './views/Alert.vue';
-import Breadcrumb from './views/Breadcrumb.vue';
-import Dropdown from './views/Dropdown.vue';
-import List from './views/List.vue'
-import Avatar from './views/Avatar.vue';
-import Drawer from './views/Drawer.vue';
-import Card from './views/Card.vue'
-import Message from './views/Message.vue'
+import { ref, watch } from 'vue';
 import Dialog from './views/Dialog.vue';
-import Pagination from './views/Pagination.vue';
-import Select from './views/Select.vue'
+import Drawer from './views/Drawer.vue';
+import Tabs from './views/Tabs.vue';
+import Input from './views/Input.vue';
+import Select from './views/Select.vue';
+import Popover from './views/Tooltip.vue';
+import Card from './views/Card.vue';
+import Dropdown from './views/Dropdown.vue';
 
+const selectedDate = ref('');
+const show = ref(false);
 </script>
 
-<style scoped lang="scss">
-  .main {
-    padding: 24px;
-    background-color: var(--im-bg-content-color);
-    border-radius: 8px;
-    box-shadow: 0 0 12px rgba(0, 0, 0, .1);
-    margin: 20px;
-  }
+<style lang="scss">
+#app {
+  padding: 24px;
+}
+
+.menu {
+  display: flex;
+  width: 250px;
+}
 </style>

@@ -1,13 +1,26 @@
 @font-face {
   font-family: "im-icon";
-  src: url('iconfont.woff?t=1748495534666') format('woff');
+  src: url('iconfont.woff?t=1750237993415') format('woff');
 }
 
 .im-icon {
   font-family: "im-icon" !important;
+  font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.im-icon-calendar:before {
+  content: "\e7d6";
+}
+
+.im-icon-doubleleft:before {
+  content: "\e828";
+}
+
+.im-icon-doubleright:before {
+  content: "\e829";
 }
 
 .im-icon-close-circle:before {

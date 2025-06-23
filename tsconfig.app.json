@@ -6,6 +6,7 @@
     "target": "esnext",
     "strict": true,
     "declaration": true,
+    "emitDeclarationOnly": false, // 只生成声明文件时可设为 true
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
@@ -22,9 +23,14 @@
     }
   },
   "include": [
-    "packages/**/*.ts",
-    "packages/**/*.tsx",
-    "packages/**/*.vue",
-    "packages/**/*.d.ts",
+    "packages/**/*",
+    "packages/types"
   ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "play",
+    "scripts",
+    "docs"
+  ]
 }

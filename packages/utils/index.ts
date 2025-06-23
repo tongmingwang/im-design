@@ -1,3 +1,5 @@
+import { isNumber } from './types';
+
 // 节流函数
 export const throttle = <T extends unknown[]>(
   fn: (...args: T) => void,
@@ -57,4 +59,11 @@ export const getSizeValue = (value: string | number): string => {
       ? str
       : `${value}px`
     : '';
+};
+
+// 判断是不是一个有效的数字
+export const isNumberValue = (val: any) => {
+  return (
+    val !== undefined && val !== null && !Number.isNaN(val) && isNumber(val)
+  );
 };
