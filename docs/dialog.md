@@ -136,7 +136,7 @@ const top = ref(false)
 
 ## 支持拖拽
 
-设置 draggable 属性，可以让对话框支持拖拽。支持 PC 端。
+设置 draggable 属性，可以让对话框支持拖拽。支持 PC 端 移动端。
 
 <ImDialog v-model="drag" draggable>
 <ImDialogHeader>Dialog Title</ImDialogHeader>

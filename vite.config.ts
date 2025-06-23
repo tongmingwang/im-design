@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import path from 'path';
-import svgLoader from 'vite-svg-loader';
 import dts from 'vite-plugin-dts';
 
 export default defineConfig({
@@ -13,7 +12,6 @@ export default defineConfig({
       include: ['packages'],
     }),
     vue(),
-    svgLoader(),
   ],
   resolve: {
     alias: {
