@@ -22,6 +22,10 @@ Alright, for you to get started if you are looking for making ImDesign better yo
 
 ![DatePicker](https://tongmingwang.github.io/im-design/date-picker.png)
 
+## DateTimePicker
+
+![DateTimePicker](https://tongmingwang.github.io/im-design/date-time-picker.png)
+
 ## Installation
 
 ```bash
@@ -47,11 +51,12 @@ Support auxiliary import and full import methods
 // main.js
 import { createApp } from 'vue';
 import App from './App.vue';
-import ImDesign from 'im-design';
+import ImDesign, { ImDirective } from 'im-design';
 import 'im-design/dist/index.css';
 
 const app = createApp(App);
 app.use(ImDesign, { size: '36', zIndex: 1000 });
+app.use(ImDirective);
 app.mount('#app');
 ```
 
@@ -92,10 +97,7 @@ const handleClick = () => {
 
 ## Docs
 
-Click here to view the documentation.
-（点击这里查看文档。）
-
-[HomePage](https://tongmingwang.github.io/im-design/)
+[Click here to view the documentation.点击这里查看文档。](https://tongmingwang.github.io/im-design/)
 
 ## License
 
