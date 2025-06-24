@@ -48,6 +48,7 @@ const sidebar = [
       { text: 'Checkbox', link: '/en/checkbox' },
       { text: 'Radio', link: '/en/radio' },
       { text: 'Date Picker', link: '/en/date-picker' },
+      { text: 'Textarea', link: '/en/textarea' },
     ],
   },
   {

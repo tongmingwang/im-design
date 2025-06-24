@@ -15,7 +15,7 @@
     "build:types": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
-    "im-design": "^0.0.96",
+    "im-design": "^1.0.4",
     "sass": "^1.89.0",
     "vue": "^3.5.13"
   },
