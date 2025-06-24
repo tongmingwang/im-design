@@ -23,12 +23,8 @@ function runCommand(command, cwd) {
 async function main() {
   try {
     console.log(`切换到目录: ${targetDir}`);
-    console.log('执行 npm version patch...');
-
-    await runCommand('npm version patch', targetDir);
-    console.log('版本号更新成功！');
-
     await runCommand('npm publish', targetDir);
+    console.log('发布成功!');
   } catch (err) {
     console.error('脚本执行失败:', err);
     process.exit(1);
