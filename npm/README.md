@@ -14,6 +14,20 @@ Alright, for you to get started if you are looking for making ImDesign better yo
 
 （好了，如果你想让 ImDesign 变得更好，那就继续阅读吧。对于使用 ImDesign 开发网站的开发者，你应该继续阅读“入门”。）
 
+## 为什么选择 ImDesign
+
+In fact, ImDesign is not the best, but it is good enough. Its design concept is "craftsmanship, ultimate experience".
+Make your development more efficient and make your product more beautiful.
+
+(其实 ImDesign 并不是最好的，但是它足够好。它的设计理念是“匠心打造，极致体验”。
+让你的开发更加高效，让你的产品更加美观。)
+
+Our components are constantly being improved. If you have any suggestions or questions, please raise them in Issues.
+In the future, ImDesign will support more components and will be more perfect.
+
+(我们组件正在不断完善中，如果你有任何建议或者问题欢迎在 Issues 中提出。
+未来 ImDesign 会支持更多的组件，也会更加完善。)
+
 ## Buttons
 
 ![Buttons](https://tongmingwang.github.io/im-design/button.png)
@@ -24,7 +38,7 @@ Alright, for you to get started if you are looking for making ImDesign better yo
 
 ## DateTimePicker
 
-![DateTimePicker](https://tongmingwang.github.io/im-design/date-time-picker.png)
+![DateTimePicker](https://tongmingwang.github.io/im-design/date-time-picker.png?id=1682570394552)
 
 ## Installation
 
@@ -43,7 +57,7 @@ pnpm add im-design
 
 Support auxiliary import and full import methods
 
-(支持辅助导入和全部导入方式)
+(支持按需导入和全部导入方式)
 
 ### Import all components
 
