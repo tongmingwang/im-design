@@ -49,6 +49,7 @@ const sidebar = [
       { text: 'Radio', link: '/en/radio' },
       { text: 'Date Picker', link: '/en/date-picker' },
       { text: 'Textarea', link: '/en/textarea' },
+      { text: 'Switch', link: '/en/switch' },
     ],
   },
   {

@@ -5,15 +5,15 @@ Provides navigation functionality for websites.
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 const value = ref('1');
-const subActives = ref<Array<string | number>>([]);
+const subActiveList = ref<Array<string | number>>([]);
 
 watch(
   () => value.value,
   (val) => {
     if (['3-1', '3-2', '3-3'].includes(val)) {
-      subActives.value = ['sub-1'];
+      subActiveList.value = ['sub-1'];
     } else {
-      subActives.value = [];
+      subActiveList.value = [];
     }
   }
 );
@@ -180,22 +180,20 @@ const value = ref('1');
 
 ## Submenus
 
-<ImMenu v-model="value" color="primary" :subActives="subActives">
+<ImMenu v-model="value" color="primary" :subActiveList="subActiveList">
   <ImMenuItem name="1">Home</ImMenuItem>
   <ImMenuItem name="2">About</ImMenuItem>
   <ImSubMenu name="sub-1">
-    <span>Order <ImIcon name="down" size="12px" /></span>
-    <template #content>
+    <template #label>Orders </template>
       <ImMenuItem name="3-1">Subpage - 1</ImMenuItem>
       <ImMenuItem name="3-2">Subpage - 2</ImMenuItem>
       <ImMenuItem name="3-3">Subpage - 3</ImMenuItem>
-    </template>
   </ImSubMenu>
 </ImMenu>
 
 ```vue
 <template>
-  <ImMenu v-model="value" color="primary" :subActives="subActives">
+  <ImMenu v-model="value" color="primary" :subActiveList="subActiveList">
     <ImMenuItem name="1">Home</ImMenuItem>
     <ImMenuItem name="2">About</ImMenuItem>
     <ImSubMenu name="sub-1">
@@ -212,15 +210,15 @@ const value = ref('1');
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 const value = ref('1');
-const subActives = ref<Array<string | number>>([]);
+const subActiveList = ref<Array<string | number>>([]);
 
 watch(
   () => value.value,
   (val) => {
     if (['3-1', '3-2', '3-3'].includes(val)) {
-      subActives.value = ['sub-1'];
+      subActiveList.value = ['sub-1'];
     } else {
-      subActives.value = [];
+      subActiveList.value = [];
     }
   }
 );
