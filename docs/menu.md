@@ -7,6 +7,20 @@ import { ref, watch } from 'vue';
 const value = ref('1');
 const subActiveList = ref<Array<string | number>>([]);
 
+const active = ref('1');
+const subActiveList2 = ref<Array<string | undefined>>([]);
+
+watch(
+  () => active.value,
+  (val) => {
+    if (['1-2', '1-3'].includes(val)) {
+      subActiveList2.value = ['1-1'];
+    } else {
+      subActiveList2.value = [];
+    }
+  }
+);
+
 watch(
   () => value.value,
   (val) => {
@@ -227,3 +241,81 @@ watch(
 );
 </script>
 ```
+
+## 纵向菜单
+
+设置 vertical 可以让菜单纵向显示。
+
+<ImMenu
+  vertical
+  v-model="value"
+  :subActiveList="subActiveList2"
+  align="right">
+<ImMenuItem name="1"> Home </ImMenuItem>
+<ImSubMenu name="1-1">
+<template #label> <ImIcon name="home" /> Orders</template>
+<ImMenuItem name="1-2">Order Page1</ImMenuItem>
+<ImMenuItem name="1-3">Order Page2</ImMenuItem>
+</ImSubMenu>
+<ImMenuItem name="2">About Us</ImMenuItem>
+</ImMenu>
+
+<ImMenu
+  vertical
+  v-model="value"
+  :subActiveList="subActiveList2"
+  color="primary"
+  align="right">
+<ImMenuItem name="1"> Home </ImMenuItem>
+<ImSubMenu name="1-1">
+<template #label> <ImIcon name="home" /> Orders</template>
+<ImMenuItem name="1-2">Order Page1</ImMenuItem>
+<ImMenuItem name="1-3">Order Page2</ImMenuItem>
+</ImSubMenu>
+<ImMenuItem name="2">About Us</ImMenuItem>
+</ImMenu>
+
+<ImMenu
+  vertical
+  v-model="value"
+  :subActiveList="subActiveList2"
+  color="success"
+  align="right">
+<ImMenuItem name="1"> Home </ImMenuItem>
+<ImSubMenu name="1-1">
+<template #label> <ImIcon name="home" /> Orders</template>
+<ImMenuItem name="1-2">Order Page1</ImMenuItem>
+<ImMenuItem name="1-3">Order Page2</ImMenuItem>
+</ImSubMenu>
+<ImMenuItem name="2">About Us</ImMenuItem>
+</ImMenu>
+
+<ImMenu
+  vertical
+  v-model="value"
+  :subActiveList="subActiveList2"
+  color="error"
+  align="right">
+<ImMenuItem name="1"> Home </ImMenuItem>
+<ImSubMenu name="1-1">
+<template #label> <ImIcon name="home" /> Orders</template>
+<ImMenuItem name="1-2">Order Page1</ImMenuItem>
+<ImMenuItem name="1-3">Order Page2</ImMenuItem>
+</ImSubMenu>
+<ImMenuItem name="2">About Us</ImMenuItem>
+</ImMenu>
+
+<ImMenu
+  vertical
+  v-model="value"
+  :subActiveList="subActiveList2"
+  color="warning"
+  align="right">
+<ImMenuItem name="1"> Home </ImMenuItem>
+<ImSubMenu name="1-1">
+<template #label> <ImIcon name="home" /> Orders</template>
+<ImMenuItem name="1-2">Order Page1</ImMenuItem>
+<ImMenuItem name="1-3">Order Page2</ImMenuItem>
+</ImSubMenu>
+<ImMenuItem name="2">About Us</ImMenuItem>
+</ImMenu>

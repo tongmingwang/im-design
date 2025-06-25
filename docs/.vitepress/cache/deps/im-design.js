@@ -326,7 +326,7 @@ var require_dayjs_min = __commonJS({
   }
 });
 
-// node_modules/.pnpm/im-design@1.0.9_vue@3.5.15_typescript@5.8.3_/node_modules/im-design/dist/im-design.es.js
+// node_modules/.pnpm/im-design@1.1.0_vue@3.5.15_typescript@5.8.3_/node_modules/im-design/dist/im-design.es.js
 var import_dayjs = __toESM(require_dayjs_min());
 var ut = Object.defineProperty;
 var Ye = (o) => {
@@ -4592,7 +4592,7 @@ var po = defineComponent({
     ], 2));
   }
 });
-var fo = P(po, [["__scopeId", "data-v-db0801c3"]]);
+var fo = P(po, [["__scopeId", "data-v-7bc61f0c"]]);
 var vo = defineComponent({
   name: "ImGroupMenu",
   __name: "ImGroupMenu",
@@ -5472,7 +5472,7 @@ var Go = defineComponent({
     ], 6));
   }
 });
-var Uo = P(Go, [["__scopeId", "data-v-30c9468c"]]);
+var Uo = P(Go, [["__scopeId", "data-v-1c704580"]]);
 var jo = H("ImSwitch", Uo);
 var Ko = [
   pe,
