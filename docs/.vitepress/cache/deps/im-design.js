@@ -326,7 +326,7 @@ var require_dayjs_min = __commonJS({
   }
 });
 
-// node_modules/.pnpm/im-design@1.1.0_vue@3.5.15_typescript@5.8.3_/node_modules/im-design/dist/im-design.es.js
+// node_modules/.pnpm/im-design@1.1.1_vue@3.5.15_typescript@5.8.3_/node_modules/im-design/dist/im-design.es.js
 var import_dayjs = __toESM(require_dayjs_min());
 var ut = Object.defineProperty;
 var Ye = (o) => {
@@ -5472,7 +5472,7 @@ var Go = defineComponent({
     ], 6));
   }
 });
-var Uo = P(Go, [["__scopeId", "data-v-1c704580"]]);
+var Uo = P(Go, [["__scopeId", "data-v-e9c07ed3"]]);
 var jo = H("ImSwitch", Uo);
 var Ko = [
   pe,
