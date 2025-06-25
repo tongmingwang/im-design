@@ -224,3 +224,81 @@ watch(
 );
 </script>
 ```
+
+## Vertical Menu
+
+Set `vertical="true"` to make the menu vertical.
+
+<ImMenu
+  vertical
+  v-model="value"
+  :subActiveList="subActiveList2"
+  align="right">
+<ImMenuItem name="1"> Home </ImMenuItem>
+<ImSubMenu name="1-1">
+<template #label> <ImIcon name="home" /> Orders</template>
+<ImMenuItem name="1-2">Order Page1</ImMenuItem>
+<ImMenuItem name="1-3">Order Page2</ImMenuItem>
+</ImSubMenu>
+<ImMenuItem name="2">About Us</ImMenuItem>
+</ImMenu>
+
+<ImMenu
+  vertical
+  v-model="value"
+  :subActiveList="subActiveList2"
+  color="primary"
+  align="right">
+<ImMenuItem name="1"> Home </ImMenuItem>
+<ImSubMenu name="1-1">
+<template #label> <ImIcon name="home" /> Orders</template>
+<ImMenuItem name="1-2">Order Page1</ImMenuItem>
+<ImMenuItem name="1-3">Order Page2</ImMenuItem>
+</ImSubMenu>
+<ImMenuItem name="2">About Us</ImMenuItem>
+</ImMenu>
+
+<ImMenu
+  vertical
+  v-model="value"
+  :subActiveList="subActiveList2"
+  color="success"
+  align="right">
+<ImMenuItem name="1"> Home </ImMenuItem>
+<ImSubMenu name="1-1">
+<template #label> <ImIcon name="home" /> Orders</template>
+<ImMenuItem name="1-2">Order Page1</ImMenuItem>
+<ImMenuItem name="1-3">Order Page2</ImMenuItem>
+</ImSubMenu>
+<ImMenuItem name="2">About Us</ImMenuItem>
+</ImMenu>
+
+<ImMenu
+  vertical
+  v-model="value"
+  :subActiveList="subActiveList2"
+  color="error"
+  align="right">
+<ImMenuItem name="1"> Home </ImMenuItem>
+<ImSubMenu name="1-1">
+<template #label> <ImIcon name="home" /> Orders</template>
+<ImMenuItem name="1-2">Order Page1</ImMenuItem>
+<ImMenuItem name="1-3">Order Page2</ImMenuItem>
+</ImSubMenu>
+<ImMenuItem name="2">About Us</ImMenuItem>
+</ImMenu>
+
+<ImMenu
+  vertical
+  v-model="value"
+  :subActiveList="subActiveList2"
+  color="warning"
+  align="right">
+<ImMenuItem name="1"> Home </ImMenuItem>
+<ImSubMenu name="1-1">
+<template #label> <ImIcon name="home" /> Orders</template>
+<ImMenuItem name="1-2">Order Page1</ImMenuItem>
+<ImMenuItem name="1-3">Order Page2</ImMenuItem>
+</ImSubMenu>
+<ImMenuItem name="2">About Us</ImMenuItem>
+</ImMenu>

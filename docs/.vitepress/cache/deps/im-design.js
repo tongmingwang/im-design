@@ -326,7 +326,7 @@ var require_dayjs_min = __commonJS({
   }
 });
 
-// node_modules/.pnpm/im-design@1.1.1_vue@3.5.15_typescript@5.8.3_/node_modules/im-design/dist/im-design.es.js
+// node_modules/.pnpm/im-design@1.1.3_vue@3.5.15_typescript@5.8.3_/node_modules/im-design/dist/im-design.es.js
 var import_dayjs = __toESM(require_dayjs_min());
 var ut = Object.defineProperty;
 var Ye = (o) => {
@@ -364,7 +364,7 @@ var bt = class {
       if (!t) return;
       let a = Date.now(), e = t.getAttribute("data-time");
       const n = a - Number(e) || 0;
-      n < 500 && n > 0 && await new Promise(async (i) => {
+      n < 400 && n > 0 && await new Promise(async (i) => {
         t.style.opacity = "0.05", await new Promise((u) => requestAnimationFrame(u)), setTimeout(() => {
           i(null);
         }, n);
@@ -384,7 +384,7 @@ async function _t(o, s, t) {
   const i = document.createElement("div");
   i.style.setProperty("position", "absolute"), i.style.setProperty("border-radius", "50%"), i.style.setProperty(
     "transition",
-    "all 500ms cubic-bezier(0.4, 0, 0.2, 1)"
+    "all 400ms cubic-bezier(0.4, 0, 0.2, 1)"
   ), i.style.setProperty("will-change", "transform,opacity"), i.style.setProperty("pointer-events", "none");
   const u = o.clientX, v = o.clientY, r = u - e.left, c = v - e.top;
   Math.abs(e.width - e.height) < 3;
@@ -4500,7 +4500,7 @@ var po = defineComponent({
       const I = h2;
       I.style.height = "0px", setTimeout(() => {
         y();
-      }, 200);
+      }, 280);
     }
     return (h2, y) => (openBlock(), createElementBlock("li", {
       class: normalizeClass([
@@ -4592,7 +4592,7 @@ var po = defineComponent({
     ], 2));
   }
 });
-var fo = P(po, [["__scopeId", "data-v-7bc61f0c"]]);
+var fo = P(po, [["__scopeId", "data-v-2b4c7b22"]]);
 var vo = defineComponent({
   name: "ImGroupMenu",
   __name: "ImGroupMenu",
