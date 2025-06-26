@@ -75,6 +75,8 @@ export const sidebar = [
       { text: 'Checkbox 多选框', link: '/checkbox' },
       { text: 'Radio 单选框', link: '/radio' },
       { text: 'DatePicker 日期选择器', link: '/date-picker' },
+      { text: 'DateRangePicker 日期范围', link: '/date-range-picker' },
+      { text: 'TimePicker 时间选择器', link: '/time-picker' },
       { text: 'Textarea 文本域', link: '/textarea' },
       { text: 'Switch 开关', link: '/switch' },
     ],

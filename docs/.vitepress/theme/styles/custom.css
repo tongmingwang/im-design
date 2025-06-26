@@ -1,75 +1,12 @@
 :root {
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: linear-gradient(120deg, #bd34fe, #41d1ff);
+  --vp-home-hero-name-background: linear-gradient(45deg,
+      rgba(95, 2, 2, 0.8),
+      rgba(15, 176, 15, 0.8),
+      rgba(175, 175, 252, 0.8));
 
-  /* 新增主题色 */
-  --vp-c-brand: #646cff;
-  --vp-c-brand-light: #747bff;
-  --vp-c-brand-lighter: #9499ff;
-  --vp-c-brand-dark: #535bf2;
-  --vp-c-brand-darker: #454ce1;
-}
-
-/* 首页banner动画 */
-.home-banner {
-  animation: fadeIn 1s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* 特性卡片美化 */
-.feature {
-  transition: all 0.3s ease;
-  border: 1px solid var(--vp-c-divider-light);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.feature:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-/* 页脚美化 */
-.footer {
-  background: var(--vp-c-bg-soft);
-  color: var(--vp-c-text-2);
-}
-
-/* 响应式调整 */
-@media (max-width: 768px) {
-  .features {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .home-logo {
-    height: 80px;
-  }
-
-  .feature {
-    padding: 0.8rem;
-  }
-}
-
-/* 按钮样式增强 */
-:root {
-  --vp-button-brand-border: var(--vp-c-brand-light);
-  --vp-button-brand-text: var(--vp-c-white);
-  --vp-button-brand-bg: var(--vp-c-brand);
-  --vp-button-brand-hover-border: var(--vp-c-brand-light);
-  --vp-button-brand-hover-text: var(--vp-c-white);
-  --vp-button-brand-hover-bg: var(--vp-c-brand-light);
-  --vp-button-brand-active-border: var(--vp-c-brand-light);
-  --vp-button-brand-active-text: var(--vp-c-white);
-  --vp-button-brand-active-bg: var(--vp-c-brand-dark);
+  --vp-home-hero-image-background-image: linear-gradient(135deg,
+      rgba(246, 206, 236, 0.7) 10%,
+      rgba(217, 57, 205, 0.7) 100%);
+  --vp-home-hero-image-filter: blur(120px);
 }

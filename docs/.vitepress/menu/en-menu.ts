@@ -48,6 +48,8 @@ const sidebar = [
       { text: 'Checkbox', link: '/en/checkbox' },
       { text: 'Radio', link: '/en/radio' },
       { text: 'Date Picker', link: '/en/date-picker' },
+      { text: 'DateRangePicker', link: '/en/date-range-picker' },
+      { text: 'TimePicker', link: '/en/time-picker' },
       { text: 'Textarea', link: '/en/textarea' },
       { text: 'Switch', link: '/en/switch' },
     ],

@@ -5,8 +5,8 @@ const { Layout } = DefaultTheme;
 const show = ref(false);
 
 console.log(
-  '%cWelcome to Im Design',
-  'color: #646cff; font-size: 20px; font-weight: bold'
+  '%cIm Design',
+  'color: #388e3c; font-size: 60px; font-weight: bold;font-family: "PingFang SC", "Microsoft YaHei", sans-serif; text-shadow: 2px 2px #388e3c; background: -webkit-linear-gradient(left, #388e3c, #388e3c); -webkit-background-clip: text; -webkit-text-fill '
 );
 </script>
 
