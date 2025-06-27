@@ -18,14 +18,18 @@ const drag = ref(false)
 const headerClose = ref(false)
 const dividerShow = ref(false)
 const top = ref(false)
+const trigger = ref(false)
+function getTarget(){
+  return document.querySelector('#Demo_Button')
+}
 </script>
 
  <ImDialog v-model="open">
     <ImDialogHeader>Dialog Title</ImDialogHeader>
     <ImDialogBody>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</ImDialogBody>
     <ImDialogFooter >
-      <ImButton @click="open = false" variant="text">Cancel</ImButton>
-      <ImButton @click="open = false" variant="text" color="primary">Confirm</ImButton>
+      <ImButton @click="open = false">Cancel</ImButton>
+      <ImButton @click="open = false" color="primary">Confirm</ImButton>
     </ImDialogFooter>
   </ImDialog>
   <ImButton @click="open = true" color="primary" variant="outlined">Open Dialog</ImButton>
@@ -39,10 +43,8 @@ const top = ref(false)
       location data to Google, even when no apps are running.</ImDialogBody
     >
     <ImDialogFooter>
-      <ImButton @click="open = false" variant="text">Cancel</ImButton>
-      <ImButton @click="open = false" variant="text" color="primary"
-        >Confirm</ImButton
-      >
+      <ImButton @click="open = false">Cancel</ImButton>
+      <ImButton @click="open = false" color="primary">Confirm</ImButton>
     </ImDialogFooter>
   </ImDialog>
   <ImButton @click="open = true">Oen Dialog</ImButton>
@@ -58,46 +60,76 @@ const top = ref(false)
      divider
       >Dialog Title
       <template #action>
-        <ImButton @click="fullShow = false" size="36" variant="text" shape="circle">
+        <ImButton @click="fullShow = false" size="36" shape="circle">
           <ImIcon name="close" size="20"></ImIcon>
         </ImButton>
       </template>
     </ImDialogHeader>
-    <ImDialogBody
-      >
-      <ImList>
-        <ImListItem>1</ImListItem>
-        <ImListItem>2</ImListItem>
-        <ImListItem>3</ImListItem>
-      </ImList>
-      </ImDialogBody
-    >
+    <ImDialogBody>
+      <div v-for="i in 8">
+        <ImCheckbox size="48">
+          Let Google help apps determine location. This means sending anonymous
+          location data to Google, even when no apps are running.
+        </ImCheckbox>
+      </div>
+    </ImDialogBody>
   </ImDialog>
   <ImButton @click="fullShow = true" color="primary" variant="outlined">Open Fullscreen Dialog</ImButton>
 
 ```vue
 <template>
   <ImDialog v-model="fullShow" fullscreen>
-    <ImDialogHeader
+    <ImDialogHeader divider
       >Dialog Title
       <template #action>
-        <ImButton @click="fullShow = false" variant="text">Cancel</ImButton>
+        <ImButton @click="fullShow = false" size="36" shape="circle">
+          <ImIcon name="close" size="20"></ImIcon>
+        </ImButton>
       </template>
     </ImDialogHeader>
+    <ImDialogBody>
+      <div v-for="i in 8">
+        <ImCheckbox size="48">
+          Let Google help apps determine location. This means sending anonymous
+          location data to Google, even when no apps are running.
+        </ImCheckbox>
+      </div>
+    </ImDialogBody>
+  </ImDialog>
+  <ImButton @click="fullShow = true" color="primary" variant="outlined"
+    >Open Fullscreen Dialog</ImButton
+  >
+</template>
+```
+
+## 触发器打开
+
+设置 getTarget 属性，可以将 Dialog 的打开与关闭绑定到某个元素上。
+
+ <ImDialog v-model="trigger" :getTarget="getTarget">
+    <ImDialogHeader>Dialog Title</ImDialogHeader>
+    <ImDialogBody>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</ImDialogBody>
+    <ImDialogFooter >
+      <ImButton @click="trigger = false" >Cancel</ImButton>
+      <ImButton @click="trigger = false"  color="primary">Confirm</ImButton>
+    </ImDialogFooter>
+  </ImDialog>
+  <ImButton @click="trigger = true" color="primary" variant="outlined" id="Demo_Button">Open Dialog</ImButton>
+
+```vue
+<template>
+  <ImDialog v-model="trigger">
+    <ImDialogHeader>Dialog Title</ImDialogHeader>
     <ImDialogBody
       >Let Google help apps determine location. This means sending anonymous
       location data to Google, even when no apps are running.</ImDialogBody
     >
     <ImDialogFooter>
-      <ImButton @click="fullShow = false" variant="text">Cancel</ImButton>
-      <ImButton @click="fullShow = false" variant="text" color="primary"
-        >Confirm</ImButton
-      >
+      <ImButton @click="trigger = false">Cancel</ImButton>
+      <ImButton @click="trigger = false" color="primary">Confirm</ImButton>
     </ImDialogFooter>
   </ImDialog>
-  <ImButton @click="fullShow = true" color="primary" variant="outlined"
-    >Open Fullscreen Dialog</ImButton
-  >
+  <ImButton @click="trigger = true">Oen Dialog</ImButton>
 </template>
 ```
 
@@ -142,8 +174,8 @@ const top = ref(false)
 <ImDialogHeader>Dialog Title</ImDialogHeader>
 <ImDialogBody>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</ImDialogBody>
 <ImDialogFooter >
-<ImButton @click="drag = false" variant="text">Cancel</ImButton>
-<ImButton @click="drag = false" variant="text" color="primary">Confirm</ImButton>
+<ImButton @click="drag = false">Cancel</ImButton>
+<ImButton @click="drag = false" color="primary">Confirm</ImButton>
 </ImDialogFooter>
 </ImDialog>
 <ImButton @click="drag = true" color="primary" variant="outlined">Open Dialog</ImButton>
@@ -157,10 +189,8 @@ const top = ref(false)
       location data to Google, even when no apps are running.</ImDialogBody
     >
     <ImDialogFooter>
-      <ImButton @click="drag = false" variant="text">Cancel</ImButton>
-      <ImButton @click="drag = false" variant="text" color="primary"
-        >Confirm</ImButton
-      >
+      <ImButton @click="drag = false">Cancel</ImButton>
+      <ImButton @click="drag = false" color="primary">Confirm</ImButton>
     </ImDialogFooter>
   </ImDialog>
   <ImButton @click="drag = true" color="primary" variant="outlined"
@@ -174,15 +204,15 @@ const top = ref(false)
 <ImDialog v-model="headerClose" >
 <ImDialogHeader>Dialog Title
   <template #action>
-    <ImButton @click="headerClose = false" shape="circle" variant="text">
+    <ImButton @click="headerClose = false" shape="circle">
     <ImIcon name="close" size="20"></ImIcon>
     </ImButton>
     </template>
 </ImDialogHeader>
 <ImDialogBody>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</ImDialogBody>
 <ImDialogFooter >
-<ImButton @click="headerClose = false" variant="text">Cancel</ImButton>
-<ImButton @click="headerClose = false" variant="text" color="primary">Confirm</ImButton>
+<ImButton @click="headerClose = false">Cancel</ImButton>
+<ImButton @click="headerClose = false" color="primary">Confirm</ImButton>
 </ImDialogFooter>
 </ImDialog>
 <ImButton @click="headerClose = true" color="primary" variant="outlined">Open Dialog</ImButton>
@@ -196,10 +226,8 @@ const top = ref(false)
       location data to Google, even when no apps are running.</ImDialogBody
     >
     <ImDialogFooter>
-      <ImButton @click="headerClose = false" variant="text">Cancel</ImButton>
-      <ImButton @click="headerClose = false" variant="text" color="primary"
-        >Confirm</ImButton
-      >
+      <ImButton @click="headerClose = false">Cancel</ImButton>
+      <ImButton @click="headerClose = false" color="primary">Confirm</ImButton>
     </ImDialogFooter>
   </ImDialog>
   <ImButton @click="headerClose = true" color="primary" variant="outlined"
@@ -217,8 +245,8 @@ const top = ref(false)
 </ImDialogHeader>
 <ImDialogBody>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</ImDialogBody>
 <ImDialogFooter divider>
-<ImButton @click="dividerShow = false" variant="text">Cancel</ImButton>
-<ImButton @click="dividerShow = false" variant="text" color="primary">Confirm</ImButton>
+<ImButton @click="dividerShow = false">Cancel</ImButton>
+<ImButton @click="dividerShow = false" color="primary">Confirm</ImButton>
 </ImDialogFooter>
 </ImDialog>
 <ImButton @click="dividerShow = true" color="primary" variant="outlined">Open Dialog</ImButton>
@@ -232,10 +260,8 @@ const top = ref(false)
       location data to Google, even when no apps are running.</ImDialogBody
     >
     <ImDialogFooter divider>
-      <ImButton @click="dividerShow = false" variant="text">Cancel</ImButton>
-      <ImButton @click="dividerShow = false" variant="text" color="primary"
-        >Confirm</ImButton
-      >
+      <ImButton @click="dividerShow = false">Cancel</ImButton>
+      <ImButton @click="dividerShow = false" color="primary">Confirm</ImButton>
     </ImDialogFooter>
   </ImDialog>
   <ImButton @click="dividerShow = true" color="primary" variant="outlined"
@@ -252,8 +278,8 @@ const top = ref(false)
 <ImDialogHeader>Dialog Title</ImDialogHeader>
 <ImDialogBody>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</ImDialogBody>
 <ImDialogFooter >
-<ImButton @click="top = false" variant="text">Cancel</ImButton>
-<ImButton @click="top = false" variant="text" color="primary">Confirm</ImButton>
+<ImButton @click="top = false">Cancel</ImButton>
+<ImButton @click="top = false" color="primary">Confirm</ImButton>
 </ImDialogFooter>
 </ImDialog>
 <ImButton @click="top = true" color="primary" variant="outlined">Open Dialog</ImButton>
@@ -267,10 +293,8 @@ const top = ref(false)
       location data to Google, even when no apps are running.</ImDialogBody
     >
     <ImDialogFooter>
-      <ImButton @click="top = false" variant="text">Cancel</ImButton>
-      <ImButton @click="top = false" variant="text" color="primary"
-        >Confirm</ImButton
-      >
+      <ImButton @click="top = false">Cancel</ImButton>
+      <ImButton @click="top = false" color="primary">Confirm</ImButton>
     </ImDialogFooter>
   </ImDialog>
   <ImButton @click="top = true" color="primary" variant="outlined"

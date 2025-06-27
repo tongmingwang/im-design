@@ -10,7 +10,7 @@ Dialog pops up from the bottom and centers by default.
 import { ref } from 'vue'
 
 const open = ref(false)
-const open2 = ref(false)
+const trigger = ref(false)
 const fullShow = ref(false)
 const parent = ref(false)
 const child = ref(false)
@@ -29,30 +29,30 @@ const getTarget = () => {
 </style>
 
 <ImDialog v-model="open">
-  <ImCard title="Dialog Title">
-    <div>Text...</div>
-    <div>Text...</div>
-    <div>Text...</div>
-  </ImCard>
-  <footer style="padding:8px;;display:flex;gap:8px;justify-content:flex-end">
-    <ImButton @click="open = false">Cancel</ImButton>
-    <ImButton @click="open = false">Confirm</ImButton>
-  </footer>
-</ImDialog>
-<ImButton @click="open = true">Open Dialog</ImButton>
+    <ImDialogHeader>Dialog Title</ImDialogHeader>
+    <ImDialogBody
+      >Let Google help apps determine location. This means sending anonymous
+      location data to Google, even when no apps are running.</ImDialogBody
+    >
+    <ImDialogFooter>
+      <ImButton @click="open = false">Cancel</ImButton>
+      <ImButton @click="open = false" color="primary">Confirm</ImButton>
+    </ImDialogFooter>
+  </ImDialog>
+  <ImButton @click="open = true">Open Dialog</ImButton>
 
 ```vue
 <template>
   <ImDialog v-model="open">
-    <ImCard title="Dialog Title">
-      <div>Text...</div>
-      <div>Text...</div>
-      <div>Text...</div>
-    </ImCard>
-    <footer>
+    <ImDialogHeader>Dialog Title</ImDialogHeader>
+    <ImDialogBody
+      >Let Google help apps determine location. This means sending anonymous
+      location data to Google, even when no apps are running.</ImDialogBody
+    >
+    <ImDialogFooter>
       <ImButton @click="open = false">Cancel</ImButton>
-      <ImButton @click="open = false">Confirm</ImButton>
-    </footer>
+      <ImButton @click="open = false" color="primary">Confirm</ImButton>
+    </ImDialogFooter>
   </ImDialog>
   <ImButton @click="open = true">Open Dialog</ImButton>
 </template>
@@ -62,33 +62,40 @@ const getTarget = () => {
 
 Requires passing a `getTarget` function that returns the trigger element.
 
-<ImDialog v-model="open2" :getTarget="getTarget">
-  <ImCard title="Dialog">
-    <div class="demo">
-      <div>Text...</div>
-      <div>Text...</div>
-      <div>Text...</div>
-    </div>
-  </ImCard>
-</ImDialog>
-<ImButton @click="open2 = true" id="trigger-id">Open Dialog</ImButton>
+<ImDialog v-model="trigger" :getTarget="getTarget">
+    <ImDialogHeader>Dialog Title</ImDialogHeader>
+    <ImDialogBody>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</ImDialogBody>
+    <ImDialogFooter >
+      <ImButton @click="trigger = false" >Cancel</ImButton>
+      <ImButton @click="trigger = false"  color="primary">Confirm</ImButton>
+    </ImDialogFooter>
+  </ImDialog>
+  <ImButton @click="trigger = true" color="primary" variant="outlined" id="trigger-id">Open Dialog</ImButton>
 
 ```vue
 <template>
-  <ImDialog v-model="open2" :getTarget="getTarget">
-    <ImCard title="Dialog">
-      <div class="demo">
-        <div>Text...</div>
-        <div>Text...</div>
-        <div>Text...</div>
-      </div>
-    </ImCard>
+  <ImDialog v-model="trigger" :getTarget="getTarget">
+    <ImDialogHeader>Dialog Title</ImDialogHeader>
+    <ImDialogBody
+      >Let Google help apps determine location. This means sending anonymous
+      location data to Google, even when no apps are running.</ImDialogBody
+    >
+    <ImDialogFooter>
+      <ImButton @click="trigger = false">Cancel</ImButton>
+      <ImButton @click="trigger = false" color="primary">Confirm</ImButton>
+    </ImDialogFooter>
   </ImDialog>
-  <ImButton @click="open2 = true" id="trigger-id">Open Dialog</ImButton>
+  <ImButton
+    @click="trigger = true"
+    color="primary"
+    variant="outlined"
+    id="trigger-id"
+    >Open Dialog</ImButton
+  >
 </template>
 
 <script setup>
-const open2 = ref(false);
+const trigger = ref(false);
 const getTarget = () => {
   return document.getElementById('trigger-id');
 };
@@ -100,44 +107,54 @@ const getTarget = () => {
 Use the fullscreen property to make the dialog content area fullscreen.
 
 <ImDialog v-model="fullShow" fullscreen>
-  <ImCard title="Dialog Title" borderless>
-    <template #header-action>
-      <ImButton
-        size="48"
-        shape="circle"
-        variant="text"
-        @click="fullShow = false">
-        <ImIcon name="close" size="22" />
-      </ImButton>
-    </template>
-    <div style="height: 100%;" class="demo">
-      <div>Text...</div>
-      <div>Text...</div>
-      <div>Text...</div>
-    </div>
-  </ImCard>
+  <ImDialogHeader>Dialog Title</ImDialogHeader>
+  <ImDialogBody>
+    <ImCheckbox size="48">
+    Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
+    </ImCheckbox>
+    <ImCheckbox size="48">
+    Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
+    </ImCheckbox>
+    <ImCheckbox size="48">
+    Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
+    </ImCheckbox>
+    <ImCheckbox size="48">
+    Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
+    </ImCheckbox>
+  </ImDialogBody>
+  <ImDialogFooter>
+    <ImButton @click="fullShow = false">Cancel</ImButton>
+    <ImButton @click="fullShow = false" color="primary">Confirm</ImButton>
+  </ImDialogFooter>
 </ImDialog>
 <ImButton @click="fullShow = true">Open Fullscreen Dialog</ImButton>
 
 ```vue
 <template>
   <ImDialog v-model="fullShow" fullscreen>
-    <ImCard title="Dialog Title" borderless>
-      <template #header-action>
-        <ImButton
-          size="48"
-          shape="circle"
-          variant="text"
-          @click="fullShow = false">
-          <ImIcon name="close" size="22" />
-        </ImButton>
-      </template>
-      <div style="height: 100%;" class="demo">
-        <div>Text...</div>
-        <div>Text...</div>
-        <div>Text...</div>
-      </div>
-    </ImCard>
+    <ImDialogHeader>Dialog Title</ImDialogHeader>
+    <ImDialogBody>
+      <ImCheckbox size="48">
+        Let Google help apps determine location. This means sending anonymous
+        location data to Google, even when no apps are running.
+      </ImCheckbox>
+      <ImCheckbox size="48">
+        Let Google help apps determine location. This means sending anonymous
+        location data to Google, even when no apps are running.
+      </ImCheckbox>
+      <ImCheckbox size="48">
+        Let Google help apps determine location. This means sending anonymous
+        location data to Google, even when no apps are running.
+      </ImCheckbox>
+      <ImCheckbox size="48">
+        Let Google help apps determine location. This means sending anonymous
+        location data to Google, even when no apps are running.
+      </ImCheckbox>
+    </ImDialogBody>
+    <ImDialogFooter>
+      <ImButton @click="fullShow = false">Cancel</ImButton>
+      <ImButton @click="fullShow = false" color="primary">Confirm</ImButton>
+    </ImDialogFooter>
   </ImDialog>
   <ImButton @click="fullShow = true">Open Fullscreen Dialog</ImButton>
 </template>
@@ -167,7 +184,7 @@ Use the fullscreen property to make the dialog content area fullscreen.
       <ImButton @click="child = true">Open Child Dialog</ImButton>
     </ImCard>
     <ImDialog v-model="child">
-      <ImCard title="Child Dialog"> 
+      <ImCard title="Child Dialog">
         <div class="demo">Content area</div>
         <div class="demo">Content area</div>
       </ImCard>
