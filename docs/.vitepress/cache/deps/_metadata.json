@@ -1,49 +1,49 @@
 {
-  "hash": "194bb233",
+  "hash": "48ff8578",
   "configHash": "28d1aade",
-  "lockfileHash": "90735e60",
-  "browserHash": "c6bd9c8a",
+  "lockfileHash": "e7e94ef2",
+  "browserHash": "ca252c13",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/.pnpm/vue@3.5.15_typescript@5.8.3/node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "7fe11170",
+      "fileHash": "edf748a3",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
       "src": "../../../../node_modules/.pnpm/@vue+devtools-api@7.7.6/node_modules/@vue/devtools-api/dist/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "39ce081a",
+      "fileHash": "04fa2cce",
       "needsInterop": false
     },
     "vitepress > @vueuse/core": {
       "src": "../../../../node_modules/.pnpm/@vueuse+core@12.8.2_typescript@5.8.3/node_modules/@vueuse/core/index.mjs",
       "file": "vitepress___@vueuse_core.js",
-      "fileHash": "a70fd9d2",
+      "fileHash": "7694927e",
       "needsInterop": false
     },
     "vitepress > @vueuse/integrations/useFocusTrap": {
       "src": "../../../../node_modules/.pnpm/@vueuse+integrations@12.8.2_d151a9c604a98fa88de21b31b00ba602/node_modules/@vueuse/integrations/useFocusTrap.mjs",
       "file": "vitepress___@vueuse_integrations_useFocusTrap.js",
-      "fileHash": "ce94f98d",
+      "fileHash": "da5064e2",
       "needsInterop": false
     },
     "vitepress > mark.js/src/vanilla.js": {
       "src": "../../../../node_modules/.pnpm/mark.js@8.11.1/node_modules/mark.js/src/vanilla.js",
       "file": "vitepress___mark__js_src_vanilla__js.js",
-      "fileHash": "7d26bff5",
+      "fileHash": "f8c38f69",
       "needsInterop": false
     },
     "vitepress > minisearch": {
       "src": "../../../../node_modules/.pnpm/minisearch@7.1.2/node_modules/minisearch/dist/es/index.js",
       "file": "vitepress___minisearch.js",
-      "fileHash": "67fad6c7",
+      "fileHash": "b63016de",
       "needsInterop": false
     },
     "im-design": {
-      "src": "../../../../node_modules/.pnpm/im-design@1.2.1_vue@3.5.15_typescript@5.8.3_/node_modules/im-design/dist/im-design.es.js",
+      "src": "../../../../node_modules/.pnpm/im-design@1.2.2_vue@3.5.15_typescript@5.8.3_/node_modules/im-design/dist/im-design.es.js",
       "file": "im-design.js",
-      "fileHash": "c2362e16",
+      "fileHash": "09f7abcf",
       "needsInterop": false
     }
   },
