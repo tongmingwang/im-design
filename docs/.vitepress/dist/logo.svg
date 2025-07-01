@@ -1,0 +1,14 @@
+<svg t="1750518196395" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="20773" width="200" height="200">
+  <!-- 添加背景矩形，并设置圆角 -->
+  <defs>
+    <linearGradient id="backgroundGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f8ff;stop-opacity:1" /> <!-- 浅蓝色背景 -->
+      <stop offset="100%" style="stop-color:#e0f7fa;stop-opacity:1" /> <!-- 更浅的蓝色背景 -->
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1024" height="1024" rx="240" fill="url(#backgroundGradient)" /> <!-- 圆角背景 -->
+  
+  <!-- 原有的Logo内容，优化颜色 -->
+  <path d="M497.4 111v837l-347-202.5v-441L319 213v78l-37 22.5V723l80.4 44.8v-576z" fill="#ff9800" p-id="20774"></path> <!-- 橙色 -->
+  <path d="M537.2 960.2L910 748.5V307.6L703.3 191.8l1.6 103.7 64.2 37.5-1.2 396-68 38.8 3.4 90.2-27.7 15 1.4-705-146.7-71z" fill="#00796b" p-id="20775"></path> <!-- 深绿色 -->
+</svg>
