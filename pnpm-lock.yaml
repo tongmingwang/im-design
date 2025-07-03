@@ -12,8 +12,13 @@ importers:
         specifier: ^1.11.13
         version: 1.11.13
       im-design:
+<<<<<<< Updated upstream
         specifier: ^1.2.5
         version: 1.2.5(vue@3.5.15(typescript@5.8.3))
+=======
+        specifier: ^1.2.9
+        version: 1.2.9(vue@3.5.15(typescript@5.8.3))
+>>>>>>> Stashed changes
       sass:
         specifier: ^1.89.0
         version: 1.89.0
@@ -1078,8 +1083,13 @@ packages:
   html-void-elements@3.0.0:
     resolution: {integrity: sha512-bEqo66MRXsUGxWHV5IP0PUiAWwoEjba4VCzg0LjFJBpchPaTfyfCKTG6bc5F8ucKec3q5y6qOdGyYTSBEvhCrg==}
 
+<<<<<<< Updated upstream
   im-design@1.2.5:
     resolution: {integrity: sha512-H1OFRmaExGByNdAIykapsEKaSEeLN3LJRfwbs86dDM5gMtj7JYVCvFCm3IIxxZnENmQG/1MZADHaDc+NmKhihg==}
+=======
+  im-design@1.2.9:
+    resolution: {integrity: sha512-YxhPW0Sa7CO/yZBlxV19wMRuLDEwEmIXgJajaZWD0qYFvxUvLTCc9SsmN7esSVgIXwrGYuXXpZDRaTftLwPtGw==}
+>>>>>>> Stashed changes
     peerDependencies:
       vue: ^3.5.13
 
@@ -2489,7 +2499,11 @@ snapshots:
 
   html-void-elements@3.0.0: {}
 
+<<<<<<< Updated upstream
   im-design@1.2.5(vue@3.5.15(typescript@5.8.3)):
+=======
+  im-design@1.2.9(vue@3.5.15(typescript@5.8.3)):
+>>>>>>> Stashed changes
     dependencies:
       dayjs: 1.11.13
       vue: 3.5.15(typescript@5.8.3)
