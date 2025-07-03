@@ -20,10 +20,13 @@ export const sidebar = [
     text: '通用组件',
     items: [
       { text: 'Button 按钮', link: '/button' },
+      { text: 'ButtonGroup 按钮组', link: '/button-group' },
+      { text: 'FloatButton 悬浮按钮', link: '/float-button' },
       { text: 'Icon 图标', link: '/icon' },
       { text: 'Layout 布局', link: '/layout' },
       { text: 'Color 色彩', link: '/color' },
       { text: 'Divider 分割线', link: '/divider' },
+      { text: '文字 Typography', link: '/typography' },
     ],
   },
   {
