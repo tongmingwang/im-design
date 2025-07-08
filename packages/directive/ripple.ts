@@ -1,3 +1,5 @@
+const rippleTime = 200;
+
 class RippleTask {
   #task: Array<any>;
 
@@ -26,12 +28,12 @@ class RippleTask {
       if (!ripple) return;
       let now = Date.now();
       let old = ripple.getAttribute('data-time');
-      const dpx = 500 - (now - (Number(old) || 0));
+      const dpx = rippleTime - (now - (Number(old) || 0));
 
       // 判断是否还在动画内
       if (dpx > 0) {
         await new Promise(async (resolve) => {
-          ripple.style.opacity = '0.05'; // 淡出效果
+          // ripple.style.opacity = '0.08'; // 淡出效果
           await new Promise((res) => requestAnimationFrame(res));
           setTimeout(() => {
             resolve(null);
@@ -41,7 +43,7 @@ class RippleTask {
       ripple.style.opacity = '0';
       setTimeout(() => {
         el && el?.remove();
-      }, 200);
+      }, rippleTime);
     } catch (error) {
       console.log(error);
     }
@@ -59,7 +61,7 @@ const styleCache = new WeakMap<HTMLElement, CSSStyleDeclaration>();
 const RIPPLE_BASE_STYLE: Partial<CSSStyleDeclaration> = {
   position: 'absolute',
   borderRadius: '50%',
-  transition: 'all 500ms cubic-bezier(0.4, 0, 0.2, 1)',
+  transition: `all ${rippleTime}ms ease-out`,
   willChange: 'transform,opacity',
   pointerEvents: 'none',
 };
@@ -101,7 +103,7 @@ function createRipple(event: MouseEvent, task: RippleTask, el: HTMLElement) {
   ripple.style.left = `${x}px`;
   ripple.style.top = `${y}px`;
   ripple.style.opacity = '0.25';
-  ripple.style.transform = 'scale(0)';
+  ripple.style.transform = 'scale(0.66)';
   ripple.dataset.time = Date.now().toString();
 
   rippleContainer.appendChild(ripple);
