@@ -21,4 +21,4 @@ import{C as a}from"./CodeView.js";import{d as g,h as f,r as p,c as v,o as I,w as
         <script setup>\r
           import { ImButton } from 'im-design';\r
         <\/script>\r
-          `})])]),_:1})]),_:1})}}}),D=V(P,[["__scopeId","data-v-ef34741a"]]);export{D as default};
+          `})])]),_:1})]),_:1})}}}),D=V(P,[["__scopeId","data-v-e1720c96"]]);export{D as default};
