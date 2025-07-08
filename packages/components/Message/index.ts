@@ -98,6 +98,9 @@ export const useImMessage = () => {
     info: (msg: string, duration = 3000) => {
       instance?.info(msg, duration);
     },
+    primary: (msg: string, duration = 3000) => {
+      instance?.info(msg, duration);
+    },
     success: (msg: string, duration = 3000) => {
       instance?.success(msg, duration);
     },

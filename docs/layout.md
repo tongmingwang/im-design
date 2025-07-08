@@ -10,7 +10,7 @@
 
 <style scoped>
 .demo {
-  background-color: #c2bfbf;
+  background-color: var(--im-primary-color-8);
   height: 100px;
   border-radius: 4px;
   width: 100%;
@@ -26,7 +26,7 @@
     <ImCol span="8"><div class="demo" style="height: 200px"></div></ImCol>
     <ImCol span="4"><div class="demo"></div></ImCol>
     <ImCol span="4"><div class="demo"></div></ImCol>
-    <ImCol span="4"><div class="demo"></div></ImCol>
+    <ImCol span="8"><div class="demo" style="height: 200px"></div></ImCol>
   </ImRow>
   <ImRow>
     <ImCol span="24"><div class="demo" style="height: 200px"></div></ImCol>
@@ -38,7 +38,7 @@
     <ImCol span="8"><div class="demo" style="height: 200px"></div></ImCol>
     <ImCol span="4"><div class="demo"></div></ImCol>
     <ImCol span="4"><div class="demo"></div></ImCol>
-    <ImCol span="4"><div class="demo"></div></ImCol>
+    <ImCol span="8"><div class="demo" style="height: 200px"></div></ImCol>
   </ImRow>
   <ImRow>
     <ImCol span="24"><div class="demo" style="height: 200px"></div></ImCol>

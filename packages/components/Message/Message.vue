@@ -2,7 +2,7 @@
   <TransitionGroup
     tag="ul"
     name="list"
-    :duration="300"
+    :duration="400"
     :css="true"
     :class="[bem.b()]">
     <li
@@ -13,7 +13,7 @@
       @mouseleave="() => onLeave(item)"
       class="im-message__item"
       :class="[bem.e('item'), item.color ? bem.e(item.color) : '']">
-      <ImIcon :name="getIconName(item.color)" size="16px" />
+      <ImIcon :name="getIconName(item.color)" size="24px" />
       <span class="im-message__text">{{ item.msg }}</span>
     </li>
   </TransitionGroup>
@@ -46,7 +46,7 @@ watch(
     if (list.value.length === 0) {
       timer = setTimeout(() => {
         !list.value.length && props.callback();
-      }, 500);
+      }, 400);
     } else {
       timer && clearTimeout(timer);
       timer = null;
@@ -106,7 +106,7 @@ defineExpose({ addMsg });
 }
 
 .im-message__item {
-  padding: 0 16px;
+  padding: 0 16px 0 4px;
   margin-bottom: 16px;
   box-shadow: none;
   pointer-events: all;
@@ -115,22 +115,21 @@ defineExpose({ addMsg });
   overflow: hidden;
   height: 32px;
   border-radius: 32px;
-  min-width: 100px;
+  min-width: 150px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   font-size: 14px;
   border: none;
-  background-color: var(--im-gray-color-10);
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.04);
-  color: var(--im-primary-color-8);
+  background-color: var(--im-gray-color-11);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
   line-height: 24px;
   gap: 8px;
 
   .im-message__text {
-    letter-spacing: 0.0358em;
     font-weight: 500;
     flex: 1;
+    color: var(--im-gray-color-1);
     text-align: left;
   }
 }
@@ -145,7 +144,7 @@ defineExpose({ addMsg });
   /* 对移动中的元素应用的过渡 */
   .list-enter-active,
   .list-leave-active {
-  transition: all 300ms ease-out;
+  transition: all 400ms ease-out;
 }
 
 .list-enter-from,

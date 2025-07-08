@@ -1,4 +1,4 @@
-const rippleTime = 200;
+const rippleTime = 300;
 
 class RippleTask {
   #task: Array<any>;
@@ -33,7 +33,7 @@ class RippleTask {
       // 判断是否还在动画内
       if (dpx > 0) {
         await new Promise(async (resolve) => {
-          // ripple.style.opacity = '0.08'; // 淡出效果
+          ripple.style.opacity = '0.08'; // 淡出效果
           await new Promise((res) => requestAnimationFrame(res));
           setTimeout(() => {
             resolve(null);
@@ -118,7 +118,7 @@ function createRipple(event: MouseEvent, task: RippleTask, el: HTMLElement) {
 
   // Trigger animation in the next frame
   requestAnimationFrame(() => {
-    ripple.style.transform = 'scale(1)';
+    ripple.style.transform = 'scale(1.5)';
   });
 }
 

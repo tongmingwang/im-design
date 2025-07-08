@@ -1,5 +1,5 @@
 <template>
-  <Teleport to="body">
+  <Teleport to="#im-overlay-container">
     <div
       tabindex="-1"
       ref="containerRef"
@@ -43,6 +43,7 @@ import {
   topToBottom,
   bottomToTop,
 } from '@/utils/transition';
+import { useOverlay } from '@/hooks/useOverlay';
 
 defineOptions({ name: 'ImDrawer' });
 const bem = useBem('drawer');
@@ -73,6 +74,7 @@ const { zIndexToken } = useToken();
 const sizeValue = computed(() =>
   getSizeValue(props.size || zIndexToken.value || '280px')
 );
+useOverlay();
 
 watch(
   () => props.modelValue,

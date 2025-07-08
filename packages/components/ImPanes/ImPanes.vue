@@ -1,6 +1,6 @@
 <template>
   <ul v-bind="attr" :class="[bem.b()]">
-    <Transition mode="out-in" name="slide" :duration="300">
+    <Transition mode="out-in" name="slide" :duration="200">
       <component :is="current" :key="current" />
     </Transition>
   </ul>
@@ -68,7 +68,7 @@ function filterPane(arr: Array<any>) {
 
 .slide-enter-active,
 .slide-leave-active {
-  transition: all 0.3s ease-in-out;
+  transition: all 200ms ease;
 }
 
 .slide-leave-to {

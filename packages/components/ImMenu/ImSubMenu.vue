@@ -15,11 +15,6 @@
       :style="{
         paddingLeft: `${paddingLeft * 16}px`,
       }">
-      <div v-if="vertical" :class="[bem.e('bar-up--wrapper')]">
-        <Transition name="fade-up" :duration="300" mode="out-in">
-          <div v-if="subActive" :class="[bem.e('bar-up')]" />
-        </Transition>
-      </div>
       <span :class="[bem.e('inner')]">
         <slot name="label">{{ props.label }} </slot>
       </span>
@@ -253,21 +248,6 @@ async function onLeave(el: Element, done: () => void) {
     &:hover {
       background-color: var(--im-menu-hover-bg-color);
     }
-  }
-
-  &__bar-up--wrapper {
-    position: relative;
-    left: -8px;
-    width: 3px;
-    min-width: 3px;
-    max-width: 3px;
-    height: 1em;
-  }
-  &__bar-up {
-    height: 1em;
-    background-color: var(--im-menu-active-text-color);
-    border-radius: 3px;
-    width: 100%;
   }
 
   &__icon {

@@ -2,10 +2,12 @@
   <Tabs />
   <Dialog />
   <ImButton @click="click">测试</ImButton>
+  <Menu />
 </template>
 
 <script setup lang="ts">
 import Tabs from './views/Tabs.vue';
+import Menu from './views/Menu.vue';
 import Dialog from './views/Dialog.vue';
 import Dropdown from './views/Dropdown.vue';
 import { useImMessage } from '../packages/components';

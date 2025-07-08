@@ -5,26 +5,47 @@
 ## 基本用法
 
 <ImButtonGroup>
-  <ImButton>按钮1</ImButton>
-  <ImButton>按钮2</ImButton>
-  <ImButton>按钮3</ImButton>
-  <ImButton>按钮4</ImButton>
+  <ImButton>Prev</ImButton>
+  <ImButton>Next</ImButton>
 </ImButtonGroup>
+
+```vue
+<template>
+  <ImButtonGroup>
+    <ImButton>Prev</ImButton>
+    <ImButton>Next</ImButton>
+  </ImButtonGroup>
+</template>
+```
 
 ## 按钮组大小
 
-<ImButtonGroup size="32">
-  <ImButton>按钮1</ImButton>
-  <ImButton>按钮2</ImButton>
-  <ImButton>按钮3</ImButton>
-  <ImButton>按钮4</ImButton>
+<ImButtonGroup size="28">
+  <ImButton>Prev</ImButton>
+  <ImButton>Next</ImButton>
 </ImButtonGroup>
+
+```vue
+<template>
+  <ImButtonGroup size="28">
+    <ImButton>Prev</ImButton>
+    <ImButton>Next</ImButton>
+  </ImButtonGroup>
+</template>
+```
 
 ## 纵向
 
-<ImButtonGroup size="32" vertical>
-  <ImButton>按钮1</ImButton>
-  <ImButton>按钮2</ImButton>
-  <ImButton>按钮3</ImButton>
-  <ImButton>按钮4</ImButton>
+<ImButtonGroup vertical>
+  <ImButton>To Up</ImButton>
+  <ImButton>To Bottom</ImButton>
 </ImButtonGroup>
+
+```vue
+<template>
+  <ImButtonGroup vertical>
+    <ImButton>To Up</ImButton>
+    <ImButton>To Bottom</ImButton>
+  </ImButtonGroup>
+</template>
+```

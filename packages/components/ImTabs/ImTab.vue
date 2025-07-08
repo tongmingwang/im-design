@@ -53,6 +53,7 @@ const { active, setActive, color } = useInjectTab(props);
 
   &:hover {
     background: var(--im-rgb-color-1);
+    color: var(--im-primary-color-8);
   }
   &.is-active {
     color: var(--im-primary-color-8);
@@ -70,7 +71,7 @@ const { active, setActive, color } = useInjectTab(props);
     width: 100%;
     height: 2px;
     background-color: var(--im-primary-color-8);
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
   }
 
   // 色彩

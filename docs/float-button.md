@@ -4,13 +4,17 @@
 
 ## 基本用法
 
+查看右下角案例
+
 <ImFloatButton shape="circle">
   <template #default="{open}">
-  <ImButton shape="circle">{{open ? 'close' : 'open' }}</ImButton>
+  <ImButton shape="circle" variant="text">
+    <ImIcon :name="open ? 'close' : 'up'" />
+  </ImButton>
   </template>
   <template #content>
-    <ImButton shape="circle">按钮</ImButton>
-    <ImButton shape="circle">按钮</ImButton>
-    <ImButton shape="circle">按钮</ImButton>
+    <ImButton variant="text" shape="circle">按钮</ImButton>
+    <ImButton variant="text" shape="circle">按钮</ImButton>
+    <ImButton variant="text" shape="circle">按钮</ImButton>
   </template>
 </ImFloatButton>

@@ -11,11 +11,6 @@
     }"
     @click="handleClick"
     v-ripple="!props.disabled">
-    <div v-if="!isSub && vertical" :class="[bem.e('bar-up--wrapper')]">
-      <Transition name="fade-up" :duration="300" mode="out-in">
-        <div v-if="active" :class="[bem.e('bar-up')]"></div>
-      </Transition>
-    </div>
     <div :class="[bem.e('label')]">
       <slot>{{ props.label }}</slot>
     </div>
@@ -80,15 +75,6 @@ function handleClick(e: Event) {
   text-wrap: nowrap;
   height: var(--im-menu-item-height);
   border-radius: var(--im-menu-radius);
-
-  &__bar-up--wrapper {
-    position: relative;
-    left: -8px;
-    width: 3px;
-    height: 1em;
-    border: none;
-    border-radius: 3px;
-  }
 
   &__bar-up {
     width: 3px;

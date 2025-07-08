@@ -1,5 +1,5 @@
 <template>
-  <Teleport to="#im-dialog-box">
+  <Teleport to="#im-overlay-container">
     <div
       aria-modal="true"
       :tabindex="-1"
@@ -53,11 +53,12 @@
 <script setup lang="ts">
 import { useBem } from '@/utils/bem';
 import ImMask from '../ImMask';
-import { watch, ref, computed, nextTick, onBeforeMount } from 'vue';
+import { watch, ref, computed, nextTick } from 'vue';
 import { useToken } from '@/hooks/useToken';
 import { updateLockScroller, isMobile } from '@/utils/dom';
 import { getSizeValue, throttle } from '@/utils';
 import { useDialogAnimation } from './dialogAnimation';
+import { useOverlay } from '@/hooks/useOverlay';
 
 defineOptions({ name: 'ImDialog' });
 const bem = useBem('dialog');
@@ -89,6 +90,7 @@ const props = withDefaults(
     draggable: false,
   }
 );
+useOverlay();
 const dialogRef = ref<HTMLElement | null>(null);
 const contentRef = ref<HTMLElement | null>(null);
 const { zIndexToken } = useToken();
@@ -98,16 +100,6 @@ const zIndex = computed(() => props.zIndex || zIndexToken.value);
 
 const { enterFN, leaveFN } = useDialogAnimation(props);
 
-onBeforeMount(() => {
-  let parent = document.querySelector('#im-dialog-box');
-  console.log(parent, 'parent');
-
-  if (!parent) {
-    parent = document.createElement('div');
-    parent.id = 'im-dialog-box';
-    document.documentElement.appendChild(parent);
-  }
-});
 /**
  * keydown事件处理函数，用于关闭对话框，当按下Esc键时关闭对话框。
 如果当前对话框的`closeOnEscape`属性为true，则执行关闭操作。同时，会检查是否有其他打开的对话框存在，如果没有，则会移除body滚动锁定效果。

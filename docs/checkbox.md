@@ -55,11 +55,11 @@ const ApiList = [
 选中项绑定到v-model显示的变量上。它的值是 Boolean 类型的。
 </ImAlert>
 
-<ImCheckbox v-model="checked" label="你好中国" />
+<ImCheckbox v-model="checked" label="Hello Checkbox" />
 
 ```vue
 <template>
-  <ImCheckbox v-model="checked" label="你好中国" />
+  <ImCheckbox v-model="checked" label="Hello Checkbox" />
 </template>
 ```
 
@@ -67,11 +67,11 @@ const ApiList = [
 
 多选框不可用状态 设置 disabled 属性为 true 即可。
 
-<ImCheckbox label="你好中国" disabled />
+<ImCheckbox label="Hello Checkbox" disabled />
 
 ```vue
 <template>
-  <ImCheckbox label="你好中国" disabled />
+  <ImCheckbox label="Hello Checkbox" disabled />
 </template>
 ```
 
@@ -79,11 +79,11 @@ const ApiList = [
 
 多选框只读状态 设置 readonly 属性为 true 即可。
 
-<ImCheckbox label="你好中国" readonly />
+<ImCheckbox label="Hello Checkbox" readonly />
 
 ```vue
 <template>
-  <ImCheckbox label="你好中国" readonly />
+  <ImCheckbox label="Hello Checkbox" readonly />
 </template>
 ```
 

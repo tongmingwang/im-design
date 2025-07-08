@@ -1,4 +1,5 @@
 import { waitForAnimate, removeAnimate, getScreeWH } from '@/utils/dom';
+const time = 400;
 
 export const useDialogAnimation = (props: any) => {
   const enterFN = async (el: any, done: () => void) => {
@@ -30,11 +31,11 @@ export const useDialogAnimation = (props: any) => {
       el.animate(
         [
           { transform: 'scale(0)', opacity: 0, offset: 0 },
-          { transform: 'scale(0.66)', opacity: 0.33, offset: 0.33 },
+          { transform: 'scale(0.66)', opacity: 0.25, offset: 0.33 },
           { transform: 'scale(1)', opacity: 1, offset: 1 },
         ],
         {
-          duration: 300,
+          duration: time,
           easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
         }
       );
@@ -60,7 +61,7 @@ export const useDialogAnimation = (props: any) => {
           { transform: 'scale(0)', opacity: 0, offset: 1 },
         ],
         {
-          duration: 300,
+          duration: time,
           easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
         }
       );
