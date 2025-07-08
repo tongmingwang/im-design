@@ -64,7 +64,7 @@ function Rt(o, l, e) {
   i.style.backgroundColor = a.color || "", i.style.width = `${y}px`, i.style.height = `${y}px`, i.style.left = `${b}px`, i.style.top = `${v}px`, i.style.opacity = "0.25", i.style.transform = "scale(0.66)", i.dataset.time = Date.now().toString(), s.appendChild(i), e.appendChild(s);
   const _ = a.position;
   _ === "static" && (e.style.position = "relative", e.dataset.originalPosition = _), requestAnimationFrame(() => {
-    i.style.transform = "scale(1.5)";
+    i.style.transform = "scale(1.1)";
   });
 }
 function nt(o, l) {
@@ -2079,7 +2079,7 @@ const Ve = async (o, l = !0) => {
       ]);
     };
   }
-}), tn = L("ImCardBody", Qa), an = L("ImCardBody", Za), nn = L("ImCardBody", en), on = L("ImCard", Ja), rt = 400, ln = (o) => ({
+}), tn = L("ImCardBody", Qa), an = L("ImCardBody", Za), nn = L("ImCardBody", en), on = L("ImCard", Ja), rt = 320, ln = (o) => ({
   enterFN: async (a, t) => {
     var c;
     He(a), await new Promise((g) => requestAnimationFrame(g));

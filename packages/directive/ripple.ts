@@ -118,7 +118,7 @@ function createRipple(event: MouseEvent, task: RippleTask, el: HTMLElement) {
 
   // Trigger animation in the next frame
   requestAnimationFrame(() => {
-    ripple.style.transform = 'scale(1.5)';
+    ripple.style.transform = 'scale(1.1)';
   });
 }
 

@@ -1,5 +1,5 @@
 import { waitForAnimate, removeAnimate, getScreeWH } from '@/utils/dom';
-const time = 400;
+const time = 320;
 
 export const useDialogAnimation = (props: any) => {
   const enterFN = async (el: any, done: () => void) => {
