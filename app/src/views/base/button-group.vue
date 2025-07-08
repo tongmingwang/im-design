@@ -34,37 +34,59 @@ const apiList = [
     <PageCard title="基础用法" desc="ImButton 支持 color size 等属性">
       <CodeTemp>
         <ImButtonGroup>
-          <ImButton>Preview</ImButton>
-          <ImButton color="primary">Next</ImButton>
-        </ImButtonGroup>
-
-        <ImButtonGroup color="primary">
-          <ImButton>Preview</ImButton>
-          <ImButton color="primary">Next</ImButton>
-        </ImButtonGroup>
-
-        <ImButtonGroup color="primary" size="48">
-          <ImButton>Preview</ImButton>
-          <ImButton color="primary">Next</ImButton>
+          <ImButton>Prev</ImButton>
+          <ImButton>Next</ImButton>
         </ImButtonGroup>
         <template #code>
           <CodeView
-            code='
-            <ImButtonGroup>
-              <ImButton>Preview</ImButton>
-              <ImButton color="primary">Next</ImButton>
-            </ImButtonGroup>
+            code="
+            <template>
+              <ImButtonGroup>
+                <ImButton>Prev</ImButton>
+                <ImButton>Next</ImButton>
+              </ImButtonGroup>
+            </template>
+          " />
+        </template>
+      </CodeTemp>
+    </PageCard>
 
-            <ImButtonGroup color="primary">
-              <ImButton>Preview</ImButton>
-              <ImButton color="primary">Next</ImButton>
-            </ImButtonGroup>
+    <PageCard title="颜色" desc="设置color属性即可">
+      <CodeTemp>
+        <ImButtonGroup color="primary">
+          <ImButton>Prev</ImButton>
+          <ImButton>Next</ImButton>
+        </ImButtonGroup>
+        <template #code>
+          <CodeView
+            code="
+            <template>
+              <ImButtonGroup color='primary'>
+                <ImButton>Prev</ImButton>
+                <ImButton>Next</ImButton>
+              </ImButtonGroup>
+            </template>
+          " />
+        </template>
+      </CodeTemp>
+    </PageCard>
 
-            <ImButtonGroup color="primary" size="48">
-              <ImButton>Preview</ImButton>
-              <ImButton color="primary">Next</ImButton>
-            </ImButtonGroup>
-          ' />
+    <PageCard title="垂直布局" desc="设置vertical属性即可">
+      <CodeTemp>
+        <ImButtonGroup color="primary" vertical>
+          <ImButton>Prev</ImButton>
+          <ImButton>Next</ImButton>
+        </ImButtonGroup>
+        <template #code>
+          <CodeView
+            code="
+            <template>
+              <ImButtonGroup color='primary' vertical>
+                <ImButton>Prev</ImButton>
+                <ImButton>Next</ImButton>
+              </ImButtonGroup>
+            </template>
+          " />
         </template>
       </CodeTemp>
     </PageCard>

@@ -82,7 +82,7 @@ function gatTarget() {
           <div class="inner" style="height: 800px">BackTop1</div>
         </div>
         <template #code>
-          <CodeView :code="code" />
+          <CodeView :code="code" lang="html" />
         </template>
       </CodeTemp>
     </PageCard>

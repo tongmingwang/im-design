@@ -2,43 +2,38 @@
   <div class="code_view">
     <div v-html="renderCode" class="code"></div>
     <div class="copy">
-      <ImButton variant="text" @click="onClickCopy" shape="circle">
-        <ImIcon :name="copyOk ? 'check' : 'file-copy'" size="20" />
-      </ImButton>
+      <ImIcon
+        :name="copyOk ? 'check' : 'file-copy'"
+        size="20"
+        color="#fff"
+        @click="onClickCopy" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue';
-import { codeToHtml } from 'shiki';
+import { ref, watch } from 'vue';
+import { codeToHtml, createHighlighter } from 'shiki';
 import { copyText } from '@app/src/utils/utils';
+
 const props = defineProps<{ code: string; lang?: string; isDark?: boolean }>();
 const renderCode = ref('');
 const copyOk = ref(false);
-import { useAppStore } from '../store/useApp';
-const store = useAppStore();
 
-watch(
-  () => store.theme,
-  () => {
-    setCodeHeight();
-  }
-);
+// import { useAppStore } from '../store/useApp';
+// const store = useAppStore();
+
 // 自动高亮code_html 中的代码块
-onMounted(() => {
-  setCodeHeight();
-});
+watch(() => props.code, setCodeHeight, { immediate: true });
 
 async function setCodeHeight() {
-  renderCode.value = await codeToHtml(props.code, {
-    lang: props.lang || 'javascript',
-    theme:
-      store.theme === 'dark' || props.isDark ? 'dark-plus' : 'everforest-light',
-    // themes: {
-    //   light: 'vitesse-light',
-    //   dark: 'vitesse-dark',
-    // },
+  const highlighter = await createHighlighter({
+    themes: ['one-dark-pro'],
+    langs: ['bash', 'javascript', 'css', 'typescript', 'html'],
+  });
+  renderCode.value = await highlighter.codeToHtml(props.code, {
+    lang: props.lang || 'html',
+    theme: 'one-dark-pro',
   });
 }
 

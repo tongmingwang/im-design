@@ -33,10 +33,3 @@
       desc="极致体验指的是在满足基本功能的同时，尽可能地提供最佳的用户交互体验。例如：考虑到用户的使用习惯和心理预期，优化组件的行为和表现，使其更加符合直觉且易于操作。"></PageCard>
   </PageWrapper>
 </template>
-
-<script setup lang="ts">
-import CodeView from '@app/src/components/CodeView.vue';
-import PageCard from '@app/src/components/page/PageCard.vue';
-</script>
-
-<style scoped lang="scss"></style>

@@ -97,7 +97,7 @@ const selectedDate = ref('');
           <ImDatePicker v-model="selectedDate" />
         </div>
         <template #code>
-          <CodeView :code="code" />
+          <CodeView :code="code" lang="html" />
         </template>
       </CodeTemp>
     </PageCard>

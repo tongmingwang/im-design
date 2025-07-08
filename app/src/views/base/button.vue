@@ -45,9 +45,7 @@ const apiList = [
 
 <template>
   <PageWrapper title="Button 按钮" desc="Button 是一个操作节点，点击后有反馈">
-    <PageCard
-      title="基础用法"
-      desc="ImButton 支持 color variant shape disabled loading width size 等属性">
+    <PageCard title="基础用法" desc="设置color和variant属性完成按钮形态">
       <CodeTemp>
         <ImRow :gutter="8">
           <ImButton>Default</ImButton>
@@ -83,37 +81,39 @@ const apiList = [
         <template #code>
           <CodeView
             code='
-          <ImRow :gutter="8">
-          <ImButton>Default</ImButton>
-          <ImButton color="primary">Primary</ImButton>
-          <ImButton color="error">Error</ImButton>
-          <ImButton color="success">Success</ImButton>
-          <ImButton color="warning">Warning</ImButton>
-        </ImRow>
+          <template>
+            <ImRow :gutter="8">
+              <ImButton>Default</ImButton>
+              <ImButton color="primary">Primary</ImButton>
+              <ImButton color="error">Error</ImButton>
+              <ImButton color="success">Success</ImButton>
+              <ImButton color="warning">Warning</ImButton>
+            </ImRow>
 
-        <ImRow :gutter="8">
-          <ImButton variant="outlined">Default</ImButton>
-          <ImButton variant="outlined" color="primary">Primary</ImButton>
-          <ImButton variant="outlined" color="error">Error</ImButton>
-          <ImButton variant="outlined" color="success">Success</ImButton>
-          <ImButton variant="outlined" color="warning">Warning</ImButton>
-        </ImRow>
+            <ImRow :gutter="8">
+              <ImButton variant="outlined">Default</ImButton>
+              <ImButton variant="outlined" color="primary">Primary</ImButton>
+              <ImButton variant="outlined" color="error">Error</ImButton>
+              <ImButton variant="outlined" color="success">Success</ImButton>
+              <ImButton variant="outlined" color="warning">Warning</ImButton>
+            </ImRow>
 
-        <ImRow :gutter="8">
-          <ImButton variant="tonal">Default</ImButton>
-          <ImButton variant="tonal" color="primary">Primary</ImButton>
-          <ImButton variant="tonal" color="error">Error</ImButton>
-          <ImButton variant="tonal" color="success">Success</ImButton>
-          <ImButton variant="tonal" color="warning">Warning</ImButton>
-        </ImRow>
+            <ImRow :gutter="8">
+              <ImButton variant="tonal">Default</ImButton>
+              <ImButton variant="tonal" color="primary">Primary</ImButton>
+              <ImButton variant="tonal" color="error">Error</ImButton>
+              <ImButton variant="tonal" color="success">Success</ImButton>
+              <ImButton variant="tonal" color="warning">Warning</ImButton>
+            </ImRow>
 
-        <ImRow :gutter="8">
-          <ImButton variant="text">Default</ImButton>
-          <ImButton variant="text" color="primary">Primary</ImButton>
-          <ImButton variant="text" color="error">Error</ImButton>
-          <ImButton variant="text" color="success">Success</ImButton>
-          <ImButton variant="text" color="warning">Warning</ImButton>
-        </ImRow>
+            <ImRow :gutter="8">
+              <ImButton variant="text">Default</ImButton>
+              <ImButton variant="text" color="primary">Primary</ImButton>
+              <ImButton variant="text" color="error">Error</ImButton>
+              <ImButton variant="text" color="success">Success</ImButton>
+              <ImButton variant="text" color="warning">Warning</ImButton>
+            </ImRow>
+        </template>
           ' />
         </template>
       </CodeTemp>
@@ -130,25 +130,30 @@ const apiList = [
         <template #code>
           <CodeView
             code='
-          <ImButton disabled>Default</ImButton>
-          <ImButton color="primary" disabled>Primary</ImButton>
-          <ImButton color="error" disabled>Error</ImButton>
-          <ImButton color="success" disabled>Success</ImButton>
-          <ImButton color="warning" disabled>Warning</ImButton>
+    <template>
+        <ImButton disabled>Default</ImButton>
+        <ImButton color="primary" disabled>Primary</ImButton>
+        <ImButton color="error" disabled>Error</ImButton>
+        <ImButton color="success" disabled>Success</ImButton>
+        <ImButton color="warning" disabled>Warning</ImButton>
+    </template>
           ' />
         </template>
       </CodeTemp>
     </PageCard>
 
-    <PageCard
-      title="加载中"
-      desc="点击按钮后进行数据加载操作，在按钮上显示加载状态。">
+    <PageCard title="加载中" desc="设置 loading属性即可">
       <CodeTemp>
         <ImButton loading>Loading</ImButton>
+        <ImButton color="primary" loading>Loading</ImButton>
+
         <template #code>
           <CodeView
             code="
-          <ImButton loading>Loading</ImButton>
+          <template>
+            <ImButton loading>Loading</ImButton>
+            <ImButton color='primary' loading>Loading</ImButton>
+          </template>
           " />
         </template>
       </CodeTemp>
@@ -191,10 +196,20 @@ const apiList = [
       desc="通过设置 width 属性来改变按钮的宽度，默认为 auto">
       <CodeTemp>
         <ImButton width="100%">100%</ImButton>
+        <ImButton width="100%" color="primary">100%</ImButton>
+        <ImButton width="100%" color="error">100%</ImButton>
+        <ImButton width="100%" color="success">100%</ImButton>
+        <ImButton width="100%" color="warning">100%</ImButton>
         <template #code>
           <CodeView
             code="
-            <ImButton width='100%'>100%</ImButton>
+            <template>
+              <ImButton width='100%'>100%</ImButton>
+              <ImButton width='100%' color='primary'>100%</ImButton>
+              <ImButton width='100%' color='error'>100%</ImButton>
+              <ImButton width='100%' color='success'>100%</ImButton>
+              <ImButton width='100%' color='warning'>100%</ImButton>
+            </template>
             " />
         </template>
       </CodeTemp>

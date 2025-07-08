@@ -28,8 +28,9 @@ const active = ref('preview');
 <style scoped lang="scss">
 .code_temp {
   border-radius: 8px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
-  padding: 16px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  padding: 8px;
+  background-color: var(--im-bg-content-color);
 
   .im-tabs {
     margin: 0;

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import CodeView from '@app/src/components/CodeView.vue';
 import iconData from '@app/src/utils/iconfont.json';
+import { copyText } from '@app/src/utils/utils';
+import { useImMessage } from 'im-design';
 const apiList = [
   {
     name: 'name',
@@ -32,7 +34,10 @@ const code = `
         <ImIcon name="edit" />
         `;
 
-console.log(iconData);
+const clickItem = (item: any) => {
+  copyText(`<ImIcon name="${item.font_class}" />`);
+  useImMessage().success('复制成功');
+};
 </script>
 
 <template>
@@ -43,7 +48,7 @@ console.log(iconData);
         <ImIcon name="up" />
         <ImIcon name="edit" />
         <template #code>
-          <CodeView :code="code" />
+          <CodeView :code="code" lang="html" />
         </template>
       </CodeTemp>
     </PageCard>
@@ -52,7 +57,10 @@ console.log(iconData);
         ImDesign系统内置{{ iconData.glyphs.length }} 个图标方便使用,大小19kb左右
       </template>
       <ul class="icon_view">
-        <li v-for="item in iconData.glyphs" class="item">
+        <li
+          v-for="item in iconData.glyphs"
+          class="item"
+          @click="() => clickItem(item)">
           <ImIcon :name="item.font_class" size="32" />
         </li>
       </ul>

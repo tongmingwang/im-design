@@ -14,16 +14,16 @@
         </ImTabs>
         <ImPanes v-model="packageVal">
           <ImPane name="npm">
-            <CodeView language="bash" code="npm install im-design"></CodeView>
+            <CodeView lang="bash" code="npm install im-design"></CodeView>
           </ImPane>
           <ImPane name="cnpm">
-            <CodeView language="bash" code="cnpm install im-design"></CodeView>
+            <CodeView lang="bash" code="cnpm install im-design"></CodeView>
           </ImPane>
           <ImPane name="yarn">
-            <CodeView language="bash" code="yarn add im-design"></CodeView>
+            <CodeView lang="bash" code="yarn add im-design"></CodeView>
           </ImPane>
           <ImPane name="pnpm">
-            <CodeView language="bash" code="pnpm install im-design"></CodeView>
+            <CodeView lang="bash" code="pnpm install im-design"></CodeView>
           </ImPane>
         </ImPanes>
       </div>
@@ -33,8 +33,9 @@
       desc="你可以在项目中通过import的方式引入组件库，或者在main.ts文件中全局注册。">
       <div class="dark_view">
         <CodeView
-          language="typescript"
+          lang="javascript"
           code="
+      // main.ts
       import { createApp } from 'vue';
       import ImDesign from 'im-design';
       import 'im-design/dist/index.css';
@@ -51,8 +52,9 @@
       desc="你可以在项目中通过import的方式引入组件库，或者在main.ts文件中全局注册。">
       <div class="dark_view">
         <CodeView
-          language="typescript"
+          lang="javascript"
           code="
+      // main.ts
       import { createApp } from 'vue';
       import { Button } from 'im-design';
       import 'im-design/dist/index.css';
@@ -69,11 +71,12 @@
       desc="你可以在项目中通过import的方式引入组件库，或者在main.ts文件中全局注册。">
       <div class="dark_view">
         <CodeView
-          language="html"
+          lang="javascript"
           code="
         <template>
           <ImButton>按钮</ImButton>
         </template>
+
         <script setup>
           import { ImButton } from 'im-design';
         </script>
@@ -94,14 +97,9 @@ const packageVal = ref('npm');
 <style scoped lang="scss">
 .dark_view {
   padding: 8px;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
   overflow: hidden;
-
-  .im-tabs {
-    margin: 0;
-  }
-
   .im-pane {
     padding: 8px 0 0 0;
   }

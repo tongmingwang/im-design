@@ -326,7 +326,7 @@ const qt = ["data-index", "onMouseenter", "onMouseleave"], Wt = { class: "im-mes
         }, [
           z(n(q), {
             name: i(m.color),
-            size: "16px"
+            size: "24"
           }, null, 8, ["name"]),
           I("span", Wt, Y(m.msg), 1)
         ], 42, qt))), 128))
@@ -334,7 +334,7 @@ const qt = ["data-index", "onMouseenter", "onMouseleave"], Wt = { class: "im-mes
       _: 1
     }, 8, ["class"]));
   }
-}), Gt = /* @__PURE__ */ R(Xt, [["__scopeId", "data-v-96caf77c"]]);
+}), Gt = /* @__PURE__ */ R(Xt, [["__scopeId", "data-v-235ee88b"]]);
 class Ut {
   constructor() {
     $e(this, "app");

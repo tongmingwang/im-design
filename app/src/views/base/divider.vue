@@ -55,21 +55,23 @@ const apiList = [
           merninisti licere mihi ista probare, quae sunt a te dicta? Refert
           tamen, quo modo.
           <ImDivider>Text</ImDivider>
-          下一段文字 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta?
-          Refert tamen, quo modo.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne
+          merninisti licere mihi ista probare, quae sunt a te dicta? Refert
+          tamen, quo modo.
         </div>
 
         <template #code>
           <CodeView
             code="
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne
-        merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen,
-        quo modo.
-        <ImDivider>Text</ImDivider>
-        下一段文字 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-        nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert
-        tamen, quo modo.
+  <template>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne
+      merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen,
+      quo modo.
+      <ImDivider>Text</ImDivider>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+      nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert
+      tamen, quo modo.
+  </template>
         " />
         </template>
       </CodeTemp>
@@ -91,14 +93,17 @@ const apiList = [
 
         <template #code>
           <CodeView
+            lang="html"
             code="
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne
-          merninisti licere mihi ista probare, quae sunt a te dicta? Refert
-          tamen, quo modo.
-          <ImDivider textLeftWidth='50px'>Text</ImDivider>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne
-          merninisti licere mihi ista probare, quae sunt a te dicta? Refert
-          tamen, quo modo.
+        <template>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne
+            merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen,
+            quo modo.
+            <ImDivider textLeftWidth='50px'>Text</ImDivider>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+            nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert
+            tamen, quo modo.
+        </template>
         " />
         </template>
       </CodeTemp>

@@ -27,6 +27,7 @@ const apiList = [
         </div>
         <template #code>
           <CodeView
+            lang="html"
             code='
           <ImTitle>H1</ImTitle>
           <ImTitle level="2">H2</ImTitle>
@@ -46,6 +47,7 @@ const apiList = [
         </div>
         <template #code>
           <CodeView
+            lang="html"
             code="
           <ImText>This is a Text</ImText>
           " />
@@ -62,6 +64,7 @@ const apiList = [
         </div>
         <template #code>
           <CodeView
+            lang="html"
             code="
           <ImLink>Link</ImLink>
           " />

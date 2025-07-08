@@ -171,7 +171,7 @@ const value = ref('');
       <CodeTemp>
         <ImInputNumber v-model="value" placeholder="基础使用" controlRight />
         <template #code>
-          <CodeView :code="code" />
+          <CodeView :code="code" lang="html" />
         </template>
       </CodeTemp>
     </PageCard>

@@ -3,7 +3,7 @@
     <div class="inner">
       <ImTitle>{{ props.title }}</ImTitle>
       <slot name="desc">
-        <ImText>{{ props.desc }}</ImText>
+        <ImText class="desc">{{ props.desc }}</ImText>
       </slot>
       <div class="content">
         <slot></slot>
@@ -37,8 +37,8 @@ const appStore = useAppStore();
   }
 
   .inner {
-    max-width: 860px;
-    width: 100%;
+    max-width: 800px;
+    width: 90%;
     min-width: 300px;
     margin: 0 auto;
   }
@@ -46,6 +46,11 @@ const appStore = useAppStore();
   .content {
     margin: 16px 0;
     border-radius: 4px;
+    font-size: 18px;
+  }
+  .desc {
+    margin: 16px 0;
+    font-size: 16px;
   }
 }
 </style>

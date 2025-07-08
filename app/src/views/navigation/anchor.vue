@@ -109,7 +109,7 @@ const list = ref([
           <ImAnchor :data="list" target="#anchor_im_id" />
         </div>
         <template #code>
-          <CodeView :code="code" />
+          <CodeView :code="code" lang="html" />
         </template>
       </CodeTemp>
     </PageCard>

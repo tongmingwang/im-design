@@ -133,7 +133,7 @@ const options = new Array(4)
       <CodeTemp>
         <ImSelect :options="options" v-model="val" />
         <template #code>
-          <CodeView :code="code" />
+          <CodeView :code="code" lang="html" />
         </template>
       </CodeTemp>
     </PageCard>

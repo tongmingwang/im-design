@@ -16,7 +16,6 @@ onMounted(() => {
   const arr = Array.from(
     document.querySelector('.app_scroll')?.querySelectorAll('.im-title') || []
   );
-  console.log(arr, 'arr');
   if (arr.length) {
     const res: any = [];
     arr.forEach((item) => {

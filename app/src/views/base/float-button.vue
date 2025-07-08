@@ -83,7 +83,7 @@ const code = `
         </ImFloatButton>
         请在右下角浮动按钮，点击可以收起和展开内容。
         <template #code>
-          <CodeView :code="code" />
+          <CodeView :code="code" lang="html" />
         </template>
       </CodeTemp>
     </PageCard>

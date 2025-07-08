@@ -68,7 +68,7 @@ const arr = new Array(3).fill(0).map((_, index) => ({
           </ImPane>
         </ImPanes>
         <template #code>
-          <CodeView :code="code" />
+          <CodeView :code="code" lang="html" />
         </template>
       </CodeTemp>
     </PageCard>

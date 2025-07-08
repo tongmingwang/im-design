@@ -65,7 +65,7 @@ const change = (val: string) => {
           <ImBreadcrumbItem value="3">面包屑</ImBreadcrumbItem>
         </ImBreadcrumb>
         <template #code>
-          <CodeView :code="code" />
+          <CodeView :code="code" lang="html" />
         </template>
       </CodeTemp>
     </PageCard>

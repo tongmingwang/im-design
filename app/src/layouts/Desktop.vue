@@ -6,8 +6,7 @@
           src="../assets/im-logo.svg"
           class="logo"
           @click="$router.push('/')" />
-        <div class="title_logo">Im design</div>
-        <ImTag color="primary">1.2.5</ImTag>
+        <div class="title_logo">Im Design</div>
       </div>
 
       <nav class="nav">
@@ -168,7 +167,7 @@ onMounted(() => {
   }
   .menu {
     width: 20%;
-    max-width: 400px;
+    max-width: 360px;
     min-width: 200px;
     padding: 8px;
     border-right: 1px solid var(--im-gray-color-4);

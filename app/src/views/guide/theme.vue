@@ -6,7 +6,7 @@
       title="默认主题变量"
       desc="目前默认主题是浅色主题，内置暗黑主题，你可以修改主题">
       <CodeView
-        language="typescript"
+        language="css"
         code="
       :root {
         --im-primary-color-1: #e3f2fd;

@@ -58,7 +58,7 @@ const code = `
           ></ImCol>
         </ImRow>
         <template #code>
-          <CodeView :code="code" />
+          <CodeView :code="code" lang="html" />
         </template>
       </CodeTemp>
     </PageCard>

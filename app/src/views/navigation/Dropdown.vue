@@ -91,7 +91,7 @@ const list = ['三国演义', '水浒传', '西游记', '红楼梦'];
           </template>
         </ImDropdown>
         <template #code>
-          <CodeView :code="code" />
+          <CodeView :code="code" lang="html" />
         </template>
       </CodeTemp>
     </PageCard>

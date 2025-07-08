@@ -132,13 +132,13 @@ const onCheckAll = () => {
             :indeterminate="indeterminate"
             label="全选"
             @change="onCheckAll" />
-          <div>{{ checkedList }}</div>
+          <div>value: {{ checkedList }}</div>
           <ImCheckbox :value="item" v-model="checkedList" v-for="item in list"
             >选项 {{ item }}</ImCheckbox
           >
         </div>
         <template #code>
-          <CodeView :code="code" />
+          <CodeView :code="code" lang="html" />
         </template>
       </CodeTemp>
     </PageCard>
