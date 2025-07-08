@@ -32,11 +32,25 @@ In the future, ImDesign will support more components and will be more perfect.
 
 Show Components Preview
 
+## Buttons
+
 ![Buttons](https://tongmingwang.github.io/im-design/img/btn.png)
+
+## Date picker
+
 ![DatePicker](https://tongmingwang.github.io/im-design/img/date-picker.png)
+
+## DateTimePicker
+
 ![DateTimePicker](https://tongmingwang.github.io/im-design/img/datetime.png)
-![DateTimePicker](https://tongmingwang.github.io/im-design/img/daterange.png)
-![DateTimePicker](https://tongmingwang.github.io/im-design/img/daterangetime.png)
+
+## DateRangePicker
+
+![DateRangePicker](https://tongmingwang.github.io/im-design/img/daterange.png)
+
+## DateRangeTimePicker
+
+![DateRangeTimePicker](https://tongmingwang.github.io/im-design/img/daterangetime.png)
 
 ## Installation
 
