@@ -46,7 +46,7 @@ function handleClick(e: Event) {
 
 <style scoped lang="scss">
 .im-list__item {
-  padding: 4px 12px;
+  padding: 5px 12px;
   margin: 0;
   text-wrap: nowrap;
   font-size: 14px;

@@ -39,7 +39,7 @@
 
 <script setup lang="ts">
 import { useBem } from '@/utils/bem';
-import ImButton from '../ImButton';
+import { ImButton } from '@/components';
 import ImIcon from '../ImIcon';
 import ImDivider from '../ImDivider';
 

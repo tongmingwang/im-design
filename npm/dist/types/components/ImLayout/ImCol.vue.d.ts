@@ -12,22 +12,13 @@ declare const __VLS_component: import('vue').DefineComponent<import('vue').Extra
         type: (NumberConstructor | StringConstructor)[];
         default: number;
     };
-    offset: {
-        type: NumberConstructor;
-        default: number;
-    };
 }>, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
     span: {
         type: (NumberConstructor | StringConstructor)[];
         default: number;
     };
-    offset: {
-        type: NumberConstructor;
-        default: number;
-    };
 }>> & Readonly<{}>, {
     span: string | number;
-    offset: number;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, HTMLDivElement>;
 declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;
 export default _default;

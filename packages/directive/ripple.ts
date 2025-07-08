@@ -1,21 +1,88 @@
-import RippleTask from '@/utils/rippleTask';
-const attrKey = 'data-ripple';
-// 创建涟漪元素并添加到DOM中
-async function createRipple(event: any, task: RippleTask, el: HTMLElement) {
-  const computedStyle = window.getComputedStyle(el);
+class RippleTask {
+  #task: Array<any>;
+
+  constructor() {
+    this.#task = [];
+  }
+
+  async add(el: HTMLElement) {
+    this.#task.push(el);
+  }
+  remove() {
+    try {
+      const list = [...this.#task];
+      this.#task = [];
+      list.forEach((item) => {
+        this.run(item);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async run(el: HTMLElement) {
+    try {
+      const ripple: HTMLElement | null = el.firstChild as HTMLElement;
+      if (!ripple) return;
+      let now = Date.now();
+      let old = ripple.getAttribute('data-time');
+      const dpx = 500 - (now - (Number(old) || 0));
+
+      // 判断是否还在动画内
+      if (dpx > 0) {
+        await new Promise(async (resolve) => {
+          ripple.style.opacity = '0.05'; // 淡出效果
+          await new Promise((res) => requestAnimationFrame(res));
+          setTimeout(() => {
+            resolve(null);
+          }, dpx);
+        });
+      }
+      ripple.style.opacity = '0';
+      setTimeout(() => {
+        el && el?.remove();
+      }, 200);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+const ATTR_KEY = 'data-ripple';
+const RIPPLE_CONTAINER_STYLE =
+  'position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;margin:0;padding:0;z-index:0;border-radius:inherit;';
+
+// Cache for computed styles to avoid repeated calculations
+const styleCache = new WeakMap<HTMLElement, CSSStyleDeclaration>();
+
+// Predefined ripple styles that don't change
+const RIPPLE_BASE_STYLE: Partial<CSSStyleDeclaration> = {
+  position: 'absolute',
+  borderRadius: '50%',
+  transition: 'all 500ms cubic-bezier(0.4, 0, 0.2, 1)',
+  willChange: 'transform,opacity',
+  pointerEvents: 'none',
+};
+
+function createRipple(event: MouseEvent, task: RippleTask, el: HTMLElement) {
+  // Use cached styles if available
+  let computedStyle = styleCache.get(el);
+  if (!computedStyle) {
+    computedStyle = window.getComputedStyle(el);
+    styleCache.set(el, computedStyle);
+  }
+
   const rect = el.getBoundingClientRect();
-
   const rippleContainer = document.createElement('div');
-  rippleContainer.style =
-    'position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none;margin: 0; padding: 0; z-index: 0;border-radius: inherit;';
+  rippleContainer.style.cssText = RIPPLE_CONTAINER_STYLE;
   task.add(rippleContainer);
-  const ripple = document.createElement('div');
-  ripple.style.setProperty('position', 'absolute');
-  ripple.style.setProperty('border-radius', '50%');
-  ripple.style.setProperty('transition', 'all 300ms ease-out');
-  ripple.style.setProperty('will-change', 'transform,opacity');
-  ripple.style.setProperty('pointer-events', 'none'); // 防止涟漪干扰鼠标事件
 
+  const ripple = document.createElement('div');
+
+  // Apply base styles
+  Object.assign(ripple.style, RIPPLE_BASE_STYLE);
+
+  // Calculate ripple dimensions
   const clientX = event.clientX;
   const clientY = event.clientY;
   const xLeft = clientX - rect.left;
@@ -23,59 +90,66 @@ async function createRipple(event: any, task: RippleTask, el: HTMLElement) {
 
   const xLen = Math.max(xLeft, rect.width - xLeft);
   const yLen = Math.max(yTop, rect.height - yTop);
-  // 计算涟漪半径
   const radius = Math.sqrt(xLen ** 2 + yLen ** 2) * 2;
+  const x = xLeft - radius / 2;
+  const y = yTop - radius / 2;
 
-  // 计算中点位置
-  const x = clientX - rect.left - radius / 2;
-  const y = clientY - rect.top - radius / 2;
-
-  // 设置涟漪样式（使用CSS变量提高性能）
-  Object.assign(ripple.style, {
-    'background-color': computedStyle.color,
-    width: `${radius}px`,
-    height: `${radius}px`,
-    left: `${x}px`,
-    top: `${y}px`,
-    opacity: '0.08',
-    transform: 'scale(0.33)',
-  });
-  ripple.setAttribute('data-time', Date.now() + '');
+  // Set dynamic styles
+  ripple.style.backgroundColor = computedStyle.color || '';
+  ripple.style.width = `${radius}px`;
+  ripple.style.height = `${radius}px`;
+  ripple.style.left = `${x}px`;
+  ripple.style.top = `${y}px`;
+  ripple.style.opacity = '0.25';
+  ripple.style.transform = 'scale(0)';
+  ripple.dataset.time = Date.now().toString();
 
   rippleContainer.appendChild(ripple);
   el.appendChild(rippleContainer);
+
+  // Handle positioning only if needed
   const originalPosition = computedStyle.position;
   if (originalPosition === 'static') {
     el.style.position = 'relative';
     el.dataset.originalPosition = originalPosition;
   }
 
-  ripple.getBoundingClientRect();
-  ripple.style.transform = 'scale(1.1)';
-  ripple.style.opacity = '0.33';
+  // Trigger animation in the next frame
+  requestAnimationFrame(() => {
+    ripple.style.transform = 'scale(1)';
+  });
 }
 
 function updateElAttr(el: HTMLElement, binding: any) {
-  binding.value
-    ? el.setAttribute(attrKey, 'on')
-    : el.setAttribute(attrKey, 'off');
+  const value = binding.value ? 'on' : 'off';
+  if (el.getAttribute(ATTR_KEY) !== value) {
+    el.setAttribute(ATTR_KEY, value);
+  }
 }
+
 function getIsRipple(el: HTMLElement) {
-  return el.getAttribute(attrKey) === 'on';
+  return el.getAttribute(ATTR_KEY) === 'on';
 }
-// 水波纹指令
+
 export const ripple = {
   mounted(el: HTMLElement, binding: any) {
     updateElAttr(el, binding);
-    // 创建涟漪任务队列
-    const tempTask: RippleTask = new RippleTask();
-    const handleDown = (e: Event) => {
-      if (!getIsRipple(el)) return;
-      createRipple(e, tempTask, el);
+
+    const task = new RippleTask();
+    let isMouseDown = false;
+
+    const handleDown = (e: MouseEvent) => {
+      if (!getIsRipple(el) || isMouseDown) return;
+      isMouseDown = true;
+      createRipple(e, task, el);
     };
+
     const handleUp = () => {
-      tempTask.remove();
+      if (!isMouseDown) return;
+      isMouseDown = false;
+      task.remove();
     };
+
     const addListeners = () => {
       el.addEventListener('mousedown', handleDown, { passive: true });
       window.addEventListener('mouseup', handleUp, {
@@ -83,21 +157,31 @@ export const ripple = {
         capture: true,
       });
     };
+
     const removeListeners = () => {
       el.removeEventListener('mousedown', handleDown);
       window.removeEventListener('mouseup', handleUp, { capture: true });
+      styleCache.delete(el); // Clean up cache
     };
 
     addListeners();
-    // 在组件卸载时移除事件监听器
+
+    // Store references for cleanup
     // @ts-ignore
-    el._rippleListeners = { remove: removeListeners };
+    el._ripple = {
+      task,
+      removeListeners: removeListeners,
+    };
   },
 
   beforeUnmount(el: HTMLElement) {
     // @ts-ignore
-    el._rippleListeners?.remove?.();
+    if (el._ripple) {
+      // @ts-ignore
+      el._ripple.removeListeners();
+    }
   },
+
   updated(el: HTMLElement, binding: any) {
     updateElAttr(el, binding);
   },

@@ -2,25 +2,24 @@
   <label
     :class="[
       bem.b(),
-      bem.is('checked', isChecked),
+      bem.is('checked', isActive),
       bem.is('button', isButton),
-      bem.is('vertical', props.vertical),
+      bem.is('vertical', vertical),
       bem.is('disabled', props.disabled),
       bem.is('readonly', props.readonly),
     ]"
     :style="{
-      '--im-radio-size': sizeValue,
+      '--im-radio-size': size,
     }"
-    v-ripple="isRipple && isButton">
-    <div :class="[bem.e('state')]" v-ripple="isRipple" v-if="!isButton">
-      <Transition
-        name="fade"
-        :appear="true"
-        mode="out-in"
-        :duration="{ enter: 200, leave: 200 }">
+    v-ripple="!(props.disabled || props.readonly) && isButton">
+    <div
+      :class="[bem.e('state')]"
+      v-ripple="!(props.disabled || props.readonly)"
+      v-if="!isButton">
+      <Transition name="fade" :appear="true" mode="out-in" :duration="200">
         <svg
           :class="[bem.e('svg')]"
-          v-if="isChecked"
+          v-if="isActive"
           aria-hidden="true"
           fill="currentColor"
           viewBox="0 0 24 24">
@@ -45,8 +44,8 @@
       type="radio"
       :disabled="props.disabled"
       :readonly="props.readonly"
-      @change="handleChange"
-      :checked="isChecked"
+      @change="setActive"
+      :checked="isActive"
       :class="[bem.e('input')]"
       :value="props.value" />
   </label>
@@ -54,52 +53,17 @@
 
 <script setup lang="ts">
 import { useBem } from '@/utils/bem';
-import { computed } from 'vue';
-import { getSizeValue } from '@/utils';
-import { useToken } from '@/hooks/useToken';
 import { ripple } from '@/directive';
-// 注册指令,
+import type { RadioProps } from './types';
+import { useRadio } from './hooks';
 const vRipple = ripple;
 
 defineOptions({ name: 'ImRadio' });
 const bem = useBem('radio');
-const emit = defineEmits<{ (event: 'change', value: string | number): void }>();
-const props = withDefaults(
-  defineProps<{
-    modelValue: string | number;
-    value: string | number;
-    disabled?: boolean;
-    readonly?: boolean;
-    size?: string | number;
-    label?: string | number;
-    variant?: 'button';
-    vertical?: boolean;
-  }>(),
-  {
-    modelValue: '',
-    value: '',
-  }
-);
-const { sizeToken } = useToken();
-const isChecked = computed(
-  () => !!(isValue(props.value) && props.value === props.modelValue)
-);
-const sizeValue = computed(() => getSizeValue(props.size || sizeToken.value));
-const isRipple = computed(() => !props.disabled && !props.readonly);
-const isButton = computed(() => props.variant === 'button');
-
-function handleChange(e: Event) {
-  if (!isValue(props.value)) {
-    const target = e.target as HTMLInputElement;
-    target.checked = false;
-    return;
-  }
-  emit('change', props.value);
-}
-
-function isValue(value: string | number) {
-  return value || +value === 0;
-}
+const props = withDefaults(defineProps<RadioProps>(), {
+  value: '',
+});
+const { isActive, size, setActive, isButton, vertical } = useRadio(props);
 </script>
 
 <style scoped lang="scss">
@@ -115,9 +79,11 @@ function isValue(value: string | number) {
 
   &__state {
     color: var(--im-gray-color-8);
-    cursor: pointer;
+    cursor: inherit;
     width: var(--im-radio-size);
     height: var(--im-radio-size);
+    min-width: var(--im-radio-size);
+    min-height: var(--im-radio-size);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -135,7 +101,7 @@ function isValue(value: string | number) {
     height: var(--svg-size);
   }
 
-  .im-radio__input {
+  &__input {
     position: absolute;
     z-index: -9999;
     width: 0;
@@ -150,6 +116,18 @@ function isValue(value: string | number) {
     .im-radio__state {
       color: var(--im-primary-color-8);
     }
+  }
+
+  &.is-disabled {
+    color: var(--im-gray-color-6);
+    cursor: not-allowed;
+    .im-radio__state {
+      pointer-events: none;
+      color: inherit;
+    }
+  }
+  &.is-readonly {
+    pointer-events: none;
   }
 
   &.is-button {
@@ -180,6 +158,11 @@ function isValue(value: string | number) {
       color: var(--im-gray-color-1);
       border-color: var(--im-primary-color-8);
       background-color: var(--im-primary-color-8);
+    }
+    &.is-disabled {
+      color: var(--im-gray-color-6);
+      border-color: var(--im-gray-color-5);
+      background-color: var(--im-gray-color-3);
     }
 
     &.is-vertical {

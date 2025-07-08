@@ -1,5 +1,5 @@
 <template>
-  <Teleport to="body">
+  <Teleport to="#im-dialog-box">
     <div
       aria-modal="true"
       :tabindex="-1"
@@ -11,20 +11,23 @@
       :data-esc="props.closeOnEscape"
       ref="dialogRef"
       :style="{
-        zIndex: props.zIndex || zIndexToken,
+        zIndex: zIndex,
       }">
       <!-- 模态框 -->
       <ImMask
         v-if="props.mask && !props.fullscreen"
         :closeOnClickMask="props.closeOnClickMask"
         :visible="props.modelValue"
+        zIndex="1"
         @close="() => emit('update:modelValue', false)" />
 
       <!-- 对话框 -->
       <Transition
-        :name="props.fullscreen ? 'full' : 'dialog'"
-        mode="out-in"
-        :duration="{ enter: 300, leave: 300 }">
+        :css="false"
+        :duration="300"
+        @enter="enterFN"
+        @leave="leaveFN"
+        mode="out-in">
         <div
           v-show="props.modelValue"
           ref="contentRef"
@@ -38,6 +41,7 @@
             width: widthValue,
             height: props.height,
             marginTop: topValue,
+            zIndex: zIndex,
           }">
           <slot />
         </div>
@@ -49,10 +53,11 @@
 <script setup lang="ts">
 import { useBem } from '@/utils/bem';
 import ImMask from '../ImMask';
-import { watch, ref, computed, nextTick } from 'vue';
+import { watch, ref, computed, nextTick, onBeforeMount } from 'vue';
 import { useToken } from '@/hooks/useToken';
 import { updateLockScroller, isMobile } from '@/utils/dom';
 import { getSizeValue, throttle } from '@/utils';
+import { useDialogAnimation } from './dialogAnimation';
 
 defineOptions({ name: 'ImDialog' });
 const bem = useBem('dialog');
@@ -74,7 +79,7 @@ const props = withDefaults(
   {
     modelValue: false,
     closeOnClickMask: true,
-    width: '600px',
+    width: '420px',
     height: 'auto',
     fullscreen: false,
     closeOnEscape: true,
@@ -88,8 +93,21 @@ const dialogRef = ref<HTMLElement | null>(null);
 const contentRef = ref<HTMLElement | null>(null);
 const { zIndexToken } = useToken();
 const topValue = computed(() => getSizeValue(props.top || ''));
-const widthValue = computed(() => getSizeValue(props.width || '600px'));
+const widthValue = computed(() => getSizeValue(props.width || '420px'));
+const zIndex = computed(() => props.zIndex || zIndexToken.value);
 
+const { enterFN, leaveFN } = useDialogAnimation(props);
+
+onBeforeMount(() => {
+  let parent = document.querySelector('#im-dialog-box');
+  console.log(parent, 'parent');
+
+  if (!parent) {
+    parent = document.createElement('div');
+    parent.id = 'im-dialog-box';
+    document.documentElement.appendChild(parent);
+  }
+});
 /**
  * keydown事件处理函数，用于关闭对话框，当按下Esc键时关闭对话框。
 如果当前对话框的`closeOnEscape`属性为true，则执行关闭操作。同时，会检查是否有其他打开的对话框存在，如果没有，则会移除body滚动锁定效果。
@@ -127,7 +145,6 @@ async function checkDraggable() {
   ) as HTMLElement;
   if (!dialog) return;
   const isMobileDevice = isMobile();
-  console.log(isMobileDevice, 'isMobileDevice');
   if (isMobileDevice) {
     // 按下事件监听器，用于拖拽对话框
     dialog.removeEventListener('touchstart', touchStart);
@@ -265,7 +282,8 @@ function escHandle(e: KeyboardEvent) {
     &.is-fullscreen {
       width: 100% !important;
       max-width: 100% !important;
-      height: 100vh !important;
+      height: 100% !important;
+      min-height: 100%;
       border-radius: 0;
       overflow: auto;
       display: flex;
@@ -274,22 +292,22 @@ function escHandle(e: KeyboardEvent) {
   }
 }
 
-.dialog-enter-active,
-.dialog-leave-active {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.dialog-enter-from,
-.dialog-leave-to {
-  opacity: 0;
-  transform: translateY(-8px);
-}
+// .dialog-enter-active,
+// .dialog-leave-active {
+//   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+// }
+// .dialog-enter-from,
+// .dialog-leave-to {
+//   opacity: 0;
+//   transform: translateY(-8px);
+// }
 
-.full-enter-active,
-.full-leave-active {
-  transition: all 0.3s ease-out;
-}
-.full-enter-from,
-.full-leave-to {
-  transform: translateY(100%);
-}
+// .full-enter-active,
+// .full-leave-active {
+//   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+// }
+// .full-enter-from,
+// .full-leave-to {
+//   transform: translateY(100%);
+// }
 </style>

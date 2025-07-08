@@ -26,6 +26,3 @@ export interface InputPropsType {
     prepend?: string;
     append?: string;
 }
-export interface InputEmitsType {
-    (e: 'update:modelValue', value: string | number): void;
-}

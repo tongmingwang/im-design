@@ -28,14 +28,14 @@ declare const __VLS_component: import('vue').DefineComponent<__VLS_Props, {}, {}
 }, string, import('vue').PublicProps, Readonly<__VLS_Props> & Readonly<{
     "onUpdate:modelValue"?: ((value: boolean) => any) | undefined;
 }>, {
-    mask: boolean;
-    fullscreen: boolean;
-    zIndex: number;
-    width: string;
     height: string;
+    mask: boolean;
+    width: string;
+    zIndex: number;
+    fullscreen: boolean;
+    getTarget: () => HTMLElement | null;
     modelValue: boolean;
     draggable: boolean;
-    getTarget: () => HTMLElement | null;
     closeOnClickMask: boolean;
     closeOnEscape: boolean;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {

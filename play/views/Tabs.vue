@@ -1,9 +1,9 @@
 <template>
   <div>
-    <ImTabs v-model="active">
+    <ImTabs v-model="active" class="tbs">
       <ImTab :name="item" :label="`Label ${item}`" v-for="item in tabs" />
     </ImTabs>
-    <ImPanes v-model="active">
+    <ImPanes v-model="active" class="data">
       <ImPane :name="item" v-for="item in tabs">Content {{ item }}</ImPane>
     </ImPanes>
 

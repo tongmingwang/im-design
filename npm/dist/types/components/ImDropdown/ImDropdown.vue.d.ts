@@ -27,12 +27,12 @@ declare const __VLS_component: import('vue').DefineComponent<__VLS_Props, {}, {}
     onChange?: ((...args: any[]) => any) | undefined;
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
 }>, {
-    zIndex: number;
     offset: number;
-    modelValue: boolean;
+    zIndex: number;
     placement: ImPlaceType;
     arrow: boolean;
     scrollClose: boolean;
+    modelValue: boolean;
     trigger: "click" | "hover" | "contextmenu";
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {
     dropdownRef: HTMLSpanElement;

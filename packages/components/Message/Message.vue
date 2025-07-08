@@ -1,5 +1,10 @@
 <template>
-  <TransitionGroup tag="ul" name="list" :css="true" :class="[bem.b()]">
+  <TransitionGroup
+    tag="ul"
+    name="list"
+    :duration="300"
+    :css="true"
+    :class="[bem.b()]">
     <li
       v-for="item in list"
       :key="item.id"
@@ -8,7 +13,7 @@
       @mouseleave="() => onLeave(item)"
       class="im-message__item"
       :class="[bem.e('item'), item.color ? bem.e(item.color) : '']">
-      <ImIcon :name="getIconName(item.color)" size="18px" />
+      <ImIcon :name="getIconName(item.color)" size="16px" />
       <span class="im-message__text">{{ item.msg }}</span>
     </li>
   </TransitionGroup>
@@ -108,31 +113,31 @@ defineExpose({ addMsg });
   text-align: left;
   text-wrap: nowrap;
   overflow: hidden;
-  height: 40px;
-  border-radius: var(--im-radius, 4px);
-  min-width: 80px;
+  height: 32px;
+  border-radius: 32px;
+  min-width: 100px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   font-size: 14px;
-  border: 1px solid transparent;
-  background-color: var(--im-primary-color-1);
-  color: var(--im-primary-color-7);
-  border-color: var(--im-primary-color-2);
+  border: none;
+  background-color: var(--im-gray-color-10);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.04);
+  color: var(--im-primary-color-8);
   line-height: 24px;
+  gap: 8px;
 
   .im-message__text {
-    margin-left: 8px;
     letter-spacing: 0.0358em;
     font-weight: 500;
+    flex: 1;
+    text-align: left;
   }
 }
 
 @each $color in (success, warning, error, primary) {
   .im-message__#{$color} {
-    background-color: var(--im-#{$color}-color-1);
-    color: var(--im-#{$color}-color-7);
-    border-color: var(--im-#{$color}-color-2);
+    color: var(--im-#{$color}-color-8);
   }
 }
 
@@ -140,13 +145,13 @@ defineExpose({ addMsg });
   /* 对移动中的元素应用的过渡 */
   .list-enter-active,
   .list-leave-active {
-  transition: all 200ms ease;
+  transition: all 300ms ease-out;
 }
 
 .list-enter-from,
 .list-leave-to {
   opacity: 0;
-  transform: translateY(-8px);
+  transform: translateY(-16px) scale(0);
 }
 
 /* 确保将离开的元素从布局流中删除

@@ -2,51 +2,87 @@
   <li
     :class="[
       bem.b(),
-      bem.is('active', isActive),
-      props.color && bem.m(props.color),
+      bem.is('active', subActive),
       bem.is('disabled', props.disabled),
-    ]"
-    @mouseenter="handleClick"
-    @click="handleClick"
-    @mouseleave="onLeave"
-    ref="triggerRef"
-    v-ripple="!props.disabled">
-    <slot>{{ props.label }} </slot>
-    <Transition
-      name="fade"
-      :duration="{ enter: 300, leave: 300 }"
-      mode="out-in">
-      <div v-if="isActive" :class="[bem.e('bar')]"></div>
-    </Transition>
-
-    <ImLayer
-      :visible="show"
-      :arrow="false"
-      :getTriggerContainer="getTriggerContainer">
-      <div
-        :class="[bem.e('content')]"
-        ref="contentRef"
-        @mouseenter="handleClick"
-        @mouseleave="onLeave">
-        <slot name="content"></slot>
+      bem.is('vertical', vertical),
+    ]">
+    <!-- 内容 -->
+    <div
+      :class="[bem.e('label')]"
+      @mouseenter="onMouseEnter"
+      @click="handleClick"
+      @mouseleave="onMouseLeave"
+      :style="{
+        paddingLeft: `${paddingLeft * 16}px`,
+      }">
+      <div v-if="vertical" :class="[bem.e('bar-up--wrapper')]">
+        <Transition name="fade-up" :duration="300" mode="out-in">
+          <div v-if="subActive" :class="[bem.e('bar-up')]" />
+        </Transition>
       </div>
-    </ImLayer>
+      <span :class="[bem.e('inner')]">
+        <slot name="label">{{ props.label }} </slot>
+      </span>
+      <slot name="rightIcon">
+        <ImIcon
+          name="down"
+          size="0.8em"
+          :class="[bem.e('icon'), bem.is('open', show)]" />
+      </slot>
+    </div>
+
+    <template v-if="!vertical">
+      <Transition name="fade" :duration="300" mode="out-in">
+        <div v-if="subActive" :class="[bem.e('bar')]" />
+      </Transition>
+    </template>
+
+    <!-- 下拉子菜单 -->
+    <template v-if="vertical">
+      <Transition
+        @beforeEnter="onBeforeEnter"
+        @afterEnter="onAfterEnter"
+        @beforeLeave="onBeforeLeave"
+        @leave="onLeave"
+        mode="out-in"
+        :duration="300">
+        <ul
+          :class="[bem.e('list')]"
+          v-show="show"
+          :style="{
+            '--im-vertical-item-height': '40px',
+          }">
+          <slot />
+        </ul>
+      </Transition>
+    </template>
+
+    <template v-else>
+      <Transition name="menu-fade" mode="out-in" :duration="300">
+        <ul
+          :class="[
+            bem.e('children'),
+            vertical ? bem.e('vertical') : 'im-shadow',
+          ]"
+          @mouseenter="onMouseEnter"
+          @mouseleave="onMouseLeave"
+          v-show="show">
+          <slot />
+        </ul>
+      </Transition>
+    </template>
   </li>
 </template>
 
 <script setup lang="ts">
 import { useBem } from '@/utils/bem';
-import { computed, ref, watch } from 'vue';
-import ImLayer from '../Common/ImLayer.vue';
+import { ref } from 'vue';
 import { debounce } from '@/utils';
-import { ripple } from '@/directive';
-// 注册指令,
-const vRipple = ripple;
+import ImIcon from '../ImIcon';
+import { useMenuInject, useSubProvider } from './useProvider';
 
 const show = ref(false);
 const bem = useBem('sub-menu');
-const triggerRef = ref();
-const contentRef = ref<HTMLElement | null>();
 defineOptions({
   name: 'ImSubMenu',
 });
@@ -54,113 +90,191 @@ defineOptions({
 const props = withDefaults(
   defineProps<{
     disabled?: boolean;
-    vertical?: boolean;
-    color?: 'primary' | 'success' | 'warning' | 'error' | '';
     name: string | number;
     label?: string | number;
-    subActives?: Array<string | number>;
-    activeName?: string | number;
   }>(),
   {
     disabled: false,
-    vertical: false,
-    color: '',
     name: '',
     label: undefined,
-    subActives: () => [],
   }
 );
+const { vertical, subActive, paddingLeft } = useMenuInject(props);
+useSubProvider();
 
-const isActive = computed(
-  () => !!(props.subActives.includes(props.name) && isValue(props.name))
-);
-
-watch(
-  () => show.value,
-  (val) => {
-    document.removeEventListener('click', docHandleClick, { capture: true });
-    if (val) {
-      document.addEventListener('click', docHandleClick, {
-        passive: true,
-        capture: true,
-      });
-    }
-  }
-);
-function getTriggerContainer() {
-  return triggerRef.value;
-}
-function isValue(val: string | number | undefined) {
-  return val || val === 0;
-}
-
-const handle = debounce((bol: boolean) => {
+// 防抖处理下拉菜单显示隐藏逻辑
+const setVisible = debounce((bol: boolean) => {
   show.value = bol;
 }, 100);
 
-function docHandleClick(e: Event) {
-  const target = e.target as HTMLElement;
-  const cEl = contentRef.value;
-  if (
-    cEl &&
-    cEl.contains(target) &&
-    !target.classList.contains('is-disabled')
-  ) {
-    handle(false);
+function handleClick() {
+  if (props.disabled) return;
+  if (vertical.value) {
+    setVisible(!show.value);
+  } else {
+    setVisible(true);
   }
 }
-function handleClick(e: Event) {
-  e.stopPropagation();
-  if (props.disabled) return;
-  handle(true);
+function onMouseEnter() {
+  if (props.disabled || vertical.value) return;
+  setVisible(true);
 }
 
-function onLeave() {
-  handle(false);
+function onMouseLeave() {
+  if (vertical.value) return;
+  setVisible(false);
+}
+
+// 动画钩子
+async function onBeforeEnter(el: Element) {
+  const node = el as HTMLElement;
+  node.style.height = 'auto';
+  await new Promise((resolve) => requestAnimationFrame(resolve));
+  // 读取高度，强制渲染
+  const height = node.offsetHeight;
+  node.style.height = '0px';
+  node.getBoundingClientRect(); // 强制浏览器渲染
+  node.style.height = `${height}px`;
+}
+
+async function onAfterEnter(el: Element) {
+  const node = el as HTMLElement;
+  node.style.height = 'auto';
+}
+
+function onBeforeLeave(el: Element) {
+  const node = el as HTMLElement;
+  node.style.height = `${node.offsetHeight}px`;
+}
+async function onLeave(el: Element, done: () => void) {
+  const node = el as HTMLElement;
+  node.style.height = '0px';
+  setTimeout(() => {
+    done();
+  }, 280);
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .im-sub-menu {
-  padding: 0 20px;
+  padding: 0;
   margin: 0;
   height: 100%;
   cursor: pointer;
   user-select: none;
-  color: var(--im-gray-color-8);
+  color: var(--im-menu-text-color);
   font-size: 14px;
-  position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   transition: all 0.3s;
+  overflow: visible;
+  position: relative;
 
-  &:hover {
-    background-color: var(--im-rgb-color-1);
+  &.is-vertical {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+
+    .im-sub-menu__label {
+      width: 100%;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 8px 8px 16px;
+      border-radius: var(--im-menu-radius);
+      height: 40px;
+    }
   }
+
   &.is-active {
-    color: var(--im-primary-color-8);
+    color: var(--im-menu-active-text-color);
+    .im-sub-menu__label {
+      color: var(--im-menu-active-text-color);
+    }
   }
 
-  @each $color in primary, success, warning, error {
-    &.im-sub-menu--#{$color} {
-      background-color: var(--im-#{$color}-color-8);
-      color: var(--im-#{$color}-color-1);
-      .im-sub-menu__bar {
-        background-color: var(--im-#{$color}-color-1);
-      }
-      &.is-active {
-        color: var(--im-#{$color}-color-1);
-        .im-sub-menu__bar {
-          background-color: var(--im-#{$color}-color-1);
-        }
-      }
-      &.is-disabled {
-        color: var(--im-#{$color}-color-3);
-        &:hover {
-          background-color: transparent;
-        }
-      }
+  &__children {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    min-width: 100%;
+    background-color: var(--im-menu-bg-color);
+    border-radius: var(--im-menu-radius);
+    padding: 4px;
+    margin: 0;
+    transform-origin: center top;
+
+    .im-menu-item {
+      padding: 5px 12px !important;
+    }
+  }
+
+  &__list {
+    width: 100%;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+    will-change: height;
+    margin: 0;
+    padding: 0;
+
+    .im-menu-item {
+      border-radius: var(--im-menu-radius);
+      width: 100%;
+      min-width: 100%;
+      overflow: hidden;
+      text-emphasis: none;
+      word-wrap: normal;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+    gap: 8px;
+    color: inherit;
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 8px 20px;
+    transition: all 0.3s;
+    color: var(--im-menu-text-color);
+    position: relative;
+    &:hover {
+      background-color: var(--im-menu-hover-bg-color);
+    }
+  }
+
+  &__bar-up--wrapper {
+    position: relative;
+    left: -8px;
+    width: 3px;
+    min-width: 3px;
+    max-width: 3px;
+    height: 1em;
+  }
+  &__bar-up {
+    height: 1em;
+    background-color: var(--im-menu-active-text-color);
+    border-radius: 3px;
+    width: 100%;
+  }
+
+  &__icon {
+    margin-left: 8px;
+    transition: all 0.3s ease-out;
+    &.is-open {
+      transform: rotate(180deg);
     }
   }
 
@@ -172,19 +286,23 @@ function onLeave() {
     }
   }
 
-  .im-sub-menu__bar {
+  &__bar {
     position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 2px;
-    border-radius: 2px;
-    background-color: var(--im-primary-color-8);
+    height: 0;
+    border-bottom: 3px solid var(--im-menu-active-text-color);
+    border-radius: 3px;
   }
 }
 
 .fade-enter-active,
-.fade-leave-active {
+.fade-leave-active,
+.fade-up-enter-active,
+.fade-up-leave-active,
+.menu-fade-enter-active,
+.menu-fade-leave-active {
   transition: all 0.3s;
 }
 .fade-enter-from,
@@ -192,23 +310,15 @@ function onLeave() {
   opacity: 0;
   transform: scaleX(0);
 }
-</style>
+.fade-up-enter-from,
+.fade-up-leave-to {
+  opacity: 0;
+  transform: scaleY(0);
+}
 
-<style lang="scss">
-.im-sub-menu__content {
-  padding: 4px 0;
-  min-width: 100%;
-  border-radius: inherit;
-
-  .im-menu-item {
-    height: 36px;
-    padding: 0 12px;
-    justify-content: flex-start;
-
-    // 去掉bar
-    .im-menu-item__bar {
-      display: none;
-    }
-  }
+.menu-fade-enter-from,
+.menu-fade-leave-to {
+  opacity: 0;
+  transform: scaleY(0.88);
 }
 </style>

@@ -1,26 +1,29 @@
 <template>
-  <ul :Class="[bem.b()]">
-    <Transition mode="out-in" appear name="slide" :duration="300">
-      <component :is="current" :key="props.modelValue" />
+  <ul v-bind="attr" :class="[bem.b()]">
+    <Transition mode="out-in" name="slide" :duration="300">
+      <component :is="current" :key="current" />
     </Transition>
   </ul>
 </template>
 
 <script setup lang="ts">
 import { useBem } from '@/utils/bem';
-import { computed, useSlots, watch } from 'vue';
+import { computed, useSlots, useAttrs } from 'vue';
 
 const bem = useBem('panes');
 defineOptions({ name: 'ImPanes' });
 const props = withDefaults(
   defineProps<{
     modelValue?: string;
+    activeName?: string;
   }>(),
   {
     modelValue: '',
+    activeName: '',
   }
 );
 const slots = useSlots();
+const attr = useAttrs();
 const paneList = computed(() => filterPane(slots.default?.() || []));
 const current = computed(() =>
   paneList.value.find((pane) => {
@@ -65,15 +68,13 @@ function filterPane(arr: Array<any>) {
 
 .slide-enter-active,
 .slide-leave-active {
-  transition: all 0.3s ease;
+  transition: all 0.3s ease-in-out;
 }
 
 .slide-leave-to {
-  transform: translateX(-25%);
   opacity: 0;
 }
 .slide-enter-from {
-  transform: translateX(25%);
   opacity: 0;
 }
 </style>

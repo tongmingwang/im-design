@@ -206,6 +206,8 @@ function updateModelValue() {
     color: inherit;
     width: var(--im-checkbox-size);
     height: var(--im-checkbox-size);
+    min-width: var(--im-checkbox-size);
+    min-height: var(--im-checkbox-size);
     color: var(--im-gray-color-8);
 
     &:hover {

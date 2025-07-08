@@ -24,10 +24,10 @@ declare const __VLS_component: import('vue').DefineComponent<__VLS_Props, {}, {}
 }, string, import('vue').PublicProps, Readonly<__VLS_Props> & Readonly<{
     onError?: ((event: Event) => any) | undefined;
 }>, {
+    color: string;
     title: string;
     loading: "eager" | "lazy";
     size: number | string;
-    color: string;
     shape: "circle" | "square";
     src: string;
     alt: string;

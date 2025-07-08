@@ -2,10 +2,10 @@
   <Teleport to="#im-layer-container">
     <Transition
       :css="false"
-      :duration="{ enter: 200, leave: 200 }"
+      :duration="200"
       mode="out-in"
-      @enter="onBeforeEnter"
-      appear
+      @before-enter="onBeforeEnter"
+      @enter="onEnter"
       @leave="onLeave">
       <div
         v-show="props.visible"
@@ -54,7 +54,7 @@ import { useToken } from '@/hooks/useToken';
 import { useBem } from '@/utils/bem';
 import { ref, reactive, onBeforeMount, computed } from 'vue';
 import type { ImPlaceType } from '@/types/index.ts';
-import { getScreeWH } from '@/utils/dom';
+import { getScreeWH, waitForAnimate } from '@/utils/dom';
 import { throttle } from '@/utils';
 
 defineOptions({ name: 'ImLayer' });
@@ -62,6 +62,10 @@ const { zIndexToken } = useToken();
 const bem = useBem('layer');
 const layerRef = ref<HTMLElement | null>(null);
 const emit = defineEmits(['close', 'mouseenter', 'mouseleave']);
+defineExpose({
+  $el: layerRef,
+  updatePosition: updatePosition,
+});
 // 定义组件的props和emits等属性
 const props = withDefaults(
   defineProps<{
@@ -96,6 +100,7 @@ const styles = reactive({
   top: '',
   left: '',
   minWidth: 'fit-content',
+  transformOrigin: 'center top',
 });
 
 const placement = computed(() => {
@@ -105,7 +110,7 @@ const placement = computed(() => {
 // 动画基础配置
 const animateOption = {
   option: {
-    easing: 'ease', // 动画过渡效果
+    easing: 'ease-out', // 动画过渡效果
     duration: 200, // 动画持续时间
     delay: 0, // 动画延迟时间
   },
@@ -134,8 +139,9 @@ onBeforeMount(() => {
   if (!toEl) {
     const container = document.createElement('div');
     container.id = 'im-layer-container';
-    document.body.appendChild(container);
+    document.documentElement.appendChild(container);
   }
+  setOrigin();
 });
 
 // 位置计算逻辑
@@ -143,6 +149,8 @@ const bottomArr = ['bottom', 'bottom-left', 'bottom-right'];
 const topArr = ['top', 'top-left', 'top-right'];
 const rightArr = ['right', 'right-top', 'right-bottom'];
 const leftArr = ['left', 'left-top', 'left-bottom'];
+
+let resizeObserver: ResizeObserver | null = null;
 
 function getTop(
   rect: DOMRect,
@@ -261,7 +269,7 @@ async function updatePosition() {
   if (!target) {
     return emit('close', true);
   }
-  setOrigin();
+
   const place = placement.value;
   const layer = layerRef.value as HTMLElement;
   const rect = target.getBoundingClientRect();
@@ -275,9 +283,9 @@ async function updatePosition() {
  * 更新绑定滚动处理函数
  */
 function updateBindScrollHandle() {
-  window.removeEventListener('scroll', throttleHandleSCroll);
+  window.removeEventListener('scroll', checkScrollHandle);
   props.visible &&
-    window.addEventListener('scroll', throttleHandleSCroll, {
+    window.addEventListener('scroll', checkScrollHandle, {
       passive: true,
       capture: true,
     });
@@ -293,6 +301,23 @@ function updateBindResizeHandle() {
     });
 }
 
+// 监听target 元素尺寸变化，重新计算位置
+function updateBindTriggerResize() {
+  if (!props.visible) {
+    if (resizeObserver) {
+      resizeObserver.disconnect();
+      resizeObserver = null;
+    }
+    return;
+  }
+  const target = props.getTriggerContainer?.() as HTMLElement;
+  if (!target) return;
+  resizeObserver = new ResizeObserver(() => {
+    throttleResizeHandle();
+  });
+  resizeObserver.observe(target);
+}
+
 /**
  * 设置元素的 transform-origin 属性。
  *
@@ -300,9 +325,8 @@ function updateBindResizeHandle() {
  * @param placement 位置类型，默认为 'bottom-left'
  */
 function setOrigin() {
-  const layer = layerRef.value as HTMLElement;
   if (topArr.includes(placement.value)) {
-    layer.style.transformOrigin = 'center bottom';
+    styles.transformOrigin = 'center bottom';
     return;
   }
 
@@ -310,10 +334,15 @@ function setOrigin() {
     (rightArr.includes(placement.value) || leftArr.includes(placement.value)) &&
     ['right-bottom', 'left-bottom'].includes(placement.value)
   ) {
-    layer.style.transformOrigin = 'center bottom';
+    styles.transformOrigin = 'center bottom';
     return;
   }
-  layer.style.transformOrigin = 'center top';
+  styles.transformOrigin = 'center top';
+}
+
+function onBeforeEnter(el: any) {
+  el.style.setProperty('transition', 'none');
+  el.style.setProperty('opacity', '0');
 }
 
 /**
@@ -321,28 +350,29 @@ function setOrigin() {
  *
  * @param els 进入视口前的元素
  */
-async function onBeforeEnter(els: Element, done: () => void) {
+async function onEnter(els: Element, done: () => void) {
   const el = els as HTMLElement;
-  el.style.setProperty('transition', 'none');
-  updateBindScrollHandle();
-  updateBindResizeHandle();
-  await new Promise((resolve) => requestAnimationFrame(resolve));
-  updatePosition();
   try {
+    await new Promise((resolve) => requestAnimationFrame(resolve));
+    // 更新位置，以便在动画期间保持元素的位置正确。
+    updatePosition();
+    el.style.setProperty('opacity', '1');
     el.getAnimations().forEach((animation) => animation?.cancel());
     el.animate(
       props.role === 'tooltip' ? animateOption.tooltip : animateOption.dropdown,
       animateOption.option
     );
-    Promise.all(
-      el.getAnimations().map((animation) => animation.finished)
-    ).finally(() => {
-      el.style.setProperty('transition', 'all 100ms ease');
-    });
+    Promise.all(el.getAnimations().map((animation) => animation.finished));
   } catch (error) {
     console.error(error);
   }
   done();
+  // 更新滚动和resize事件处理函数，以便在动画期间保持位置正确。
+  waitForAnimate(el).finally(() => {
+    updateBindScrollHandle();
+    updateBindResizeHandle();
+    updateBindTriggerResize();
+  });
 }
 
 /**
@@ -356,6 +386,9 @@ function onLeave(els: Element, done: () => void) {
     const el = els as HTMLElement;
     el.style.setProperty('transition', 'none');
     el.getAnimations().forEach((animation) => animation.cancel());
+    updateBindScrollHandle();
+    updateBindResizeHandle();
+    updateBindTriggerResize();
     el.animate(
       props.role === 'tooltip'
         ? animateOption.tooltipLeave
@@ -366,11 +399,10 @@ function onLeave(els: Element, done: () => void) {
       el.getAnimations().map((animation) => animation.finished)
     ).finally(() => {
       done();
-      updateBindScrollHandle();
-      updateBindResizeHandle();
     });
   } catch (error) {
     console.error(error);
+    done();
   }
 }
 </script>
@@ -409,7 +441,7 @@ function onLeave(els: Element, done: () => void) {
     position: relative;
     z-index: 1;
     background-color: var(--im-bg-content-color);
-    border-radius: var(--im-radius, 4px);
+    border-radius: inherit;
     width: 100%;
     min-width: fit-content;
     overflow: visible;

@@ -1,20 +1,37 @@
 type __VLS_Props = {
-    modelValue: string | number;
-    subActives?: Array<string | number>;
+    modelValue?: string | number;
+    subActiveList?: Array<string | number>;
     disabled?: boolean;
     vertical?: boolean;
     color?: 'primary' | 'success' | 'warning' | 'error' | '';
     align?: 'left' | 'center' | 'right';
 };
-declare const _default: import('vue').DefineComponent<__VLS_Props, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
+declare function __VLS_template(): {
+    attrs: Partial<{}>;
+    slots: {
+        default?(_: {}): any;
+    };
+    refs: {};
+    rootEl: HTMLUListElement;
+};
+type __VLS_TemplateResult = ReturnType<typeof __VLS_template>;
+declare const __VLS_component: import('vue').DefineComponent<__VLS_Props, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
+    change: (...args: any[]) => void;
     "update:modelValue": (...args: any[]) => void;
 }, string, import('vue').PublicProps, Readonly<__VLS_Props> & Readonly<{
+    onChange?: ((...args: any[]) => any) | undefined;
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
 }>, {
     color: "primary" | "success" | "warning" | "error" | "";
     disabled: boolean;
-    modelValue: string | number;
     vertical: boolean;
-    subActives: Array<string | number>;
+    modelValue: string | number;
+    subActiveList: Array<string | number>;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, HTMLUListElement>;
+declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;
 export default _default;
+type __VLS_WithTemplateSlots<T, S> = T & {
+    new (): {
+        $slots: S;
+    };
+};

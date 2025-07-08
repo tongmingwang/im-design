@@ -22,11 +22,11 @@ declare const __VLS_component: import('vue').DefineComponent<__VLS_Props, {}, {}
 }, string, import('vue').PublicProps, Readonly<__VLS_Props> & Readonly<{
     "onUpdate:modelValue"?: ((value: boolean) => any) | undefined;
 }>, {
-    size: string | number;
     mask: boolean;
     zIndex: string | number;
-    modelValue: boolean;
+    size: string | number;
     placement: "left" | "right" | "top" | "bottom";
+    modelValue: boolean;
     closeOnClickMask: boolean;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {
     containerRef: HTMLDivElement;

@@ -1,32 +1,29 @@
 <template>
   <ul
-    :class="[bem.b(), props.color && bem.m(props.color)]"
-    :style="{
-      '--im-menu-align': alignVal,
-    }">
-    <component
-      :is="item"
-      v-for="item in menuItems"
-      :activeName="props.modelValue"
-      :subActives="props.subActives"
-      @change="onSelected"
-      :color="props.color"></component>
+    :class="[
+      bem.b(),
+      props.color && bem.m(props.color),
+      bem.is('vertical', props.vertical),
+    ]"
+    :style="styles">
+    <slot />
   </ul>
 </template>
 
 <script setup lang="ts">
 import { useBem } from '@/utils/bem';
-import { useSlots, computed, provide } from 'vue';
+import { computed, watch } from 'vue';
+import { useProvider } from './useProvider';
 
 const bem = useBem('menu');
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:modelValue', 'change']);
 defineOptions({
   name: 'ImMenu',
 });
 const props = withDefaults(
   defineProps<{
-    modelValue: string | number;
-    subActives?: Array<string | number>;
+    modelValue?: string | number;
+    subActiveList?: Array<string | number>;
     disabled?: boolean;
     vertical?: boolean;
     color?: 'primary' | 'success' | 'warning' | 'error' | '';
@@ -37,55 +34,60 @@ const props = withDefaults(
     vertical: false,
     color: '',
     modelValue: '',
-    subActives: () => [],
+    subActiveList: () => [],
   }
 );
-const slots = useSlots();
-const menuItems = computed(() => deepSetProps(slots.default?.() || []));
-const alignVal = computed(() => {
-  return props.align ? getAlign(props.align) : '';
+const styles = computed(() => {
+  const colors = getColor();
+  return {
+    '--im-menu-align': props.align ? getAlign(props.align) : '',
+    // 文字
+    ...colors,
+    '--im-menu-item-height': props.vertical ? '40px' : '100%',
+    '--im-menu-border-color': 'var(--im-gray-color-4)',
+    '--im-menu-height': '64px',
+    '--im-menu-width': '240px',
+    '--im-menu-radius': 'var(--im-radius)',
+  };
 });
-provide('ImMenuProvider', {
-  isActive: (name: string | number) => name === props.modelValue,
-  setActive: onSelected,
-  isActiveSub: (name: string | number) => {
-    console.log(name, props.subActives);
 
-    return props.subActives?.includes(name);
-  },
-});
+const { activeName } = useProvider(props);
+
+watch(
+  () => activeName.value,
+  () => {
+    console.log(activeName.value);
+
+    emit('update:modelValue', activeName.value);
+    emit('change', activeName.value);
+  }
+);
+
+function getColor() {
+  if (['primary', 'error', 'warning', 'success'].includes(props.color)) {
+    return {
+      '--im-menu-text-color': `var(--im-${props.color}-color-3)`,
+      '--im-menu-active-text-color': `var(--im-gray-color-1)`,
+      '--im-menu-bg-color': `var(--im-${props.color}-color-8)`,
+      '--im-menu-hover-bg-color': 'var(--im-rgb-color-1)',
+      '--im-menu-active-bg-color': `var(--im-${props.color}-color-7)`,
+    };
+  }
+  return {
+    '--im-menu-text-color': 'var(--im-gray-color-10)',
+    '--im-menu-active-text-color': 'var(--im-primary-color-8)',
+
+    '--im-menu-bg-color': 'var(--im-bg-content-color)',
+    '--im-menu-hover-bg-color': 'var(--im-rgb-color-1)',
+    '--im-menu-active-bg-color': 'var(--im-primary-color-1)',
+  };
+}
 function getAlign(align: 'left' | 'center' | 'right') {
   return align === 'right' ? 'flex-end' : align === 'center' ? 'center' : '';
 }
-function isMenuItem(item: any) {
-  return item.type?.name === 'ImMenuItem' || item.type?.name === 'ImSubMenu';
-}
-function setProps(item: any) {
-  item.props = item.props
-    ? { ...item.props, activeName: props.modelValue, color: props.color }
-    : { activeName: props.modelValue, color: props.color };
-}
-
-function deepSetProps(arr: any) {
-  const result: any[] = [];
-  arr.forEach((slot: any) => {
-    if (isMenuItem(slot)) {
-      result.push(slot);
-      setProps(slot);
-      if (Array.isArray(slot.children)) {
-        slot.children = deepSetProps(slot.children);
-      }
-    }
-  });
-  return result;
-}
-
-function onSelected(name: string | number) {
-  emit('update:modelValue', name);
-}
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .im-menu {
   list-style: none;
   margin: 0;
@@ -94,18 +96,22 @@ function onSelected(name: string | number) {
   align-items: center;
   justify-content: var(--im-menu-align, flex-start);
   flex-wrap: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
-  background-color: var(--im-bg-content-color);
+  overflow: visible;
+  background-color: var(--im-menu-bg-color);
   border: none;
   border-bottom: 1px solid var(--im-gray-color-4);
-  height: 64px;
+  height: var(--im-menu-height);
+  position: relative;
 
-  @each $color in primary, success, warning, error {
-    &--#{$color} {
-      background-color: var(--im-#{$color}-color-8);
-      color: var(--im-#{$color}-color-1);
-    }
+  &.is-vertical {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border: none;
+    width: var(--im-menu-width);
+    height: auto;
+    padding: 8px;
+    overflow-y: auto;
   }
 }
 </style>

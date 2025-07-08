@@ -2,12 +2,12 @@
 layout: home
 
 hero:
-  name: 'Im Design 🚀 '
-  text: '一个值得信赖的Vue3组件库'
-  tagline: '匠心打造 · 极致体验 · 开箱即用 '
+  name: 'im design 🚀 '
+  text: '匠心打造 · 极致体验'
+  tagline: '基于 Vue3 的组件库，助力开发者快速构建高质量的Web应用'
   image:
     src: /logo.svg
-    alt: Im Design
+    alt: im design
     width: 240
     height: 240
     loading: lazy

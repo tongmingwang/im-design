@@ -4,7 +4,7 @@ const path = require('path');
 // 确认版本号为三位数，比如1.0.0
 function getNewVersion(arr) {
   const [major, minor, patch] = arr.map((item) => Number(item));
-  if (patch < 9) {
+  if (patch < 99) {
     // 修订号递增
     return `${major}.${minor}.${patch + 1}`;
   }

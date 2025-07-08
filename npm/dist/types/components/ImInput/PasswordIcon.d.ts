@@ -24,8 +24,8 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
         name: string;
         color?: string;
     }> & Readonly<{}>, {
-        size: string | number;
         color: string;
+        size: string | number;
     }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, HTMLElement>;
 }, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 export default _default;

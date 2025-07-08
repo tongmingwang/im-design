@@ -7,7 +7,7 @@
           <ImButton variant="text" color="primary">Action</ImButton>
         </template>
       </ImCardHeader>
-      <ImCardBody>
+      <ImCardBody class="body">
         <p>Text ...</p>
         <p>Text ...</p>
       </ImCardBody>

@@ -3,7 +3,11 @@
     <ImButton @click="isShow = true">显示Layer</ImButton>
     <ImButton @click="isShow = false">关闭Layer</ImButton>
 
-    <ImLayer placement="bottom" :visible="isShow" :getTriggerContainer="() => triggerEL" @close="isShow = false">
+    <ImLayer
+      placement="bottom"
+      :visible="isShow"
+      :getTriggerContainer="() => triggerEL"
+      @close="isShow = false">
       <div class="content">
         <ul>
           <li v-for="i in 10" :key="i">xxx{{ i }}</li>
@@ -12,7 +16,7 @@
     </ImLayer>
 
     <div class="demo1">
-      <span ref="triggerEL" class="target">目标元素</span>
+      <textarea ref="triggerEL" class="target"></textarea>
       <div class="demo2"></div>
     </div>
   </div>
@@ -27,27 +31,27 @@ const triggerEL = ref<HTMLElement | null>(null);
 </script>
 
 <style scoped>
-  .demo1 {
-    height: 100px;
-    background-color: rgb(66, 66, 66);
-    overflow-y: auto;
-    width: 300px;
-    margin-top: 100px;
-  }
+.demo1 {
+  height: 100px;
+  background-color: rgb(66, 66, 66);
+  overflow-y: auto;
+  width: 300px;
+  margin-top: 100px;
+}
 
-  .demo2 {
-    height: 800px;
-    background-color: blue;
-    width: 1000px;
-  }
+.demo2 {
+  height: 800px;
+  background-color: blue;
+  width: 1000px;
+}
 
-  .target {
-    color: white;
-  }
+.target {
+  color: white;
+}
 
-  .content {
-    max-height: 120px;
-    overflow-y: auto;
-    width: 100%;
-  }
+.content {
+  max-height: 120px;
+  overflow-y: auto;
+  width: 100%;
+}
 </style>

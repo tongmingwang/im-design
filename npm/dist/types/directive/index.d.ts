@@ -9,7 +9,7 @@ declare const _default: {
         updated(el: HTMLElement, binding: any): void;
     };
     loading: {
-        mounted(el: HTMLElement, binding: any): any;
+        mounted(el: HTMLElement, binding: boolean | any): any;
         beforeUnmount(el: HTMLElement): void;
         updated(el: HTMLElement, bind: any): void | Promise<void>;
     };

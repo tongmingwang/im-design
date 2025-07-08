@@ -1,10 +1,4 @@
-type __VLS_Props = {
-    name: string | number | undefined;
-    label?: string;
-    modelValue?: string;
-    disabled?: boolean;
-    color?: string;
-};
+import { TabProps } from './types';
 declare function __VLS_template(): {
     attrs: Partial<{}>;
     slots: {
@@ -14,16 +8,10 @@ declare function __VLS_template(): {
     rootEl: HTMLLIElement;
 };
 type __VLS_TemplateResult = ReturnType<typeof __VLS_template>;
-declare const __VLS_component: import('vue').DefineComponent<__VLS_Props, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {} & {
-    change: (name: string | number) => any;
-}, string, import('vue').PublicProps, Readonly<__VLS_Props> & Readonly<{
-    onChange?: ((name: string | number) => any) | undefined;
-}>, {
+declare const __VLS_component: import('vue').DefineComponent<TabProps, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<TabProps> & Readonly<{}>, {
     label: string;
-    name: string | number | undefined;
-    color: string;
+    name: string | number;
     disabled: boolean;
-    modelValue: string;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, HTMLLIElement>;
 declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;
 export default _default;

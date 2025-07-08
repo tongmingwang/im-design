@@ -58,9 +58,11 @@ export const updateLockScroller = async () => {
     const els = Array.from(document.querySelectorAll('.is-im-lock-scroll'));
 
     if (els.length) {
-      !isLockScroll() ? document.body.classList.add('im-lock-scroll') : '';
+      !isLockScroll()
+        ? document.documentElement.classList.add('im-lock-scroll')
+        : '';
     } else {
-      document.body.classList.remove('im-lock-scroll');
+      document.documentElement.classList.remove('im-lock-scroll');
     }
   } catch (error) {}
 };

@@ -96,8 +96,6 @@ watch(val, () => {
 
 function handlePwdChange(bol: boolean) {
   selfType.value = bol ? 'text' : 'password';
-
-  console.log(selfType.value, 'selfType.value');
 }
 
 defineExpose({

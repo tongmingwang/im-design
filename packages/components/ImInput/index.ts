@@ -1,4 +1,4 @@
-import { type App, type DefineComponent } from 'vue';
+import { type App } from 'vue';
 import ImInput from './ImInput.vue';
 
 ImInput.install = (app: App) => {

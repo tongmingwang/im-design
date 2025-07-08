@@ -51,7 +51,7 @@ const props = withDefaults(
     trigger: 'hover',
     placement: 'bottom-left',
     zIndex: undefined,
-    arrow: true,
+    arrow: false,
     offset: 8,
     scrollClose: false,
   }
@@ -181,5 +181,14 @@ function setClose() {
   margin: 0;
   padding: 0;
   line-height: 1;
+}
+</style>
+
+<style lang="scss">
+.im-dropdown__content {
+  .im-layer__content {
+    padding: 8px 0;
+    border-radius: inherit;
+  }
 }
 </style>

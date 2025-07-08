@@ -2,26 +2,36 @@
   <li
     :class="[
       bem.b(),
-      bem.is('active', isActive),
-      props.color && bem.m(props.color),
+      bem.is('active', active),
       bem.is('disabled', props.disabled),
+      bem.is('vertical', vertical),
     ]"
+    :style="{
+      paddingLeft: vertical ? `${16 * paddingLeft}px` : '',
+    }"
     @click="handleClick"
     v-ripple="!props.disabled">
-    <slot>{{ props.label }}</slot>
-    <Transition
-      name="fade"
-      :duration="{ enter: 300, leave: 300 }"
-      mode="out-in">
-      <div v-if="isActive" :class="[bem.e('bar')]"></div>
-    </Transition>
+    <div v-if="!isSub && vertical" :class="[bem.e('bar-up--wrapper')]">
+      <Transition name="fade-up" :duration="300" mode="out-in">
+        <div v-if="active" :class="[bem.e('bar-up')]"></div>
+      </Transition>
+    </div>
+    <div :class="[bem.e('label')]">
+      <slot>{{ props.label }}</slot>
+    </div>
+    <template v-if="!isSub && !vertical">
+      <Transition name="fade" :duration="300" mode="out-in">
+        <div v-show="active" :class="[bem.e('bar')]"></div>
+      </Transition>
+    </template>
   </li>
 </template>
 
 <script setup lang="ts">
 import { useBem } from '@/utils/bem';
-import { computed, inject } from 'vue';
 import { ripple } from '@/directive';
+import { useMenuInject, useMenuItem } from './useProvider';
+
 // 注册指令,
 const vRipple = ripple;
 
@@ -29,89 +39,91 @@ const bem = useBem('menu-item');
 defineOptions({
   name: 'ImMenuItem',
 });
-const emit = defineEmits<{
-  (e: 'change', name: string | number): void;
-}>();
+
 const props = withDefaults(
   defineProps<{
-    activeName?: string | number;
     disabled?: boolean;
-    vertical?: boolean;
-    color?: 'primary' | 'success' | 'warning' | 'error' | '';
     name: string | number;
     label?: string | number;
   }>(),
   {
     disabled: false,
-    vertical: false,
-    color: '',
     name: '',
     label: undefined,
   }
 );
-const MenuInject = inject('ImMenuProvider', {} as any);
-const isActive = computed(
-  () =>
-    !!(
-      (props.activeName === props.name && isValue(props.name)) ||
-      (isValue(props.name) && MenuInject?.isActive?.(props.name))
-    )
-);
 
-function isValue(val: string | number | undefined) {
-  return val || val === 0;
-}
+const { active, setActiveName, vertical, paddingLeft } = useMenuInject(props);
+const { isSub } = useMenuItem();
 
 function handleClick(e: Event) {
-  e.stopPropagation();
-  if (props.disabled || !isValue(props.name)) return;
-  emit('change', props.name);
-  MenuInject?.setActive?.(props.name);
+  if (props.disabled) return;
+  setActiveName(props.name);
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .im-menu-item {
-  padding: 0 20px;
+  padding: 5px 20px;
   margin: 0;
   height: 100%;
   cursor: pointer;
   user-select: none;
-  color: var(--im-gray-color-8);
+  color: var(--im-menu-text-color);
+  background-color: var(--im-menu-bg-color);
   font-size: 14px;
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   transition: all 0.3s;
+  text-wrap: nowrap;
+  height: var(--im-menu-item-height);
+  border-radius: var(--im-menu-radius);
+
+  &__bar-up--wrapper {
+    position: relative;
+    left: -8px;
+    width: 3px;
+    height: 1em;
+    border: none;
+    border-radius: 3px;
+  }
+
+  &__bar-up {
+    width: 3px;
+    height: 1em;
+    border: none;
+    border-radius: 3px;
+    background-color: var(--im-menu-active-text-color);
+  }
+
+  .im-menu-item__label {
+    flex: 1;
+    white-space: nowrap;
+    word-break: break-all;
+    text-align: left;
+  }
+
+  &.is-vertical {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 8px 16px;
+    border-radius: var(--im-menu-radius);
+    height: 40px;
+    .im-menu-item__label {
+      flex: 1;
+      white-space: wrap;
+      text-align: left;
+    }
+  }
 
   &:hover {
-    background-color: var(--im-rgb-color-1);
+    background-color: var(--im-menu-hover-bg-color);
   }
   &.is-active {
-    color: var(--im-primary-color-8);
-  }
-
-  @each $color in primary, success, warning, error {
-    &.im-menu-item--#{$color} {
-      background-color: var(--im-#{$color}-color-8);
-      color: var(--im-#{$color}-color-1);
-      .im-menu-item__bar {
-        background-color: var(--im-#{$color}-color-1);
-      }
-      &.is-active {
-        color: var(--im-#{$color}-color-1);
-        .im-menu-item__bar {
-          background-color: var(--im-#{$color}-color-1);
-        }
-      }
-      &.is-disabled {
-        color: var(--im-#{$color}-color-3);
-        &:hover {
-          background-color: transparent;
-        }
-      }
-    }
+    color: var(--im-menu-active-text-color);
+    background-color: var(--im-menu-active-bg-color);
   }
 
   &.is-disabled {
@@ -127,19 +139,28 @@ function handleClick(e: Event) {
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 2px;
-    border-radius: 2px;
-    background-color: var(--im-primary-color-8);
+    height: 3px;
+    border-radius: 3px;
+    border: none;
+    border-bottom: 3px solid var(--im-menu-active-text-color);
   }
 }
 
 .fade-enter-active,
-.fade-leave-active {
+.fade-leave-active,
+.fade-up-enter-active,
+.fade-up-leave-active {
   transition: all 0.3s;
 }
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
   transform: scaleX(0);
+}
+
+.fade-up-enter-from,
+.fade-up-leave-to {
+  opacity: 0;
+  transform: scaleY(0);
 }
 </style>

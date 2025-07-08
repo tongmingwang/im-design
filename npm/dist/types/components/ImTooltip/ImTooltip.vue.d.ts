@@ -28,8 +28,8 @@ declare const __VLS_component: import('vue').DefineComponent<__VLS_Props, {}, {}
     onChange?: ((...args: any[]) => any) | undefined;
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
 }>, {
-    offset: number;
     content: string;
+    offset: number;
     placement: ImPlaceType;
     arrow: boolean;
     scrollClose: boolean;

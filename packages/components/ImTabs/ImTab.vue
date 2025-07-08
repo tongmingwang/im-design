@@ -2,53 +2,35 @@
   <li
     :class="[
       bem.b(),
-      props.color && bem.m(props.color),
-      bem.is('active', isActive),
+      bem.m(color),
+      bem.is('active', active),
       bem.is('disabled', props.disabled),
     ]"
-    @click="handleClick"
+    @click="setActive"
     v-ripple="!props.disabled">
     <slot>{{ props.label }}</slot>
+    <Transition name="slide" :duration="300" mode="out-in">
+      <div v-if="active" :class="bem.e('bar')"></div>
+    </Transition>
   </li>
 </template>
 
 <script setup lang="ts">
 import { useBem } from '@/utils/bem';
-import { computed } from 'vue';
 import { ripple } from '@/directive';
+import type { TabProps } from './types';
+import { useInjectTab } from './useTab';
 // 注册指令,
 const vRipple = ripple;
 const bem = useBem('tab');
 defineOptions({ name: 'ImTab' });
 
-const emit = defineEmits<{ (e: 'change', name: string | number): void }>();
-const props = withDefaults(
-  defineProps<{
-    name: string | number | undefined;
-    label?: string;
-    modelValue?: string;
-    disabled?: boolean;
-    color?: string;
-  }>(),
-  {
-    label: '',
-    modelValue: '',
-    name: '',
-    disabled: false,
-    color: '',
-  }
-);
-const isActive = computed(
-  () => !!(isValue(props.name) && props.modelValue === props.name)
-);
-function handleClick(e: Event) {
-  e.stopPropagation();
-  if (props.disabled) return;
-  isValue(props.name) && emit('change', props.name);
-}
-function isValue(val: string | number | undefined) {
-  return val || val === 0;
-}
+const props = withDefaults(defineProps<TabProps>(), {
+  label: '',
+  name: '',
+  disabled: false,
+});
+const { active, setActive, color } = useInjectTab(props);
 </script>
 
 <style scoped lang="scss">
@@ -81,6 +63,16 @@ function isValue(val: string | number | undefined) {
     background: transparent;
   }
 
+  &__bar {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--im-primary-color-8);
+    transition: all 0.3s ease-in-out;
+  }
+
   // 色彩
   @each $color in primary, error, success, warning {
     &.im-tab--#{$color} {
@@ -107,7 +99,7 @@ function isValue(val: string | number | undefined) {
 }
 .slide-enter-from,
 .slide-leave-to {
-  transform: scale(0);
+  transform: scaleX(0);
   opacity: 0;
 }
 </style>

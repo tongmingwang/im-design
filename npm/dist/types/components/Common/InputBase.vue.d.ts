@@ -20,16 +20,16 @@ declare const __VLS_component: import('vue').DefineComponent<PropsType, {
     focus: () => void | undefined;
     blur: () => void | undefined;
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {} & {
+    clear: () => any;
     blur: (value: Event) => any;
     change: (value: string) => any;
     focus: (value: Event) => any;
-    clear: () => any;
     "update:modelValue": (value: string) => any;
 }, string, import('vue').PublicProps, Readonly<PropsType> & Readonly<{
+    onClear?: (() => any) | undefined;
     onBlur?: ((value: Event) => any) | undefined;
     onChange?: ((value: string) => any) | undefined;
     onFocus?: ((value: Event) => any) | undefined;
-    onClear?: (() => any) | undefined;
     "onUpdate:modelValue"?: ((value: string) => any) | undefined;
 }>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {
     inputRef: HTMLInputElement;

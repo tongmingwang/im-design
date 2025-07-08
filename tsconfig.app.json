@@ -19,12 +19,16 @@
     "paths": {
       "@/*": [
         "./packages/*"
+      ],
+      "@app/*": [
+        "./app/*"
       ]
     }
   },
   "include": [
     "packages/**/*",
-    "packages/types"
+    "packages/types",
+    "app/src/**/*"
   ],
   "exclude": [
     "node_modules",

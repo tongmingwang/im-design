@@ -6,11 +6,11 @@ export const CardBody = defineComponent({
   props: {
     content: String,
   },
-  setup(props, { slots }) {
+  setup(props, { slots, attrs }) {
     return () =>
       h(
         'div',
-        { class: 'im-card__body' },
+        { ...attrs, class: 'im-card__body' },
         slots?.default?.() || props.content || ''
       );
   },
@@ -29,7 +29,7 @@ export const CardFooter = defineComponent({
       default: false,
     },
   },
-  setup(props, { slots }) {
+  setup(props, { slots, attrs }) {
     const classNames = ['im-card__footer'];
     if (props.align) classNames.push(`im-card__footer--${props.align}`);
     if (props.divider) classNames.push('im-card__footer--divider');
@@ -37,6 +37,7 @@ export const CardFooter = defineComponent({
       h(
         'div',
         {
+          ...attrs,
           class: classNames.join(' '),
         },
         slots?.default?.()
@@ -53,12 +54,12 @@ export const CardHeader = defineComponent({
       default: false,
     },
   },
-  setup(props, { slots }) {
+  setup(props, { slots, attrs }) {
     const actions = slots?.actions?.() || null;
     const classNames = ['im-card__header'];
     if (props.divider) classNames.push('im-card__header--divider');
     return () =>
-      h('div', { class: classNames.join(' ') }, [
+      h('div', { ...attrs, class: classNames }, [
         h(
           'div',
           { class: 'im-card__title' },

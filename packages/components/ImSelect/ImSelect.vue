@@ -62,6 +62,7 @@
       @close="setClose"
       :arrow="props.arrow"
       :offset="props.offset"
+      :custom-class="bem.e('content')"
       :scrollClose="props.scrollClose">
       <ul :class="[bem.e('list')]" ref="listRef" v-if="props.options?.length">
         <ImOption
@@ -124,7 +125,7 @@ const props = withDefaults(
     multiple: false,
     disabled: false,
     maxTag: 1,
-    arrow: true,
+    arrow: false,
     offset: 8,
     scrollClose: false,
   }
@@ -295,8 +296,7 @@ function onClearValue(e: Event) {
   &.is-open {
     .im-select__trigger {
       border-color: var(--im-primary-color-8);
-      background-color: var(--im-primary-color-1);
-      color: var(--im-gray-color-6);
+      color: var(--im-gray-color-10);
     }
   }
 
@@ -397,7 +397,6 @@ function onClearValue(e: Event) {
     position: absolute;
     right: 10px;
     top: 0;
-    height: 100%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -408,6 +407,10 @@ function onClearValue(e: Event) {
     transition: color 200ms ease;
     animation: icon-fade 200ms ease;
 
+    .im-icon {
+      background-color: var(--im-bg-content-color);
+    }
+
     &:hover {
       color: var(--im-gray-color-7);
     }
@@ -415,14 +418,21 @@ function onClearValue(e: Event) {
 }
 </style>
 <style lang="scss">
+.im-select__content {
+  border-radius: var(--im-radius, 4px);
+  .im-layer__content {
+    padding: 8px 0;
+    border-radius: var(--im-radius, 4px);
+  }
+}
 .im-select__list {
   background-color: var(--im-bg-content-color);
   list-style: none;
-  padding: 8px 0;
+  padding: 0;
   margin: 0;
   box-sizing: border-box;
   overflow: auto;
   max-height: 256px;
-  border-radius: var(--im-radius, 4px);
+  border-radius: none;
 }
 </style>

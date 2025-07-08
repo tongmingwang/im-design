@@ -5,14 +5,14 @@
       <slot name="header">
         <span>{{ props.title }}</span>
         <span :class="[bem.e('right-icon'), bem.is('open', show)]">
-          <ImIcon name="down" />
+          <ImIcon name="right" size="0.8em" />
         </span>
       </slot>
     </div>
     <Transition
       :css="false"
       mode="out-in"
-      :duration="{ enter: 300, leave: 300 }"
+      :duration="300"
       @enter="onEnter"
       @leave="onLeave">
       <div v-show="show" :class="[bem.e('content')]">
@@ -55,8 +55,6 @@ const show = ref(
 watch(
   () => props.activeName,
   () => {
-    console.log(props.activeName, props.name);
-
     show.value = !!(props.activeName && props.activeName === props.name);
   }
 );
@@ -121,7 +119,7 @@ async function onLeave(el: any, done: () => void) {
     transition: all 0.3s ease;
     color: var(--im-gray-color-6);
     &.is-open {
-      transform: rotate(180deg);
+      transform: rotate(90deg);
     }
   }
 }

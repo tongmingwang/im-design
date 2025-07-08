@@ -1,10 +1,8 @@
-import { type App, type DefineComponent } from 'vue';
-import ImButton from './ImButton.vue';
-import { type ButtonProps } from './ButtonProp';
+import Btn from './ImButton.vue';
+import { withInstall } from '@/utils/install';
+import Group from './ButtonGroup.vue';
+import FloatButton from './FloatButton.vue';
 
-ImButton.install = (app: App) => {
-  app.component('ImButton', ImButton);
-};
-
-export default ImButton;
-export { ImButton, type ButtonProps };
+export const ImButton = withInstall('ImButton', Btn);
+export const ImButtonGroup = withInstall('ImButtonGroup', Group);
+export const ImFloatButton = withInstall('ImFloatButton', FloatButton);

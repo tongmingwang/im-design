@@ -62,7 +62,7 @@ async function closeLoading(el: HTMLElement) {
 
 // 加载动画指令
 export const loading = {
-  mounted(el: HTMLElement, binding: any) {
+  mounted(el: HTMLElement, binding: boolean | any) {
     if (typeof binding.value === 'boolean') {
       return binding.value && createLoading(el);
     }

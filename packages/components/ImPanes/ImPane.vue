@@ -22,7 +22,7 @@ const props = withDefaults(
 
 <style scoped lang="scss">
 .im-pane {
-  padding: 24px;
+  padding: 16px;
   margin: 0;
   font-size: 14px;
   min-width: 100%;
@@ -30,7 +30,7 @@ const props = withDefaults(
   height: 100%;
   overflow: auto;
   text-align: left;
-  background-color: var(--im-bg-content-color);
   box-sizing: border-box;
+  background-color: transparent;
 }
 </style>

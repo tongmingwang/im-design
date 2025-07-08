@@ -68,12 +68,12 @@ const onActive = (item: any) => {
 <style scoped lang="scss">
 .im-list {
   list-style: none;
-  padding: 8px 0;
+  padding: 0;
   margin: 0;
   overflow: auto;
   width: 100%;
   background-color: var(--im-bg-content-color, #fff);
   box-sizing: border-box;
-  border-radius: var(--im-radius, 4px);
+  border-radius: 0;
 }
 </style>

@@ -24,7 +24,8 @@ console.log(
         联系作者
       </ImButton>
       <ImDialog v-model="show">
-        <ImCard title="添加微信" borderless> </ImCard>
+        <ImDialogHeader title="添加微信"></ImDialogHeader>
+        <ImDialogBody> 有需要咨询作者的可以加微信 </ImDialogBody>
       </ImDialog>
     </template> -->
     <!-- <template #doc-footer-before> 页脚最前部分</template>

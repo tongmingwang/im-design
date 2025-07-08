@@ -67,3 +67,11 @@ export const isNumberValue = (val: any) => {
     val !== undefined && val !== null && !Number.isNaN(val) && isNumber(val)
   );
 };
+
+export function formatTime(h: number, m: number, s: number) {
+  const format = (num: number) =>
+    Math.floor(num || 0)
+      .toString()
+      .padStart(2, '0');
+  return [h, m, s].map(format).join(':');
+}

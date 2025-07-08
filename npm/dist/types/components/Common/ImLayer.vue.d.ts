@@ -10,6 +10,12 @@ type __VLS_Props = {
     scrollClose?: boolean;
     role?: 'tooltip' | 'dropdown' | '';
 };
+/**
+ * 更新位置函数
+ *
+ * 异步更新触发容器的位置，并根据触发容器的位置和定位方式，调整图层的位置
+ */
+declare function updatePosition(): Promise<void>;
 declare function __VLS_template(): {
     attrs: Partial<{}>;
     slots: {
@@ -21,7 +27,10 @@ declare function __VLS_template(): {
     rootEl: any;
 };
 type __VLS_TemplateResult = ReturnType<typeof __VLS_template>;
-declare const __VLS_component: import('vue').DefineComponent<__VLS_Props, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
+declare const __VLS_component: import('vue').DefineComponent<__VLS_Props, {
+    $el: import('vue').Ref<HTMLElement | null, HTMLElement | null>;
+    updatePosition: typeof updatePosition;
+}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     close: (...args: any[]) => void;
     mouseenter: (...args: any[]) => void;
     mouseleave: (...args: any[]) => void;
@@ -30,15 +39,15 @@ declare const __VLS_component: import('vue').DefineComponent<__VLS_Props, {}, {}
     onMouseenter?: ((...args: any[]) => any) | undefined;
     onMouseleave?: ((...args: any[]) => any) | undefined;
 }>, {
-    customClass: string;
-    zIndex: number | "";
     offset: number;
-    role: "tooltip" | "dropdown" | "";
+    zIndex: number | "";
+    customClass: string;
     visible: boolean;
     placement: ImPlaceType;
     getTriggerContainer: () => HTMLElement | null;
     arrow: boolean;
     scrollClose: boolean;
+    role: "tooltip" | "dropdown" | "";
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {
     layerRef: HTMLDivElement;
 }, any>;

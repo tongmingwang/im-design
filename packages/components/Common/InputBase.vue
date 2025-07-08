@@ -6,7 +6,7 @@
       bem.is('readonly', props.readonly),
       bem.is('has-append', props.isAppend),
       bem.is('has-prepend', props.isPrepend),
-      bem.is('focus', isFocus),
+      bem.is('focused', isFocus),
     ]"
     :style="{
       '--im-input-size': sizeValue,
@@ -146,18 +146,14 @@ function onBlur(e: Event) {
   transition: all 0.2s ease-in-out;
   overflow: hidden;
   padding: 0 12px;
-  width: 200px;
+  width: 100%;
   font-size: 14px;
   gap: 8px;
 
   &:focus-within,
   &:hover,
-  .is-focus {
+  .is-focused {
     --im-input-border-color: var(--im-primary-color-7);
-  }
-  &.is-focus {
-    --im-input-border-color: var(--im-primary-color-7);
-    background-color: var(--im-primary-color-1);
   }
 
   &.is-disabled {

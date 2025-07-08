@@ -1,7 +1,5 @@
 import { defineConfig } from 'vitepress';
 import { nav, sidebar } from './menu';
-import enMenu from './menu/en-menu';
-
 // 基础配置常量
 const SITE_TITLE = 'Im Design';
 const SITE_DESCRIPTION = '匠心打造，极致体验的 Vue3 组件库';
@@ -17,12 +15,17 @@ export default defineConfig({
 
   // 头部配置
   head: [
-    ['link', { rel: 'icon', href: `${BASE_PATH}favicon.ico` }],
+    ['link', { rel: 'icon', href: `${BASE_PATH}logo.svg` }],
     ['meta', { name: 'theme-color', content: '#646cff' }],
     ['meta', { property: 'og:title', content: SITE_TITLE }],
     ['meta', { property: 'og:description', content: SITE_DESCRIPTION }],
     ['meta', { property: 'og:url', content: `${REPO_LINK}${BASE_PATH}` }],
   ],
+
+  sitemap: {
+    hostname: 'https://tongmingwang.github.io/im-design',
+    lastmodDateOnly: false,
+  },
 
   // 主题配置
   themeConfig: {
@@ -57,10 +60,13 @@ export default defineConfig({
       },
     },
     // 国际化配置
-    i18nRouting: true,
+    i18nRouting: false,
 
     // 社交链接
-    socialLinks: [{ icon: 'github', link: REPO_LINK }],
+    socialLinks: [
+      { icon: 'github', link: REPO_LINK },
+      { icon: 'gitee', link: 'https://gitee.com/irming46/im-design' },
+    ],
 
     // 编辑链接
     editLink: {
@@ -95,39 +101,8 @@ export default defineConfig({
       label: '本页目录',
     },
   },
-
-  // 多语言配置
-  locales: {
-    root: {
-      label: '简体中文',
-      lang: 'zh-CN',
-      link: '/',
-    },
-    en: {
-      label: 'English',
-      lang: 'en-US',
-      link: '/en/',
-      themeConfig: {
-        // 英文版覆盖配置
-        docFooter: {
-          prev: 'Previous',
-          next: 'Next',
-        },
-        lastUpdated: {
-          text: 'Last Updated',
-        },
-        outline: {
-          label: 'On this page',
-        },
-        ...enMenu,
-      },
-    },
-  },
   // Markdown 配置
   markdown: {
     lineNumbers: true,
-    config: (md) => {
-      // 添加 markdown-it 插件
-    },
   },
 });

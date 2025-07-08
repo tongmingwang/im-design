@@ -18,9 +18,9 @@ declare const __VLS_component: import('vue').DefineComponent<AlertProps, {}, {},
 }, string, import('vue').PublicProps, Readonly<AlertProps> & Readonly<{
     onClose?: (() => any) | undefined;
 }>, {
+    color: "success" | "error" | "warning" | "primary";
     title: string;
     message: string;
-    color: "success" | "error" | "warning" | "primary";
     showIcon: boolean;
     closable: boolean;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {

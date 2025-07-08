@@ -1,0 +1,39 @@
+.im-link {
+  color: var(--im-primary-color-8);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+  user-select: none;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+
+  &:hover {
+    color: var(--im-primary-color-6);
+    text-decoration: underline;
+  }
+  &:active {
+    color: var(--im-primary-color-10);
+  }
+}
+
+.im-text {
+  color: var(--im-gray-color-8);
+  font-size: 14px;
+  line-height: 24px;
+  margin: 0;
+  padding: 0;
+  &--primary {
+    color: var(--im-primary-color-8);
+  }
+  &--success {
+    color: var(--im-success-color-8);
+  }
+  &--warning {
+    color: var(--im-warning-color-8);
+  }
+  &--error {
+    color: var(--im-error-color-8);
+  }
+}

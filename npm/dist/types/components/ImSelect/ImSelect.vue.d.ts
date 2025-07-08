@@ -36,14 +36,14 @@ declare const __VLS_component: import('vue').DefineComponent<__VLS_Props, {}, {}
 }, string, import('vue').PublicProps, Readonly<__VLS_Props> & Readonly<{
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
 }>, {
-    disabled: boolean;
-    width: string | number;
     offset: number;
+    width: string | number;
+    arrow: boolean;
+    scrollClose: boolean;
+    disabled: boolean;
     modelValue: string | number;
     placeholder: string;
     clearable: boolean;
-    arrow: boolean;
-    scrollClose: boolean;
     multiple: boolean;
     options: Array<{
         label: string | number;

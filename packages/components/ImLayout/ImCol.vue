@@ -1,8 +1,9 @@
 <template>
-  <div :class="[bem.b()]" :style="{
-    '--im-col-w': spanW,
-    '--im-col-offset': props.offset,
-  }">
+  <div
+    :class="[bem.b()]"
+    :style="{
+      '--im-col-w': spanW,
+    }">
     <slot></slot>
   </div>
 </template>
@@ -18,10 +19,6 @@ const props = defineProps({
     type: [Number, String],
     default: 4,
   },
-  offset: {
-    type: Number,
-    default: 0,
-  },
 });
 const bem = useBem('col');
 
@@ -31,8 +28,8 @@ const spanW = computed(
 </script>
 
 <style lang="scss" scoped>
-  .im-col {
-    max-width: var(--im-col-w);
-    flex: 0 0 var(--im-col-w);
-  }
+.im-col {
+  max-width: var(--im-col-w);
+  flex: 0 0 var(--im-col-w);
+}
 </style>

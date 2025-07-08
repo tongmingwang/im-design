@@ -13,9 +13,8 @@
       <div
         :class="[bem.e('decrease'), bem.is('disabled', minDisabled)]"
         v-if="!props.controlRight"
-        v-ripple="!minDisabled"
         @click="decrease">
-        <ImIcon name="minus" size="1.1em" />
+        <ImIcon name="minus" size="1em" />
       </div>
       <!-- prefix -->
       <slot name="prefix">
@@ -35,24 +34,21 @@
       <div
         :class="[bem.e('increase'), bem.is('disabled', maxDisabled)]"
         @click="increase"
-        v-if="!props.controlRight"
-        v-ripple="!maxDisabled">
-        <ImIcon name="plus" size="1.1em" />
+        v-if="!props.controlRight">
+        <ImIcon name="plus" size="1em" />
       </div>
       <!-- 右侧控制 -->
       <div v-if="props.controlRight" :class="[bem.e('control-right')]">
         <span
-          :class="[bem.e('up'), bem.is('disabled', maxDisabled)]"
-          v-ripple="!maxDisabled"
-          @click="increase"
-          ><ImIcon name="up" size="0.9em"
+          @click="decrease"
+          :class="[bem.e('down'), bem.is('disabled', minDisabled)]"
+          ><ImIcon name="down" size="1em"
         /></span>
         <span :class="[bem.e('control-divider')]"></span>
         <span
-          v-ripple="!minDisabled"
-          @click="decrease"
-          :class="[bem.e('down'), bem.is('disabled', minDisabled)]"
-          ><ImIcon name="down" size="0.9em"
+          :class="[bem.e('up'), bem.is('disabled', maxDisabled)]"
+          @click="increase"
+          ><ImIcon name="up" size="1em"
         /></span>
       </div>
     </template>
@@ -131,7 +127,6 @@ function decrease() {
 
 function updateValue(curValue?: number | string) {
   let value = parseFloat(String(curValue));
-  console.log(value, 'value');
   if (!value && value !== 0) return;
 
   const min = isNumberValue(Number(props.min)) ? Number(props.min) : -Infinity;
@@ -173,42 +168,40 @@ function updateValue(curValue?: number | string) {
     justify-content: center;
     width: fit-content;
     height: 100%;
-    color: var(--im-rgb-color-5);
+    color: var(--im-gray-color-7);
     padding: 0 10px;
     transition: all 0.2s ease;
+    background-color: transparent;
+    &:hover {
+      color: var(--im-primary-color-7);
+      background-color: var(--im-rgb-color-1);
+    }
   }
   .im-input-number__decrease {
     border-right: 1px solid var(--im-gray-color-5);
-    &:hover {
-      color: var(--im-primary-color-7);
-    }
   }
   .im-input-number__increase {
     border-left: 1px solid var(--im-gray-color-5);
-    &:hover {
-      color: var(--im-primary-color-7);
-    }
   }
 
   .im-input-number__control-right {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     padding: 0;
-    width: var(--im-input-size, 36px);
-    min-width: 32px;
+    min-width: fit-content;
     height: 100%;
     border-left: 1px solid var(--im-gray-color-5);
     .im-input-number__control-divider {
       border: none;
       margin: 0;
       padding: 0;
-      border-top: 1px solid var(--im-gray-color-5);
-      width: 100%;
-      height: 0;
-      max-height: 0;
+      border-left: 1px solid var(--im-gray-color-5);
+      width: 1px;
+      height: 100%;
+      max-height: 100%;
     }
     .im-input-number__up,
     .im-input-number__down {
@@ -217,12 +210,14 @@ function updateValue(curValue?: number | string) {
       display: flex;
       justify-content: center;
       align-items: center;
-      line-height: 1em;
-      width: 100%;
+      line-height: 100%;
+      height: 100%;
+      width: 28px;
       cursor: pointer;
       color: var(--im-gray-color-7);
       &:hover {
         color: var(--im-primary-color-7);
+        background-color: var(--im-rgb-color-1);
       }
     }
   }

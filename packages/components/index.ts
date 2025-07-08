@@ -8,8 +8,10 @@ import '@/styles/global.scss';
 
 import { useImMessage } from './Message';
 import { useImLoading } from './Common/useImLoading';
+import ImLayer from './Common/ImLayer.vue';
+import ImInnerLayer from './Common/InnerLayer.vue';
 
-import ImButton from './ImButton';
+import { ImButton, ImButtonGroup, ImFloatButton } from './ImButton';
 import { ImCol, ImRow } from './ImLayout';
 import ImInput from './ImInput';
 import ImIcon from './ImIcon';
@@ -44,11 +46,24 @@ import { ImRadioGroup, ImRadio } from './ImRadioGroup';
 import { ImTabs, ImTab } from './ImTabs';
 import { ImPanes, ImPane } from './ImPanes';
 import ImPageHeader from './ImPageHeader';
-import { ImMenuItem, ImMenu, ImSubMenu } from './ImMenu';
-import ImDatePicker from './ImDatePicker';
+import { ImMenuItem, ImMenu, ImSubMenu, ImMenuTitle } from './ImMenu';
+import { ImDatePicker, ImTimePicker, ImDateRangePicker } from './ImDatePicker';
+import {
+  ImSkeleton,
+  ImSkeletonAvatar,
+  ImSkeletonLine,
+  ImSkeletonImage,
+} from './ImSkeleton';
+import ImTextarea from './ImTextarea';
+import ImSwitch from './ImSwitch';
+import ImUpload from './ImUpload';
+import ImTitle from './ImTitle';
+import { ImText, ImLink } from './ImText';
 
 const list = [
   ImButton,
+  ImButtonGroup,
+  ImFloatButton,
   ImCol,
   ImRow,
   ImInput,
@@ -95,7 +110,20 @@ const list = [
   ImMenuItem,
   ImMenu,
   ImSubMenu,
+  ImMenuTitle,
   ImDatePicker,
+  ImTimePicker,
+  ImDateRangePicker,
+  ImSkeleton,
+  ImSkeletonAvatar,
+  ImSkeletonLine,
+  ImSkeletonImage,
+  ImTextarea,
+  ImSwitch,
+  ImUpload,
+  ImTitle,
+  ImText,
+  ImLink,
 ];
 
 const install = (app: App, option?: ImDesignOptions) => {
@@ -115,6 +143,8 @@ const install = (app: App, option?: ImDesignOptions) => {
 
 export {
   ImButton,
+  ImButtonGroup,
+  ImFloatButton,
   ImCol,
   ImRow,
   ImInput,
@@ -163,14 +193,25 @@ export {
   ImMenuItem,
   ImMenu,
   ImSubMenu,
+  ImMenuTitle,
   ImDatePicker,
+  ImTimePicker,
+  ImDateRangePicker,
   ImDirective,
+  ImSkeleton,
+  ImSkeletonAvatar,
+  ImSkeletonLine,
+  ImSkeletonImage,
+  ImTextarea,
+  ImSwitch,
+  ImUpload,
+  ImTitle,
+  ImText,
+  ImLink,
+  ImLayer,
+  ImInnerLayer,
 };
 
 export default {
   install,
 };
-
-export * from './ImButton/types';
-export * from '../types/index';
-export * from '../types/input-props-type';

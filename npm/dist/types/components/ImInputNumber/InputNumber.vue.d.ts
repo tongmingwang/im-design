@@ -18,16 +18,16 @@ declare const __VLS_component: import('vue').DefineComponent<PropsType, {
     blur: () => void | undefined;
     getInput: () => any;
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {} & {
+    clear: () => any;
     blur: () => any;
     change: (value: string | number) => any;
     focus: () => any;
-    clear: () => any;
     "update:modelValue": (value: string | number) => any;
 }, string, import('vue').PublicProps, Readonly<PropsType> & Readonly<{
+    onClear?: (() => any) | undefined;
     onBlur?: (() => any) | undefined;
     onChange?: ((value: string | number) => any) | undefined;
     onFocus?: (() => any) | undefined;
-    onClear?: (() => any) | undefined;
     "onUpdate:modelValue"?: ((value: string | number) => any) | undefined;
 }>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, HTMLDivElement & HTMLInputElement>;
 declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;

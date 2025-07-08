@@ -7,17 +7,14 @@
       bem.is('disabled', props.disabled),
       bem.is('readonly', props.readonly),
     ]">
-    <component
-      :is="item"
-      v-for="item in radios"
-      @change="onSelected"
-      v-bind="props" />
+    <slot />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useBem } from '@/utils/bem';
-import { computed, useSlots } from 'vue';
+import { useRadioGroup } from './hooks';
+import type { RadioGroupProps } from './types';
 
 defineOptions({ name: 'ImRadioGroup' });
 const emit = defineEmits<{
@@ -25,43 +22,10 @@ const emit = defineEmits<{
   (e: 'change', value: string | number): void;
 }>();
 const bem = useBem('radio-group');
-const props = withDefaults(
-  defineProps<{
-    modelValue: string | number;
-    disabled?: boolean;
-    readonly?: boolean;
-    size?: string | number;
-    vertical?: boolean;
-    variant?: 'button';
-  }>(),
-  {
-    modelValue: '',
-  }
-);
-const slots = useSlots();
-const radios = computed(() => filterRadios(slots.default?.() || []));
-
-function isRadio(slot: any) {
-  return slot.type?.name === 'ImRadio';
-}
-function filterRadios(slotArr: Array<any>) {
-  const result: Array<any> = [];
-
-  slotArr.forEach((slot) => {
-    if (isRadio(slot)) {
-      result.push(slot);
-    } else if (Array.isArray(slot?.children)) {
-      result.push(...filterRadios(slot?.children));
-    }
-  });
-
-  return result;
-}
-
-function onSelected(value: string | number) {
-  emit('update:modelValue', value);
-  emit('change', value);
-}
+const props = withDefaults(defineProps<RadioGroupProps>(), {
+  modelValue: '',
+});
+useRadioGroup(props, emit);
 </script>
 
 <style scoped lang="scss">

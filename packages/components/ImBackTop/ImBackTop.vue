@@ -1,5 +1,5 @@
 <template>
-  <Transition name="fade" mode="out-in">
+  <Transition name="fade" :duration="300" mode="out-in">
     <div :class="[bem.b()]" v-show="show" @click="handleClick" :style="styles">
       <slot />
     </div>
@@ -103,7 +103,7 @@ function unbindEvent() {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: all 0.2s ease;
+  transition: all 0.3s ease-out;
 }
 
 .fade-enter-from,

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { withDefaults, onMounted, onUnmounted, watch, ref } from 'vue';
+import { onMounted, onUnmounted, watch, ref } from 'vue';
 import type { AnchorProps } from './AnchorProps';
 import { useBem } from '@/utils/bem';
 import { throttle, debounce } from '@/utils';

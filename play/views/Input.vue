@@ -4,6 +4,7 @@
     <ImInput readonly placeholder="输入" />
     <ImInput placeholder="输入" v-model="v" type="password" passwordEye />
     <ImInputNumber v-model="v" clearable />
+    <ImInputNumber v-model="v" clearable control-right size="48px" />
   </div>
 </template>
 

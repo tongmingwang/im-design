@@ -13,8 +13,6 @@ export default defineComponent({
   },
   emits: ['change'],
   setup(props, { emit, slots, attrs }) {
-    console.log(props, 'props');
-
     return () =>
       h(
         'div',

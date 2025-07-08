@@ -1,2 +1,3 @@
-import { default as ImDatePicker } from './ImDatePicker.vue';
-export default ImDatePicker;
+export declare const ImDatePicker: any;
+export declare const ImTimePicker: any;
+export declare const ImDateRangePicker: any;

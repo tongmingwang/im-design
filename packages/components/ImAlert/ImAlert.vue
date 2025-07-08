@@ -8,7 +8,7 @@
     ]">
     <div :class="[bem.e('icon')]" v-if="props.showIcon">
       <slot name="icon">
-        <ImIcon :name="iconName" :size="showTitleIcon ? 24 : 16" />
+        <ImIcon :name="iconName" :size="showTitleIcon ? 24 : 18" />
       </slot>
     </div>
     <div :class="[bem.e('content')]">
@@ -35,7 +35,7 @@
 import { useBem } from '@/utils/bem';
 import { type AlertProps } from './AlertProps';
 import ImIcon from '../ImIcon';
-import { computed, withDefaults, useSlots, ref } from 'vue';
+import { computed, useSlots, ref } from 'vue';
 import { ripple } from '@/directive';
 // 注册指令,
 const vRipple = ripple;
