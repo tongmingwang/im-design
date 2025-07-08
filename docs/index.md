@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: 'im design 🚀 '
+  name: 'Im Design'
   text: '匠心打造 · 极致体验'
   tagline: '基于 Vue3 的组件库，助力开发者快速构建高质量的Web应用'
   image:
@@ -22,12 +22,14 @@ hero:
 
 features:
   - icon: 🛠️
-    title: 'TypeScript深度集成'
-    details: '完整的类型定义和API提示，提升开发效率和代码质量'
-  - icon: 🎨
-    title: '主题定制能力'
-    details: '支持动态换肤和CSS变量配置，轻松实现品牌化定制'
-  - icon: 🔒
-    title: '安全可靠'
-    details: '严格的代码审查和测试，保障生产环境稳定性'
+    title: '智能开发体验'
+    details: '代码补全如同第二大脑，TypeScript 类型推断精准到令人愉悦'
+
+  - icon: 🎭
+    title: '视觉魔法引擎'
+    details: '用CSS变量编织设计语言，一键切换不同风格的视觉盛宴'
+
+  - icon: 🧑‍💻
+    title: '开箱即用'
+    details: '从安装到惊艳亮相，只需一杯咖啡的时间'
 ---

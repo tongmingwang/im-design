@@ -20,23 +20,29 @@ const open = ref(false);
   }
 </style>
 
-
 ## 基础用法
 
 基本抽屉组件，默认从右侧滑出。
 
  <ImDrawer v-model="drawer" title="基础抽屉">
-    <p>抽屉内容区域</p>
-    <p>可以放置表单、列表等任何内容</p>
+    <ImCard>
+      <ImCardHeader divider>抽屉标题</ImCardHeader>
+      <ImCardBody>抽屉内容区域</ImCardBody>
+      <ImCardFooter divider>抽屉底部区域</ImCardFooter>
+    </ImCard>
   </ImDrawer>
   <ImButton @click="drawer = true">打开抽屉</ImButton>
-
 
 ```vue
 <template>
   <ImDrawer v-model="drawer" title="基础抽屉">
-    <p>抽屉内容区域</p>
-    <p>可以放置表单、列表等任何内容</p>
+    <ImDrawer v-model="drawer" title="基础抽屉">
+      <ImCard>
+        <ImCardHeader divider>抽屉标题</ImCardHeader>
+        <ImCardBody>抽屉内容区域</ImCardBody>
+        <ImCardFooter divider>抽屉底部区域</ImCardFooter>
+      </ImCard>
+    </ImDrawer>
   </ImDrawer>
   <ImButton @click="drawer = true">打开抽屉</ImButton>
 </template>
@@ -90,7 +96,6 @@ const drawer = ref(false);
     <p>底部抽屉内容</p>
   </ImDrawer>
 </template>
-
 ```
 
 ## 自定义尺寸
@@ -117,6 +122,7 @@ const drawer = ref(false);
     v-model="open"
     :close-on-click-mask="false"
     title="需确认关闭的抽屉">
+
 <p>点击遮罩不会关闭抽屉</p>
 <ImButton @click="open = false">点击关闭</ImButton>
 </ImDrawer>
