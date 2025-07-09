@@ -13,7 +13,7 @@
       @mouseleave="() => onLeave(item)"
       class="im-message__item"
       :class="[bem.e('item'), item.color ? bem.e(item.color) : '']">
-      <ImIcon :name="getIconName(item.color)" size="24px" />
+      <ImIcon :name="getIconName(item.color)" size="22" />
       <span class="im-message__text">{{ item.msg }}</span>
     </li>
   </TransitionGroup>
@@ -113,9 +113,9 @@ defineExpose({ addMsg });
   text-align: left;
   text-wrap: nowrap;
   overflow: hidden;
-  height: 32px;
-  border-radius: 32px;
-  min-width: 150px;
+  height: 28px;
+  border-radius: 20px;
+  min-width: 120px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -123,7 +123,7 @@ defineExpose({ addMsg });
   border: none;
   background-color: var(--im-gray-color-11);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
-  line-height: 24px;
+  line-height: 28px;
   gap: 8px;
 
   .im-message__text {

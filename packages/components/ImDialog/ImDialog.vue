@@ -283,23 +283,4 @@ function escHandle(e: KeyboardEvent) {
     }
   }
 }
-
-// .dialog-enter-active,
-// .dialog-leave-active {
-//   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-// }
-// .dialog-enter-from,
-// .dialog-leave-to {
-//   opacity: 0;
-//   transform: translateY(-8px);
-// }
-
-// .full-enter-active,
-// .full-leave-active {
-//   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-// }
-// .full-enter-from,
-// .full-leave-to {
-//   transform: translateY(100%);
-// }
 </style>

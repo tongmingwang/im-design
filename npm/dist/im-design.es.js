@@ -326,7 +326,7 @@ const Gt = ["data-index", "onMouseenter", "onMouseleave"], Ut = { class: "im-mes
         }, [
           z(n(q), {
             name: i(m.color),
-            size: "24px"
+            size: "22"
           }, null, 8, ["name"]),
           I("span", Ut, Y(m.msg), 1)
         ], 42, Gt))), 128))
@@ -334,7 +334,7 @@ const Gt = ["data-index", "onMouseenter", "onMouseleave"], Ut = { class: "im-mes
       _: 1
     }, 8, ["class"]));
   }
-}), Kt = /* @__PURE__ */ R(jt, [["__scopeId", "data-v-1c91a9c7"]]);
+}), Kt = /* @__PURE__ */ R(jt, [["__scopeId", "data-v-9720d2b5"]]);
 class Jt {
   constructor() {
     $e(this, "app");
@@ -2079,7 +2079,7 @@ const Ve = async (o, l = !0) => {
       ]);
     };
   }
-}), tn = L("ImCardBody", Qa), an = L("ImCardBody", Za), nn = L("ImCardBody", en), on = L("ImCard", Ja), rt = 320, ln = (o) => ({
+}), tn = L("ImCardBody", Qa), an = L("ImCardBody", Za), nn = L("ImCardBody", en), on = L("ImCard", Ja), rt = 400, ln = (o) => ({
   enterFN: async (a, t) => {
     var c;
     He(a), await new Promise((g) => requestAnimationFrame(g));
@@ -2098,8 +2098,8 @@ const Ve = async (o, l = !0) => {
       const p = a.getBoundingClientRect(), m = g ? g.getBoundingClientRect() : null;
       m ? (r = (m.left + m.width * 0.5 - p.left) / p.width * 100, u = (m.top + m.height * 0.5 - p.top) / p.height * 100) : (r = (i * 0.5 - p.left) / p.width * 100, u = (s - p.top) / p.height * 100), a.style.setProperty("transform-origin", `${r}% ${u}%`), a.animate(
         [
-          { transform: "scale(0)", opacity: 0, offset: 0 },
-          { transform: "scale(0.66)", opacity: 0.25, offset: 0.33 },
+          { transform: "scale(0.33)", opacity: 0, offset: 0 },
+          { transform: "scale(0.66)", opacity: 0.33, offset: 0.33 },
           { transform: "scale(1)", opacity: 1, offset: 1 }
         ],
         {
@@ -2120,7 +2120,7 @@ const Ve = async (o, l = !0) => {
     ) : a.animate(
       [
         { transform: "scale(1)", opacity: 1, offset: 0 },
-        { transform: "scale(0.66)", opacity: 0.05, offset: 0.66 },
+        { transform: "scale(0.66)", opacity: 0.33, offset: 0.66 },
         { transform: "scale(0)", opacity: 0, offset: 1 }
       ],
       {
@@ -2273,7 +2273,7 @@ const Ve = async (o, l = !0) => {
       ], 14, sn)
     ]));
   }
-}), cn = /* @__PURE__ */ R(rn, [["__scopeId", "data-v-bfe26637"]]), un = C({
+}), cn = /* @__PURE__ */ R(rn, [["__scopeId", "data-v-f4031a9d"]]), un = C({
   name: "ImDialogFooter",
   props: {
     divider: {
