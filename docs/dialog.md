@@ -102,19 +102,17 @@ const apiList = [
     otherValues: ''
   }
 ]
-
-
 </script>
 
- <ImDialog v-model="open">
+  <ImDialog v-model="open">
     <ImDialogHeader>标题</ImDialogHeader>
     <ImDialogBody>让我们一起摇摆！</ImDialogBody>
-    <ImDialogFooter >
+    <ImDialogFooter>
       <ImButton @click="open = false">关闭</ImButton>
       <ImButton @click="open = false" color="primary">确认</ImButton>
     </ImDialogFooter>
   </ImDialog>
-  <ImButton @click="open = true" color="primary" variant="outlined">打开一下</ImButton>
+  <ImButton @click="open = true">打开一下</ImButton>
 
 ```vue
 <template>
@@ -135,36 +133,10 @@ const apiList = [
 使用 fullscreen 属性可以让对话框的内容区全屏显示。
 
   <ImDialog v-model="fullShow" fullscreen>
-    <ImDialogHeader
-     divider
-      >标题
-      <template #action>
-        <ImButton @click="fullShow = false" size="36" shape="circle" variant="text">
-          <ImIcon name="close" size="28"></ImIcon>
-        </ImButton>
-      </template>
-    </ImDialogHeader>
-    <ImDialogBody>
-      <div v-for="i in 3">
-        <ImCheckbox size="48">
-          支持选择 Google 帮助应用确定位置。这意味着将匿名位置数据发送给 Google
-        </ImCheckbox>
-      </div>
-    </ImDialogBody>
-  </ImDialog>
-  <ImButton @click="fullShow = true" color="primary" variant="outlined">打开全屏</ImButton>
-
-```vue
-<template>
-  <ImDialog v-model="fullShow" fullscreen>
     <ImDialogHeader divider
       >标题
       <template #action>
-        <ImButton
-          @click="fullShow = false"
-          size="36"
-          shape="circle"
-          variant="text">
+        <ImButton @click="fullShow = false" shape="circle" variant="text">
           <ImIcon name="close" size="20"></ImIcon>
         </ImButton>
       </template>
@@ -172,14 +144,36 @@ const apiList = [
     <ImDialogBody>
       <div v-for="i in 8">
         <ImCheckbox size="48">
-          Let Google help apps determine location. This means sending anonymous
-          location data to Google, even when no apps are running.
+          支持选择 Google 帮助应用确定位置。这意味着将匿名位置数据发送给 Google
         </ImCheckbox>
       </div>
     </ImDialogBody>
   </ImDialog>
   <ImButton @click="fullShow = true" color="primary" variant="outlined"
-    >Open Fullscreen Dialog</ImButton
+    >打开全屏</ImButton
+  >
+
+```vue
+<template>
+  <ImDialog v-model="fullShow" fullscreen>
+    <ImDialogHeader divider
+      >标题
+      <template #action>
+        <ImButton @click="fullShow = false" shape="circle" variant="text">
+          <ImIcon name="close" size="20"></ImIcon>
+        </ImButton>
+      </template>
+    </ImDialogHeader>
+    <ImDialogBody>
+      <div v-for="i in 8">
+        <ImCheckbox size="48">
+          支持选择 Google 帮助应用确定位置。这意味着将匿名位置数据发送给 Google
+        </ImCheckbox>
+      </div>
+    </ImDialogBody>
+  </ImDialog>
+  <ImButton @click="fullShow = true" color="primary" variant="outlined"
+    >打开全屏</ImButton
   >
 </template>
 ```
@@ -193,7 +187,6 @@ const apiList = [
     <ImDialogBody>一段话</ImDialogBody>
     <ImDialogFooter>
       <ImButton @click="trigger = false">关闭</ImButton>
-      <ImButton @click="trigger = false" color="primary">确认</ImButton>
     </ImDialogFooter>
   </ImDialog>
   <ImButton @click="trigger = true" color="primary" variant="outlined" id="Demo_Button">试试吧</ImButton>
@@ -205,10 +198,9 @@ const apiList = [
     <ImDialogBody>一段话</ImDialogBody>
     <ImDialogFooter>
       <ImButton @click="trigger = false">关闭</ImButton>
-      <ImButton @click="trigger = false" color="primary">确认</ImButton>
     </ImDialogFooter>
   </ImDialog>
-  <ImButton @click="trigger = true">试试吧</ImButton>
+  <ImButton @click="trigger = true" id="Demo_Button">试试吧</ImButton>
 </template>
 ```
 
@@ -249,15 +241,16 @@ const apiList = [
 
 设置 draggable 属性，可以让对话框支持拖拽。支持 PC 端 移动端。
 
-<ImDialog v-model="drag" draggable>
-<ImDialogHeader>标题</ImDialogHeader>
+ <ImDialog v-model="drag" draggable>
+    <ImDialogHeader>标题</ImDialogHeader>
     <ImDialogBody>你可以拖拽头部</ImDialogBody>
     <ImDialogFooter>
-      <ImButton @click="drag = false">Cancel</ImButton>
       <ImButton @click="drag = false" color="primary">Confirm</ImButton>
     </ImDialogFooter>
-</ImDialog>
-<ImButton @click="drag = true" color="primary" variant="outlined">Open Dialog</ImButton>
+  </ImDialog>
+  <ImButton @click="drag = true" color="primary" variant="outlined"
+    >打开对话</ImButton
+  >
 
 ```vue
 <template>
@@ -265,39 +258,20 @@ const apiList = [
     <ImDialogHeader>标题</ImDialogHeader>
     <ImDialogBody>你可以拖拽头部</ImDialogBody>
     <ImDialogFooter>
-      <ImButton @click="drag = false">Cancel</ImButton>
       <ImButton @click="drag = false" color="primary">Confirm</ImButton>
     </ImDialogFooter>
   </ImDialog>
   <ImButton @click="drag = true" color="primary" variant="outlined"
-    >Open Dialog</ImButton
+    >打开对话</ImButton
   >
 </template>
 ```
 
 ## 自定义头部关闭按钮
 
-<ImDialog v-model="headerClose" >
-<ImDialogHeader>Dialog Title
-  <template #action>
-    <ImButton @click="headerClose = false" shape="circle" variant="text">
-    <ImIcon name="close" size="20"></ImIcon>
-    </ImButton>
-    </template>
-</ImDialogHeader>
-<ImDialogBody>Let Google help apps determine location. </ImDialogBody>
-<ImDialogFooter >
-<ImButton @click="headerClose = false">Cancel</ImButton>
-<ImButton @click="headerClose = false" color="primary">Confirm</ImButton>
-</ImDialogFooter>
-</ImDialog>
-<ImButton @click="headerClose = true" color="primary" variant="outlined">Open Dialog</ImButton>
-
-```vue
-<template>
-  <ImDialog v-model="headerClose">
+<ImDialog v-model="headerClose">
     <ImDialogHeader
-      >Dialog Title
+      >标题
       <template #action>
         <ImButton @click="headerClose = false" shape="circle" variant="text">
           <ImIcon name="close" size="20"></ImIcon>
@@ -306,12 +280,31 @@ const apiList = [
     </ImDialogHeader>
     <ImDialogBody>Let Google help apps determine location. </ImDialogBody>
     <ImDialogFooter>
-      <ImButton @click="headerClose = false">Cancel</ImButton>
-      <ImButton @click="headerClose = false" color="primary">Confirm</ImButton>
+      <ImButton @click="headerClose = false">关闭</ImButton>
     </ImDialogFooter>
   </ImDialog>
   <ImButton @click="headerClose = true" color="primary" variant="outlined"
-    >Open Dialog</ImButton
+    >打开对话</ImButton
+  >
+
+```vue
+<template>
+  <ImDialog v-model="headerClose">
+    <ImDialogHeader
+      >标题
+      <template #action>
+        <ImButton @click="headerClose = false" shape="circle" variant="text">
+          <ImIcon name="close" size="20"></ImIcon>
+        </ImButton>
+      </template>
+    </ImDialogHeader>
+    <ImDialogBody>Let Google help apps determine location. </ImDialogBody>
+    <ImDialogFooter>
+      <ImButton @click="headerClose = false">关闭</ImButton>
+    </ImDialogFooter>
+  </ImDialog>
+  <ImButton @click="headerClose = true" color="primary" variant="outlined"
+    >打开对话</ImButton
   >
 </template>
 ```
@@ -320,32 +313,28 @@ const apiList = [
 
 设置分割线属性，可以让头部显示分割线。
 
-<ImDialog v-model="dividerShow" >
-<ImDialogHeader divider>Dialog Title
-</ImDialogHeader>
-<ImDialogBody>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</ImDialogBody>
-<ImDialogFooter divider>
-<ImButton @click="dividerShow = false">Cancel</ImButton>
-<ImButton @click="dividerShow = false" color="primary">Confirm</ImButton>
-</ImDialogFooter>
-</ImDialog>
-<ImButton @click="dividerShow = true" color="primary" variant="outlined">Open Dialog</ImButton>
+ <ImDialog v-model="dividerShow">
+    <ImDialogHeader divider>标题 </ImDialogHeader>
+    <ImDialogBody>你就说好不好</ImDialogBody>
+    <ImDialogFooter divider>
+      <ImButton @click="dividerShow = false">关闭</ImButton>
+    </ImDialogFooter>
+  </ImDialog>
+  <ImButton @click="dividerShow = true" color="primary" variant="outlined"
+    >打开对话</ImButton
+  >
 
 ```vue
 <template>
   <ImDialog v-model="dividerShow">
-    <ImDialogHeader divider>Dialog Title </ImDialogHeader>
-    <ImDialogBody
-      >Let Google help apps determine location. This means sending anonymous
-      location data to Google, even when no apps are running.</ImDialogBody
-    >
+    <ImDialogHeader divider>标题 </ImDialogHeader>
+    <ImDialogBody>你就说好不好</ImDialogBody>
     <ImDialogFooter divider>
-      <ImButton @click="dividerShow = false">Cancel</ImButton>
-      <ImButton @click="dividerShow = false" color="primary">Confirm</ImButton>
+      <ImButton @click="dividerShow = false">关闭</ImButton>
     </ImDialogFooter>
   </ImDialog>
   <ImButton @click="dividerShow = true" color="primary" variant="outlined"
-    >Open Dialog</ImButton
+    >打开对话</ImButton
   >
 </template>
 ```
@@ -354,31 +343,28 @@ const apiList = [
 
 设置 top 属性，可以设置对话框顶部距离。
 
-<ImDialog v-model="top" top="100px">
-<ImDialogHeader>Dialog Title</ImDialogHeader>
-<ImDialogBody>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</ImDialogBody>
-<ImDialogFooter >
-<ImButton @click="top = false">Cancel</ImButton>
-<ImButton @click="top = false" color="primary">Confirm</ImButton>
-</ImDialogFooter>
-</ImDialog>
-<ImButton @click="top = true" color="primary" variant="outlined">Open Dialog</ImButton>
+ <ImDialog v-model="top" top="100px">
+    <ImDialogHeader>标题</ImDialogHeader>
+    <ImDialogBody>可以设置对话框顶部距离</ImDialogBody>
+    <ImDialogFooter>
+      <ImButton @click="top = false">关闭</ImButton>
+    </ImDialogFooter>
+  </ImDialog>
+  <ImButton @click="top = true" color="primary" variant="outlined"
+    >打开对话</ImButton
+  >
 
 ```vue
 <template>
   <ImDialog v-model="top" top="100px">
-    <ImDialogHeader>Dialog Title</ImDialogHeader>
-    <ImDialogBody
-      >Let Google help apps determine location. This means sending anonymous
-      location data to Google, even when no apps are running.</ImDialogBody
-    >
+    <ImDialogHeader>标题</ImDialogHeader>
+    <ImDialogBody>可以设置对话框顶部距离</ImDialogBody>
     <ImDialogFooter>
-      <ImButton @click="top = false">Cancel</ImButton>
-      <ImButton @click="top = false" color="primary">Confirm</ImButton>
+      <ImButton @click="top = false">关闭</ImButton>
     </ImDialogFooter>
   </ImDialog>
   <ImButton @click="top = true" color="primary" variant="outlined"
-    >Open Dialog</ImButton
+    >打开对话</ImButton
   >
 </template>
 ```

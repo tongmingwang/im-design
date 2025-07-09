@@ -1,4 +1,4 @@
-# Message 消息提示
+# Message 消息
 
 需要给用户及时反馈时
 
@@ -10,7 +10,7 @@
 import { useImMessage } from 'im-design'
 
 const { info,error,success,warning } = useImMessage()
-console.log('useImMessage', useImMessage())
+
 </script>
 
 <ImButton @click="info('这是一个提示消息！')">提示消息</ImButton>
@@ -22,14 +22,14 @@ console.log('useImMessage', useImMessage())
 <script setup>
 import { useImMessage } from 'im-design';
 
-const { info } = useImMessage();
+const { info, error, success, warning } = useImMessage();
 </script>
 ```
 
 ## 其他
 
-<ImButton @click="error('这是一个提示消息！')" color="error">提示消息</ImButton>
-<ImButton @click="success('这是一个提示消息！')" color="success">提示消息</ImButton>
-<ImButton @click="warning('这是一个提示消息！')" color="warning">提示消息</ImButton>
-
-## APIS
+<ImRow :gutter="8">
+<ImButton @click="error('这是一个提示消息！')" color="error">Error</ImButton>
+<ImButton @click="success('这是一个提示消息！')" color="success">Success</ImButton>
+<ImButton @click="warning('这是一个提示消息！')" color="warning">Warning</ImButton>
+</ImRow>
