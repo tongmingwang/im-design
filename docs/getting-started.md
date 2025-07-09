@@ -96,3 +96,14 @@ const handleClick = () => {
 };
 </script>
 ```
+
+## umd 方式引入
+
+你需要下载最新的 `im-design.umd.js` 和 `css`。然后在你的项目中引入。
+
+```html
+<script src="path/to/im-design.umd.js"></script>
+<link rel="stylesheet" href="path/to/im-design.css" />
+```
+
+这种方式适用于非模块化的项目，例如原生 JavaScript 项目。

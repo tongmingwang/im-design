@@ -13,6 +13,7 @@ export const sidebar = [
       { text: '快速开始', link: '/getting-started' },
       { text: '设计原则', link: '/design' },
       { text: '全局主题', link: '/theme' },
+      { text: '最佳实践', link: '/best-practice' },
     ],
   },
   {

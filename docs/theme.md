@@ -6,8 +6,14 @@ ImDesign 是采用 css 全局变量来控制主题颜色的，你可以通过修
 
 ```css
 :root {
-  --im-primary-color-7: #1890ff;
+  --im-primary-color-8: #1890ff;
 }
+```
+
+你可以直接在最近的节点上直接修改，或者在全局样式文件中修改。
+
+```html
+<div style="--im-primary-color-8: #1890ff;">...</div>
 ```
 
 ## 主题变量
@@ -120,3 +126,5 @@ html，或者 body 标签上添加 `class="dark"` 属性，即可开启暗黑模
   </body>
 </html>
 ```
+
+或者 html/ body 标签上添加 `data-theme="dark"` 属性，即可开启暗黑模式。

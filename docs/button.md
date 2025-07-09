@@ -282,10 +282,9 @@ const colors = ['default', 'primary', 'error', 'warning', 'success'];
 
 #### ImButton 插槽
 
-| 插槽名  | 说明             |
-| ------- | ---------------- |
-| default | 按钮内容区域     |
-| loading | 加载状态时的内容 |
+| 插槽名  | 说明         |
+| ------- | ------------ |
+| default | 按钮内容区域 |
 
 #### 颜色变量 (CSS Variables)
 

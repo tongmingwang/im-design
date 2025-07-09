@@ -1,4 +1,4 @@
-## FloatButton 悬浮按钮
+# FloatButton 悬浮按钮
 
 将操作按钮浮动地固定在角落，用于方便用户快速触发某些操作。
 
@@ -13,8 +13,29 @@
   </ImButton>
   </template>
   <template #content>
-    <ImButton variant="text" shape="circle">按钮</ImButton>
-    <ImButton variant="text" shape="circle">按钮</ImButton>
-    <ImButton variant="text" shape="circle">按钮</ImButton>
+    <ImButtonGroup vertical color="primary">
+    <ImButton shape="circle">按钮</ImButton>
+    <ImButton shape="circle">按钮</ImButton>
+    <ImButton shape="circle">按钮</ImButton>
+    </ImButtonGroup>
   </template>
 </ImFloatButton>
+
+```vue
+<template>
+  <ImFloatButton shape="circle">
+    <template #default="{ open }">
+      <ImButton shape="circle" variant="text">
+        <ImIcon :name="open ? 'close' : 'up'" />
+      </ImButton>
+    </template>
+    <template #content>
+      <ImButtonGroup vertical color="primary">
+        <ImButton shape="circle">按钮</ImButton>
+        <ImButton shape="circle">按钮</ImButton>
+        <ImButton shape="circle">按钮</ImButton>
+      </ImButtonGroup>
+    </template>
+  </ImFloatButton>
+</template>
+```
