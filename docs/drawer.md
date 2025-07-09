@@ -97,28 +97,25 @@ const drawer = ref(false);
 通过 `placement` 属性控制抽屉出现方向，支持四个方向：
 
 <div class="demo-buttons">
-    <ImButton @click="left = true">左侧</ImButton>
-    <ImButton @click="top = true">顶部</ImButton>
-    <ImButton @click="bottom = true">底部</ImButton>
-  </div>
-
-  <ImDrawer v-model="left" placement="left" title="左侧抽屉">
-     <ImDrawerHeader>抽屉标题</ImDrawerHeader>
-    <ImDrawerBody>抽屉内容区域</ImDrawerBody>
-    <ImDrawerFooter>抽屉底部区域</ImDrawerFooter>
-  </ImDrawer>
-
-  <ImDrawer v-model="top" placement="top" title="顶部抽屉">
-     <ImDrawerHeader>抽屉标题</ImDrawerHeader>
-    <ImDrawerBody>抽屉内容区域</ImDrawerBody>
-    <ImDrawerFooter>抽屉底部区域</ImDrawerFooter>
-  </ImDrawer>
-
-  <ImDrawer v-model="bottom" placement="bottom" title="底部抽屉">
-     <ImDrawerHeader>抽屉标题</ImDrawerHeader>
-    <ImDrawerBody>抽屉内容区域</ImDrawerBody>
-    <ImDrawerFooter>抽屉底部区域</ImDrawerFooter>
-  </ImDrawer>
+  <ImButton @click="left = true">左侧</ImButton>
+  <ImButton @click="top = true">顶部</ImButton>
+  <ImButton @click="bottom = true">底部</ImButton>
+</div>
+<ImDrawer v-model="left" placement="left">
+  <ImDrawerHeader>抽屉标题</ImDrawerHeader>
+<ImDrawerBody>抽屉内容区域</ImDrawerBody>
+<ImDrawerFooter>抽屉底部区域</ImDrawerFooter>
+</ImDrawer>
+<ImDrawer v-model="top" placement="top">
+  <ImDrawerHeader>抽屉标题</ImDrawerHeader>
+<ImDrawerBody>抽屉内容区域</ImDrawerBody>
+<ImDrawerFooter>抽屉底部区域</ImDrawerFooter>
+</ImDrawer>
+<ImDrawer v-model="bottom" placement="bottom">
+  <ImDrawerHeader>抽屉标题</ImDrawerHeader>
+<ImDrawerBody>抽屉内容区域</ImDrawerBody>
+<ImDrawerFooter>抽屉底部区域</ImDrawerFooter>
+</ImDrawer>
 
 ```vue
 <template>
@@ -134,16 +131,16 @@ const drawer = ref(false);
 
 通过 `size` 属性自定义抽屉大小，支持百分比或具体像素值：
 
-<ImDrawer v-model="customSize" size="50%" title="半宽抽屉">
-    <ImDrawerHeader>抽屉标题</ImDrawerHeader>
-    <ImDrawerBody>抽屉内容区域</ImDrawerBody>
-    <ImDrawerFooter>抽屉底部区域</ImDrawerFooter>
-  </ImDrawer>
-  <ImButton @click="customSize = true">打开半宽抽屉</ImButton>
+<ImDrawer v-model="customSize" size="50%">
+  <ImDrawerHeader>抽屉标题</ImDrawerHeader>
+  <ImDrawerBody>抽屉内容区域</ImDrawerBody>
+  <ImDrawerFooter>抽屉底部区域</ImDrawerFooter>
+</ImDrawer>
+<ImButton @click="customSize = true">打开半宽抽屉</ImButton>
 
 ```vue
 <template>
-  <ImDrawer v-model="customSize" size="50%" title="半宽抽屉">
+  <ImDrawer v-model="customSize" size="50%">
     <ImDrawerHeader>抽屉标题</ImDrawerHeader>
     <ImDrawerBody>抽屉内容区域</ImDrawerBody>
     <ImDrawerFooter>抽屉底部区域</ImDrawerFooter>
@@ -158,11 +155,11 @@ const drawer = ref(false);
     v-model="open"
     :close-on-click-mask="false"
     title="需确认关闭的抽屉">
-
 <ImDrawerHeader>抽屉标题</ImDrawerHeader>
 <ImDrawerBody>抽屉内容区域</ImDrawerBody>
-<ImDrawerFooter><ImButton @click="open = false">点击关闭</ImButton></ImDrawerFooter>
-
+<ImDrawerFooter
+      ><ImButton @click="open = false">点击关闭</ImButton></ImDrawerFooter
+    >
 </ImDrawer>
 <ImButton @click="open = true">打开抽屉</ImButton>
 
