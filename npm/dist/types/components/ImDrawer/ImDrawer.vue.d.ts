@@ -1,11 +1,4 @@
-type __VLS_Props = {
-    modelValue: boolean;
-    mask?: boolean;
-    closeOnClickMask?: boolean;
-    placement?: 'left' | 'right' | 'top' | 'bottom';
-    size?: string | number;
-    zIndex?: string | number;
-};
+import { DrawerProps } from './DrawerProps';
 declare function __VLS_template(): {
     attrs: Partial<{}>;
     slots: {
@@ -17,17 +10,19 @@ declare function __VLS_template(): {
     rootEl: any;
 };
 type __VLS_TemplateResult = ReturnType<typeof __VLS_template>;
-declare const __VLS_component: import('vue').DefineComponent<__VLS_Props, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {} & {
+declare const __VLS_component: import('vue').DefineComponent<DrawerProps, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {} & {
+    close: () => any;
     "update:modelValue": (value: boolean) => any;
-}, string, import('vue').PublicProps, Readonly<__VLS_Props> & Readonly<{
+}, string, import('vue').PublicProps, Readonly<DrawerProps> & Readonly<{
+    onClose?: (() => any) | undefined;
     "onUpdate:modelValue"?: ((value: boolean) => any) | undefined;
 }>, {
     mask: boolean;
-    zIndex: string | number;
     size: string | number;
     placement: "left" | "right" | "top" | "bottom";
     modelValue: boolean;
     closeOnClickMask: boolean;
+    closeOnEscape: boolean;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {
     containerRef: HTMLDivElement;
 }, any>;

@@ -1,19 +1,9 @@
 <template>
   <div>
     <ImDrawer v-model="visible" :placement="placement">
-      <ImCard title="Default" borderless>
-        <template #header-action>
-          <ImButton
-            variant="text"
-            size="48"
-            shape="circle"
-            @click="visible = false">
-            <ImIcon name="close" size="20" />
-          </ImButton>
-        </template>
-        <p>Content ...</p>
-        <p>Content ...</p>
-      </ImCard>
+      <ImDrawerHeader>标题</ImDrawerHeader>
+      <ImDrawerBody>内容</ImDrawerBody>
+      <ImDrawerFooter align="flex-end">底部</ImDrawerFooter>
     </ImDrawer>
     <ImButton @click="() => handle('right')"> Default </ImButton>
     <ImButton @click="() => handle('top')">top</ImButton>

@@ -17,7 +17,7 @@ import { default as ImDropdown } from './ImDropdown';
 import { ImList, ImListItem } from './ImList';
 import { default as ImAvatar } from './ImAvatar';
 import { default as ImMask } from './ImMask';
-import { default as ImDrawer } from './ImDrawer';
+import { ImDrawer, ImDrawerHeader, ImDrawerBody, ImDrawerFooter } from './ImDrawer';
 import { default as ImCard, ImCardBody, ImCardFooter, ImCardHeader } from './ImCard';
 import { default as ImDialog, ImDialogFooter, ImDialogHeader, ImDialogBody } from './ImDialog';
 import { default as ImPagination } from './ImPagination';
@@ -44,7 +44,7 @@ import { default as ImSwitch } from './ImSwitch';
 import { default as ImUpload } from './ImUpload';
 import { default as ImTitle } from './ImTitle';
 import { ImText, ImLink } from './ImText';
-export { ImButton, ImButtonGroup, ImFloatButton, ImCol, ImRow, ImInput, ImIcon, ImDivider, ImAnchor, ImAlert, ImBreadcrumb, ImBreadcrumbItem, ImDropdown, ImList, ImListItem, ImAvatar, ImMask, ImDrawer, ImCard, ImCardBody, ImCardFooter, ImCardHeader, useImMessage, ImDialog, ImDialogFooter, ImDialogHeader, ImDialogBody, ImPagination, ImSelect, ImTag, ImTooltip, ImPopover, useImLoading, ImBadge, ImBackTop, ImCollapse, ImCollapseItem, ImInputNumber, ImCheckbox, ImTable, ImEmpty, ImRadioGroup, ImRadio, ImTabs, ImTab, ImPanes, ImPane, ImPageHeader, ImMenuItem, ImMenu, ImSubMenu, ImMenuTitle, ImDatePicker, ImTimePicker, ImDateRangePicker, ImDirective, ImSkeleton, ImSkeletonAvatar, ImSkeletonLine, ImSkeletonImage, ImTextarea, ImSwitch, ImUpload, ImTitle, ImText, ImLink, ImLayer, ImInnerLayer, };
+export { ImButton, ImButtonGroup, ImFloatButton, ImCol, ImRow, ImInput, ImIcon, ImDivider, ImAnchor, ImAlert, ImBreadcrumb, ImBreadcrumbItem, ImDropdown, ImList, ImListItem, ImAvatar, ImMask, ImDrawer, ImCard, ImCardBody, ImCardFooter, ImCardHeader, useImMessage, ImDialog, ImDialogFooter, ImDialogHeader, ImDialogBody, ImPagination, ImSelect, ImTag, ImTooltip, ImPopover, useImLoading, ImBadge, ImBackTop, ImCollapse, ImCollapseItem, ImInputNumber, ImCheckbox, ImTable, ImEmpty, ImRadioGroup, ImRadio, ImTabs, ImTab, ImPanes, ImPane, ImPageHeader, ImMenuItem, ImMenu, ImSubMenu, ImMenuTitle, ImDatePicker, ImTimePicker, ImDateRangePicker, ImDirective, ImSkeleton, ImSkeletonAvatar, ImSkeletonLine, ImSkeletonImage, ImTextarea, ImSwitch, ImUpload, ImTitle, ImText, ImLink, ImLayer, ImInnerLayer, ImDrawerHeader, ImDrawerBody, ImDrawerFooter, };
 declare const _default: {
     install: (app: App, option?: ImDesignOptions) => void;
 };

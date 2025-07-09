@@ -10,3 +10,4 @@ export declare const getScreeWH: () => {
 export declare const isLockScroll: () => boolean;
 export declare const updateLockScroller: () => Promise<void>;
 export declare function isMobile(): boolean;
+export declare const updateKeydownEvent: (bol: boolean, callback: (e: KeyboardEvent) => void) => void;

@@ -1,18 +1,13 @@
 <template>
-  <Tabs />
-  <Dialog />
   <ImButton @click="click">测试</ImButton>
-  <Menu />
+  <Drawer />
+  <Dialog />
 </template>
 
 <script setup lang="ts">
-import Tabs from './views/Tabs.vue';
-import Menu from './views/Menu.vue';
-import Dialog from './views/Dialog.vue';
-import Dropdown from './views/Dropdown.vue';
+import Drawer from './views/Drawer.vue';
 import { useImMessage } from '../packages/components';
-import { ImButton } from 'im-design';
-
+import Dialog from './views/Dialog.vue';
 const click = () => {
   useImMessage().info('This is a message!');
 };

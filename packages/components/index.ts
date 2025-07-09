@@ -23,7 +23,12 @@ import ImDropdown from './ImDropdown';
 import { ImList, ImListItem } from './ImList';
 import ImAvatar from './ImAvatar';
 import ImMask from './ImMask';
-import ImDrawer from './ImDrawer';
+import {
+  ImDrawer,
+  ImDrawerHeader,
+  ImDrawerBody,
+  ImDrawerFooter,
+} from './ImDrawer';
 import ImCard, { ImCardBody, ImCardFooter, ImCardHeader } from './ImCard';
 import ImDialog, {
   ImDialogFooter,
@@ -124,6 +129,9 @@ const list = [
   ImTitle,
   ImText,
   ImLink,
+  ImDrawerHeader,
+  ImDrawerBody,
+  ImDrawerFooter,
 ];
 
 const install = (app: App, option?: ImDesignOptions) => {
@@ -210,6 +218,9 @@ export {
   ImLink,
   ImLayer,
   ImInnerLayer,
+  ImDrawerHeader,
+  ImDrawerBody,
+  ImDrawerFooter,
 };
 
 export default {

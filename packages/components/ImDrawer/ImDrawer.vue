@@ -3,9 +3,11 @@
     <div
       tabindex="-1"
       ref="containerRef"
+      :data-esc="props.closeOnEscape"
       :class="[
         bem.b(),
         bem.is('im-lock-scroll', props.modelValue),
+        bem.is('show', props.modelValue),
         props.placement ? bem.m(props.placement) : '',
       ]"
       :style="{
@@ -44,48 +46,55 @@ import {
   bottomToTop,
 } from '@/utils/transition';
 import { useOverlay } from '@/hooks/useOverlay';
+import type { DrawerProps } from './DrawerProps';
+import { updateKeydownEvent } from '@/utils/dom';
 
 defineOptions({ name: 'ImDrawer' });
 const bem = useBem('drawer');
 const emit = defineEmits<{
   (e: 'update:modelValue', value: boolean): void;
+  (e: 'close'): void;
 }>();
-
-const props = withDefaults(
-  defineProps<{
-    modelValue: boolean;
-    mask?: boolean;
-    closeOnClickMask?: boolean;
-    placement?: 'left' | 'right' | 'top' | 'bottom';
-    size?: string | number;
-    zIndex?: string | number;
-  }>(),
-  {
-    modelValue: false,
-    mask: true,
-    placement: 'right',
-    size: '280px',
-    zIndex: '',
-    closeOnClickMask: true,
-  }
-);
+const props = withDefaults(defineProps<DrawerProps>(), {
+  modelValue: false,
+  mask: true,
+  placement: 'right',
+  size: '280px',
+  closeOnClickMask: true,
+  closeOnEscape: true,
+});
 const containerRef = ref<HTMLElement | null>(null);
 const { zIndexToken } = useToken();
-const sizeValue = computed(() =>
-  getSizeValue(props.size || zIndexToken.value || '280px')
-);
+const sizeValue = computed(() => getSizeValue(props.size || '280px'));
+
 useOverlay();
 
 watch(
   () => props.modelValue,
   (val) => {
+    updateKeydownEvent(!!(val && props.closeOnEscape), escHandle);
     updateLockScroller();
   },
-  { immediate: true }
+  {
+    immediate: true,
+  }
 );
+
+function escHandle(e: KeyboardEvent) {
+  if (e.key === 'Escape' || e.code === 'Escape') {
+    const drawers = document.querySelectorAll(
+      '.im-drawer.is-show[data-esc="true"]'
+    );
+    if (drawers.length && containerRef.value) {
+      const drawer = Array.from(drawers).pop();
+      if (drawer === containerRef.value) onClose();
+    }
+  }
+}
 
 const onClose = () => {
   emit('update:modelValue', false);
+  emit('close');
 };
 
 function onEnter(el: Element, done: () => void) {
@@ -110,7 +119,6 @@ function onEnter(el: Element, done: () => void) {
   }
   done();
 }
-
 function onLeave(el: Element, done: () => void) {
   removeAnimate(el as HTMLElement);
   switch (props.placement) {
@@ -157,6 +165,8 @@ function onLeave(el: Element, done: () => void) {
     background-color: var(--im-bg-content-color, #fff);
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
   }
 
   &.im-drawer--right,

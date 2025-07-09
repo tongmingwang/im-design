@@ -22,32 +22,111 @@ const trigger = ref(false)
 function getTarget(){
   return document.querySelector('#Demo_Button')
 }
+
+const apiList = [
+  {
+    name: 'modelValue',
+    type: 'Boolean',
+    desc: '是否显示对话框',
+    default: 'false',
+    otherValues: ''
+  },
+  {
+    name: 'closeOnClickMask',
+    type: 'Boolean',
+    desc: '是否可以通过点击遮罩关闭对话框',
+    default: 'true',
+    otherValues: ''
+  },
+  {
+    name: 'width',
+    type: 'String',
+    desc: '对话框的宽度',
+    default: '',
+    otherValues: ''
+  },
+  {
+    name: 'height',
+    type: 'String',
+    desc: '对话框的高度',
+    default: '',
+    otherValues: ''
+  },
+  {
+    name: 'fullscreen',
+    type: 'Boolean',
+    desc: '是否全屏显示对话框',
+    default: 'false',
+    otherValues: ''
+  },
+  {
+    name: 'closeOnEscape',
+    type: 'Boolean',
+    desc: '是否可以通过按下 Esc 键关闭对话框',
+    default: 'true',
+    otherValues: ''
+  },
+  {
+    name: 'mask',
+    type: 'Boolean',
+    desc: '是否显示背景遮罩',
+    default: 'true',
+    otherValues: ''
+  },
+  {
+    name: 'zIndex',
+    type: 'Number',
+    desc: '对话框的 z-index 值',
+    default: '',
+    otherValues: ''
+  },
+  {
+    name: 'top',
+    type: 'String | Number',
+    desc: '对话框距离顶部的距离',
+    default: '',
+    otherValues: ''
+  },
+  {
+    name: 'getTarget',
+    type: 'Function',
+    desc: '返回对话框挂载的目标元素',
+    default: '',
+    otherValues: ''
+  },
+  {
+    name: 'draggable',
+    type: 'Boolean',
+    desc: '是否可以拖动对话框',
+    default: 'false',
+    otherValues: ''
+  }
+]
+
+
 </script>
 
  <ImDialog v-model="open">
-    <ImDialogHeader>Dialog Title</ImDialogHeader>
-    <ImDialogBody>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</ImDialogBody>
+    <ImDialogHeader>标题</ImDialogHeader>
+    <ImDialogBody>让我们一起摇摆！</ImDialogBody>
     <ImDialogFooter >
-      <ImButton @click="open = false">Cancel</ImButton>
-      <ImButton @click="open = false" color="primary">Confirm</ImButton>
+      <ImButton @click="open = false">关闭</ImButton>
+      <ImButton @click="open = false" color="primary">确认</ImButton>
     </ImDialogFooter>
   </ImDialog>
-  <ImButton @click="open = true" color="primary" variant="outlined">Open Dialog</ImButton>
+  <ImButton @click="open = true" color="primary" variant="outlined">打开一下</ImButton>
 
 ```vue
 <template>
   <ImDialog v-model="open">
-    <ImDialogHeader>Dialog Title</ImDialogHeader>
-    <ImDialogBody
-      >Let Google help apps determine location. This means sending anonymous
-      location data to Google, even when no apps are running.</ImDialogBody
-    >
+    <ImDialogHeader>标题</ImDialogHeader>
+    <ImDialogBody>让我们一起摇摆！</ImDialogBody>
     <ImDialogFooter>
-      <ImButton @click="open = false">Cancel</ImButton>
-      <ImButton @click="open = false" color="primary">Confirm</ImButton>
+      <ImButton @click="open = false">关闭</ImButton>
+      <ImButton @click="open = false" color="primary">确认</ImButton>
     </ImDialogFooter>
   </ImDialog>
-  <ImButton @click="open = true">Oen Dialog</ImButton>
+  <ImButton @click="open = true">打开一下</ImButton>
 </template>
 ```
 
@@ -58,31 +137,34 @@ function getTarget(){
   <ImDialog v-model="fullShow" fullscreen>
     <ImDialogHeader
      divider
-      >Dialog Title
+      >标题
       <template #action>
-        <ImButton @click="fullShow = false" size="36" shape="circle">
-          <ImIcon name="close" size="20"></ImIcon>
+        <ImButton @click="fullShow = false" size="36" shape="circle" variant="text">
+          <ImIcon name="close" size="28"></ImIcon>
         </ImButton>
       </template>
     </ImDialogHeader>
     <ImDialogBody>
-      <div v-for="i in 8">
+      <div v-for="i in 3">
         <ImCheckbox size="48">
-          Let Google help apps determine location. This means sending anonymous
-          location data to Google, even when no apps are running.
+          支持选择 Google 帮助应用确定位置。这意味着将匿名位置数据发送给 Google
         </ImCheckbox>
       </div>
     </ImDialogBody>
   </ImDialog>
-  <ImButton @click="fullShow = true" color="primary" variant="outlined">Open Fullscreen Dialog</ImButton>
+  <ImButton @click="fullShow = true" color="primary" variant="outlined">打开全屏</ImButton>
 
 ```vue
 <template>
   <ImDialog v-model="fullShow" fullscreen>
     <ImDialogHeader divider
-      >Dialog Title
+      >标题
       <template #action>
-        <ImButton @click="fullShow = false" size="36" shape="circle">
+        <ImButton
+          @click="fullShow = false"
+          size="36"
+          shape="circle"
+          variant="text">
           <ImIcon name="close" size="20"></ImIcon>
         </ImButton>
       </template>
@@ -107,42 +189,39 @@ function getTarget(){
 设置 getTarget 属性，可以将 Dialog 的打开与关闭绑定到某个元素上。
 
  <ImDialog v-model="trigger" :getTarget="getTarget">
-    <ImDialogHeader>Dialog Title</ImDialogHeader>
-    <ImDialogBody>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</ImDialogBody>
-    <ImDialogFooter >
-      <ImButton @click="trigger = false" >Cancel</ImButton>
-      <ImButton @click="trigger = false"  color="primary">Confirm</ImButton>
+    <ImDialogHeader>标题</ImDialogHeader>
+    <ImDialogBody>一段话</ImDialogBody>
+    <ImDialogFooter>
+      <ImButton @click="trigger = false">关闭</ImButton>
+      <ImButton @click="trigger = false" color="primary">确认</ImButton>
     </ImDialogFooter>
   </ImDialog>
-  <ImButton @click="trigger = true" color="primary" variant="outlined" id="Demo_Button">Open Dialog</ImButton>
+  <ImButton @click="trigger = true" color="primary" variant="outlined" id="Demo_Button">试试吧</ImButton>
 
 ```vue
 <template>
   <ImDialog v-model="trigger">
-    <ImDialogHeader>Dialog Title</ImDialogHeader>
-    <ImDialogBody
-      >Let Google help apps determine location. This means sending anonymous
-      location data to Google, even when no apps are running.</ImDialogBody
-    >
+    <ImDialogHeader>标题</ImDialogHeader>
+    <ImDialogBody>一段话</ImDialogBody>
     <ImDialogFooter>
-      <ImButton @click="trigger = false">Cancel</ImButton>
-      <ImButton @click="trigger = false" color="primary">Confirm</ImButton>
+      <ImButton @click="trigger = false">关闭</ImButton>
+      <ImButton @click="trigger = false" color="primary">确认</ImButton>
     </ImDialogFooter>
   </ImDialog>
-  <ImButton @click="trigger = true">Oen Dialog</ImButton>
+  <ImButton @click="trigger = true">试试吧</ImButton>
 </template>
 ```
 
 ## 嵌套使用
 
 <ImDialog v-model="parent">
-    <ImDialogHeader>Dialog Title</ImDialogHeader>
+    <ImDialogHeader>父标题</ImDialogHeader>
     <ImDialogBody
       >这里是内容区域
       <ImButton @click="child = true">打开子级对话框</ImButton>
     </ImDialogBody>
     <ImDialog v-model="child" parent>
-      <ImDialogHeader>Child Dialog</ImDialogHeader>
+      <ImDialogHeader>子标题</ImDialogHeader>
       <ImDialogBody>这里是内容区域</ImDialogBody>
     </ImDialog>
   </ImDialog>
@@ -151,14 +230,14 @@ function getTarget(){
 ```vue
 <template>
   <ImDialog v-model="parent">
-    <ImDialogHeader>Dialog Title</ImDialogHeader>
+    <ImDialogHeader>父标题</ImDialogHeader>
     <ImDialogBody
       >这里是内容区域
       <ImButton @click="child = true">打开子级对话框</ImButton>
     </ImDialogBody>
 
     <ImDialog v-model="child" parent>
-      <ImDialogHeader>Child Dialog</ImDialogHeader>
+      <ImDialogHeader>子标题</ImDialogHeader>
       <ImDialogBody>这里是内容区域</ImDialogBody>
     </ImDialog>
   </ImDialog>
@@ -171,23 +250,20 @@ function getTarget(){
 设置 draggable 属性，可以让对话框支持拖拽。支持 PC 端 移动端。
 
 <ImDialog v-model="drag" draggable>
-<ImDialogHeader>Dialog Title</ImDialogHeader>
-<ImDialogBody>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</ImDialogBody>
-<ImDialogFooter >
-<ImButton @click="drag = false">Cancel</ImButton>
-<ImButton @click="drag = false" color="primary">Confirm</ImButton>
-</ImDialogFooter>
+<ImDialogHeader>标题</ImDialogHeader>
+    <ImDialogBody>你可以拖拽头部</ImDialogBody>
+    <ImDialogFooter>
+      <ImButton @click="drag = false">Cancel</ImButton>
+      <ImButton @click="drag = false" color="primary">Confirm</ImButton>
+    </ImDialogFooter>
 </ImDialog>
 <ImButton @click="drag = true" color="primary" variant="outlined">Open Dialog</ImButton>
 
 ```vue
 <template>
   <ImDialog v-model="drag" draggable>
-    <ImDialogHeader>Dialog Title</ImDialogHeader>
-    <ImDialogBody
-      >Let Google help apps determine location. This means sending anonymous
-      location data to Google, even when no apps are running.</ImDialogBody
-    >
+    <ImDialogHeader>标题</ImDialogHeader>
+    <ImDialogBody>你可以拖拽头部</ImDialogBody>
     <ImDialogFooter>
       <ImButton @click="drag = false">Cancel</ImButton>
       <ImButton @click="drag = false" color="primary">Confirm</ImButton>
@@ -204,12 +280,12 @@ function getTarget(){
 <ImDialog v-model="headerClose" >
 <ImDialogHeader>Dialog Title
   <template #action>
-    <ImButton @click="headerClose = false" shape="circle">
+    <ImButton @click="headerClose = false" shape="circle" variant="text">
     <ImIcon name="close" size="20"></ImIcon>
     </ImButton>
     </template>
 </ImDialogHeader>
-<ImDialogBody>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</ImDialogBody>
+<ImDialogBody>Let Google help apps determine location. </ImDialogBody>
 <ImDialogFooter >
 <ImButton @click="headerClose = false">Cancel</ImButton>
 <ImButton @click="headerClose = false" color="primary">Confirm</ImButton>
@@ -220,11 +296,15 @@ function getTarget(){
 ```vue
 <template>
   <ImDialog v-model="headerClose">
-    <ImDialogHeader>Dialog Title</ImDialogHeader>
-    <ImDialogBody
-      >Let Google help apps determine location. This means sending anonymous
-      location data to Google, even when no apps are running.</ImDialogBody
-    >
+    <ImDialogHeader
+      >Dialog Title
+      <template #action>
+        <ImButton @click="headerClose = false" shape="circle" variant="text">
+          <ImIcon name="close" size="20"></ImIcon>
+        </ImButton>
+      </template>
+    </ImDialogHeader>
+    <ImDialogBody>Let Google help apps determine location. </ImDialogBody>
     <ImDialogFooter>
       <ImButton @click="headerClose = false">Cancel</ImButton>
       <ImButton @click="headerClose = false" color="primary">Confirm</ImButton>
@@ -305,43 +385,6 @@ function getTarget(){
 
 ## API
 
-### ImDialog Props
+Dialog 组件提供了以下属性：
 
-| 属性名           | 说明                     | 类型    | 默认值  | 必填 |
-| ---------------- | ------------------------ | ------- | ------- | ---- |
-| modelValue       | 对话框是否可见           | boolean | false   | 是   |
-| closeOnClickMask | 点击遮罩层是否关闭对话框 | boolean | true    | 否   |
-| width            | 对话框宽度               | string  | '420px' | 否   |
-| height           | 对话框高度               | string  | 'auto'  | 否   |
-| fullscreen       | 是否全屏显示             | boolean | false   | 否   |
-| closeOnEscape    | 按 ESC 键是否关闭对话框  | boolean | true    | 否   |
-| mask             | 是否显示遮罩层           | boolean | true    | 否   |
-| zIndex           | 设置对话框的 z-index     | number  | 1000    | 否   |
-| top              | 对话框顶部距离           | string  | -       | 否   |
-| draggable        | 是否可拖拽               | boolean | false   | 否   |
-| divider          | 是否显示分割线           | boolean | false   | 否   |
-
-### ImDialog Events
-
-| 事件名            | 说明                     | 回调参数                 |
-| ----------------- | ------------------------ | ------------------------ |
-| update:modelValue | 对话框显示状态变化时触发 | (value: boolean) => void |
-
-### ImDialogHeader Slots
-
-| 插槽名  | 说明                       |
-| ------- | -------------------------- |
-| default | 对话框标题内容             |
-| action  | 对话框头部右侧操作按钮区域 |
-
-### ImDialogBody Slots
-
-| 插槽名  | 说明           |
-| ------- | -------------- |
-| default | 对话框主体内容 |
-
-### ImDialogFooter Slots
-
-| 插槽名  | 说明               |
-| ------- | ------------------ |
-| default | 对话框底部按钮区域 |
+<Api :list="apiList" />

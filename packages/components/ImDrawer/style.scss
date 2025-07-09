@@ -1,0 +1,28 @@
+.im-drawer__header {
+  margin: 0;
+  padding: 8px 8px 8px 16px;
+  border-bottom: 1px solid var(--im-gray-color-5);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+.im-drawer__body {
+  flex: 1;
+  padding: 16px;
+  margin: 0;
+  border: none;
+  overflow: auto;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.im-drawer__footer {
+  display: flex;
+  justify-content: flex-start;
+  padding: 8px 16px;
+  border-top: 1px solid var(--im-gray-color-5);
+  font-size: 14px;
+  line-height: 24px;
+  margin: 0;
+}

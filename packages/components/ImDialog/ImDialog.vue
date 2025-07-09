@@ -19,12 +19,12 @@
         :closeOnClickMask="props.closeOnClickMask"
         :visible="props.modelValue"
         zIndex="1"
-        @close="() => emit('update:modelValue', false)" />
+        @close="setClose" />
 
       <!-- 对话框 -->
       <Transition
         :css="false"
-        :duration="300"
+        :duration="400"
         @enter="enterFN"
         @leave="leaveFN"
         mode="out-in">
@@ -59,45 +59,35 @@ import { updateLockScroller, isMobile } from '@/utils/dom';
 import { getSizeValue, throttle } from '@/utils';
 import { useDialogAnimation } from './dialogAnimation';
 import { useOverlay } from '@/hooks/useOverlay';
+import { updateKeydownEvent } from '@/utils/dom';
+import type { DialogProps } from './DialogProps';
 
 defineOptions({ name: 'ImDialog' });
 const bem = useBem('dialog');
-const emit = defineEmits<{ (e: 'update:modelValue', value: boolean): void }>();
-const props = withDefaults(
-  defineProps<{
-    modelValue: boolean;
-    closeOnClickMask?: boolean;
-    width?: string;
-    height?: string;
-    fullscreen?: boolean;
-    closeOnEscape?: boolean;
-    mask?: boolean;
-    zIndex?: number;
-    top?: string | number;
-    getTarget?: () => HTMLElement | null;
-    draggable?: boolean;
-  }>(),
-  {
-    modelValue: false,
-    closeOnClickMask: true,
-    width: '420px',
-    height: 'auto',
-    fullscreen: false,
-    closeOnEscape: true,
-    mask: true,
-    zIndex: 1000,
-    getTarget: () => null,
-    draggable: false,
-  }
-);
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: boolean): void;
+  (e: 'close'): void;
+}>();
+const props = withDefaults(defineProps<DialogProps>(), {
+  modelValue: false,
+  closeOnClickMask: true,
+  width: '420px',
+  height: 'auto',
+  fullscreen: false,
+  closeOnEscape: true,
+  mask: true,
+  getTarget: () => null,
+  draggable: false,
+});
 useOverlay();
 const dialogRef = ref<HTMLElement | null>(null);
 const contentRef = ref<HTMLElement | null>(null);
 const { zIndexToken } = useToken();
 const topValue = computed(() => getSizeValue(props.top || ''));
 const widthValue = computed(() => getSizeValue(props.width || '420px'));
-const zIndex = computed(() => props.zIndex || zIndexToken.value);
-
+const zIndex = computed(
+  () => Number(props.zIndex || zIndexToken.value) || 1000
+);
 const { enterFN, leaveFN } = useDialogAnimation(props);
 
 /**
@@ -107,9 +97,8 @@ const { enterFN, leaveFN } = useDialogAnimation(props);
 watch(
   () => props.modelValue,
   (val) => {
-    window.removeEventListener('keydown', escHandle);
+    updateKeydownEvent(!!(val && props.closeOnEscape), escHandle);
     if (val) {
-      props.closeOnEscape && window.addEventListener('keydown', escHandle);
       checkDraggable();
     }
     updateLockScroller();
@@ -238,9 +227,14 @@ function escHandle(e: KeyboardEvent) {
     );
     if (dialogs.length && dialogRef.value) {
       const dialog = Array.from(dialogs).pop();
-      if (dialog === dialogRef.value) emit('update:modelValue', false);
+      if (dialog === dialogRef.value) setClose();
     }
   }
+}
+
+function setClose() {
+  emit('update:modelValue', false);
+  emit('close');
 }
 </script>
 

@@ -73,3 +73,13 @@ export function isMobile() {
   const isSmallScreen = window.innerWidth <= 768;
   return isTouch && isSmallScreen;
 }
+
+export const updateKeydownEvent = (
+  bol: boolean,
+  callback: (e: KeyboardEvent) => void
+) => {
+  window.removeEventListener('keydown', callback);
+  if (bol) {
+    window.addEventListener('keydown', callback);
+  }
+};

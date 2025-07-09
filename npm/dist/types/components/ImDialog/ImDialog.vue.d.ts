@@ -1,16 +1,4 @@
-type __VLS_Props = {
-    modelValue: boolean;
-    closeOnClickMask?: boolean;
-    width?: string;
-    height?: string;
-    fullscreen?: boolean;
-    closeOnEscape?: boolean;
-    mask?: boolean;
-    zIndex?: number;
-    top?: string | number;
-    getTarget?: () => HTMLElement | null;
-    draggable?: boolean;
-};
+import { DialogProps } from './DialogProps';
 declare function __VLS_template(): {
     attrs: Partial<{}>;
     slots: {
@@ -23,15 +11,16 @@ declare function __VLS_template(): {
     rootEl: any;
 };
 type __VLS_TemplateResult = ReturnType<typeof __VLS_template>;
-declare const __VLS_component: import('vue').DefineComponent<__VLS_Props, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {} & {
+declare const __VLS_component: import('vue').DefineComponent<DialogProps, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {} & {
+    close: () => any;
     "update:modelValue": (value: boolean) => any;
-}, string, import('vue').PublicProps, Readonly<__VLS_Props> & Readonly<{
+}, string, import('vue').PublicProps, Readonly<DialogProps> & Readonly<{
+    onClose?: (() => any) | undefined;
     "onUpdate:modelValue"?: ((value: boolean) => any) | undefined;
 }>, {
     height: string;
     mask: boolean;
     width: string;
-    zIndex: number;
     fullscreen: boolean;
     getTarget: () => HTMLElement | null;
     modelValue: boolean;

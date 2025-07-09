@@ -114,7 +114,7 @@ defineExpose({ addMsg });
   text-wrap: nowrap;
   overflow: hidden;
   height: 28px;
-  border-radius: 20px;
+  border-radius: 28px;
   min-width: 120px;
   display: flex;
   align-items: center;
@@ -141,10 +141,9 @@ defineExpose({ addMsg });
 }
 
 .list-move,
-  /* 对移动中的元素应用的过渡 */
-  .list-enter-active,
-  .list-leave-active {
-  transition: all 400ms ease-out;
+.list-enter-active,
+.list-leave-active {
+  transition: all 400ms;
 }
 
 .list-enter-from,
