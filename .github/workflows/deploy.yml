@@ -1,9 +1,9 @@
 name: Deploy
 on:
   push:
-    branches: master
+    branches: docs
   pull_request:
-    branches: master
+    branches: docs
 
 jobs:
   deploy:
@@ -21,7 +21,7 @@ jobs:
       - name: Install Deno
         uses: denoland/setup-deno@v2
         with:
-          deno-version: v2.x
+          deno-version: v1.x
 
       - name: Install Node.js
         uses: actions/setup-node@v4
@@ -29,15 +29,15 @@ jobs:
           node-version: lts/*
 
       - name: Install step
-        run: "npm run  install"
+        run: "pnpm install"
 
       - name: Build step
-        run: "npm run  docs:build"
+        run: "pnpm docs:build"
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-          project: "tongmingwan-im-design-20"
+          project: "imdesignjs"
           entrypoint: ""
           root: "docs/.vitepress/dist"
           
