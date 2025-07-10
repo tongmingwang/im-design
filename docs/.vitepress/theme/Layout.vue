@@ -38,26 +38,4 @@ function gatTarget() {
   </Layout>
 </template>
 
-<style scoped lang="scss">
-.mt-24 {
-  margin-top: 24px;
-}
-
-.img {
-  width: 240px;
-  height: 240px;
-  border-radius: 8px;
-  object-fit: cover;
-}
-.center {
-  display: flex;
-  justify-content: center;
-  margin-top: 16px;
-}
-
-.btn {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-</style>
+<style scoped lang="scss"></style>

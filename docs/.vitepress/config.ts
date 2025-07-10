@@ -63,7 +63,14 @@ export default defineConfig({
     i18nRouting: false,
 
     // 社交链接
-    socialLinks: [{ icon: 'github', link: REPO_LINK }],
+    socialLinks: [
+      { icon: 'github', link: REPO_LINK },
+      {
+        icon: 'gitee',
+        link: 'https://gitee.com/irming46/im-design',
+        ariaLabel: 'cool link',
+      },
+    ],
 
     // 编辑链接
     editLink: {
