@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress';
 import { nav, sidebar } from './menu';
 // 基础配置常量
 const SITE_TITLE = 'Im Design';
-const SITE_DESCRIPTION = '匠心打造，极致体验的 Vue3 组件库';
+const SITE_DESCRIPTION = '🎉 匠心打造，极致体验的 Vue3 组件库';
 const REPO_LINK = 'https://github.com/tongmingwang/im-design';
 const BASE_PATH = '/im-design/'; // 部署到不同服务需要不同设置 github: /im-design/
 
@@ -69,6 +69,10 @@ export default defineConfig({
         icon: 'gitee',
         link: 'https://gitee.com/irming46/im-design',
         ariaLabel: 'cool link',
+      },
+      {
+        icon: 'codesandbox',
+        link: 'https://codesandbox.io/p/github/tongmingwang/im-design-template/main?file=%2Fsrc%2Fcomponents%2FHelloWorld.vue&import=true&workspaceId=ws_A8qgrA7LwQ5K5hwJWrbySH',
       },
     ],
 
