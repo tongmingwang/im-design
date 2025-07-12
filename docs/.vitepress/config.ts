@@ -85,7 +85,7 @@ export default defineConfig({
     // 页脚
     footer: {
       message: '基于 MIT 协议发布',
-      copyright: `版权所有 © 2019-${new Date().getFullYear()} TongmingWang`,
+      copyright: `版权所有 © 2025-${new Date().getFullYear()} im-design`,
     },
 
     // 文档页脚

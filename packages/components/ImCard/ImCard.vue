@@ -31,7 +31,7 @@ const props = withDefaults(
 <style scoped lang="scss">
 .im-card {
   box-sizing: border-box;
-  border: 1px solid var(--im-gray-color-4, rgba(0, 0, 0, 0.25));
+  border: 1px solid var(--im-gray-color-4);
   border-radius: var(--im-radius);
   background-color: var(--im-bg-content-color, #fff);
   transition: box-shadow 0.3s ease-in-out;
@@ -44,18 +44,20 @@ const props = withDefaults(
   flex-direction: column;
   overflow: hidden;
 
+  --im-box-shadow: 0 3px 8px var(--im-shadow-color, rgba(0, 0, 0, 0.15));
+
   &.is-borderless {
     border: none;
   }
 
   &.im-card--hover {
     &:hover {
-      box-shadow: 0 5px 12px var(--im-shadow-color, rgba(0, 0, 0, 0.15));
+      box-shadow: var(--im-box-shadow);
     }
   }
 
   &.im-card--always {
-    box-shadow: 0 5px 12px var(--im-shadow-color, rgba(0, 0, 0, 0.15));
+    box-shadow: var(--im-box-shadow);
   }
 }
 </style>

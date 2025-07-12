@@ -16,11 +16,10 @@ Alright, for you to get started if you are looking for making ImDesign better yo
 
 ## 为什么选择 ImDesign
 
-In fact, ImDesign is not the best, but it is good enough. Its design concept is "craftsmanship, ultimate experience".
+Its design concept is "craftsmanship, ultimate experience".
 Make your development more efficient and make your product more beautiful.
 
-(其实 ImDesign 并不是最好的，但是它足够好。它的设计理念是“匠心打造，极致体验”。
-让你的开发更加高效，让你的产品更加美观。)
+(它的设计理念是“匠心打造，极致体验”。让你的开发更加高效，让你的产品更加美观。)
 
 Our components are constantly being improved. If you have any suggestions or questions, please raise them in Issues.
 In the future, ImDesign will support more components and will be more perfect.
@@ -88,8 +87,8 @@ app.mount('#app');
 
 ### Import specific component
 
-```javascript
-// main.js
+```js
+// main.ts
 import { createApp } from 'vue';
 import App from './App.vue';
 import { ImButton } from 'im-design';
@@ -102,7 +101,7 @@ app.mount('#app');
 
 ## Component example
 
-```js
+```vue
 <template>
   <div class="demo-container">
     <im-button type="primary" @click="handleClick">

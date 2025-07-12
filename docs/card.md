@@ -48,10 +48,10 @@
     </ImCardFooter>
   </ImCard>
 
-  ```vue
+```vue
 <template>
   <ImCard borderless>
-    <ImCardHeader >Card</ImCardHeader>
+    <ImCardHeader>Card</ImCardHeader>
     <ImCardBody>Text ...</ImCardBody>
     <ImCardFooter>
       <ImButton variant="text" color="primary">Action</ImButton>
@@ -60,10 +60,9 @@
 </template>
 ```
 
-## Footer对齐方式
+## Footer 对齐方式
 
 设置 `align` 为 `left` `center` `right` 可以设置操作区域的对齐方式。
-
 
 <ImCard >
     <ImCardHeader >Card</ImCardHeader>
@@ -73,10 +72,10 @@
     </ImCardFooter>
   </ImCard>
 
-  ```vue
+```vue
 <template>
-  <ImCard >
-    <ImCardHeader >Card</ImCardHeader>
+  <ImCard>
+    <ImCardHeader>Card</ImCardHeader>
     <ImCardBody>Text ...</ImCardBody>
     <ImCardFooter align="center">
       <ImButton variant="text" color="primary">Action</ImButton>
@@ -89,7 +88,6 @@
 
 设置 `divider` 为 true ，则出现分割线。
 
-
 <ImCard >
     <ImCardHeader divider>Card</ImCardHeader>
     <ImCardBody>Text ...</ImCardBody>
@@ -98,9 +96,9 @@
     </ImCardFooter>
   </ImCard>
 
-  ```vue
+```vue
 <template>
-  <ImCard >
+  <ImCard>
     <ImCardHeader divider>Card</ImCardHeader>
     <ImCardBody>Text ...</ImCardBody>
     <ImCardFooter align="right" divider>
@@ -114,7 +112,7 @@
 
 设置属性 `shadow` 为 `always`、`hover`。
 
-<ImCard  shadow="always">
+<ImCard borderless shadow="always">
     <ImCardHeader >Card</ImCardHeader>
     <ImCardBody>Text ...</ImCardBody>
     <ImCardFooter>
@@ -122,7 +120,7 @@
     </ImCardFooter>
   </ImCard>
 
-  Hover:
+Hover:
 
   <ImCard  shadow="hover">
     <ImCardHeader >Card</ImCardHeader>
@@ -131,7 +129,6 @@
       <ImButton variant="text" color="primary">Action</ImButton>
     </ImCardFooter>
   </ImCard>
-
 
 ## API
 

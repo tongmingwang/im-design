@@ -1,5 +1,5 @@
 .im-card__body {
-  padding: 0 16px 16px;
+  padding: 16px;
   background-color: inherit;
   border-radius: 0;
   border: none;
@@ -51,16 +51,19 @@
 
   &.im-card__header--divider {
     border-bottom: 1px solid var(--im-gray-color-4);
+    .im-card__title {
+      padding-bottom: 8px;
+    }
   }
 
   .im-card__title {
     font-size: 20px;
     font-weight: 500;
     margin: 0;
-    padding: 16px;
-    padding-bottom: 8px;
+    padding: 16px 16px 0 16px;
     line-height: 28px;
     flex: 1;
+    color: var(--im-gray-color-10);
   }
 
   .im-card__header--actions {
