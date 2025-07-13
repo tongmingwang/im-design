@@ -12,4 +12,6 @@ export interface AnchorProps {
 
   // 目标滚动元素
   target?: HTMLElement | string | null;
+
+  label?: string;
 }

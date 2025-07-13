@@ -15,7 +15,7 @@
       </section>
     </div>
     <div class="anchor">
-      <ImAnchor :data="list" target="#anchor_im_id" />
+      <ImAnchor :data="list" target="#anchor_im_id" label="当前页面" />
     </div>
   </div>
 
@@ -28,7 +28,7 @@
       </section>
     </div>
     <div class="anchor">
-      <ImAnchor :data="list" target="#anchor_im_id" />
+      <ImAnchor :data="list" target="#anchor_im_id" label="当前页面" />
     </div>
   </div>
 </template>
@@ -36,14 +36,6 @@
 <script setup>
 import { ref } from 'vue';
 const list = ref([
-  {
-    id: 'Im_demo1',
-    text: '英雄所见略同',
-  },
-  {
-    id: 'Im_demo2',
-    text: '大新闻',
-  },
   {
     id: 'Im_demo3',
     text: '新闻2',
@@ -76,14 +68,6 @@ const list = ref([
 import { ref } from 'vue'
 const list = ref([
   {
-    id: 'Im_demo1',
-    text: '英雄所见略同'
-  },
-  {
-    id: 'Im_demo2',
-    text: '大新闻'
-  },
-  {
     id: 'Im_demo3',
     text: '新闻2'
   },
@@ -101,6 +85,37 @@ const list = ref([
     text: '新闻5'
   },
 ])
+const ApiList = [
+  {
+    name: 'target',
+    type: 'HTMLString | string | null',
+    desc: '滚动区域的选择器或DOM元素',
+    default: 'window',
+    otherValues: ''
+  },
+  {
+    name: 'data',
+    type: 'Array<AnchorData>',
+    desc: '锚点数据，包含id和text字段。',
+    default: '',
+    otherValues: ''
+  },
+  {
+    name: 'offset',
+    type: 'number',
+    desc: '锚点偏移量。默认值为0。',
+    default: '0',
+    otherValues: ''
+  },
+  {
+    name: 'label',
+    type: 'string',
+    desc: '锚点标题。默认值为空字符串。',
+    default: '',
+    otherValues: ''
+  }
+
+]
 </script>
 
 <style scoped lang="scss">
@@ -128,4 +143,6 @@ const list = ref([
   }
 </style>
 
-### APIS
+## API
+
+<Api :list="ApiList" />

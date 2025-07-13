@@ -9,14 +9,15 @@ const vRipple = ripple;
 
 defineOptions({ name: 'ImAnchor' });
 const bem = useBem('anchor');
-let unBindFn: Function | null = null;
-const target = ref<HTMLElement | null | Window>(null);
-const activeId = ref<string | null>(null);
-const clickId = ref<string | null>(null);
 const props = withDefaults(defineProps<AnchorProps>(), {
   target: null,
   offset: 0,
+  label: '',
 });
+let unBindFn: Function | null = null;
+const target = ref<HTMLElement | null | Window>(null);
+const activeId = ref<string | null>(null);
+const listRef = ref<HTMLElement | null>(null);
 
 watch(
   () => props.target,
@@ -33,6 +34,7 @@ onMounted(() => {
 onUnmounted(() => {
   unBindFn && unBindFn();
 });
+
 /**
  * 获取指定元素的滚动位置
  *
@@ -56,7 +58,7 @@ function getScrollTop(el: HTMLElement) {
  * @param e - 滚动事件对象，可选参数
  */
 function handleScroll(e?: any) {
-  if (clickId.value || !target.value) return;
+  if (!target.value) return;
   const scrollTarget = target.value === window ? e.target : target.value;
 
   // 1. 获取滚动位置
@@ -142,7 +144,6 @@ function bindEvent() {
  */
 async function onScrollToThis(id: string) {
   if (activeId.value === id || !id) return;
-  clickId.value = id;
   activeId.value = id;
   const el = document.getElementById(id);
   if (!el) return;
@@ -150,83 +151,31 @@ async function onScrollToThis(id: string) {
   target.value?.scrollTo({
     // @ts-ignore
     top: el.offsetTop - (props.offset || 0) - (target.value?.offsetTop || 0),
-    behavior: 'smooth',
+    behavior: 'instant',
     left: 0,
   });
-  // 延迟300ms后移除滚动监听,防抖处理，等到滚动完成后移除滚动监听事件
-  const handle = debounce(() => {
-    clickId.value = null;
-    target.value?.removeEventListener('scroll', handle);
-  }, 300);
-  target.value?.addEventListener('scroll', handle, { passive: true });
 }
 </script>
 
 <template>
-  <ul :class="[bem.b()]" v-if="props.data && props.data.length">
-    <li
-      v-ripple="true"
-      :class="[bem.e('item'), bem.is('active', activeId === item.id)]"
-      v-for="item in props.data"
-      @click="() => onScrollToThis(item.id)">
-      <span :class="[bem.e('bar')]" v-if="activeId === item.id" />
-      {{ item.text }}
-    </li>
-  </ul>
+  <div :class="[bem.b()]" ref="listRef">
+    <div :class="[bem.e('label')]" v-if="props.label || $slots.label">
+      {{ props.label }}
+    </div>
+    <div :class="[bem.e('list')]">
+      <div :class="[bem.e('line')]"></div>
+      <div
+        v-ripple="true"
+        :class="[bem.e('item'), bem.is('active', activeId === item.id)]"
+        v-for="item in props.data"
+        @click="() => onScrollToThis(item.id)">
+        <div :class="[bem.e('bar')]"></div>
+        {{ item.text }}
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped lang="scss">
-.im-anchor {
-  list-style: none;
-  padding: 8px;
-  border-radius: var(--im-radius);
-  margin: 0;
-  background-color: var(--im-bg-content-color);
-
-  @keyframes showBar {
-    from {
-      opacity: 0;
-    }
-
-    to {
-      opacity: 1;
-    }
-  }
-
-  .im-anchor__item {
-    padding: 5px 16px;
-    margin: 0;
-    font-size: 14px;
-    color: var(--im-gray-color-8);
-    min-width: 80px;
-    position: relative;
-    cursor: pointer;
-    transition: color 0.3s;
-    border-radius: var(--im-radius);
-    user-select: none;
-
-    &:hover {
-      color: var(--im-primary-color-8);
-      background-color: var(--im-rgb-color-1);
-    }
-
-    &.is-active {
-      color: var(--im-primary-color-8);
-    }
-  }
-
-  .im-anchor__bar {
-    position: absolute;
-    top: 50%;
-    left: 8px;
-    width: 3px;
-    min-width: 3px;
-    max-width: 3px;
-    height: 1em;
-    transform: translateY(-50%);
-    background-color: var(--im-primary-color-8);
-    border-radius: 3px;
-    animation: showBar 300ms ease-in forwards;
-  }
-}
+@use './style.scss';
 </style>
