@@ -66,11 +66,6 @@ export default defineConfig({
     socialLinks: [
       { icon: 'github', link: REPO_LINK },
       {
-        icon: 'gitee',
-        link: 'https://gitee.com/irming46/im-design',
-        ariaLabel: 'cool link',
-      },
-      {
         icon: 'codesandbox',
         link: 'https://codesandbox.io/p/github/tongmingwang/im-design-template/main?file=%2Fsrc%2Fcomponents%2FHelloWorld.vue&import=true&workspaceId=ws_A8qgrA7LwQ5K5hwJWrbySH',
       },

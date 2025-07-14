@@ -1,5 +1,5 @@
 <template>
-  <li
+  <div
     :class="[
       bem.b(),
       bem.is('active', subActive),
@@ -41,32 +41,29 @@
         @leave="onLeave"
         mode="out-in"
         :duration="300">
-        <ul
+        <div
           :class="[bem.e('list')]"
           v-show="show"
           :style="{
             '--im-vertical-item-height': '40px',
           }">
           <slot />
-        </ul>
+        </div>
       </Transition>
     </template>
 
     <template v-else>
       <Transition name="menu-fade" mode="out-in" :duration="300">
-        <ul
-          :class="[
-            bem.e('children'),
-            vertical ? bem.e('vertical') : 'im-shadow',
-          ]"
+        <div
+          :class="[bem.e('children'), 'im-shadow']"
           @mouseenter="onMouseEnter"
           @mouseleave="onMouseLeave"
           v-show="show">
           <slot />
-        </ul>
+        </div>
       </Transition>
     </template>
-  </li>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -198,14 +195,10 @@ async function onLeave(el: Element, done: () => void) {
     z-index: 1000;
     min-width: 100%;
     background-color: var(--im-menu-bg-color);
-    border-radius: var(--im-menu-radius);
-    padding: 4px;
+    border-radius: var(--im-radius, 4px);
+    padding: 8px 0;
     margin: 0;
     transform-origin: center top;
-
-    .im-menu-item {
-      padding: 5px 12px !important;
-    }
   }
 
   &__list {

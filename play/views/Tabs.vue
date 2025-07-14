@@ -1,18 +1,23 @@
 <template>
   <div>
-    <ImTabs v-model="active" class="tbs">
-      <ImTab :name="item" :label="`Label ${item}`" v-for="item in tabs" />
-    </ImTabs>
-    <ImPanes v-model="active" class="data">
-      <ImPane :name="item" v-for="item in tabs">Content {{ item }}</ImPane>
-    </ImPanes>
+    <ImCard shadow="hover">
+      <ImTabs v-model="active">
+        <ImTab :name="item" :label="`Label ${item}`" v-for="item in tabs" />
+      </ImTabs>
+      <ImPanes v-model="active">
+        <ImPane :name="item" v-for="item in tabs">Content {{ item }}</ImPane>
+      </ImPanes>
+    </ImCard>
+    <br />
 
-    <ImTabs v-model="active" color="primary">
-      <ImTab :name="item" :label="`Label ${item}`" v-for="item in tabs" />
-    </ImTabs>
-    <ImPanes v-model="active">
-      <ImPane :name="item" v-for="item in tabs">Content {{ item }}</ImPane>
-    </ImPanes>
+    <ImCard borderless shadow="always">
+      <ImTabs v-model="active" color="error">
+        <ImTab :name="item" :label="`Label ${item}`" v-for="item in tabs" />
+      </ImTabs>
+      <ImPanes v-model="active">
+        <ImPane :name="item" v-for="item in tabs">Content {{ item }}</ImPane>
+      </ImPanes>
+    </ImCard>
   </div>
 </template>
 

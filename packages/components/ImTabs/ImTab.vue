@@ -1,8 +1,7 @@
 <template>
-  <li
+  <div
     :class="[
       bem.b(),
-      bem.m(color),
       bem.is('active', active),
       bem.is('disabled', props.disabled),
     ]"
@@ -12,7 +11,7 @@
     <Transition name="slide" :duration="300" mode="out-in">
       <div v-if="active" :class="bem.e('bar')"></div>
     </Transition>
-  </li>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -30,7 +29,7 @@ const props = withDefaults(defineProps<TabProps>(), {
   name: '',
   disabled: false,
 });
-const { active, setActive, color } = useInjectTab(props);
+const { active, setActive } = useInjectTab(props);
 </script>
 
 <style scoped lang="scss">
@@ -49,14 +48,14 @@ const { active, setActive, color } = useInjectTab(props);
   user-select: none;
   position: relative;
   z-index: 1;
-  color: var(--im-gray-color-8);
+  color: var(--im-tabs-color);
+  border-radius: 0;
 
   &:hover {
-    background: var(--im-rgb-color-1);
-    color: var(--im-primary-color-8);
+    color: var(--im-tabs-color-active);
   }
   &.is-active {
-    color: var(--im-primary-color-8);
+    color: var(--im-tabs-color-active);
   }
   &.is-disabled {
     cursor: not-allowed;
@@ -67,30 +66,11 @@ const { active, setActive, color } = useInjectTab(props);
   &__bar {
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: 0px;
     width: 100%;
     height: 2px;
-    background-color: var(--im-primary-color-8);
-    transition: all 0.2s ease-in-out;
-  }
-
-  // 色彩
-  @each $color in primary, error, success, warning {
-    &.im-tab--#{$color} {
-      color: var(--im-#{$color}-color-2);
-      .im-tab__bar {
-        background-color: var(--im-gray-color-1);
-        bottom: 0px;
-      }
-      &.is-active {
-        color: var(--im-#{$color}-color-1);
-      }
-      &.is-disabled {
-        cursor: not-allowed;
-        color: var(--im-#{$color}-color-4);
-        background: transparent;
-      }
-    }
+    background-color: var(--im-tabs-color-active);
+    border-radius: 2px;
   }
 }
 

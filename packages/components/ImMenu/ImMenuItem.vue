@@ -1,5 +1,5 @@
 <template>
-  <li
+  <div
     :class="[
       bem.b(),
       bem.is('active', active),
@@ -19,7 +19,7 @@
         <div v-show="active" :class="[bem.e('bar')]"></div>
       </Transition>
     </template>
-  </li>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -59,7 +59,7 @@ function handleClick(e: Event) {
 
 <style lang="scss" scoped>
 .im-menu-item {
-  padding: 5px 20px;
+  padding: 6px 20px;
   margin: 0;
   height: 100%;
   cursor: pointer;

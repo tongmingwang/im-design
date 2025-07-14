@@ -241,7 +241,7 @@ function onOk() {
 
 <style lang="scss" scoped>
 .im-date-range-picker {
-  width: 320px;
+  width: 342px;
   display: flex;
   align-items: center;
   gap: 8px;

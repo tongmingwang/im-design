@@ -1,5 +1,5 @@
 <template>
-  <ul
+  <div
     :class="[
       bem.b(),
       props.color && bem.m(props.color),
@@ -7,7 +7,7 @@
     ]"
     :style="styles">
     <slot />
-  </ul>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -38,7 +38,7 @@ const props = withDefaults(
   }
 );
 const styles = computed(() => {
-  const colors = getColor();
+  const colors = getColor(props.color);
   return {
     '--im-menu-align': props.align ? getAlign(props.align) : '',
     // 文字
@@ -47,7 +47,7 @@ const styles = computed(() => {
     '--im-menu-border-color': 'var(--im-gray-color-4)',
     '--im-menu-height': '64px',
     '--im-menu-width': '240px',
-    '--im-menu-radius': 'var(--im-radius)',
+    '--im-menu-radius': props.vertical ? 'var(--im-radius,4px)' : '0',
   };
 });
 
@@ -63,14 +63,14 @@ watch(
   }
 );
 
-function getColor() {
-  if (['primary', 'error', 'warning', 'success'].includes(props.color)) {
+function getColor(color: 'primary' | 'success' | 'warning' | 'error' | '') {
+  if (['primary', 'error', 'warning', 'success'].includes(color)) {
     return {
-      '--im-menu-text-color': `var(--im-${props.color}-color-3)`,
+      '--im-menu-text-color': `var(--im-${color}-color-2)`,
       '--im-menu-active-text-color': `var(--im-gray-color-1)`,
-      '--im-menu-bg-color': `var(--im-${props.color}-color-8)`,
+      '--im-menu-bg-color': `var(--im-${color}-color-8)`,
       '--im-menu-hover-bg-color': 'var(--im-rgb-color-1)',
-      '--im-menu-active-bg-color': `var(--im-${props.color}-color-7)`,
+      '--im-menu-active-bg-color': `var(--im-${color}-color-7)`,
     };
   }
   return {

@@ -12,8 +12,8 @@ importers:
         specifier: ^1.11.13
         version: 1.11.13
       im-design:
-        specifier: ^1.4.13
-        version: 1.4.13(vue@3.5.15(typescript@5.8.3))
+        specifier: ^1.4.15
+        version: 1.4.15(vue@3.5.15(typescript@5.8.3))
       pinia:
         specifier: ^3.0.3
         version: 3.0.3(typescript@5.8.3)(vue@3.5.15(typescript@5.8.3))
@@ -1120,8 +1120,8 @@ packages:
   html-void-elements@3.0.0:
     resolution: {integrity: sha512-bEqo66MRXsUGxWHV5IP0PUiAWwoEjba4VCzg0LjFJBpchPaTfyfCKTG6bc5F8ucKec3q5y6qOdGyYTSBEvhCrg==}
 
-  im-design@1.4.13:
-    resolution: {integrity: sha512-X50AXYEcZp06kMk8sUDGR+vXAkaYoUIQYZ0Wx8gSpuYAAwpL8gIBiQDvkE0qe8T7HrnlmafzJ309F9t5Me6j6A==}
+  im-design@1.4.15:
+    resolution: {integrity: sha512-IRHWUtTnZeq+1/s6tFQoQ7ZNWUqnem2BUl50CiXWtEHPQCqMPe+iYQW3u2YIeqckU8kPUJCsdCb2pQvlwqhuow==}
     peerDependencies:
       vue: ^3.5.13
 
@@ -2601,7 +2601,7 @@ snapshots:
 
   html-void-elements@3.0.0: {}
 
-  im-design@1.4.13(vue@3.5.15(typescript@5.8.3)):
+  im-design@1.4.15(vue@3.5.15(typescript@5.8.3)):
     dependencies:
       dayjs: 1.11.13
       vue: 3.5.15(typescript@5.8.3)

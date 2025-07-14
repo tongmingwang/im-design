@@ -1,17 +1,13 @@
 <template>
-  <ul
-    :class="[bem.b(), bem.m(props.color)]"
-    :style="{
-      justifyContent: alignValue,
-    }"
-    ref="tabRef">
+  <div :class="[bem.b()]" :style="styles">
+    <div :class="[bem.e('line')]"></div>
     <slot />
-  </ul>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { useBem } from '@/utils/bem';
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import type { TabsProps } from './types';
 import { useTab } from './useTab';
 
@@ -26,29 +22,47 @@ const props = withDefaults(defineProps<TabsProps>(), {
   color: 'default',
   align: 'left',
 });
-const tabRef = ref<HTMLElement>();
-const alignValue = computed(() => {
-  switch (props.align) {
-    case 'center':
-      return 'center';
-    case 'right':
-      return 'flex-end';
-    default:
-      return 'flex-start';
-  }
+const styles = computed(() => {
+  return {
+    '--im-tabs-align': getAlign(props.align),
+    ...getColor(props.color),
+  };
 });
-const { active } = useTab(props, emit);
+useTab(props, emit);
+
+function getAlign(align: TabsProps['align']) {
+  return align === 'center'
+    ? 'center'
+    : align === 'right'
+    ? 'flex-end'
+    : 'flex-start';
+}
+
+function getColor(color: TabsProps['color']) {
+  if (['primary', 'success', 'warning', 'error'].includes(color || '')) {
+    return {
+      '--im-tabs-color': `var(--im-${color}-color-2)`,
+      '--im-tabs-color-active': `var(--im-${color}-color-1)`,
+      '--im-tabs-bg-color': `var(--im-${color}-color-8)`,
+      '--im-tabs-border-color': `var(--im-${color}-color-8)`,
+    };
+  }
+  return {
+    '--im-tabs-color': 'var(--im-gray-color-8)',
+    '--im-tabs-color-active': 'var(--im-primary-color-8)',
+    '--im-tabs-bg-color': 'var(--im-bg-content-color)',
+    '--im-tabs-border-color': 'var(--im-gray-color-4)',
+  };
+}
 </script>
 
 <style scoped lang="scss">
 .im-tabs {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   list-style: none;
   padding: 0;
   margin: 0;
-  background-color: var(--im-bg-content-color);
   border-radius: 0;
   overflow-y: hidden;
   overflow-x: auto;
@@ -57,17 +71,20 @@ const { active } = useTab(props, emit);
   border-top-right-radius: var(--im-radius, 4px);
   position: relative;
   border: none;
-  --bar-size: 2px;
-  border-bottom: 1px solid var(--im-gray-color-3);
+  background-color: var(--im-tabs-bg-color);
+  color: var(--im-tabs-color);
+  justify-content: var(--im-tabs-align);
+  box-shadow: none;
 
-  @each $color in primary, error, success, warning {
-    &.im-tabs--#{$color} {
-      background-color: var(--im-#{$color}-color-8);
-      color: var(--im-gray-color-1);
-      .im-tabs__bar-wrapper {
-        border-color: var(--im-#{$color}-color-8);
-      }
-    }
+  &__line {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    max-height: 1px;
+    min-height: 1px;
+    width: 100%;
+    background-color: var(--im-tabs-border-color);
   }
 }
 </style>
