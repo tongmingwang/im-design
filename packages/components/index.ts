@@ -64,6 +64,7 @@ import ImSwitch from './ImSwitch';
 import ImUpload from './ImUpload';
 import ImTitle from './ImTitle';
 import { ImText, ImLink } from './ImText';
+import { ImForm, ImFormItem } from './ImForm';
 
 const list = [
   ImButton,
@@ -132,6 +133,8 @@ const list = [
   ImDrawerHeader,
   ImDrawerBody,
   ImDrawerFooter,
+  ImForm,
+  ImFormItem,
 ];
 
 const install = (app: App, option?: ImDesignOptions) => {
@@ -221,6 +224,8 @@ export {
   ImDrawerHeader,
   ImDrawerBody,
   ImDrawerFooter,
+  ImForm,
+  ImFormItem,
 };
 
 export default {

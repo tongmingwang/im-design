@@ -83,3 +83,9 @@ export const updateKeydownEvent = (
     window.addEventListener('keydown', callback);
   }
 };
+
+// 判断一个节点是否有边框
+export const hasBorder = (el: HTMLElement) => {
+  const style = window.getComputedStyle(el);
+  return style.borderWidth !== '0px';
+};
