@@ -1,11 +1,12 @@
 <template>
   <div>
     <div class="anchor">
-      <ImAnchor :data="list" label="技术各位" />
+      <ImAnchor :data="list" label="技术各位" :offset="50" />
     </div>
     <h1 id="test1">test1</h1>
     <h1 id="test2">test2</h1>
     <h1 id="test3">test3</h1>
+    <h1 id="test4">test</h1>
   </div>
 </template>
 

@@ -24,6 +24,7 @@
     <div :class="[bem.e('content')]">
       <DatePane
         :date="state.startDate"
+        :visible="showPane"
         :show-time="props.showTime"
         :paneDate="state.startPaneDate"
         @paneDateChange="onStartDateChange"
@@ -34,6 +35,7 @@
         time-placement="top" />
       <DatePane
         :date="state.endDate"
+        :visible="showPane"
         :show-time="props.showTime"
         :paneDate="state.endPaneDate"
         :disabledDate="props.disabledDate"
@@ -239,7 +241,7 @@ function onOk() {
 
 <style lang="scss" scoped>
 .im-date-range-picker {
-  width: 360px;
+  width: 320px;
   display: flex;
   align-items: center;
   gap: 8px;

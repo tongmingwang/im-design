@@ -1,18 +1,18 @@
 .im-anchor {
   margin: 0;
   padding: 0;
-  width: 240px;
-  height: 100%;
+  width: 180px;
+  height: fit-content;
   font-size: 14px;
-  overflow: auto;
   border: none;
   outline: none;
-  color: var(--im-gray-color-7);
+  overflow: auto;
+  color: var(--im-gray-color-8);
   &__label {
     padding: 0;
     margin: 0;
+    width: 100%;
     font-size: 18px;
-
     color: var(--im-gray-color-10);
   }
   &__line {
@@ -29,10 +29,11 @@
     left: 0;
     top: 0;
     width: 2px;
-    height: 100%;
-    background-color: currentColor;
+    height: 0;
+    background-color: var(--im-primary-color-8);
     content: '';
     opacity: 0;
+    transition: all 0.3s ease-out;
   }
   &__list {
     padding: 0;
@@ -40,10 +41,14 @@
     position: relative;
     width: 100%;
     border: none;
+    overflow: visible;
+    height: 100%;
+    min-height: fit-content;
   }
   &__item {
     padding: 0 16px;
     margin: 8px 0;
+    min-height: 22px;
     font-size: 14px;
     font-size: inherit;
     cursor: pointer;

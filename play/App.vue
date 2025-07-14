@@ -2,6 +2,7 @@
   <ImButton @click="click">测试</ImButton>
   <Drawer />
   <Dialog />
+  <ImDateRangePicker />
   <Anchor />
 </template>
 
