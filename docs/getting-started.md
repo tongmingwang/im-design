@@ -17,7 +17,7 @@ npm install im-design --save
 #### 使用 cnpm 安装
 
 ```bash
-cnpm install im-design --save
+cnpm install im-design
 ```
 
 #### 使用 yarn 安装
@@ -45,7 +45,7 @@ pnpm add im-design
 全局引入 ImDesign 组件库，并设置全局配置。例如：`size: '36'`，`zIndex: 1000` 。
 
 ```js
-// main.js
+// main.ts
 import { createApp } from 'vue';
 import App from './App.vue';
 // 组件和指令的引入方式相同。
@@ -53,7 +53,7 @@ import ImDesign, { ImDirective } from 'im-design';
 import 'im-design/dist/index.css';
 
 const app = createApp(App);
-app.use(ImDesign, { size: '36', zIndex: 1000 });
+app.use(ImDesign, { size: 36, zIndex: 1000 });
 app.use(ImDirective);
 app.mount('#app');
 ```
@@ -61,7 +61,7 @@ app.mount('#app');
 ### 按需引入
 
 ```js
-// main.js
+// main.ts
 import { createApp } from 'vue';
 import App from './App.vue';
 import { ImButton } from 'im-design';
@@ -81,9 +81,9 @@ app.mount('#app');
 ```vue
 <template>
   <div class="demo-container">
-    <im-button type="primary" @click="handleClick">
+    <ImButton color="primary" @click="handleClick">
       Click {{ count }}
-    </im-button>
+    </ImButton>
   </div>
 </template>
 

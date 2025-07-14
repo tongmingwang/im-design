@@ -100,26 +100,10 @@ export const useFormItem = (props: FormItemProps) => {
   });
   const error = computed(() => formContext.getError(props.prop));
   onMounted(() => {
-    initFormItem();
     if (props.rules && props.prop) {
       formContext.setRule(props.prop, props.rules);
     }
   });
-  function initFormItem() {
-    if (!contentRef.value) return;
-    const input = contentRef.value.querySelector('input');
-    input && hasBorder(input as HTMLElement);
-    const findBorderEl = (el: HTMLElement) => {
-      if (hasBorder(el)) {
-        el.setAttribute(formKey, 'on');
-      } else {
-        if (el === contentRef.value) return;
-        findBorderEl(el.parentElement as HTMLElement);
-      }
-    };
-    findBorderEl(input as HTMLElement);
-  }
-
   return {
     error,
     contentRef,

@@ -20,6 +20,9 @@
     <ImFormItem label="" prop="checked">
       <ImCheckbox v-model="form.checked" label="同意协议" />
     </ImFormItem>
+    <ImFormItem label="" prop="checked">
+      <ImTextarea />
+    </ImFormItem>
     <ImButton @click="onSave">Save</ImButton>
   </ImForm>
 </template>
