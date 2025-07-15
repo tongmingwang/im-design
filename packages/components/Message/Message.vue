@@ -116,7 +116,7 @@ defineExpose({ addMsg });
   height: 28px;
   line-height: 28px;
   border-radius: 28px;
-  min-width: 160px;
+  min-width: 120px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
