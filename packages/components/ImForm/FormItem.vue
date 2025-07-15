@@ -127,7 +127,7 @@ const { message, formItemStyles, className } = useFormItem(props);
     transition: all 0.3s ease-out;
     &.is-show-msg {
       position: relative;
-      background-color: var(--im-form-state-bg-color);
+      background-color: transparent;
       &::after {
         position: absolute;
         box-sizing: border-box;
