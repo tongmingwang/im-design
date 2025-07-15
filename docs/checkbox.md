@@ -152,7 +152,7 @@ const onCheckAll = () => {
 </script>
 ```
 
-## APIS
+## API
 
 <ImTable :border="false" :stript="false" >
   <thead>

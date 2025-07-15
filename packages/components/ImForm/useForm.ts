@@ -1,111 +1,222 @@
-import {
-  ref,
-  provide,
-  reactive,
-  inject,
-  computed,
-  watch,
-  onMounted,
-} from 'vue';
-import type { FormProps, FormItemProps, ruleItem } from './types';
-import { hasBorder } from '@/utils/dom';
-import { isObject, isString } from '@/utils/types';
+import { ref, provide, reactive, inject, computed, watch } from 'vue';
+import type {
+  FormProps,
+  FormItemProps,
+  ruleItem,
+  FormValidateResult,
+} from './types';
+import { isNumber, isObject, isString } from '@/utils/types';
+import { getSizeValue, debounce } from '@/utils';
 
-const provideKey = Symbol('im-form');
-const formKey = 'data-im-has-border';
+const PROVIDE_KEY = Symbol('im-form');
 
 // 验证对象的每一个属性是否合法。
-function checkItem(value: string | number, obj: ruleItem) {
-  const { message, min, max, maxLength, minLength, validator } = obj;
+async function checkItem(value: string | number, obj: ruleItem) {
+  const { message, min, max, maxLength, minLength, validator, required } = obj;
 
+  const getMsg = () => {
+    return message || `This is a required field.`;
+  };
+  if (typeof validator === 'function') {
+    return await validator(value);
+  }
   if (isString(value) && minLength && maxLength) {
     const len = String(value).length;
-    return len >= minLength && len <= maxLength ? '' : message;
+    return len >= minLength && len <= maxLength ? '' : getMsg();
   }
-
-  console.log('checkItem', obj);
+  // 判断是否是数字
+  if (isNumber(min) && isNumber(max)) {
+    const num = Number(value);
+    return num >= Number(min) && num <= Number(max) ? '' : getMsg();
+  } else if (isNumber(min) || isNumber(max)) {
+    if (isNumber(min)) {
+      const num = Number(value);
+      return num >= Number(min) ? '' : getMsg();
+    } else if (isNumber(max)) {
+      const num = Number(value);
+      return num <= Number(max) ? '' : getMsg();
+    }
+  }
+  if (required) {
+    return value === '' || value === undefined ? getMsg() : '';
+  }
+  return false;
 }
 
-// 校验表单数据是否合法，然后更新表单状态。
-async function checkValue(value: any, rule: Function | ruleItem[] | ruleItem) {
-  console.log(rule, 'rule');
-
+async function checkValue(value: any, rule: ruleItem[] | ruleItem) {
   if (rule) {
-    // 判断rule的类型，如果是函数就直接执行，如果不是就返回一个空数组。
-    if (typeof rule === 'function') {
-      const result = await rule(value);
-      return result;
-    }
-    // 如果是数组，就遍历执行每一个校验函数。
     if (Array.isArray(rule)) {
       for (const ruleItem of rule) {
-        // 执行每一个校验函数，如果有一个校验失败就返回。
         const msg = await checkItem(value, ruleItem);
-        if (msg) {
-          console.log(msg);
-        }
+        if (msg) return msg;
       }
+      return '';
     }
-
-    // 如果是对象
     if (isObject(rule)) {
-      await checkItem(value, rule as ruleItem);
+      return await checkItem(value, rule as ruleItem);
     }
-    return;
+    return '';
   }
-
-  return;
+  return '';
 }
 
 export const useForm = (props: FormProps) => {
   const formRef = ref<HTMLFormElement>();
   const errors = reactive<Record<string, any>>({});
   const rules = reactive<Record<string, any>>({ ...(props.rules || {}) });
-  // form 有数据和验证规则，变化是验证一下表单数据是否合法，然后更新表单状态。
-  provide(provideKey, {
-    getError: (prop: string) => {
-      console.log(prop, 'prop');
-      return errors[prop] || '';
-    },
-    getErrors: () => errors,
-    // 设置表单校验规则
+  const resetForm = { ...(props.modelValue || {}) };
+  let resetState = false;
+
+  provide(PROVIDE_KEY, {
     setRule: (prop: string, validate: any) => {
       rules[prop] = validate;
     },
+    errors,
+    // 布局字段传入
+    labelWidth: () => props.labelWidth,
+    labelPosition: () => props.labelPosition,
+    model: props.modelValue,
+    validateProp,
   });
 
-  function validate(callback?: (valid: boolean) => void): Promise<void> {
-    // 校验表单数据是否合法，然后更新表单状态。
+  function validate(
+    callback?: (valid: FormValidateResult) => void
+  ): Promise<FormValidateResult> {
     return new Promise(async (resolve, reject) => {
-      console.log('validate', props.modelValue, rules);
-      for (const key in rules) {
-        const rule = rules[key];
-        // 直接传入到一个校验函数中去执行，校验结果更新到 errors 中。
-        const msg = await checkValue(props.modelValue[key], rule);
+      try {
+        for (const key in rules) {
+          await validateProp(key);
+        }
+        const status = Object.values(errors).every((item) => item === '');
+        const message = { ...errors };
+        const result = { ...props.modelValue };
+        if (typeof callback === 'function') {
+          callback({
+            status,
+            result,
+            message,
+          });
+        }
+        resolve({
+          status,
+          result,
+          message,
+        });
+      } catch (error) {
+        reject(error);
       }
     });
+  }
+  // 重置
+  function reset(prop: string | undefined | Array<string> = '') {
+    resetState = true;
+    if (prop) {
+      if (Array.isArray(prop)) {
+        for (const key of prop) {
+          errors[key] = '';
+          props.modelValue[key] = resetForm[key];
+        }
+      } else {
+        errors[prop] = '';
+        props.modelValue[prop] = resetForm[prop];
+      }
+    } else {
+      for (const key in errors) {
+        errors[key] = '';
+      }
+      Object.keys(props.modelValue).forEach((key) => {
+        props.modelValue[key] = resetForm[key];
+      });
+    }
+    setTimeout(() => {
+      resetState = false;
+    }, 100);
+  }
+  async function validateProp(prop: string) {
+    if (resetState) return;
+    const rule = rules[prop];
+    if (rule && prop) {
+      errors[prop] = await checkValue(props.modelValue[prop], rule);
+    } else {
+      errors[prop] = '';
+    }
   }
 
   return {
     formRef,
     validate,
+    reset,
   };
 };
 
 export const useFormItem = (props: FormItemProps) => {
-  const contentRef = ref<HTMLElement>();
-  const formContext = inject(provideKey, {
-    getError: (prop: string) => {},
-    setRule: (prop: string, validate: any) => {},
+  const formContext = inject(PROVIDE_KEY, {
+    errors: {} as any,
+    setRule: (prop: string, rule: any) => {},
+    labelWidth: () => '',
+    labelPosition: () => '',
+    model: {} as any,
+    validateProp: (prop: string) => {},
   });
-  const error = computed(() => formContext.getError(props.prop));
-  onMounted(() => {
-    if (props.rules && props.prop) {
-      formContext.setRule(props.prop, props.rules);
+
+  // 控制布局
+  const className = computed(() => {
+    const d = formContext.labelPosition();
+
+    return `im-form__item--${props.labelPosition || d || 'right'}`;
+  });
+
+  // 校验信息内容，用于显示表单项的校验信息。
+  const message = computed(() => {
+    if (!props.showMessage || !props.prop) return '';
+
+    try {
+      return formContext.errors[props.prop];
+    } catch (error) {
+      return '';
     }
   });
+
+  // 样式变量，用于控制表单项的样式。
+  const formItemStyles = computed(() => {
+    const flag = message.value ? true : false;
+
+    return {
+      '--im-form-message-color': flag
+        ? `var(--im-error-color-8)`
+        : 'var(--im-error-color-8)',
+      '--im-form-state-bg-color': flag ? `var(--im-error-color-1)` : '',
+      '--im-form-label-width':
+        getSizeValue(props.labelWidth || formContext.labelWidth()) || '',
+    };
+  });
+
+  const debounceValidate = debounce(formContext.validateProp, 50);
+
+  watch(
+    () => props.prop,
+    () => {
+      if (props.prop && props.rules) {
+        try {
+          formContext.setRule(props.prop, props.rules);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    },
+    { immediate: true }
+  );
+
+  watch(
+    () => formContext.model[props.prop],
+    () => {
+      debounceValidate(props.prop);
+    }
+  );
+
   return {
-    error,
-    contentRef,
+    message,
+    formItemStyles,
+    className,
   };
 };

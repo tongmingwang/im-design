@@ -58,4 +58,19 @@
 </template>
 ```
 
-### APIS
+## API
+
+
+
+| 字段名      | 类型                          | 描述                                                                 |
+|-------------|-------------------------------|----------------------------------------------------------------------|
+| size        | number \| string              | 图片大小                                                           |
+| src         | string                        | 图片源地址                                                         |
+| alt         | string                        | 替代文本                                                           |
+| title       | string                        | 标题文本                                                           |
+| crossOrigin | string                        | 跨域属性                                                           |
+| fit         | 'fill' \| 'contain' \| 'cover' \| 'none' \| 'scale-down' | 图片适应方式，默认为'fill'             |
+| srcset      | string                        | 多分辨率图片源                                                     |
+| loading     | 'eager' \| 'lazy'             | 加载策略，默认为'eager'                                            |
+| shape       | 'circle' \| 'square'          | 形状，默认为'square'                                               |
+| color       | string                        | 图片颜色                                                           |

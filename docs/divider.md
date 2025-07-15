@@ -48,4 +48,15 @@ Hello <ImDivider vertical /> World
 <template>Hello <ImDivider vertical /> World</template>
 ```
 
-## APIS
+## API
+
+### Props
+
+| 属性名         | 说明                                   |
+| -------------- | -------------------------------------- |
+| textLeftWidth  | 文本左侧偏移量，仅在非垂直分割线时有效 |
+| textRightWidth | 文本右侧偏移量，仅在非垂直分割线时有效 |
+| vertical       | 是否为垂直分割线                       |
+| margin         | 分割线间距                             |
+| size           | 分割线大小                             |
+| color          | 分割线颜色                             |

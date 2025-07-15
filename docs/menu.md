@@ -185,3 +185,31 @@ watch(
   </ImSubMenu>
   <ImMenuItem name="3">About Us</ImMenuItem>
 </ImMenu>
+
+
+## API
+
+### ImMenu Props
+| 字段名         | 类型                        | 描述                                                                 |
+|----------------|-----------------------------|----------------------------------------------------------------------|
+| modelValue     | string \| number            | 绑定的值                                                           |
+| subActiveList  | Array\<string \| number\>   | 激活子菜单Name                                                       |
+| disabled       | boolean                     | 是否禁用，默认为false                                              |
+| vertical       | boolean                     | 是否垂直排列，默认为false                                          |
+| color          | 'primary' \| 'success' \| 'warning' \| 'error' \| '' | 标签页和内容的颜色，默认为空字符串      |
+| align          | 'left' \| 'center' \| 'right' | 对齐方式，默认为'left'                                            |
+
+### ImMenuItem Props
+| 字段名         | 类型                        | 描述                                                                 |
+|----------------|-----------------------------|----------------------------------------------------------------------|
+| name           | string \| number            | 菜单项的唯一标识符，用于控制激活状态和父子关系                       |
+| disabled       | boolean                     | 是否禁用，默认为false                                              |
+| label          | string \| number            | 菜单项的标签                                                       |
+
+### ImSubMenu Props
+| 字段名         | 类型                        | 描述                                                                 |
+|----------------|-----------------------------|----------------------------------------------------------------------|
+| name           | string \| number            | 子菜单的唯一标识符，用于控制激活状态和父子关系                       |
+| disabled       | boolean                     | 是否禁用，默认为false                                              |
+| label          | string \| number            | 子菜单的标签                                                       |
+| slot.default           | -                      | 子菜单的插槽                                   |

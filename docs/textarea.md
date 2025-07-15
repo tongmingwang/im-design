@@ -85,3 +85,18 @@ const textarea = ref('Hello World!');
   <ImTextarea maxlength="10" placeholder="最多十个字"></ImTextarea>
 </template>
 ```
+
+## API
+
+
+
+| 字段名      | 类型                  | 描述                                                                 |
+|-------------|-----------------------|----------------------------------------------------------------------|
+| modelValue  | String                | 绑定的值                                                           |
+| placeholder | String                | 占位符文本                                                         |
+| rows        | Number                | 行数，默认为2，必须大于等于1                                         |
+| maxlength   | Number                | 最大长度                                                           |
+| minlength   | Number                | 最小长度                                                           |
+| autoSize    | Boolean               | 是否自动调整大小，默认为false                                      |
+| disabled    | Boolean               | 是否禁用，默认为false                                              |
+| readonly    | Boolean               | 是否只读，默认为false                                              |

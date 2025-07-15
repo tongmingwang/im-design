@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "dayjs": "^1.11.13",
-    "im-design": "^1.4.15",
+    "im-design": "^1.4.18",
     "pinia": "^3.0.3",
     "sass": "^1.89.0",
     "shiki": "^3.7.0",

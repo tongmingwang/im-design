@@ -72,4 +72,23 @@ const options = new Array(4)
 设置 `scrollClose` 属性为 true,即可实现
 
 <ImSelect :options="options" v-model="val" scrollClose />
-## APIS
+## API
+
+
+
+| 字段名         | 类型                        | 描述                                                                 |
+|----------------|-----------------------------|----------------------------------------------------------------------|
+| modelValue     | string \| number            | 绑定的值                                                           |
+| options        | Array\<{ label: string \| number; value: string \| number; disabled?: boolean } > | 选项列表，每个选项包含标签、值和是否禁用的状态 |
+| width          | string \| number            | 下拉框宽度                                                         |
+| size           | string \| number            | 下拉框大小                                                         |
+| placeholder    | string                      | 占位符文本                                                         |
+| clearable      | boolean                     | 是否可清除内容，默认为false                                        |
+| zIndex         | number                      | 设置组件的z-index值                                                  |
+| multiple       | boolean                     | 是否允许多选，默认为false                                          |
+| disabled       | boolean                     | 是否禁用，默认为false                                              |
+| maxTag         | number                      | 最多显示的标签数量                                                 |
+| arrow          | boolean                     | 是否显示箭头，默认为true                                           |
+| offset         | number                      | 箭头偏移量                                                         |
+| scrollClose    | boolean                     | 滚动时是否关闭下拉菜单，默认为false                                |
+| emptyText      | string                      | 无选项时的提示文本                                                 |

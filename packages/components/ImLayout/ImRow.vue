@@ -21,7 +21,7 @@ const props = defineProps({
   },
   align: {
     type: String,
-    default: 'top',
+    default: 'flex-start',
   },
 });
 

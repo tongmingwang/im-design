@@ -93,3 +93,17 @@ const checked = ref(false);
 ```
 
 ## API
+
+
+
+| 字段名        | 类型                  | 描述                                                                 |
+|---------------|-----------------------|----------------------------------------------------------------------|
+| modelValue    | boolean               | 绑定的值，默认为false                                              |
+| disabled      | boolean               | 是否禁用，默认为false                                              |
+| readonly      | boolean               | 是否只读，默认为false                                              |
+| size          | string                | 开关大小，默认为'16px'                                             |
+| activeColor   | string                | 激活状态下的颜色，默认为'var(--im-primary-color-8)'                |
+| inactiveColor | string                | 非激活状态下的颜色，默认为'var(--im-gray-color-7)'                 |
+| activeValue   | any                   | 激活状态下的值，默认为true                                         |
+| inactiveValue | any                   | 非激活状态下的值，默认为false                                      |
+| borderColor   | string                | 边框颜色，默认为'var(--im-gray-color-7)'                           |

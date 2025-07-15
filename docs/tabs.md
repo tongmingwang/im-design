@@ -215,3 +215,37 @@ const arr = new Array(3).fill(0).map((_, index) => ({
   <div>This is a Panes Components</div>
     </ImPane>
 </ImPanes>
+
+## API
+
+### ImTabs Props
+
+| 字段名     | 类型             | 描述                                                                 |
+|------------|------------------|----------------------------------------------------------------------|
+| modelValue | string           | 绑定的值                                                             |
+| color      | string           | 标签页和内容的颜色，默认为'default'                                   |
+| align      | string           | 对齐方式，默认为'left'，可选值包括'left', 'right', 'center'            |
+
+### ImTab Props
+
+| 字段名     | 类型   | 描述                                                                 |
+|------------|--------|----------------------------------------------------------------------|
+| name       | string | 标签页的名称，对应 ImPanes 中的 ImPane 的 name 值                    |
+| label      | string | 标签页显示的文本                                                     |
+
+### ImPanes Props
+
+| 字段名     | 类型             | 描述                                                                 |
+|------------|------------------|----------------------------------------------------------------------|
+| modelValue | string           | 绑定的值                                                             |
+
+### ImPane Props
+
+| 字段名 | 类型   | 描述                                                                 |
+|--------|--------|----------------------------------------------------------------------|
+| name   | string | 与 ImTabs 中对应的 ImTab 的 name 值相对应的值                         |
+
+## 注意事项
+
+- 请确保 `ImTabs` 和 `ImPanes` 的 `modelValue` 是同步的。
+- `ImTab` 的 `name` 需要与 `ImPane` 的 `name` 相匹配。

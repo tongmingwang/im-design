@@ -81,4 +81,17 @@ size="40"
 :pageSize="pageSize"
 @change="onChange" />
 
-## APIS
+## API
+
+以下是根据您提供的字段生成的 API 说明表格，格式为 Markdown：
+
+| 字段名        | 类型             | 描述                                                                                                                      |
+| ------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| total         | number           | 总数                                                                                                                      |
+| size          | number \| string | 每个按钮大小                                                                                                              |
+| pageSize      | number           | 每页显示条数                                                                                                              |
+| pageSizeItems | number[]         | 每页显示条数选项                                                                                                          |
+| pageNumber    | number           | 当前页码                                                                                                                  |
+| layout        | string           | 布局，默认为'prev, pager, next, jumper'，其中 prev 表示上一页，next 表示下一页，pager 表示页码列表，jumper 表示跳转按钮。 |
+
+

@@ -62,4 +62,20 @@ import { ref, watch } from 'vue';
 const timeValue = ref('');
 </script>
 ```
-## APIS
+## API
+
+
+## DatePickerProps
+
+| 字段名         | 类型                           | 描述                                                                 |
+|----------------|--------------------------------|----------------------------------------------------------------------|
+| modelValue     | string                         | 绑定的值                                                           |
+| disabled       | boolean                        | 是否禁用，默认为false                                              |
+| readonly       | boolean                        | 是否只读，默认为false                                              |
+| clearable      | boolean                        | 是否可清除内容，默认为false                                        |
+| placeholder    | string                         | 占位符文本                                                         |
+| format         | string                         | 日期格式                                                           |
+| zIndex         | number                         | 设置组件的z-index值                                                  |
+| placement      | ImPlaceType                    | 弹出位置类型                                                       |
+| showTime       | boolean                        | 是否显示时间选择器，默认为false                                    |
+| disabledDate   | (date?: Date) => boolean       | 禁用特定日期的函数                                               |

@@ -73,6 +73,7 @@ export const sidebar = [
         text: 'Input 输入框',
         link: '/input',
       },
+      { text: 'Form 表单', link: '/form' },
       { text: 'InputNumber 数字输入框', link: '/input-number' },
       { text: 'Select 选择器', link: '/select' },
       { text: 'Checkbox 多选框', link: '/checkbox' },

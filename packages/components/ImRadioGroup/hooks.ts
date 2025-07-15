@@ -1,4 +1,4 @@
-import { ref, computed, provide, inject } from 'vue';
+import { ref, computed, provide, inject, watch } from 'vue';
 import type { RadioGroupProps, RadioProps } from './types';
 import { getSizeValue } from '@/utils';
 import { useToken } from '@/hooks/useToken';
@@ -7,6 +7,13 @@ const key = Symbol('imRadioGroup');
 
 export const useRadioGroup = (props: RadioGroupProps, emit: any) => {
   const active = ref(props.modelValue);
+
+  watch(
+    () => props.modelValue,
+    (newVal) => {
+      active.value = newVal;
+    }
+  );
 
   const setActive = (value: string | number) => {
     if (!value && value !== 0) return;

@@ -114,3 +114,22 @@ const onChange = (value) => {
   <ImDateRangePicker disabled />
 </template>
 ```
+
+## API
+
+
+| 字段名         | 类型                           | 描述                                                                 |
+|----------------|--------------------------------|----------------------------------------------------------------------|
+| size           | string                         | 大小                                                                 |
+| disabled       | boolean                        | 是否禁用，默认为false                                              |
+| readonly       | boolean                        | 是否只读，默认为false                                              |
+| placeholder    | string                         | 占位符文本                                                         |
+| clearable      | boolean                        | 是否可清除内容，默认为false                                        |
+| placement      | ImPlaceType                    | 弹出位置类型                                                       |
+| startDate      | string \| Date                 | 开始日期                                                           |
+| endDate        | string \| Date                 | 结束日期                                                           |
+| showTime       | boolean                        | 是否显示时间选择器，默认为false                                    |
+| format         | string                         | 日期格式                                                           |
+| disabledDate   | (date?: Date) => boolean       | 禁用特定日期的函数                                               |
+| arrow          | boolean                        | 是否显示箭头，默认为true                                           |
+| offset         | number                         | 箭头偏移量                                                         |

@@ -194,3 +194,26 @@ const arr = new Array(3).fill(0).map((_, index) => ({
   </ImRadioGroup>
 </template>
 ```
+
+## API
+
+
+## RadioGroupProps
+
+| 字段名     | 类型                        | 描述                                                                 |
+|------------|-----------------------------|----------------------------------------------------------------------|
+| modelValue | string \| number \| null    | 绑定的值                                                           |
+| disabled   | boolean                     | 是否禁用，默认为false                                              |
+| readonly   | boolean                     | 是否只读，默认为false                                              |
+| size       | number \| string            | 大小                                                                 |
+| vertical   | boolean                     | 是否垂直排列，默认为false                                          |
+| variant    | 'button' \| ''              | 变体类型，默认为空字符串                                           |
+
+## RadioProps
+
+| 字段名   | 类型             | 描述                                                                 |
+|----------|------------------|----------------------------------------------------------------------|
+| value    | string \| number | 单个选项的值                                                         |
+| label    | string           | 标签文本                                                             |
+| disabled | boolean          | 是否禁用，默认为false                                              |
+| readonly | boolean          | 是否只读，默认为false                                              |

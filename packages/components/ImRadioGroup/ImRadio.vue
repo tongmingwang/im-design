@@ -70,7 +70,7 @@ const { isActive, size, setActive, isButton, vertical } = useRadio(props);
 .im-radio {
   display: flex;
   align-items: center;
-  color: var(--im-gray-color-8);
+  color: var(--im-gray-color-10);
   line-height: 24px;
   cursor: pointer;
   background-color: transparent;

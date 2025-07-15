@@ -37,15 +37,15 @@
 ## 纵向
 
 <ImButtonGroup vertical>
-  <ImButton>To Up</ImButton>
-  <ImButton>To Bottom</ImButton>
+  <ImButton>Prev</ImButton>
+  <ImButton>Next</ImButton>
 </ImButtonGroup>
 
 ```vue
 <template>
   <ImButtonGroup vertical>
-    <ImButton>To Up</ImButton>
-    <ImButton>To Bottom</ImButton>
+    <ImButton>Prev</ImButton>
+    <ImButton>Next</ImButton>
   </ImButtonGroup>
 </template>
 ```

@@ -272,7 +272,6 @@ const colors = ['default', 'primary', 'error', 'warning', 'success'];
 | width    | 按钮宽度         | string                      | -         | 否   |
 | loading  | 是否显示加载状态 | boolean                     | false     | 否   |
 | disabled | 是否禁用按钮     | boolean                     | false     | 否   |
-| ripple   | 是否启用涟漪效果 | boolean                     | true      | 否   |
 
 #### ImButton 事件
 

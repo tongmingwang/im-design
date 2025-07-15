@@ -162,4 +162,28 @@ const value = ref('');
 </template>
 ```
 
-## APIS
+## API
+
+| 字段名         | 类型                        | 描述                                                                 |
+|----------------|-----------------------------|----------------------------------------------------------------------|
+| modelValue     | string \| number \| any     | 绑定的值                                                           |
+| disabled       | boolean                     | 是否禁用，默认为false                                              |
+| readonly       | boolean                     | 是否只读，默认为false                                              |
+| placeholder    | string                      | 输入框占位符                                                       |
+| name           | string                      | 输入框名称                                                         |
+| id             | string                      | 输入框ID                                                           |
+| maxlength      | number                      | 最大长度                                                           |
+| minlength      | number                      | 最小长度                                                           |
+| max            | number                      | 最大值                                                             |
+| min            | number                      | 最小值                                                             |
+| step           | number                      | 步长                                                               |
+| pattern        | string                      | 输入验证正则表达式                                                 |
+| required       | boolean                     | 是否必填，默认为false                                              |
+| autocomplete   | string                      | 自动完成提示信息                                                   |
+| autofocus      | boolean                     | 页面加载时是否自动聚焦，默认为false                                |
+| tabindex       | number                      | tab索引                                                            |
+| precision      | number                      | 数值精度                                                           |
+| size           | number \| string            | 输入框大小                                                         |
+| prefix         | string                      | 输入框前缀                                                         |
+| suffix         | string                      | 输入框后缀                                                         |
+| clearable      | boolean                     | 是否可清除内容，默认为false                                        |

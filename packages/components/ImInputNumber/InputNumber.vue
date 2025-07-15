@@ -116,12 +116,12 @@ const toPrecision = (value: number | string) => {
 };
 function increase() {
   const step = parseFloat(String(props.step || 1));
-  const value = +val.value + step;
+  const value = (+val.value || 0) + step;
   updateValue(toPrecision(value));
 }
 function decrease() {
   const step = parseFloat(String(props.step || 1));
-  const value = val.value - step;
+  const value = (+val.value || 0) - step;
   updateValue(toPrecision(value));
 }
 

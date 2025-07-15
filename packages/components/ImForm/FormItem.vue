@@ -1,18 +1,25 @@
 <template>
-  <div :class="[bem.e('item')]">
-    <div :class="[bem.e('label')]" v-if="props.label || $slots.label">
+  <div :class="[bem.e('item'), className]" :style="formItemStyles">
+    <div
+      :class="[bem.e('label'), bem.is('required', props.required)]"
+      v-if="props.label || $slots.label">
       <slot name="label">{{ props.label }}</slot>
     </div>
-    <div :class="[bem.e('content'), bem.is('error', !!error)]" ref="contentRef">
+    <div :class="[bem.e('content'), bem.is('show-msg', !!message)]">
       <slot />
-      <div :class="[bem.e('suffix')]" v-if="error">
-        <slot name="suffix">
-          <ImIcon name="close-circle-fill" size="18px" />
-        </slot>
-      </div>
+      <Transition name="right-in" :duration="300">
+        <div :class="[bem.e('suffix')]" v-if="message">
+          <slot name="suffix">
+            <ImIcon
+              name="close-circle-fill"
+              size="18px"
+              v-if="props.showIcon" />
+          </slot>
+        </div>
+      </Transition>
       <Transition name="fade" appear :duration="300">
-        <div :class="[bem.e('error--text')]" v-show="error">
-          {{ error }}
+        <div :class="[bem.e('message')]" v-show="message">
+          {{ message }}
         </div>
       </Transition>
     </div>
@@ -30,8 +37,11 @@ defineOptions({ name: 'ImFormItem' });
 
 const props = withDefaults(defineProps<FormItemProps>(), {
   label: '',
+  showMessage: true,
+  labelWidth: '',
+  showIcon: false,
 });
-const { error, contentRef } = useFormItem(props);
+const { message, formItemStyles, className } = useFormItem(props);
 </script>
 
 <style scoped lang="scss">
@@ -40,10 +50,41 @@ const { error, contentRef } = useFormItem(props);
     margin: 0;
     padding: 0;
     margin-bottom: 18px;
+    height: fit-content;
+  }
+  &__item--right,
+  &__item--left {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    .im-form__label {
+      width: var(--im-form-label-width);
+      margin: 0;
+      margin-right: 12px;
+      text-align: inherit;
+    }
   }
 
-  &__error--text {
-    color: var(--im-error-color-8);
+  &__item--left {
+    text-align: left;
+  }
+  &__item--right {
+    text-align: right;
+  }
+  &__item--top {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    .im-form__label {
+      width: 100%;
+      margin: 0;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+  }
+
+  &__message {
+    color: var(--im-form-message-color);
     font-size: 12px;
     margin: 0;
     padding: 0;
@@ -58,14 +99,22 @@ const { error, contentRef } = useFormItem(props);
     line-height: 22px;
     margin-bottom: 8px;
     color: var(--im-gray-color-8);
+
+    &.is-required::before {
+      content: '*';
+      color: var(--im-form-message-color);
+      margin-right: 4px;
+      font-size: 1em;
+      font-family: 'SimSun', 'sans-serif';
+    }
   }
 
   &__suffix {
     position: absolute;
     top: 50%;
-    right: 10px;
+    right: 8px;
     transform: translateY(-50%);
-    color: var(--im-error-color-8);
+    color: var(--im-form-message-color);
   }
 
   &__content {
@@ -75,19 +124,21 @@ const { error, contentRef } = useFormItem(props);
     width: 100%;
     padding: 0;
     margin: 0;
-    &.is-error {
+    transition: all 0.3s ease-out;
+    &.is-show-msg {
       position: relative;
-      background-color: var(--im-error-color-1);
+      background-color: var(--im-form-state-bg-color);
       &::after {
         position: absolute;
         box-sizing: border-box;
+        transition: all 0.3s ease-out;
         content: '';
         display: block;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        border: 1px solid var(--im-error-color-8);
+        border: 1px solid var(--im-form-message-color);
         z-index: 10;
         border-radius: var(--im-radius);
         pointer-events: none;
@@ -98,24 +149,33 @@ const { error, contentRef } = useFormItem(props);
 }
 
 .fade-enter-active,
-.fade-enter-active {
+.fade-enter-active,
+.right-in-enter-active,
+.right-in-leave-active {
   transition: all 0.3s ease-out;
 }
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-  transform: translateY(-8px);
+  transform: translateY(-5px);
+}
+
+.right-in-enter-from,
+.right-in-leave-to {
+  opacity: 0;
+  transform: scale(0.5);
 }
 </style>
 
 <style lang="scss">
-.im-form__content.is-error {
+.im-form__content.is-show-msg {
   .im-input,
   .im-textarea,
   .im-select__trigger,
   .im-date-trigger,
   input {
     border: none !important;
+    background-color: inherit;
   }
 }
 </style>

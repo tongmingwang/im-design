@@ -63,4 +63,15 @@ function gatTarget() {
 
 </style>
 
-### APIS
+### API
+
+
+以下是根据您提供的字段生成的API说明表格，格式为Markdown：
+
+| 字段名        | 类型                      | 描述                                                                 |
+|---------------|---------------------------|----------------------------------------------------------------------|
+| getTarget     | () => HTMLElement \| null | 获取目标元素的方法                                                   |
+| visibleHeight | number                    | 滚动距离超过多少显示                                                 |
+| zIndex        | number                    | 设置组件的z-index值                                                  |
+| right         | number \| string          | 距离右侧的距离                                                     |
+| bottom        | number \| string          | 距离底部的距离                                                     |

@@ -19,13 +19,13 @@ function gatTarget() {
   <Layout>
     <!-- <template #sidebar-nav-after> 菜单最后部分</template> -->
     <!-- <template #sidebar-nav-before> 菜单最前部分</template> -->
-    <template #doc-after>
+    <!-- <template #doc-after>
       <ImBackTop :getTarget="gatTarget" right="8vw" bottom="8vh">
         <ImButton color="primary" shape="circle" size="48">
           <ImIcon name="vertical-align-top" size="24"></ImIcon>
         </ImButton>
       </ImBackTop>
-    </template>
+    </template> -->
     <!-- <template #doc-footer-before> 页脚最前部分</template>
     <template #doc-footer-after> 页脚最后部分</template> -->
     <!-- <template #nav-bar-content-before> </template> -->

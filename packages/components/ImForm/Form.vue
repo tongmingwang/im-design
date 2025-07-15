@@ -11,11 +11,16 @@ import { useForm } from './useForm';
 
 const bem = useBem('form');
 defineOptions({ name: 'ImForm' });
-const props = withDefaults(defineProps<FormProps>(), {});
+const emit = defineEmits<{ (e: 'update:modelValue', value: any): void }>();
+const props = withDefaults(defineProps<FormProps>(), {
+  modelValue: () => ({}),
+  rules: () => ({}),
+  labelWidth: 100,
+  labelPosition: 'right',
+});
+const { formRef, validate, reset } = useForm(props);
 
-const { formRef, validate } = useForm(props);
-
-defineExpose({ validate, $el: formRef });
+defineExpose({ validate, $el: formRef, reset });
 </script>
 
 <style scoped lang="scss">

@@ -13,11 +13,9 @@
   </ImButton>
   </template>
   <template #content>
-    <ImButtonGroup vertical color="primary">
     <ImButton shape="circle">按钮</ImButton>
     <ImButton shape="circle">按钮</ImButton>
     <ImButton shape="circle">按钮</ImButton>
-    </ImButtonGroup>
   </template>
 </ImFloatButton>
 
@@ -30,12 +28,19 @@
       </ImButton>
     </template>
     <template #content>
-      <ImButtonGroup vertical color="primary">
-        <ImButton shape="circle">按钮</ImButton>
-        <ImButton shape="circle">按钮</ImButton>
-        <ImButton shape="circle">按钮</ImButton>
-      </ImButtonGroup>
+      <ImButton shape="circle">按钮</ImButton>
+      <ImButton shape="circle">按钮</ImButton>
+      <ImButton shape="circle">按钮</ImButton>
     </template>
   </ImFloatButton>
 </template>
 ```
+
+## API
+
+### slots
+
+| 名称      | 说明                           |
+| --------- | ------------------------------ |
+| `default` | 悬浮按钮触发器,回调状态 `open` |
+| `content` | 悬浮按钮内容，默认为空。       |

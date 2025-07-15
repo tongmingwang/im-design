@@ -240,4 +240,16 @@ const selected = ref('1');
 </template>
 ```
 
-## APIS
+## API
+
+### Dropdown Props
+
+| 属性        | 说明                                                            |
+| ----------- | --------------------------------------------------------------- |
+| placement   | 下拉菜单出现的位置                                              |
+| arrow       | 是否显示下拉菜单的箭头，默认为 true。                           |
+| scrollClose | 是否在滚动时关闭下拉菜单，默认为 false。                        |
+| trigger     | 触发下拉菜单的方式，可选值为 `click`、`hover`。默认为 `hover`。 |
+| v-model     | 绑定值，用于支持选择模式。                                      |
+| zIndex      | 显示层级                                                        |
+| offset      | 偏移量                                                          |
