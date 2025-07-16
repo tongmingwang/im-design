@@ -1,4 +1,4 @@
-const rippleTime = 300;
+const rippleTime = 350;
 const easing = 'ease-out';
 
 class RippleTask {
@@ -116,8 +116,8 @@ function createRipple(event: MouseEvent, task: RippleTask, el: HTMLElement) {
   ripple.style.height = `${radius}px`;
   ripple.style.left = `${x}px`;
   ripple.style.top = `${y}px`;
-  ripple.style.opacity = '0.25';
-  ripple.style.transform = isC ? 'scale(0.25)' : 'scale(0.66)';
+  ripple.style.opacity = '0.3';
+  ripple.style.transform = isC ? 'scale(0.25)' : 'scale(0.45)';
   ripple.dataset.time = Date.now().toString();
 
   rippleContainer.appendChild(ripple);
