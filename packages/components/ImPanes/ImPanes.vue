@@ -1,9 +1,7 @@
 <template>
-  <ul v-bind="attr" :class="[bem.b()]">
-    <Transition mode="out-in" name="slide" :duration="300">
-      <component :is="current" :key="current" />
-    </Transition>
-  </ul>
+  <div v-bind="attr" :class="[bem.b()]">
+    <component :is="current" />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -66,19 +64,5 @@ function filterPane(arr: Array<any>) {
   border-bottom-right-radius: var(--im-radius, 4px);
   box-shadow: none;
   box-sizing: border-box;
-}
-
-.slide-enter-active,
-.slide-leave-active {
-  transition: all 300ms cubic-bezier(0.55, 0, 0.1, 1);
-}
-
-.slide-leave-to {
-  opacity: 0;
-  transform: translateY(8px);
-}
-.slide-enter-from {
-  opacity: 0;
-  transform: translateY(-8px);
 }
 </style>

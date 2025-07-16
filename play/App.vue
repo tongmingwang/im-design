@@ -1,11 +1,11 @@
 <template>
-  <Form />
-  <Button />
+  <!-- <Form /> -->
+  <Tabs />
 </template>
 
 <script setup lang="ts">
 import Form from './views/Form.vue';
-import Button from './views/Button.vue';
+import Tabs from './views/Tabs.vue';
 </script>
 
 <style lang="scss">

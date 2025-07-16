@@ -1,7 +1,7 @@
 <template>
-  <li :class="[bem.b()]" :data-name="props.name">
+  <div :class="[bem.b()]" :data-name="props.name">
     <slot />
-  </li>
+  </div>
 </template>
 
 <script setup lang="ts">

@@ -12,8 +12,8 @@ importers:
         specifier: ^1.11.13
         version: 1.11.13
       im-design:
-        specifier: ^1.4.24
-        version: 1.4.25(vue@3.5.15(typescript@5.8.3))
+        specifier: ^1.4.27
+        version: 1.4.27(vue@3.5.15(typescript@5.8.3))
       sass:
         specifier: ^1.89.0
         version: 1.89.0
@@ -1075,8 +1075,8 @@ packages:
   html-void-elements@3.0.0:
     resolution: {integrity: sha512-bEqo66MRXsUGxWHV5IP0PUiAWwoEjba4VCzg0LjFJBpchPaTfyfCKTG6bc5F8ucKec3q5y6qOdGyYTSBEvhCrg==}
 
-  im-design@1.4.25:
-    resolution: {integrity: sha512-SRzZjiiYOBhYHtfT9pXyfcbM52M0PccDnZb6VT/lTTNZAPJ18z6Lyr0XsvS9+z58/bWaasB3p+E2cHUDTu4p4w==}
+  im-design@1.4.27:
+    resolution: {integrity: sha512-3rse7uL8BZxCtd1R+bSdlrl1hWbv0ECemp2/ai/jraNjpLXVzXA4s03mFIB1fbzhVkBL3scq5eQCdJWXDq3WZg==}
     peerDependencies:
       vue: ^3.5.13
 
@@ -2482,7 +2482,7 @@ snapshots:
 
   html-void-elements@3.0.0: {}
 
-  im-design@1.4.25(vue@3.5.15(typescript@5.8.3)):
+  im-design@1.4.27(vue@3.5.15(typescript@5.8.3)):
     dependencies:
       dayjs: 1.11.13
       vue: 3.5.15(typescript@5.8.3)
