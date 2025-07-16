@@ -5,13 +5,12 @@
 </template>
 
 <script setup lang="ts">
-import { useBem } from '@/utils/bem';
 import type { FormProps } from './types';
+import { useBem } from '@/utils/bem';
 import { useForm } from './useForm';
 
-const bem = useBem('form');
 defineOptions({ name: 'ImForm' });
-const emit = defineEmits<{ (e: 'update:modelValue', value: any): void }>();
+const bem = useBem('form');
 const props = withDefaults(defineProps<FormProps>(), {
   modelValue: () => ({}),
   rules: () => ({}),

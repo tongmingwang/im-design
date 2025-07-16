@@ -5,32 +5,13 @@ import dts from 'vite-plugin-dts';
 
 export default defineConfig((bindOpt: any) => {
   const { mode } = bindOpt;
+  console.log(mode);
 
   const resolve = {
     alias: {
       '@': path.resolve(__dirname, './packages'),
-      '@app': path.resolve(__dirname, './app'),
     },
   };
-
-  if (['pro:app', 'dev:app'].includes(mode)) {
-    return {
-      root: './app',
-      base: '/im-design/',
-      resolve,
-      plugins: [vue()],
-      build: {
-        outDir: 'dist',
-        rollupOptions: {
-          output: {
-            entryFileNames: '[name].js',
-            chunkFileNames: '[name].js',
-            assetFileNames: '[name].[ext]',
-          },
-        },
-      },
-    };
-  }
 
   // 库模式打包配置
   return {
@@ -46,7 +27,7 @@ export default defineConfig((bindOpt: any) => {
     resolve,
     build: {
       lib: {
-        entry: path.resolve(__dirname, './packages/components/index.ts'), // 明确入口
+        entry: path.resolve(__dirname, './packages/components/index.ts'),
         name: 'ImDesign',
         formats: ['es', 'umd', 'cjs'],
         fileName: (format) => `im-design.${format}.js`,

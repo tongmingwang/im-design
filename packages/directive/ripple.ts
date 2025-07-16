@@ -1,4 +1,5 @@
 const rippleTime = 300;
+const easing = 'ease-out';
 
 class RippleTask {
   #task: Array<any>;
@@ -33,7 +34,7 @@ class RippleTask {
       // 判断是否还在动画内
       if (dpx > 0) {
         await new Promise(async (resolve) => {
-          ripple.style.opacity = '0.08'; // 淡出效果
+          ripple.style.opacity = '0.05'; // 淡出效果
           await new Promise((res) => requestAnimationFrame(res));
           setTimeout(() => {
             resolve(null);
@@ -61,7 +62,7 @@ const styleCache = new WeakMap<HTMLElement, CSSStyleDeclaration>();
 const RIPPLE_BASE_STYLE: Partial<CSSStyleDeclaration> = {
   position: 'absolute',
   borderRadius: '50%',
-  transition: `all ${rippleTime}ms ease-out`,
+  transition: `all ${rippleTime}ms ${easing}`,
   willChange: 'transform,opacity',
   pointerEvents: 'none',
 };
@@ -87,14 +88,27 @@ function createRipple(event: MouseEvent, task: RippleTask, el: HTMLElement) {
   // Calculate ripple dimensions
   const clientX = event.clientX;
   const clientY = event.clientY;
-  const xLeft = clientX - rect.left;
-  const yTop = clientY - rect.top;
 
-  const xLen = Math.max(xLeft, rect.width - xLeft);
-  const yLen = Math.max(yTop, rect.height - yTop);
-  const radius = Math.sqrt(xLen ** 2 + yLen ** 2) * 2;
-  const x = xLeft - radius / 2;
-  const y = yTop - radius / 2;
+  let x = 0,
+    y = 0,
+    radius = 0;
+  const isC = rect.width - rect.height < 2;
+
+  if (isC) {
+    const size = Math.max(rect.width, rect.height) * 0.5;
+
+    radius = Math.sqrt(size ** 2 + size ** 2) * 2;
+    x = size - radius / 2;
+    y = size - radius / 2;
+  } else {
+    const xLeft = clientX - rect.left;
+    const yTop = clientY - rect.top;
+    const xLen = Math.max(xLeft, rect.width - xLeft);
+    const yLen = Math.max(yTop, rect.height - yTop);
+    radius = Math.sqrt(xLen ** 2 + yLen ** 2) * 2;
+    x = xLeft - radius / 2;
+    y = yTop - radius / 2;
+  }
 
   // Set dynamic styles
   ripple.style.backgroundColor = computedStyle.color || '';
@@ -103,7 +117,7 @@ function createRipple(event: MouseEvent, task: RippleTask, el: HTMLElement) {
   ripple.style.left = `${x}px`;
   ripple.style.top = `${y}px`;
   ripple.style.opacity = '0.25';
-  ripple.style.transform = 'scale(0.66)';
+  ripple.style.transform = isC ? 'scale(0.25)' : 'scale(0.66)';
   ripple.dataset.time = Date.now().toString();
 
   rippleContainer.appendChild(ripple);
@@ -118,7 +132,7 @@ function createRipple(event: MouseEvent, task: RippleTask, el: HTMLElement) {
 
   // Trigger animation in the next frame
   requestAnimationFrame(() => {
-    ripple.style.transform = 'scale(1.1)';
+    ripple.style.transform = 'scale(1)';
   });
 }
 

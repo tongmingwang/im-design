@@ -124,25 +124,29 @@ const { message, formItemStyles, className } = useFormItem(props);
     width: 100%;
     padding: 0;
     margin: 0;
-    transition: all 0.3s ease-out;
+    &::after {
+      position: absolute;
+      box-sizing: border-box;
+      transition: all 0.3s ease-out;
+      content: '';
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 1px solid transparent;
+      z-index: 10;
+      border-radius: var(--im-radius);
+      pointer-events: none;
+      background-color: transparent;
+      opacity: 0;
+    }
     &.is-show-msg {
       position: relative;
       background-color: transparent;
       &::after {
-        position: absolute;
-        box-sizing: border-box;
-        transition: all 0.3s ease-out;
-        content: '';
-        display: block;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 1px solid var(--im-form-message-color);
-        z-index: 10;
-        border-radius: var(--im-radius);
-        pointer-events: none;
-        background-color: transparent;
+        border-color: var(--im-form-message-color);
+        opacity: 1;
       }
     }
   }

@@ -13,13 +13,11 @@
     "publish": "node scripts/publish.cjs",
     "update:version": "node scripts/updateVersion.cjs",
     "build:dev": "vue-tsc -b && vite build",
-    "build:types": "tsc -p tsconfig.build.json",
-    "dev:app": "node scripts/devApp.cjs && vite -m dev:app --port 3000",
-    "build:app": "vue-tsc -b && vite build -m pro:app"
+    "build:types": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
     "dayjs": "^1.11.13",
-    "im-design": "^1.4.22",
+    "im-design": "^1.4.24",
     "pinia": "^3.0.3",
     "sass": "^1.89.0",
     "shiki": "^3.7.0",
