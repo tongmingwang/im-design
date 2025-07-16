@@ -175,7 +175,6 @@ const { message, formItemStyles, className } = useFormItem(props);
   .im-date-trigger,
   input {
     border-color: transparent !important;
-    background-color: inherit;
   }
 }
 </style>
