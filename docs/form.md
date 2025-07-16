@@ -65,9 +65,7 @@ const onSave = async () => {
     console.log(data, 'data');
   });
   console.log(res, 'res');
-  setTimeout(() => {
-    alert(JSON.stringify(res))
-  },200)
+  
 };
 
 const onReset = () => {
