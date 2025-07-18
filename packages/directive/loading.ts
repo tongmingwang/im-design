@@ -1,5 +1,8 @@
 import { createApp } from 'vue';
 import ImLoading from '@/components/Common/ImLoading.vue';
+import { debounce } from '@/utils';
+
+const debounceTime = 100;
 
 function createLoading(el: HTMLElement, loadingText?: string) {
   closeLoading(el);
@@ -40,25 +43,36 @@ async function closeLoading(el: HTMLElement) {
       const updateLoading = el.IM_LOADING_UPDATE;
       if (updateLoading) {
         updateLoading?.(false);
-        await new Promise((resolve) => setTimeout(resolve, 300));
       }
-      app.unmount();
-      app._container.remove();
-      // @ts-ignore
-      el.IM_LOADING_INSTANCE = null;
-      if (el.dataset.overflow) {
-        el.style.overflow = el.dataset.overflow;
-        delete el.dataset.overflow;
-      }
-      if (el.dataset.position) {
-        el.style.position = el.dataset.position;
-        delete el.dataset.position;
-      }
+      setTimeout(() => {
+        app.unmount();
+        app._container.remove();
+        // @ts-ignore
+        el.IM_LOADING_INSTANCE = null;
+        if (el.dataset.overflow) {
+          el.style.overflow = el.dataset.overflow;
+          delete el.dataset.overflow;
+        }
+        if (el.dataset.position) {
+          el.style.position = el.dataset.position;
+          delete el.dataset.position;
+        }
+      }, debounceTime);
     } catch (error) {
       console.error(error);
     }
   }
 }
+const handleUpdate = debounce((el: HTMLElement, bind: any) => {
+  if (typeof bind.value === 'boolean') {
+    return bind.value ? createLoading(el) : closeLoading(el);
+  }
+  if (bind.value?.loading) {
+    createLoading(el, bind.value?.loadingText);
+  } else {
+    closeLoading(el);
+  }
+}, debounceTime);
 
 // 加载动画指令
 export const loading = {
@@ -75,13 +89,6 @@ export const loading = {
     closeLoading(el);
   },
   updated(el: HTMLElement, bind: any) {
-    if (typeof bind.value === 'boolean') {
-      return bind.value ? createLoading(el) : closeLoading(el);
-    }
-    if (bind.value?.loading) {
-      createLoading(el, bind.value?.loadingText);
-    } else {
-      closeLoading(el);
-    }
+    handleUpdate(el, bind);
   },
 };

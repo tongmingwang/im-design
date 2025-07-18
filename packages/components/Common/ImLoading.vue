@@ -89,6 +89,7 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   border-radius: inherit;
+  min-height: fit-content;
   z-index: 9999;
   color: var(--im-primary-color-8);
   gap: 8px;

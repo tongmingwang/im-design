@@ -1,12 +1,9 @@
 <template>
-  <Button />
-  <Tabs />
   <ImButton class="trigger" @click="visible = !visible">显示</ImButton>
 
-  <ImLayer :visible="visible" :getTriggerContainer="getTriggerContainer">
-    <div>显示的内容</div>
-    <div>完全自定义</div>
-  </ImLayer>
+  <div v-loading="visible">
+    <Tabs />
+  </div>
 </template>
 
 <script setup lang="ts">
