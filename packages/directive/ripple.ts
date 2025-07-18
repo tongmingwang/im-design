@@ -1,6 +1,9 @@
 const rippleTime = 400;
 const easing = 'ease-out';
 
+const circleStart = 'scale(0)';
+const start = 'scale(0)';
+
 class RippleTask {
   #task: Array<any>;
 
@@ -66,7 +69,7 @@ const styleCache = new WeakMap<HTMLElement, CSSStyleDeclaration>();
 const RIPPLE_BASE_STYLE: Partial<CSSStyleDeclaration> = {
   position: 'absolute',
   borderRadius: '50%',
-  transition: `all ${rippleTime}ms ${easing} 100ms`,
+  transition: `all ${rippleTime}ms ${easing} ${rippleTime * 0.05}ms`,
   willChange: 'transform,opacity',
   pointerEvents: 'none',
 };
@@ -99,8 +102,9 @@ function createRipple(event: MouseEvent, task: RippleTask, el: HTMLElement) {
   const xLen = Math.max(xLeft, rect.width - xLeft);
   const yLen = Math.max(yTop, rect.height - yTop);
   const radius = getCircleRadius(xLen, yLen) * 2;
-  const x = xLeft - radius / 2;
-  const y = yTop - radius / 2;
+  const dpx = radius / 2;
+  const x = xLeft - dpx;
+  const y = yTop - dpx;
 
   // Set dynamic styles
   ripple.style.backgroundColor = computedStyle.color || '';
@@ -109,7 +113,7 @@ function createRipple(event: MouseEvent, task: RippleTask, el: HTMLElement) {
   ripple.style.left = `${x}px`;
   ripple.style.top = `${y}px`;
   ripple.style.opacity = '0.25';
-  ripple.style.transform = 'scale(0)';
+  ripple.style.transform = isC ? circleStart : start;
   ripple.dataset.time = Date.now().toString();
 
   rippleContainer.appendChild(ripple);

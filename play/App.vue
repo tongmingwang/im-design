@@ -1,5 +1,5 @@
 <template>
-  <Dialog />
+  <Button />
   <Tabs />
   <ImButton class="trigger" @click="visible = !visible">显示</ImButton>
 
@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import Dialog from './views/Dialog.vue';
+import Button from './views/Button.vue';
 import Tabs from './views/Tabs.vue';
 import { ImLayer } from '../packages/components';
 

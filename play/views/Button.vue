@@ -1,5 +1,5 @@
 <template>
-  <ImButton style="height: 800px">Demo</ImButton>
+  <ImButton style="height: 80px">Demo</ImButton>
   <ImRow :gutter="8">
     <ImButton v-for="item in colors" :color="item">
       {{ item.toUpperCase() }}
