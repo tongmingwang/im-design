@@ -13,6 +13,12 @@ export default defineConfig((bindOpt: any) => {
     },
   };
 
+  const server = {
+    port: 3000,
+    open: true,
+    hmr: true,
+    cors: true,
+  };
   // 库模式打包配置
   return {
     plugins: [
@@ -24,6 +30,7 @@ export default defineConfig((bindOpt: any) => {
       }),
       vue(),
     ],
+    server,
     resolve,
     build: {
       lib: {

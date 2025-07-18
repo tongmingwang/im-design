@@ -1,4 +1,4 @@
-const rippleTime = 350;
+const rippleTime = 300;
 const easing = 'ease-out';
 
 class RippleTask {
@@ -63,6 +63,7 @@ const RIPPLE_BASE_STYLE: Partial<CSSStyleDeclaration> = {
   position: 'absolute',
   borderRadius: '50%',
   transition: `all ${rippleTime}ms ${easing}`,
+  opacity: '0.2',
   willChange: 'transform,opacity',
   pointerEvents: 'none',
 };
@@ -107,7 +108,7 @@ function createRipple(event: MouseEvent, task: RippleTask, el: HTMLElement) {
     const yLen = Math.max(yTop, rect.height - yTop);
     radius = Math.sqrt(xLen ** 2 + yLen ** 2) * 2;
     x = xLeft - radius / 2;
-    y = yTop - radius / 2;
+    y = yLen - radius / 2;
   }
 
   // Set dynamic styles
@@ -116,8 +117,8 @@ function createRipple(event: MouseEvent, task: RippleTask, el: HTMLElement) {
   ripple.style.height = `${radius}px`;
   ripple.style.left = `${x}px`;
   ripple.style.top = `${y}px`;
-  ripple.style.opacity = '0.3';
-  ripple.style.transform = isC ? 'scale(0.25)' : 'scale(0.45)';
+  ripple.style.opacity = '0.25';
+  ripple.style.transform = isC ? 'scale(0.33)' : 'scale(0.5)';
   ripple.dataset.time = Date.now().toString();
 
   rippleContainer.appendChild(ripple);

@@ -1,12 +1,12 @@
 :root {
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: linear-gradient(45deg,
-      rgba(203, 219, 27, 0.8),
-      rgba(220, 149, 16, 0.8),
+      rgba(4, 36, 198, 0.8),
+      rgba(252, 164, 0, 0.8),
       rgba(212, 9, 243, 0.8));
 
   --vp-home-hero-image-background-image: linear-gradient(135deg,
       rgba(242, 97, 206, 0.7) 10%,
-      rgba(151, 7, 139, 0.7) 100%);
+      rgba(168, 7, 155, 0.7) 100%);
   --vp-home-hero-image-filter: blur(110px);
 }

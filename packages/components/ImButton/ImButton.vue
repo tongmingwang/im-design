@@ -196,7 +196,7 @@ const handleClick = (e: Event) => {
 
       &:hover {
         @include btn-colors(
-          var(--im-#{$color}-color-2),
+          var(--im-#{$color}-color-1),
           var(--im-#{$color}-color-9),
           var(--im-#{$color}-color-2)
         );
@@ -275,7 +275,7 @@ const handleClick = (e: Event) => {
   border: none;
 
   &:hover {
-    background-color: var(--im-rgb-color-2);
+    background-color: var(--im-rgb-color-1);
     color: var(--im-gray-color-10);
   }
 }

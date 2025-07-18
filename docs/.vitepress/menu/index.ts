@@ -17,6 +17,10 @@ export const sidebar = [
     ],
   },
   {
+    text: '基础组件',
+    items: [{ text: 'Layer 浮层', link: '/layer' }],
+  },
+  {
     text: '通用组件',
     items: [
       { text: 'Button 按钮', link: '/button' },
