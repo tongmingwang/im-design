@@ -1,4 +1,4 @@
-const rippleTime = 300;
+const rippleTime = 400;
 const easing = 'ease-out';
 
 class RippleTask {
@@ -51,6 +51,10 @@ class RippleTask {
   }
 }
 
+const getCircleRadius = (x: number, y: number) => {
+  return Math.sqrt(x ** 2 + y ** 2);
+};
+
 const ATTR_KEY = 'data-ripple';
 const RIPPLE_CONTAINER_STYLE =
   'position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;margin:0;padding:0;z-index:0;border-radius:inherit;';
@@ -62,8 +66,7 @@ const styleCache = new WeakMap<HTMLElement, CSSStyleDeclaration>();
 const RIPPLE_BASE_STYLE: Partial<CSSStyleDeclaration> = {
   position: 'absolute',
   borderRadius: '50%',
-  transition: `all ${rippleTime}ms ${easing}`,
-  opacity: '0.2',
+  transition: `all ${rippleTime}ms ${easing} 100ms`,
   willChange: 'transform,opacity',
   pointerEvents: 'none',
 };
@@ -90,26 +93,14 @@ function createRipple(event: MouseEvent, task: RippleTask, el: HTMLElement) {
   const clientX = event.clientX;
   const clientY = event.clientY;
 
-  let x = 0,
-    y = 0,
-    radius = 0;
-  const isC = rect.width - rect.height < 2;
-
-  if (isC) {
-    const size = Math.max(rect.width, rect.height) * 0.5;
-
-    radius = Math.sqrt(size ** 2 + size ** 2) * 2;
-    x = size - radius / 2;
-    y = size - radius / 2;
-  } else {
-    const xLeft = clientX - rect.left;
-    const yTop = clientY - rect.top;
-    const xLen = Math.max(xLeft, rect.width - xLeft);
-    const yLen = Math.max(yTop, rect.height - yTop);
-    radius = Math.sqrt(xLen ** 2 + yLen ** 2) * 2;
-    x = xLeft - radius / 2;
-    y = yLen - radius / 2;
-  }
+  const isC = Math.abs(rect.width - rect.height) < 2;
+  const xLeft = clientX - rect.left;
+  const yTop = clientY - rect.top;
+  const xLen = Math.max(xLeft, rect.width - xLeft);
+  const yLen = Math.max(yTop, rect.height - yTop);
+  const radius = getCircleRadius(xLen, yLen) * 2;
+  const x = xLeft - radius / 2;
+  const y = yTop - radius / 2;
 
   // Set dynamic styles
   ripple.style.backgroundColor = computedStyle.color || '';
@@ -118,7 +109,7 @@ function createRipple(event: MouseEvent, task: RippleTask, el: HTMLElement) {
   ripple.style.left = `${x}px`;
   ripple.style.top = `${y}px`;
   ripple.style.opacity = '0.25';
-  ripple.style.transform = isC ? 'scale(0.33)' : 'scale(0.5)';
+  ripple.style.transform = 'scale(0)';
   ripple.dataset.time = Date.now().toString();
 
   rippleContainer.appendChild(ripple);
