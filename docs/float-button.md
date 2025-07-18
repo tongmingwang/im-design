@@ -38,9 +38,17 @@
 
 ## API
 
-### slots
-
-| 名称      | 说明                           |
-| --------- | ------------------------------ |
-| `default` | 悬浮按钮触发器,回调状态 `open` |
-| `content` | 悬浮按钮内容，默认为空。       |
+```ts
+defineProps<{
+    // 悬浮按钮的尺寸
+    size?: number | string;
+    // 悬浮按钮的形状
+    shape?: '' | 'circle';
+    // 显示组
+    open?: boolean;
+    // 悬浮按钮的位置
+    right?: string;
+    // 悬浮按钮的底部偏移量
+    bottom?: string;
+  }>(),
+```

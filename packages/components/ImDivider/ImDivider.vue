@@ -20,13 +20,13 @@ import { useBem } from '@/utils/bem';
 import { getSizeValue } from '@/utils';
 import { computed } from 'vue';
 
+const bem = useBem('divider');
+const props = defineProps<DividerProps>();
+
 const sizeValue = computed(() => getSizeValue(props.size || 1));
 const marginValue = computed(() => getSizeValue(props.margin || 8));
 const leftW = computed(() => props.textLeftWidth || '100%');
 const rightW = computed(() => props.textRightWidth || '100%');
-
-const bem = useBem('divider');
-const props = defineProps<DividerProps>();
 </script>
 
 <style lang="scss" scoped>

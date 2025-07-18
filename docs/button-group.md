@@ -49,3 +49,16 @@
   </ImButtonGroup>
 </template>
 ```
+
+## API
+
+```ts
+props:{
+    // 是否垂直布局
+    vertical?: boolean;
+    // 按钮组大小
+    size?: number | string;
+    // 按钮颜色主题
+    color?: '' | 'primary' | 'success' | 'warning' | 'error';
+}
+```

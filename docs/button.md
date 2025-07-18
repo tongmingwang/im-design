@@ -259,37 +259,31 @@ const colors = ['default', 'primary', 'error', 'warning', 'success'];
 </div>
 ```
 
-### API
+## API
 
-#### ImButton 属性
+目前支持的属性如下：
 
-| 属性名   | 说明             | 类型                        | 默认值    | 必填 |
-| -------- | ---------------- | --------------------------- | --------- | ---- |
-| color    | 按钮颜色主题     | string                      | 'default' | 否   |
-| variant  | 按钮变体样式     | 'text'\|'outlined'\|'tonal' | -         | 否   |
-| shape    | 按钮形状         | 'circle'\|'square'\|'round' | -         | 否   |
-| size     | 按钮尺寸(px)     | number                      | 36        | 否   |
-| width    | 按钮宽度         | string                      | -         | 否   |
-| loading  | 是否显示加载状态 | boolean                     | false     | 否   |
-| disabled | 是否禁用按钮     | boolean                     | false     | 否   |
-
-#### ImButton 事件
-
-| 事件名 | 说明           | 回调参数                |
-| ------ | -------------- | ----------------------- |
-| click  | 点击按钮时触发 | (e: MouseEvent) => void |
-
-#### ImButton 插槽
-
-| 插槽名  | 说明         |
-| ------- | ------------ |
-| default | 按钮内容区域 |
-
-#### 颜色变量 (CSS Variables)
-
-| 变量名               | 说明     |
-| -------------------- | -------- |
-| --im-primary-color-7 | 主色亮色 |
-| --im-primary-color-8 | 主色     |
-| --im-primary-color-9 | 主色暗色 |
-| --im-gray-color-1    | 文字颜色 |
+```ts
+ButtonProps {
+  // 原生属性
+  type?: 'button' | 'submit' | 'reset';
+  // 禁用状态
+  disabled?: boolean;
+  // 颜色主题
+  color?: 'primary' | 'info' | 'error' | 'success' | 'warning' | 'default';
+  // 尺寸大小
+  size?: string | number;
+  // 形状样式
+  shape?: 'circle' | 'round' | 'square';
+  // 加载状态
+  loading?: boolean;
+  // 文本内容
+  text?: string;
+  // 按钮样式
+  variant?: 'text' | 'tonal' | 'outlined';
+  // tab 索引
+  tabindex?: number;
+  // 宽度大小
+  width?: string;
+}
+```

@@ -50,13 +50,14 @@ Hello <ImDivider vertical /> World
 
 ## API
 
-### Props
-
-| 属性名         | 说明                                   |
-| -------------- | -------------------------------------- |
-| textLeftWidth  | 文本左侧偏移量，仅在非垂直分割线时有效 |
-| textRightWidth | 文本右侧偏移量，仅在非垂直分割线时有效 |
-| vertical       | 是否为垂直分割线                       |
-| margin         | 分割线间距                             |
-| size           | 分割线大小                             |
-| color          | 分割线颜色                             |
+```ts
+interface DividerProps {
+  vertical?: boolean; // 是否垂直方向展示，默认为水平方向
+  color?: string; // 分割线颜色，默认为灰色
+  size?: number | string; // 分割线大小，默认为1px
+  margin?: number | string; // 分割线两侧的间距，默认为 8px
+  className?: string; // 自定义类名
+  textLeftWidth?: string | number; // 文字左侧宽度，默认为0
+  textRightWidth?: string | number; // 文字右侧宽度，默认为0
+}
+```

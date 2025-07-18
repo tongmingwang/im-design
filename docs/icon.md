@@ -2,7 +2,9 @@
 
 ImDesign 提供常用的图标，方便你在项目快速使用，内存占用极小兼容性好 19kb 的大小。
 
-## 使用
+## 基础用法
+
+使用`name`属性来使用图标
 
 <script setup>
 import iconData  from './public/imicon.json'
@@ -46,7 +48,7 @@ const onCopy = (item) =>{
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 4px;
+    border-radius: 50%;
     overflow: hidden;
     transition: all .3s;
     width: 60px;
@@ -60,18 +62,11 @@ const onCopy = (item) =>{
 
   }
 </style>
-
-<ImRow :gutter="8">
-    <im-icon name="info-circle" />
-    <im-icon name="info-circle" size="24px" />
-</ImRow>
+<im-icon name="info-circle" size="24px" />
 
 ```vue
 <template>
-  <ImRow :gutter="8">
-    <ImIcon name="info-circle" />
-    <ImIcon name="info-circle" size="24px" />
-  </ImRow>
+  <ImIcon name="info-circle" size="24px" />
 </template>
 ```
 
@@ -87,8 +82,13 @@ const onCopy = (item) =>{
 
 ## API
 
-| 属性名 | 说明                     |
-| ------ | ------------------------ |
-| name   | 图标名称，参考上面的列表 |
-| size   | 图标大小，默认 `16px`    |
-| color  | 图标颜色                 |
+```ts
+defineProps<{
+  // 图标大小，默认 16px
+  size?: string | number;
+  // 图标名称，必填项
+  name: string;
+  // 图标颜色，默认跟随主题色
+  color?: string;
+}>();
+```

@@ -48,7 +48,28 @@
 
 ## API
 
-| 属性   | 说明         | 类型   | 可选值                           | 默认值 |
-| ------ | ------------ | ------ | -------------------------------- | ------ |
-| gutter | 间距         | number | -                                | -      |
-| align  | 纵向对齐方式 | string | `flex-start`,`center`,`flex-end` | -      |
+### Row Props
+
+```ts
+defineProps({
+  gutter: {
+    type: Number,
+    default: 0,
+  },
+  align: {
+    type: String,
+    default: 'flex-start',
+  },
+});
+```
+
+### Col Props
+
+```ts
+defineProps({
+  span: {
+    type: [Number, String],
+    default: 4,
+  },
+});
+```
