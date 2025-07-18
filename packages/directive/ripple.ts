@@ -1,8 +1,8 @@
-const rippleTime = 400;
+const rippleTime = 350;
 const easing = 'ease-out';
 
 const circleStart = 'scale(0.2)';
-const start = 'scale(0.6)';
+const start = 'scale(0.66)';
 
 class RippleTask {
   #task: Array<any>;

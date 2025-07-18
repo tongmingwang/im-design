@@ -3,6 +3,7 @@
 
   <div v-loading="visible">
     <Tabs />
+    <Button />
   </div>
 </template>
 
