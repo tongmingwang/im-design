@@ -1,8 +1,8 @@
 const rippleTime = 400;
 const easing = 'ease-out';
 
-const circleStart = 'scale(0)';
-const start = 'scale(0)';
+const circleStart = 'scale(0.2)';
+const start = 'scale(0.6)';
 
 class RippleTask {
   #task: Array<any>;
@@ -37,7 +37,7 @@ class RippleTask {
       // 判断是否还在动画内
       if (dpx > 0) {
         await new Promise(async (resolve) => {
-          ripple.style.opacity = '0.05'; // 淡出效果
+          ripple.style.opacity = '0.15'; // 淡出效果
           await new Promise((res) => requestAnimationFrame(res));
           setTimeout(() => {
             resolve(null);
@@ -69,7 +69,7 @@ const styleCache = new WeakMap<HTMLElement, CSSStyleDeclaration>();
 const RIPPLE_BASE_STYLE: Partial<CSSStyleDeclaration> = {
   position: 'absolute',
   borderRadius: '50%',
-  transition: `all ${rippleTime}ms ${easing} ${rippleTime * 0.05}ms`,
+  transition: `all ${rippleTime}ms ${easing} 0ms`,
   willChange: 'transform,opacity',
   pointerEvents: 'none',
 };
@@ -97,14 +97,24 @@ function createRipple(event: MouseEvent, task: RippleTask, el: HTMLElement) {
   const clientY = event.clientY;
 
   const isC = Math.abs(rect.width - rect.height) < 2;
-  const xLeft = clientX - rect.left;
-  const yTop = clientY - rect.top;
-  const xLen = Math.max(xLeft, rect.width - xLeft);
-  const yLen = Math.max(yTop, rect.height - yTop);
-  const radius = getCircleRadius(xLen, yLen) * 2;
-  const dpx = radius / 2;
-  const x = xLeft - dpx;
-  const y = yTop - dpx;
+  let x = 0,
+    y = 0,
+    radius = 0;
+  if (isC) {
+    const max = Math.max(rect.width, rect.height) * 0.5;
+    radius = getCircleRadius(max, max) * 2;
+    x = max - radius * 0.5;
+    y = max - radius * 0.5;
+  } else {
+    const xLeft = clientX - rect.left;
+    const yTop = clientY - rect.top;
+    const xLen = Math.max(xLeft, rect.width - xLeft);
+    const yLen = Math.max(yTop, rect.height - yTop);
+    radius = getCircleRadius(xLen, yLen) * 2;
+    const dpx = radius / 2;
+    x = xLeft - dpx;
+    y = yTop - dpx;
+  }
 
   // Set dynamic styles
   ripple.style.backgroundColor = computedStyle.color || '';
