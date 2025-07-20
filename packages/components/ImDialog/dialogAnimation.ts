@@ -1,9 +1,12 @@
 import { waitForAnimate, removeAnimate, getScreeWH } from '@/utils/dom';
-const time = 400;
+const duration = 300;
+const delay = 20;
+const easing = 'ease-out';
 
 export const useDialogAnimation = (props: any) => {
   const enterFN = async (el: any, done: () => void) => {
     removeAnimate(el);
+    el.style.opacity = 0;
     await new Promise((resolve) => requestAnimationFrame(resolve));
     const { height, width } = getScreeWH();
     if (props.fullscreen) {
@@ -11,8 +14,8 @@ export const useDialogAnimation = (props: any) => {
       el.animate(
         [{ transform: `translateY(100%)` }, { transform: 'translateY(0)' }],
         {
-          duration: 300,
-          easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
+          duration,
+          easing,
         }
       );
     } else {
@@ -30,17 +33,18 @@ export const useDialogAnimation = (props: any) => {
       el.style.setProperty('transform-origin', `${x}% ${y}%`);
       el.animate(
         [
-          { transform: 'scale(0.33)', opacity: 0, offset: 0 },
-          { transform: 'scale(0.66)', opacity: 0.33, offset: 0.33 },
+          { transform: 'scale(0)', opacity: 0, offset: 0 },
+          { transform: 'scale(0.66)', opacity: 0.25, offset: 0.66 },
           { transform: 'scale(1)', opacity: 1, offset: 1 },
         ],
         {
-          duration: time,
-          easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
+          duration,
+          easing,
         }
       );
     }
     // 计算位置
+    el.style.opacity = 1;
     done();
   };
 
@@ -49,20 +53,22 @@ export const useDialogAnimation = (props: any) => {
       el.animate(
         [{ transform: 'translateY(0)' }, { transform: `translateY(100%)` }],
         {
-          duration: 300,
-          easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
+          duration,
+          easing,
+          delay,
         }
       );
     } else {
       el.animate(
         [
           { transform: 'scale(1)', opacity: 1, offset: 0 },
-          { transform: 'scale(0.66)', opacity: 0.33, offset: 0.66 },
+          { transform: 'scale(0.66)', opacity: 0.25, offset: 0.66 },
           { transform: 'scale(0)', opacity: 0, offset: 1 },
         ],
         {
-          duration: time,
-          easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
+          duration,
+          easing,
+          delay,
         }
       );
     }

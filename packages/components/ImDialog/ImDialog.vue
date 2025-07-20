@@ -24,7 +24,7 @@
       <!-- 对话框 -->
       <Transition
         :css="false"
-        :duration="400"
+        :duration="300"
         @enter="enterFN"
         @leave="leaveFN"
         mode="out-in">
@@ -163,7 +163,8 @@ async function checkDraggable() {
       let newX = e.clientX - startX;
       let newY = e.clientY - startY;
 
-      dialog.style.transform = `translate3d(${newX}px, ${newY}px, 0)`;
+      dialog.style.transform = `translate(${newX}px, ${newY}px)`;
+      dialog.style.transformOrigin = '';
     }, 20);
 
     dragEnd();
@@ -198,6 +199,7 @@ async function checkDraggable() {
       let newY = e.touches[0].clientY - startY;
 
       dialog.style.transform = `translate3d(${newX}px, ${newY}px, 0)`;
+      dialog.style.transformOrigin = 'center center';
     }, 20);
 
     dragEnd();
@@ -263,7 +265,7 @@ function setClose() {
     overflow: auto;
     background-color: var(--im-bg-content-color, #fff);
     border-radius: var(--im-radius, 4px);
-    transition: all 0.1s ease; // 拖拽动画效果
+    transition: all 100ms linear; // 拖拽动画效果
 
     &.is-fullscreen {
       width: 100% !important;

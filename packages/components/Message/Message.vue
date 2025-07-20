@@ -13,7 +13,7 @@
       @mouseleave="() => onLeave(item)"
       class="im-message__item"
       :class="[bem.e('item'), item.color ? bem.e(item.color) : '']">
-      <ImIcon :name="getIconName(item.color)" size="20" />
+      <ImIcon :name="getIconName(item.color)" size="28" />
       <span class="im-message__text">{{ item.msg }}</span>
     </li>
   </TransitionGroup>
@@ -113,23 +113,22 @@ defineExpose({ addMsg });
   text-align: left;
   text-wrap: nowrap;
   overflow: hidden;
-  height: 28px;
-  line-height: 28px;
-  border-radius: 28px;
-  min-width: 120px;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 36px;
+  min-width: 80px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   font-size: 14px;
   border: none;
-  background-color: var(--im-gray-color-11);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+  background-color: var(--im-primary-color-1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 5px 8px rgba(0, 0, 0, 0.15);
   gap: 8px;
 
   .im-message__text {
-    font-weight: 500;
+    font-weight: 600;
     flex: 1;
-    color: var(--im-gray-color-1);
     text-align: left;
   }
 }
@@ -137,19 +136,20 @@ defineExpose({ addMsg });
 @each $color in (success, warning, error, primary) {
   .im-message__#{$color} {
     color: var(--im-#{$color}-color-8);
+    background-color: var(--im-#{$color}-color-1);
   }
 }
 
 .list-move,
 .list-enter-active,
 .list-leave-active {
-  transition: all 400ms;
+  transition: all 500ms;
 }
 
 .list-enter-from,
 .list-leave-to {
+  transform: scale(0) translateY(-120px);
   opacity: 0;
-  transform: translateY(-16px) scale(0);
 }
 
 /* 确保将离开的元素从布局流中删除

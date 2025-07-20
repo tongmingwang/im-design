@@ -1,8 +1,8 @@
-const rippleTime = 350;
+const rippleTime = 300;
 const easing = 'ease-out';
 
-const circleStart = 'scale(0.2)';
-const start = 'scale(0.66)';
+const circleStart = 'scale(0)';
+const start = 'scale(0)';
 
 class RippleTask {
   #task: Array<any>;
@@ -37,7 +37,7 @@ class RippleTask {
       // 判断是否还在动画内
       if (dpx > 0) {
         await new Promise(async (resolve) => {
-          ripple.style.opacity = '0.15'; // 淡出效果
+          ripple.style.opacity = '0.05'; // 淡出效果
           await new Promise((res) => requestAnimationFrame(res));
           setTimeout(() => {
             resolve(null);
