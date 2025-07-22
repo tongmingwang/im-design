@@ -64,3 +64,11 @@ props:{
   role?: 'tooltip' | 'dropdown' | '';
 }
 ```
+
+### Events
+
+提供的事件，你只需要监听对应的事件控制显示隐藏即可
+
+```js
+const emit = defineEmits(['close', 'mouseenter', 'mouseleave']);
+```
