@@ -2,7 +2,7 @@
   <TransitionGroup
     tag="ul"
     name="list"
-    :duration="400"
+    :duration="300"
     :css="true"
     :class="[bem.b()]">
     <li
@@ -46,7 +46,7 @@ watch(
     if (list.value.length === 0) {
       timer = setTimeout(() => {
         !list.value.length && props.callback();
-      }, 400);
+      }, 300);
     } else {
       timer && clearTimeout(timer);
       timer = null;
@@ -143,12 +143,12 @@ defineExpose({ addMsg });
 .list-move,
 .list-enter-active,
 .list-leave-active {
-  transition: all 500ms;
+  transition: all 300ms ease;
 }
 
 .list-enter-from,
 .list-leave-to {
-  transform: scale(0) translateY(-120px);
+  transform: translateY(-16px);
   opacity: 0;
 }
 

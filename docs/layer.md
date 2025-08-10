@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import {ImLayer} from 'im-design';
+import { ImLayer } from 'im-design';
 
 const visible = ref(false);
 const getTriggerContainer = () => document.querySelector('.trigger');
