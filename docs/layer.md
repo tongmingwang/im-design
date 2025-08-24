@@ -16,9 +16,12 @@ const getTriggerContainer = () => document.querySelector('.trigger');
 
 <ImButton class="trigger" @click="visible = !visible">显示</ImButton>
 
-<ImLayer :visible="visible" :getTriggerContainer="getTriggerContainer">
-  <div>显示的内容</div>
-  <div>完全自定义</div>
+<ImLayer :visible="visible" :getTriggerContainer="getTriggerContainer" scrollClose @close="visible = false">
+<ImList>
+<ImListItem>显示的内容</ImListItem>
+<ImListItem>显示的内容</ImListItem>
+<ImListItem>显示的内容</ImListItem>
+</ImList>
 </ImLayer>
 
 ```vue
@@ -31,9 +34,16 @@ const getTriggerContainer = () => document.querySelector('.trigger');
 </script>
 <template>
   <ImButton class="trigger" @click="visible = !visible">显示</ImButton>
-  <ImLayer :visible="visible" :getTriggerContainer="getTriggerContainer">
-    <div>显示的内容</div>
-    <div>完全自定义</div>
+  <ImLayer
+    :visible="visible"
+    :getTriggerContainer="getTriggerContainer"
+    scrollClose
+    @close="visible = false">
+    <ImList>
+      <ImListItem>显示的内容</ImListItem>
+      <ImListItem>显示的内容</ImListItem>
+      <ImListItem>显示的内容</ImListItem>
+    </ImList>
   </ImLayer>
 </template>
 ```

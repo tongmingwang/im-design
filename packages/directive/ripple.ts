@@ -1,8 +1,8 @@
-const rippleTime = 300;
-const easing = 'ease-out';
+const rippleTime = 400;
+const easing = 'cubic-bezier(0.4, 0, 0.2, 1)';
 
-const circleStart = 'scale(0.25)';
-const start = 'scale(0.5,0.6)';
+const circleStart = 'scale(0)';
+const start = 'scale(0)';
 
 class RippleTask {
   #task: Array<any>;
@@ -37,7 +37,7 @@ class RippleTask {
       // 判断是否还在动画内
       if (dpx > 0) {
         await new Promise(async (resolve) => {
-          ripple.style.opacity = '0.08'; // 淡出效果
+          ripple.style.opacity = '0.15'; // 淡出效果
           await new Promise((res) => requestAnimationFrame(res));
           setTimeout(() => {
             resolve(null);
@@ -122,7 +122,7 @@ function createRipple(event: MouseEvent, task: RippleTask, el: HTMLElement) {
   ripple.style.height = `${radius}px`;
   ripple.style.left = `${x}px`;
   ripple.style.top = `${y}px`;
-  ripple.style.opacity = '0.25';
+  ripple.style.opacity = '0.33';
   ripple.style.transform = isC ? circleStart : start;
   ripple.dataset.time = Date.now().toString();
 
