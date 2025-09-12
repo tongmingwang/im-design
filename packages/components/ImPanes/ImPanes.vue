@@ -1,32 +1,44 @@
 <template>
-  <div v-bind="attr" :class="[bem.b()]">
-    <component :is="current" />
+  <div
+    v-bind="attr"
+    :class="[bem.b()]"
+    :style="{
+      '--slide-x': slideX,
+      '--pane-pd': '24px',
+    }">
+    <component
+      v-for="com in paneList"
+      :is="com"
+      :active="props.modelValue"></component>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useBem } from '@/utils/bem';
-import { computed, useSlots, useAttrs } from 'vue';
+import { computed, useSlots, useAttrs, ref, watch } from 'vue';
 
 const bem = useBem('panes');
+const slideX = ref('24px');
 defineOptions({ name: 'ImPanes' });
 const props = withDefaults(
   defineProps<{
     modelValue?: string;
-    activeName?: string;
   }>(),
   {
     modelValue: '',
-    activeName: '',
   }
 );
 const slots = useSlots();
 const attr = useAttrs();
 const paneList = computed(() => filterPane(slots.default?.() || []));
-const current = computed(() =>
-  paneList.value.find((pane) => {
-    return pane.props?.name === props.modelValue;
-  })
+
+watch(
+  () => props.modelValue,
+  (n, o) => {
+    const cIndex = paneList.value.findIndex((item) => item.props.name === n);
+    const oIndex = paneList.value.findIndex((item) => item.props.name === o);
+    slideX.value = cIndex > oIndex ? '24px' : '-24px';
+  }
 );
 
 function isPane(slot: any) {

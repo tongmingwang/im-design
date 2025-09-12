@@ -15,9 +15,7 @@
         <ImTab :name="item" :label="`Label ${item}`" v-for="item in tabs" />
       </ImTabs>
       <ImPanes v-model="active">
-        <ImPane :name="item" v-for="item in tabs">
-          <div style="background-color: red">Content {{ item }}</div>
-        </ImPane>
+        <ImPane :name="item" v-for="item in tabs"> Content {{ item }} </ImPane>
       </ImPanes>
     </ImCard>
   </div>
